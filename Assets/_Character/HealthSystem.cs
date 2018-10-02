@@ -41,12 +41,25 @@ public class HealthSystem : MonoBehaviour
 
     void UpdateHealthBar()
     {
-        if (healthBar)//Enemies may not have health bar to update
+        if (healthBar)
         {
             healthBar.fillAmount = healthAsPercentage;
         }
     }
-    //TODO Impliment TakeDamage()
 
-    //TODO Impliment KillCharacter()
+    public void TakeDamage(float damage)
+    {
+        bool characterDies = (currentHealthPoints - damage) <= 0;
+        currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+        //play sound
+        var clip = damageSounds[Random.Range(0, damageSounds.Length)];
+        audioSource.PlayOneShot(clip);
+
+        if (characterDies)
+        {
+            //TODO Impliment KillCharacter()
+        }
+    }
+
+    
 }

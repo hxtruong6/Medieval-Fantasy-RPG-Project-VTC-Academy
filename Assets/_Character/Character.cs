@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
     [SerializeField] float stationaryTurnSpeed = 180;
     [SerializeField] float moveThreshold = 1f;
     [SerializeField] float animationSpeedMultiplier = 1.5f;
-    //[SerializeField] AnimatorOverrideController animatorOverrideController;
+    [SerializeField] AnimatorOverrideController animatorOverrideController;
 
     Vector3 clickPoint;
     NavMeshAgent agent;
@@ -52,10 +52,15 @@ public class Character : MonoBehaviour
         agent.destination = worldPosition;
     }
 
-    //public AnimatorOverrideController GetOverrideController()
-    //{
-    //    return animatorOverrideController;
-    //}
+    public float GetAnimationSpeedMultiplier()
+    {
+        return animationSpeedMultiplier;
+    }
+
+    public AnimatorOverrideController GetOverrideController()
+    {
+        return animatorOverrideController;
+    }
 
     void Move(Vector3 movement)
     {
