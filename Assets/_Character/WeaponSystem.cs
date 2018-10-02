@@ -5,12 +5,12 @@ using UnityEngine.Assertions;
 
 public class WeaponSystem : MonoBehaviour
 {
-    //[Range(.1f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f;
-    //[SerializeField] float criticalHitMultiplier = 1.25f;
-    //[SerializeField] ParticleSystem criticalHitParticle;
+    [Range(.1f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f;
+    [SerializeField] float criticalHitMultiplier = 1.25f;
+    [SerializeField] ParticleSystem criticalHitParticle;
 
     [SerializeField] float baseDamage = 10f;
-    [SerializeField] WeaponConfig currentWeaponConfig = null;
+    [SerializeField] WeaponConfig currentWeaponConfig;
 
     const string ATTACK_TRIGGER = "Attack";
     const string DEFAULT_ATTACK = "DEFAULT ATTACK";
@@ -32,7 +32,7 @@ public class WeaponSystem : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private GameObject RequestDominantHand()
@@ -72,6 +72,60 @@ public class WeaponSystem : MonoBehaviour
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+        }
+    }
+
+    public void StopAttacking()
+    {
+        animator.StopPlayback();
+    }
+
+    public void AttackTarget(GameObject targetToAttack)
+    {
+        target = targetToAttack;
+
+        bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage > 0;
+        bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > 0;
+
+        if (attackerStillAlive && targetStillAlive)
+        {
+            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
+            float timeToWait = weaponHitPeriod * character.GetAnimationSpeedMultiplier();
+
+            bool isTimeToHitAgain = (Time.time - lastHitTime) > timeToWait;
+
+            if (isTimeToHitAgain)
+            {
+                AttackTargetOnce();
+                lastHitTime = Time.time;
+            }
+        }
+    }
+
+    private void AttackTargetOnce()
+    {
+        transform.LookAt(target.transform);
+        animator.SetTrigger(ATTACK_TRIGGER);
+        SetAttackAnimation();
+    }
+
+    public void Hit()
+    {
+        target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+    }
+
+    private float CalculateDamage()
+    {
+        bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
+        float damageBeforeCritical = baseDamage + currentWeaponConfig.GetAdditionalDamage();
+        if (isCriticalHit)
+        {
+            criticalHitParticle.Play();
+            return damageBeforeCritical * criticalHitMultiplier;
+        }
+        else
+        {
+            return damageBeforeCritical;
         }
     }
 }

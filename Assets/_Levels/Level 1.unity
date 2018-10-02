@@ -298,8 +298,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 539739965}
   - {fileID: 1790472941}
+  - {fileID: 539739965}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -345,7 +345,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4202928106454886, guid: f2dbb6fd976846f4bab3059cb3e3d1bc, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114588448983946204, guid: f2dbb6fd976846f4bab3059cb3e3d1bc,
         type: 2}
@@ -538,7 +538,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4645683629560160, guid: 640ec172c9bf40f488f5f4cc4e2505d6, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 640ec172c9bf40f488f5f4cc4e2505d6, type: 2}
@@ -548,6 +548,27 @@ Transform:
   m_PrefabParentObject: {fileID: 4645683629560160, guid: 640ec172c9bf40f488f5f4cc4e2505d6,
     type: 2}
   m_PrefabInternal: {fileID: 1790472940}
+--- !u!1 &1790472942 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1426971202604980, guid: 640ec172c9bf40f488f5f4cc4e2505d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1790472940}
+--- !u!114 &1790472943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1790472942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bcbb102272d5e4d901329708d0e461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  healthBar: {fileID: 0}
+  damageSounds: []
+  deathSounds: []
+  deadVanishAfter: 7
 --- !u!114 &1823894253 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114592641761790874, guid: 1093a5fc73c1521499810ce6e3dc43ef,

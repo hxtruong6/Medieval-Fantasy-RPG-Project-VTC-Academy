@@ -34,8 +34,14 @@ public class CameraRaycaster : MonoBehaviour {
     void PerformRaycasts()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (RaycastForEnemy(ray)) { return; }
-        if (RaycastForPotentiallyWalkable(ray)) { return; }
+        if (RaycastForEnemy(ray))
+        {
+            return;
+        }
+        if (RaycastForPotentiallyWalkable(ray))
+        {
+            return;
+        }
         Cursor.SetCursor(unknownCursor, cursorHotspot, CursorMode.Auto);
     }
 
