@@ -5,9 +5,9 @@ using UnityEngine.Assertions;
 
 public class WeaponSystem : MonoBehaviour
 {
-    //[Range(.1f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f;
-    //[SerializeField] float criticalHitMultiplier = 1.25f;
-    //[SerializeField] ParticleSystem criticalHitParticle;
+    [Range(.1f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f;
+    [SerializeField] float criticalHitMultiplier = 1.25f;
+    [SerializeField] ParticleSystem criticalHitParticle;
 
     [SerializeField] float baseDamage = 10f;
     [SerializeField] WeaponConfig currentWeaponConfig = null;
@@ -32,7 +32,7 @@ public class WeaponSystem : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private GameObject RequestDominantHand()
@@ -72,6 +72,49 @@ public class WeaponSystem : MonoBehaviour
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+        }
+    }
+
+    public void Hit()
+    {
+        target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+    }
+
+    public void StopAttacking()
+    {
+        animator.StopPlayback();
+    }
+
+    public void AttackTargetOnce(GameObject targetToAttack)
+    {
+        target = targetToAttack;
+        bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage > 0;
+        bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > 0;
+
+        if (attackerStillAlive && targetStillAlive)
+        {
+            if (Time.time - lastHitTime >= currentWeaponConfig.GetMinTimeBetweenHits())
+            {
+                transform.LookAt(target.transform);
+                SetAttackAnimation();
+                animator.SetTrigger(ATTACK_TRIGGER);
+                lastHitTime = Time.time;
+            }
+        }          
+    }
+
+    private float CalculateDamage()
+    {
+        bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
+        float damageBeforeCritical = baseDamage + currentWeaponConfig.GetAdditionalDamage();
+        if (isCriticalHit)
+        {
+            criticalHitParticle.Play();
+            return damageBeforeCritical * criticalHitMultiplier;
+        }
+        else
+        {
+            return damageBeforeCritical;
         }
     }
 }

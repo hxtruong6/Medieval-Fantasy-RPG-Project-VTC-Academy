@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Character))]
+[RequireComponent(typeof(HealthSystem))]
 
 public class Enemy : MonoBehaviour {
 
     [SerializeField] float chaseRadius = 6f;
 
-    PlayerMovement player;
+    PlayerControl player;
     Character character;
     float distanceToPlayer;
 
@@ -16,11 +17,18 @@ public class Enemy : MonoBehaviour {
     void Start ()
     {
         character = GetComponent<Character>();
-        player = GameObject.FindObjectOfType<PlayerMovement>();
+        player = GameObject.FindObjectOfType<PlayerControl>();
     }
 	
 	void Update ()
     {
+        if (player.GetComponent<HealthSystem>().healthAsPercentage <= 0 ||
+            GetComponent<HealthSystem>().healthAsPercentage <= 0)
+        {
+            StopAllCoroutines();
+            Destroy(this);//to stop enemies from continue moving even when died
+        }
+
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
         if (distanceToPlayer <= chaseRadius)

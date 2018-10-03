@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
@@ -52,14 +53,32 @@ public class HealthSystem : MonoBehaviour
         bool characterDies = (currentHealthPoints - damage) <= 0;
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         //play sound
-        var clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        audioSource.PlayOneShot(clip);
+        //var clip = damageSounds[Random.Range(0, damageSounds.Length)];
+        //audioSource.PlayOneShot(clip);
 
         if (characterDies)
         {
-            //TODO Impliment KillCharacter()
+            StartCoroutine(KillCharacter());
         }
     }
 
-    
+    IEnumerator KillCharacter()
+    {
+        character.Kill();
+        animator.SetTrigger(DEATH_TRIGGER);
+        var playerComponent = GetComponent<PlayerControl>();
+
+        if (playerComponent && playerComponent.isActiveAndEnabled)
+        {
+            audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
+            audioSource.Play();
+            yield return new WaitForSecondsRealtime(audioSource.clip.length);
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            Destroy(gameObject, deadVanishAfter);
+        }
+    }
+
 }
