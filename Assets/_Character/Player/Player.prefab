@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 114179135250418548}
   - component: {fileID: 114263636413841058}
   - component: {fileID: 114588448983946204}
-  - component: {fileID: 114796513278379282}
+  - component: {fileID: 114212665809867562}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4090,7 +4090,7 @@ Animator:
   m_GameObject: {fileID: 1588088303168426}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
-  m_Controller: {fileID: 22100000, guid: aa56a9c4da4cb1147b4e11f1e9e56743, type: 2}
+  m_Controller: {fileID: 9100000, guid: ffeef5d18ec49d340b080e6d7f4e1f47, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -4127,6 +4127,23 @@ MonoBehaviour:
   animationSpeedMultiplier: 1.5
   animatorOverrideController: {fileID: 22100000, guid: aa56a9c4da4cb1147b4e11f1e9e56743,
     type: 2}
+--- !u!114 &114212665809867562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588088303168426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71117c36d95366244a398e1259408410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  criticalHitChance: 0.1
+  criticalHitMultiplier: 1.25
+  criticalHitParticle: {fileID: 0}
+  baseDamage: 10
+  currentWeaponConfig: {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8,
+    type: 2}
 --- !u!114 &114263636413841058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4156,23 +4173,6 @@ MonoBehaviour:
   deathSounds:
   - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deadVanishAfter: 5
---- !u!114 &114796513278379282
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1588088303168426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71117c36d95366244a398e1259408410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  criticalHitChance: 0.1
-  criticalHitMultiplier: 1.25
-  criticalHitParticle: {fileID: 0}
-  baseDamage: 10
-  currentWeaponConfig: {fileID: 11400000, guid: 13bd967da48d12d47a7566a75d5d0186,
-    type: 2}
 --- !u!136 &136492038784411984
 CapsuleCollider:
   m_ObjectHideFlags: 1
