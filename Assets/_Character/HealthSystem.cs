@@ -53,8 +53,8 @@ public class HealthSystem : MonoBehaviour
         bool characterDies = (currentHealthPoints - damage) <= 0;
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         //play sound
-        //var clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        //audioSource.PlayOneShot(clip);
+        var clip = damageSounds[Random.Range(0, damageSounds.Length)];
+        audioSource.PlayOneShot(clip);
 
         if (characterDies)
         {
@@ -67,17 +67,16 @@ public class HealthSystem : MonoBehaviour
         character.Kill();
         animator.SetTrigger(DEATH_TRIGGER);
         var playerComponent = GetComponent<PlayerControl>();
+        audioSource.Play();
+        yield return new WaitForSecondsRealtime(deadVanishAfter);
 
         if (playerComponent && playerComponent.isActiveAndEnabled)
         {
-            audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
-            audioSource.Play();
-            yield return new WaitForSecondsRealtime(audioSource.clip.length);
             SceneManager.LoadScene(0);
         }
         else
         {
-            Destroy(gameObject, deadVanishAfter);
+            Destroy(gameObject);
         }
     }
 
