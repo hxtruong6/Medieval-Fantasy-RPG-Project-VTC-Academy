@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    Enemy enemy;
     CameraRaycaster cameraRaycaster;
 
     Character character;
+    Enemy enemy;
     WeaponSystem weaponSystem;
 
     void Start()
@@ -47,17 +47,19 @@ public class PlayerControl : MonoBehaviour
 
     void OnMouseOverEnemy(Enemy enemyToSet)
     {
-        this.enemy = enemyToSet;
+        enemy = enemyToSet;
 
         if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
         {
-            weaponSystem.AttackTarget(enemy.gameObject);
+            //TODO fix bug when enemy is dead but player can still attack and vice versa
+            weaponSystem.AttackTargetOnce(enemy.gameObject);
         }
         else if (Input.GetMouseButton(0) && !IsTargetInRange(enemy.gameObject))
         {
             StartCoroutine(MoveAndAttack(enemy));
         }
-        //TODO Add move to target and and use skills
+
+        //TODO Impliment Move to enemy and use skills
     }
 
     IEnumerator MoveToTarget(Enemy target)
@@ -74,6 +76,6 @@ public class PlayerControl : MonoBehaviour
     IEnumerator MoveAndAttack(Enemy enemy)
     {
         yield return StartCoroutine(MoveToTarget(enemy));
-        weaponSystem.AttackTarget(enemy.gameObject);
+        weaponSystem.AttackTargetOnce(enemy.gameObject);
     }
 }

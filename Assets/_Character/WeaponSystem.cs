@@ -10,7 +10,7 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] ParticleSystem criticalHitParticle;
 
     [SerializeField] float baseDamage = 10f;
-    [SerializeField] WeaponConfig currentWeaponConfig;
+    [SerializeField] WeaponConfig currentWeaponConfig = null;
 
     const string ATTACK_TRIGGER = "Attack";
     const string DEFAULT_ATTACK = "DEFAULT ATTACK";
@@ -75,43 +75,32 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
+    public void Hit()
+    {
+        target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+    }
+
     public void StopAttacking()
     {
         animator.StopPlayback();
     }
 
-    public void AttackTarget(GameObject targetToAttack)
+    public void AttackTargetOnce(GameObject targetToAttack)
     {
         target = targetToAttack;
-
         bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage > 0;
         bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > 0;
 
         if (attackerStillAlive && targetStillAlive)
         {
-            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
-            float timeToWait = weaponHitPeriod * character.GetAnimationSpeedMultiplier();
-
-            bool isTimeToHitAgain = (Time.time - lastHitTime) > timeToWait;
-
-            if (isTimeToHitAgain)
+            if (Time.time - lastHitTime >= currentWeaponConfig.GetMinTimeBetweenHits())
             {
-                AttackTargetOnce();
+                transform.LookAt(target.transform);
+                SetAttackAnimation();
+                animator.SetTrigger(ATTACK_TRIGGER);
                 lastHitTime = Time.time;
             }
-        }
-    }
-
-    private void AttackTargetOnce()
-    {
-        transform.LookAt(target.transform);
-        animator.SetTrigger(ATTACK_TRIGGER);
-        SetAttackAnimation();
-    }
-
-    public void Hit()
-    {
-        target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+        }          
     }
 
     private float CalculateDamage()

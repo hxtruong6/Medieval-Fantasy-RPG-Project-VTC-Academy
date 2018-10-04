@@ -39,7 +39,8 @@ public class WeaponConfig : ScriptableObject
     {
         return additionalDamage;
     }
-    //In case animation has events
+
+    //In case animations has events
     //private void RemoveAnimationEvents()
     //{
     //    attackAnimation.events = new AnimationEvent[0];
