@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     [SerializeField] float moveThreshold = 1f;
     [SerializeField] float animationSpeedMultiplier = 1.5f;
     [SerializeField] AnimatorOverrideController animatorOverrideController;
+    [SerializeField] float baseDamage = 10f;
 
     Vector3 clickPoint;
     NavMeshAgent agent;
@@ -21,6 +22,11 @@ public class Character : MonoBehaviour
     float turnAmount;
     float forwardAmount;
     bool isAlive = true;
+
+    public float GetBaseDamage()
+    {
+        return baseDamage;
+    }
 
     void Start()
     {

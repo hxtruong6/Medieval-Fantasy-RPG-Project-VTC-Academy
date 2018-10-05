@@ -9,7 +9,6 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] float criticalHitMultiplier = 1.25f;
     [SerializeField] ParticleSystem criticalHitParticle;
 
-    [SerializeField] float baseDamage = 10f;
     [SerializeField] WeaponConfig currentWeaponConfig = null;
 
     const string ATTACK_TRIGGER = "Attack";
@@ -85,36 +84,46 @@ public class WeaponSystem : MonoBehaviour
         animator.StopPlayback();
     }
 
-    public void AttackTargetOnce(GameObject targetToAttack)
+    public void AttackTarget(GameObject targetToAttack)
     {
         target = targetToAttack;
+
         bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage > 0;
         bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > 0;
 
         if (attackerStillAlive && targetStillAlive)
         {
-            if (Time.time - lastHitTime >= currentWeaponConfig.GetMinTimeBetweenHits())
+            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
+            float timeToWait = weaponHitPeriod * character.GetAnimationSpeedMultiplier();
+
+            if (Time.time - lastHitTime >= timeToWait)
             {
-                transform.LookAt(target.transform);
-                SetAttackAnimation();
-                animator.SetTrigger(ATTACK_TRIGGER);
                 lastHitTime = Time.time;
+                RunAnimationAttackOnce();
             }
-        }          
+        }     
+    }
+
+    private void RunAnimationAttackOnce()
+    {
+        transform.LookAt(target.transform);
+        SetAttackAnimation();
+        animator.SetTrigger(ATTACK_TRIGGER);
     }
 
     private float CalculateDamage()
     {
         bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
-        float damageBeforeCritical = baseDamage + currentWeaponConfig.GetAdditionalDamage();
-        if (isCriticalHit)
-        {
-            criticalHitParticle.Play();
-            return damageBeforeCritical * criticalHitMultiplier;
-        }
-        else
-        {
+        int weaponDamage = Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
+        float damageBeforeCritical = character.GetBaseDamage() + weaponDamage;
+        //if (isCriticalHit)
+        //{
+        //    criticalHitParticle.Play();
+        //    return damageBeforeCritical * criticalHitMultiplier;
+        //}
+        //else
+        //{
             return damageBeforeCritical;
-        }
+        //}
     }
 }

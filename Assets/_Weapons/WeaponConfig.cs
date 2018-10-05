@@ -9,10 +9,11 @@ public class WeaponConfig : ScriptableObject
     public Transform gripTransform;
 
     [SerializeField] GameObject weaponPrefab;
-    [SerializeField] AnimationClip attackAnimation;
-    [SerializeField] float minTimeBetweenHits = .5f;
+    [SerializeField] AnimationClip[] attackAnimations;
+    [SerializeField] float minTimeBetweenHits = 0.5f;
     [SerializeField] float maxAttackRange = 2f;
-    [SerializeField] float additionalDamage = 10f;
+    [SerializeField] int minDamage = 1;
+    [SerializeField] int maxDamage = 10;
 
     public float GetMinTimeBetweenHits()
     {
@@ -31,18 +32,17 @@ public class WeaponConfig : ScriptableObject
 
     public AnimationClip GetAttackAnimClip()
     {
-        //RemoveAnimationEvents();
-        return attackAnimation;
+        var clip = attackAnimations[Random.Range(0, attackAnimations.Length)];
+        return clip;
     }
 
-    public float GetAdditionalDamage()
+    public int GetMinDamage()
     {
-        return additionalDamage;
+        return minDamage;
     }
 
-    //In case animations has events
-    //private void RemoveAnimationEvents()
-    //{
-    //    attackAnimation.events = new AnimationEvent[0];
-    //}
+    public int GetMaxDamage()
+    {
+        return maxDamage;
+    }
 }

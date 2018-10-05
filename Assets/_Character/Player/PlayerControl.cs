@@ -51,8 +51,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
         {
-            //TODO fix bug when enemy is dead but player can still attack and vice versa
-            weaponSystem.AttackTargetOnce(enemy.gameObject);
+            weaponSystem.AttackTarget(enemy.gameObject);
         }
         else if (Input.GetMouseButton(0) && !IsTargetInRange(enemy.gameObject))
         {
@@ -76,6 +75,6 @@ public class PlayerControl : MonoBehaviour
     IEnumerator MoveAndAttack(Enemy enemy)
     {
         yield return StartCoroutine(MoveToTarget(enemy));
-        weaponSystem.AttackTargetOnce(enemy.gameObject);
+        weaponSystem.AttackTarget(enemy.gameObject);
     }
 }
