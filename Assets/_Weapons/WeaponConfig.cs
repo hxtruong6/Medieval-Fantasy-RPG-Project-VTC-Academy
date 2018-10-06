@@ -14,10 +14,13 @@ public class WeaponConfig : ScriptableObject
     [SerializeField] float maxAttackRange = 2f;
     [SerializeField] int minDamage = 1;
     [SerializeField] int maxDamage = 10;
+    [SerializeField] bool isRightHandWeapon = true;
+    [SerializeField] bool isMeleeWeapon = true;
 
     public float GetMinTimeBetweenHits()
     {
         return minTimeBetweenHits;
+        //return GetAttackAnimClip().length;
     }
 
     public float GetMaxAttackRange()
@@ -44,5 +47,15 @@ public class WeaponConfig : ScriptableObject
     public int GetMaxDamage()
     {
         return maxDamage;
+    }
+
+    public bool IsRightHandWeapon()
+    {
+        return isRightHandWeapon;
+    }
+
+    public bool IsMeleeWeapon()
+    {
+        return isMeleeWeapon;
     }
 }

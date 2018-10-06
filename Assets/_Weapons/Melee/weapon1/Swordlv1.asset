@@ -22,3 +22,5 @@ MonoBehaviour:
   maxAttackRange: 2
   minDamage: 1
   maxDamage: 10
+  isRightHandWeapon: 1
+  isMeleeWeapon: 1

@@ -9,7 +9,7 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] float criticalHitMultiplier = 1.25f;
     [SerializeField] ParticleSystem criticalHitParticle;
 
-    [SerializeField] WeaponConfig currentWeaponConfig = null;
+    [SerializeField] WeaponConfig currentWeaponConfig;
 
     const string ATTACK_TRIGGER = "Attack";
     const string DEFAULT_ATTACK = "DEFAULT ATTACK";
@@ -29,17 +29,26 @@ public class WeaponSystem : MonoBehaviour
         SetAttackAnimation();
     }
 
-    void Update()
-    {
+    //public Animator GetAnimator()
+    //{
+    //    return animator;
+    //}
 
+    private GameObject RequestRighHand()
+    {
+        var dominantHands = GetComponentsInChildren<RightHand>();
+        int numberOfDominantHands = dominantHands.Length;
+        Assert.IsFalse(numberOfDominantHands <= 0, "Khong tim thay RightHand script nao tren " + gameObject.name);
+        Assert.IsFalse(numberOfDominantHands > 1, "Co qua nhieu RightHand script tren " + gameObject.name + " xoa bot di.");
+        return dominantHands[0].gameObject;
     }
 
-    private GameObject RequestDominantHand()
+    private GameObject RequestLeftHand()
     {
-        var dominantHands = GetComponentsInChildren<DominantHand>();
+        var dominantHands = GetComponentsInChildren<LeftHand>();
         int numberOfDominantHands = dominantHands.Length;
-        Assert.IsFalse(numberOfDominantHands <= 0, "No DominantHand found on Player, please add one");
-        Assert.IsFalse(numberOfDominantHands > 1, "Multiple DominantHand scripts on Player, please remove one");
+        Assert.IsFalse(numberOfDominantHands <= 0, "Khong tim thay LeftHand script nao tren " + gameObject.name);
+        Assert.IsFalse(numberOfDominantHands > 1, "Co qua nhieu LeftHand script tren " + gameObject.name + " xoa bot di.");
         return dominantHands[0].gameObject;
     }
 
@@ -47,7 +56,15 @@ public class WeaponSystem : MonoBehaviour
     {
         currentWeaponConfig = weaponToUse;
         var weaponPrefab = weaponToUse.GetWeaponPrefab();
-        GameObject dominantHand = RequestDominantHand();
+        GameObject dominantHand;
+        if (currentWeaponConfig.IsRightHandWeapon())
+        {
+            dominantHand = RequestRighHand();
+        }
+        else
+        {
+            dominantHand = RequestLeftHand();
+        }
         Destroy(weaponObject);
         weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
         weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.localPosition;
@@ -70,8 +87,19 @@ public class WeaponSystem : MonoBehaviour
         {
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+            var attackClip = currentWeaponConfig.GetAttackAnimClip();
+            animatorOverrideController[DEFAULT_ATTACK] = attackClip;
+
+            float animSpeed = attackClip.length / currentWeaponConfig.GetMinTimeBetweenHits();
+            animator.SetFloat("AttackSpeed", animSpeed);
+            //animator.SetFloat("AnimOffSet", Random.Range(0f, 0.2f));
         }
+    }
+
+    public void CancleAttack()
+    {
+        if(character.GetComponent<PlayerControl>().StateOfPlayer == PlayerControl.PlayerState.attacking)
+            animator.Play("Grounded", 0, 0);
     }
 
     public void Hit()
@@ -80,7 +108,7 @@ public class WeaponSystem : MonoBehaviour
     }
 
     public void StopAttacking()
-    {
+    {        
         animator.StopPlayback();
     }
 
@@ -101,7 +129,11 @@ public class WeaponSystem : MonoBehaviour
                 lastHitTime = Time.time;
                 RunAnimationAttackOnce();
             }
-        }     
+        }
+        if(character.GetComponent<PlayerControl>())
+        {
+            character.GetComponent<PlayerControl>().StateOfPlayer = PlayerControl.PlayerState.attacking;
+        }
     }
 
     private void RunAnimationAttackOnce()
@@ -118,6 +150,7 @@ public class WeaponSystem : MonoBehaviour
         float damageBeforeCritical = character.GetBaseDamage() + weaponDamage;
         //if (isCriticalHit)
         //{
+        //    print("Crit");
         //    criticalHitParticle.Play();
         //    return damageBeforeCritical * criticalHitMultiplier;
         //}

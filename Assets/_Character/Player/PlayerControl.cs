@@ -10,6 +10,9 @@ public class PlayerControl : MonoBehaviour
     Enemy enemy;
     WeaponSystem weaponSystem;
 
+    public enum PlayerState { idle, attacking, running }
+    PlayerState playerState = PlayerState.idle;
+
     void Start()
     {
         character = GetComponent<Character>();
@@ -27,13 +30,20 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        
+
+    }
+
+    public PlayerState StateOfPlayer
+    {
+        get {   return playerState; }
+        set { playerState = value; }
     }
 
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
     {
         if (Input.GetMouseButton(0))
         {
+            weaponSystem.CancleAttack();
             weaponSystem.StopAttacking();
             character.SetDestination(destination);
         }
@@ -63,12 +73,13 @@ public class PlayerControl : MonoBehaviour
 
     IEnumerator MoveToTarget(Enemy target)
     {
+        playerState = PlayerState.running;
         character.SetDestination(target.transform.position);
         while (!IsTargetInRange(target.gameObject))
         {
             yield return new WaitForEndOfFrame();
-            character.SetDestination(target.transform.position);
         }
+        character.SetDestination(character.transform.position);
         yield return new WaitForEndOfFrame();
     }
 
@@ -76,5 +87,14 @@ public class PlayerControl : MonoBehaviour
     {
         yield return StartCoroutine(MoveToTarget(enemy));
         weaponSystem.AttackTarget(enemy.gameObject);
+    }
+
+    void OnDrawGizmos()
+    {
+        if (weaponSystem != null)
+        {
+            Gizmos.color = new Color(255f, 0, 0, .5f);
+            Gizmos.DrawWireSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange());
+        }
     }
 }
