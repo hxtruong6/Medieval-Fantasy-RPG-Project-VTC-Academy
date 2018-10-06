@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,72 +9,124 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
-
-    [SerializeField] float chaseRadius = 10f;
-    [SerializeField] float fleeRadius = 4f;
-    [SerializeField] WaypointContainer patrolPath;
-    [SerializeField] float waypointTolerance = 2f;
-    [SerializeField] float waitAtWaypointTime = 3f;
+    [SerializeField] protected float chaseRadius = 10f;
+    [SerializeField] protected float fleeRadius = 4f;
+    [SerializeField] protected WaypointContainer patrolPath;
+    [SerializeField] protected float waypointTolerance = 2f;
+    [SerializeField] protected float waitAtWaypointTime = 3f;
+    [SerializeField] protected float radiusThreshold = 1f;
     PlayerControl player;
     Character character;
     float distanceToPlayer;
     float currentWeaponRange;
     int nextWaypointIndex;
 
-    public bool enableChasing = false;
     public bool enableFleeing = false;
     enum State { idle, patrolling, attacking, chasing, fleeing }
-    State state = State.idle;
+    [SerializeField] State state = State.idle;
+
+    private WeaponSystem weaponSystem;
 
     void Start()
     {
         character = GetComponent<Character>();
         player = GameObject.FindObjectOfType<PlayerControl>();
+        weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on 
+        currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
     }
 
-    void Update()
+    //    void Update()
+    //    {
+    //        PlayerOrEnemyAliveToContinue();
+    //        if (distanceToPlayer > chaseRadius && state != State.patrolling)
+    //        {
+    //            StopAllCoroutines();
+    //            weaponSystem.StopAttacking();
+    //            StartCoroutine(Patrol());
+    //        }
+    //        if (enableChasing
+    //            && distanceToPlayer <= chaseRadius
+    //            && distanceToPlayer > fleeRadius
+    //            && state != State.chasing)
+    //        {
+    //            StopAllCoroutines();
+    //            weaponSystem.StopAttacking();
+    //            StartCoroutine(ChasePlayer());
+    //        }
+    //
+    //        if (enableFleeing
+    //            && distanceToPlayer <= fleeRadius - radiusThreshold
+    //            && state != State.fleeing)
+    //        {
+    //            StopAllCoroutines();
+    //            weaponSystem.StopAttacking();
+    //            StartCoroutine(FleePlayer());
+    //        }
+    //        if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
+    //        {
+    //            state = State.attacking;
+    //            StopAllCoroutines();
+    //            weaponSystem.AttackTargetOnce(player.gameObject);
+    //        }
+    //    }
+
+    public void UpdateDistanceToPlayer()
     {
+        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+    }
+
+    public void PlayerOrEnemyAliveToContinue()
+    {
+        //player = GameObject.FindObjectOfType<PlayerControl>();
         if (player.GetComponent<HealthSystem>().healthAsPercentage <= 0 ||
             GetComponent<HealthSystem>().healthAsPercentage <= 0)
         {
             StopAllCoroutines();
             Destroy(this);//to stop enemies from continue moving even when died
         }
+    }
 
-        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-        WeaponSystem weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on designer
-        currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
-
+    public void Patroling()
+    {
         if (distanceToPlayer > chaseRadius && state != State.patrolling)
         {
             StopAllCoroutines();
             weaponSystem.StopAttacking();
             StartCoroutine(Patrol());
         }
-        if (enableChasing
-            && distanceToPlayer <= chaseRadius
-            && distanceToPlayer > fleeRadius
+    }
+
+    public void Attacking()
+    {
+        if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
+        {
+            state = State.attacking;
+            StopAllCoroutines();
+            weaponSystem.AttackTargetOnce(player.gameObject);
+        }
+    }
+
+    public void Chasing()
+    {
+        if (distanceToPlayer <= chaseRadius
+            && ((enableFleeing && distanceToPlayer > fleeRadius + radiusThreshold) || !enableFleeing)  // if flee then chasing in range[fleeRadius + threshold, chasingRadius] else chasing
             && state != State.chasing)
         {
             StopAllCoroutines();
             weaponSystem.StopAttacking();
             StartCoroutine(ChasePlayer());
         }
+    }
 
-        if (enableFleeing 
-            && distanceToPlayer <= fleeRadius 
+    public void Fleeing()
+    {
+        if (enableFleeing
+            && distanceToPlayer <= fleeRadius - radiusThreshold
             && state != State.fleeing)
         {
             StopAllCoroutines();
             weaponSystem.StopAttacking();
             StartCoroutine(FleePlayer());
-        }
-        if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
-        {
-            state = State.attacking;
-            StopAllCoroutines();
-            weaponSystem.AttackTargetOnce(player.gameObject);
         }
     }
 
@@ -105,7 +158,7 @@ public class Enemy : MonoBehaviour
         state = State.chasing;
         while (distanceToPlayer >= currentWeaponRange
                && distanceToPlayer <= chaseRadius
-               && distanceToPlayer > fleeRadius)
+               && ((enableFleeing && distanceToPlayer > fleeRadius + radiusThreshold) || !enableFleeing))
         {
             character.SetDestination(player.transform.position);
             yield return new WaitForEndOfFrame();
