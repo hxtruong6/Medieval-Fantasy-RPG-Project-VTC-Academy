@@ -35,5 +35,5 @@ sysinfo.txt
 *.apk
 *.
 # Example panda
-Assets/PandaBehaviour/Examples/
+Assets/PandaBehaviour/Examples/*
 
