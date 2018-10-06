@@ -33,4 +33,7 @@ sysinfo.txt
 
 # Builds
 *.apk
-*.unitypackage
+*.
+# Example
+Assets/PandaBehaviour/Examples/*
+
