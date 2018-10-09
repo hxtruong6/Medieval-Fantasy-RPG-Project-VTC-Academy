@@ -1018,11 +1018,6 @@ Prefab:
       propertyPath: flock
       value: 
       objectReference: {fileID: 2042354247}
-    - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
-        type: 2}
-      propertyPath: fleeingSpeed
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
   m_IsPrefabParent: 0
