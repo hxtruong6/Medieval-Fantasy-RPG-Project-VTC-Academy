@@ -2381,7 +2381,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621832025424294}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 369bf22314485f2499b7991776c86074, type: 3}
   m_Controller: {fileID: 9100000, guid: e35d890dd6bcf704d922b05e16a9ee81, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -2403,10 +2403,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
-  criticalHitParticle: {fileID: 0}
-  baseDamage: 4
   currentWeaponConfig: {fileID: 11400000, guid: cee8a41bf6c52aa40b924e4d68d0b657,
     type: 2}
+  currentProjectileConfig: {fileID: 0}
 --- !u!114 &114439905020492064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2419,10 +2418,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 54947766200339660}
-  seekingSpeed: 15
-  seekingRadius: 7
+  seekingSpeed: 10
+  seekingRadius: 8
   fleeingSpeed: 10
-  safeDistance: 4
+  safeDistance: 4.36
   seeking: 1
   fleeing: 0
   alignment: 1
@@ -2476,6 +2475,7 @@ MonoBehaviour:
   animationSpeedMultiplier: 1.5
   animatorOverrideController: {fileID: 22100000, guid: 5f30ee4d613cd8d4ba38c7e4ccea17f3,
     type: 2}
+  baseDamage: 10
 --- !u!136 &136782504198616478
 CapsuleCollider:
   m_ObjectHideFlags: 1

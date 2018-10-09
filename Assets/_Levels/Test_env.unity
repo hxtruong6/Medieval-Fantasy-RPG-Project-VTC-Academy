@@ -1127,7 +1127,7 @@ MonoBehaviour:
   - {fileID: 973997753}
   - {fileID: 1873291569}
   - {fileID: 452208012}
-  neighbourDistance: 6
+  neighbourDistance: 10
   aligmentWeight: 5
   cohesionWeight: 5
   separationWeight: 5
