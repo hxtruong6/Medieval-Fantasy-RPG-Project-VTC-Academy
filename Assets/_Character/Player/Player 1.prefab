@@ -42,6 +42,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1024721158545564
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4786451191685884}
+  - component: {fileID: 114672765092337464}
+  m_Layer: 0
+  m_Name: FiringPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1077946689449112
 GameObject:
   m_ObjectHideFlags: 1
@@ -1910,6 +1926,7 @@ Transform:
   - {fileID: 4285036641687394}
   - {fileID: 4453820189513080}
   - {fileID: 4049244280375392}
+  - {fileID: 4786451191685884}
   m_Father: {fileID: 4452205163012416}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2319,7 +2336,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1906630212303482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.594, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4236402141228704}
@@ -3027,6 +3044,19 @@ Transform:
   m_Father: {fileID: 4702289607200258}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4786451191685884
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1024721158545564}
+  m_LocalRotation: {x: 0.63503957, y: -0.75726813, z: -0.117552705, w: -0.09721744}
+  m_LocalPosition: {x: -0.182, y: 0.016, z: -0.027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4070363541560036}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -17.548, y: -179.876, z: -79.985}
 --- !u!4 &4793512173102452
 Transform:
   m_ObjectHideFlags: 1
@@ -3906,10 +3936,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalHitChance: 1
   criticalHitMultiplier: 1.25
-  criticalHitParticle: {fileID: 0}
-  arrowPrefab: {fileID: 1815938172978866, guid: 4c7646c12e827f7408d18f25c1a7393b,
-    type: 2}
   currentWeaponConfig: {fileID: 11400000, guid: fcac733c874429948a3a6c5d5ded89bd,
+    type: 2}
+  currentProjectileConfig: {fileID: 11400000, guid: c8ef703c498a67d4db01a4a3e3bd12e6,
     type: 2}
 --- !u!114 &114298108163537292
 MonoBehaviour:
@@ -3949,6 +3978,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8c278776634989418cb1603aa6f4462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114672765092337464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1024721158545564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7f41fb1c670384bb26452c22313ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114719377183398096
