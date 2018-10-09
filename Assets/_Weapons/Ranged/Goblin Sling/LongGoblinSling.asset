@@ -13,9 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gripTransform: {fileID: 4780827250440542, guid: 152e9201f25d381418fb195fb15f7f3d,
     type: 2}
-  weaponPrefab: {fileID: 1187864358893322, guid: ba5a9c8ae9dd1a643bbedd0f15ae8fff,
+  weaponPrefab: {fileID: 1313599119189930, guid: 0c67c4ba5eb89034ebd63a4afdb9c271,
     type: 2}
-  attackAnimation: {fileID: 7400000, guid: d3bd855b40135b74a992deaebf4aec3d, type: 3}
+  attackAnimations:
+  - {fileID: 7400000, guid: d3bd855b40135b74a992deaebf4aec3d, type: 3}
   minTimeBetweenHits: 0.2
   maxAttackRange: 6
-  additionalDamage: 4
+  minDamage: 1
+  maxDamage: 10
+  isRightHandWeapon: 1
+  isMeleeWeapon: 1
+  criticalHitParticlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
+    type: 2}
+  destroyParticleAfterSec: 5

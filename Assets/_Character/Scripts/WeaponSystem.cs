@@ -87,8 +87,7 @@ public class WeaponSystem : MonoBehaviour
         var projectileObject = SpawnProjectile();
 
         var targetToShoot = target.transform.position;
-        targetToShoot.y = projectileObject.transform.position.y;
-
+        //targetToShoot.y = projectileObject.transform.position.y;
         StartCoroutine(MoveObject(projectileObject,
                                   projectileObject.transform.position,
                                   targetToShoot,
@@ -215,6 +214,7 @@ public class WeaponSystem : MonoBehaviour
         );
         particleObject.transform.parent = target.transform;
         particleObject.GetComponent<ParticleSystem>().Play();
+        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         StartCoroutine(DestroyParticleAfterFinishedSec(particleObject));
     }
 
