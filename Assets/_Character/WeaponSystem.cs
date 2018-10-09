@@ -7,11 +7,11 @@ public class WeaponSystem : MonoBehaviour
 {
     [Range(.1f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f;
     [SerializeField] float criticalHitMultiplier = 1.25f;
-    [SerializeField] ParticleSystem criticalHitParticle;
 
-    [SerializeField] float baseDamage = 10f;
-    [SerializeField] WeaponConfig currentWeaponConfig = null;
+    [SerializeField] WeaponConfig currentWeaponConfig;
+    [SerializeField] ProjectileConfig currentProjectileConfig;
 
+    const string TEMP_OBJECTS = "TempObjects";
     const string ATTACK_TRIGGER = "Attack";
     const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 
@@ -30,17 +30,21 @@ public class WeaponSystem : MonoBehaviour
         SetAttackAnimation();
     }
 
-    void Update()
+    private GameObject RequestRighHand()
     {
-
+        var dominantHands = GetComponentsInChildren<RightHand>();
+        int numberOfDominantHands = dominantHands.Length;
+        Assert.IsFalse(numberOfDominantHands <= 0, "Khong tim thay RightHand script nao tren " + gameObject.name);
+        Assert.IsFalse(numberOfDominantHands > 1, "Co qua nhieu RightHand script tren " + gameObject.name + " xoa bot di.");
+        return dominantHands[0].gameObject;
     }
 
-    private GameObject RequestDominantHand()
+    private GameObject RequestLeftHand()
     {
-        var dominantHands = GetComponentsInChildren<DominantHand>();
+        var dominantHands = GetComponentsInChildren<LeftHand>();
         int numberOfDominantHands = dominantHands.Length;
-        Assert.IsFalse(numberOfDominantHands <= 0, "No DominantHand found on Player, please add one");
-        Assert.IsFalse(numberOfDominantHands > 1, "Multiple DominantHand scripts on Player, please remove one");
+        Assert.IsFalse(numberOfDominantHands <= 0, "Khong tim thay LeftHand script nao tren " + gameObject.name);
+        Assert.IsFalse(numberOfDominantHands > 1, "Co qua nhieu LeftHand script tren " + gameObject.name + " xoa bot di.");
         return dominantHands[0].gameObject;
     }
 
@@ -48,11 +52,61 @@ public class WeaponSystem : MonoBehaviour
     {
         currentWeaponConfig = weaponToUse;
         var weaponPrefab = weaponToUse.GetWeaponPrefab();
-        GameObject dominantHand = RequestDominantHand();
+        GameObject dominantHand;
+        if (currentWeaponConfig.IsRightHandWeapon())
+        {
+            dominantHand = RequestRighHand();
+        }
+        else
+        {
+            dominantHand = RequestLeftHand();
+        }
         Destroy(weaponObject);
         weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
         weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.localPosition;
         weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.localRotation;
+    }
+
+    private GameObject SpawnProjectile()
+    {
+        var projectilePrefab = currentProjectileConfig.GetProjectilePrefab();
+        var firingPos = GetComponentInChildren<ArrowShootingPosition>();
+        var projectileObject = Instantiate(projectilePrefab, firingPos.transform);
+
+        var projectile = projectileObject.GetComponent<Projectile>();
+        projectile.SetProjectileConfig(currentProjectileConfig);
+        projectile.SetShooter(gameObject);
+
+        projectileObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        return projectileObject;
+    }
+
+    public void FiringOffProjectile(ProjectileConfig projectileToUse)
+    {
+        currentProjectileConfig = projectileToUse;
+        var projectileObject = SpawnProjectile();
+
+        var targetToShoot = target.transform.position;
+        targetToShoot.y = projectileObject.transform.position.y;
+
+        StartCoroutine(MoveObject(projectileObject,
+                                  projectileObject.transform.position,
+                                  targetToShoot,
+                                  currentProjectileConfig.GetProjectileSpeed(),
+                                  currentProjectileConfig.GetVanishTime()));
+    }
+
+    IEnumerator MoveObject(GameObject projectile, Vector3 from, Vector3 target, float speed, float vanishAfterSec)
+    {
+        float startTime = Time.time;
+        var normalizeDirection = (target - from).normalized;
+        var vanishTime = Time.time + vanishAfterSec;
+        while (Time.time < vanishTime && projectile)
+        {
+            projectile.transform.position += normalizeDirection * (Time.deltaTime * speed);
+            yield return null;
+        }
+        Destroy(projectile);
     }
 
     public WeaponConfig GetCurrentWeapon()
@@ -71,7 +125,20 @@ public class WeaponSystem : MonoBehaviour
         {
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+            var attackClip = currentWeaponConfig.GetAttackAnimClip();
+            animatorOverrideController[DEFAULT_ATTACK] = attackClip;
+
+            //float animSpeed = attackClip.length / currentWeaponConfig.GetMinTimeBetweenHits();
+            //animator.SetFloat("AttackSpeed", animSpeed);
+            //animator.SetFloat("AnimOffSet", Random.Range(0f, 0.2f));
+        }
+    }
+
+    public void CancleAttack()
+    {
+        if (character.CurrentState == CharacterState.attacking)
+        {
+            animator.Play("Grounded");
         }
     }
 
@@ -80,41 +147,83 @@ public class WeaponSystem : MonoBehaviour
         target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
     }
 
-    public void StopAttacking()
+    public void ShootArrow()
     {
-        animator.StopPlayback();
+        FiringOffProjectile(currentProjectileConfig);
     }
 
-    public void AttackTargetOnce(GameObject targetToAttack)
+    public void StopAttacking()
+    {
+        //TODO impliment
+    }
+
+    public void AttackTarget(GameObject targetToAttack)
     {
         target = targetToAttack;
+
         bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage > 0;
         bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > 0;
 
         if (attackerStillAlive && targetStillAlive)
         {
-            if (Time.time - lastHitTime >= currentWeaponConfig.GetMinTimeBetweenHits())
+            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
+            float timeToWait = weaponHitPeriod * character.GetAnimationSpeedMultiplier();
+
+            if (Time.time - lastHitTime >= timeToWait)
             {
-                transform.LookAt(target.transform);
-                SetAttackAnimation();
-                animator.SetTrigger(ATTACK_TRIGGER);
                 lastHitTime = Time.time;
+                RunAnimationAttackOnce();
             }
-        }          
+        }
+        if (character.GetComponent<PlayerControl>())
+        {
+            character.CurrentState = CharacterState.attacking;
+        }
     }
 
-    private float CalculateDamage()
+    private void RunAnimationAttackOnce()
+    {
+        transform.LookAt(target.transform);
+        SetAttackAnimation();
+        animator.SetTrigger(ATTACK_TRIGGER);
+    }
+
+    public float CalculateDamage()
     {
         bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
-        float damageBeforeCritical = baseDamage + currentWeaponConfig.GetAdditionalDamage();
+        int weaponDamage = Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
+        float damageBeforeCritical = character.GetBaseDamage() + weaponDamage;
         if (isCriticalHit)
         {
-            criticalHitParticle.Play();
+            PlayCriticalHitParticle();
             return damageBeforeCritical * criticalHitMultiplier;
         }
         else
         {
             return damageBeforeCritical;
         }
+    }
+
+    protected void PlayCriticalHitParticle()
+    {
+        var particlePrefab = currentWeaponConfig.GetCriticalHitPrefab();
+        var particleObject = Instantiate
+        (
+            particlePrefab,
+            target.transform.position,
+            particlePrefab.transform.rotation
+        );
+        particleObject.transform.parent = target.transform;
+        particleObject.GetComponent<ParticleSystem>().Play();
+        StartCoroutine(DestroyParticleAfterFinishedSec(particleObject));
+    }
+
+    IEnumerator DestroyParticleAfterFinishedSec(GameObject particlePrefab)
+    {
+        while (particlePrefab.GetComponent<ParticleSystem>().isPlaying)
+        {
+            yield return new WaitForSeconds(currentWeaponConfig.GetDestroyParticleTime());
+        }
+        Destroy(particlePrefab);
     }
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629dc909419d1014ca0187f048f8db74, type: 3}
+  m_Name: Bow LV2
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 4780827250440542, guid: 96596f8f22ee72841a1775f5e8157f78,
+    type: 2}
+  weaponPrefab: {fileID: 1380331436140364, guid: f3ce5cb40172b874c87ae0b4e6801e69,
+    type: 2}
+  attackAnimations:
+  - {fileID: 7400192, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
+  minTimeBetweenHits: 1
+  maxAttackRange: 10
+  minDamage: 1
+  maxDamage: 7
+  isRightHandWeapon: 0
+  isMeleeWeapon: 0

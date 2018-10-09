@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     Character character;
     Enemy enemy;
     WeaponSystem weaponSystem;
-
+    
     void Start()
     {
         character = GetComponent<Character>();
@@ -27,14 +27,15 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
     {
         if (Input.GetMouseButton(0))
         {
-            weaponSystem.StopAttacking();
+            weaponSystem.CancleAttack();
+            character.CurrentState = CharacterState.running;
             character.SetDestination(destination);
         }
     }
@@ -51,8 +52,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
         {
-            //TODO fix bug when enemy is dead but player can still attack and vice versa
-            weaponSystem.AttackTargetOnce(enemy.gameObject);
+            weaponSystem.AttackTarget(enemy.gameObject);
         }
         else if (Input.GetMouseButton(0) && !IsTargetInRange(enemy.gameObject))
         {
@@ -64,18 +64,33 @@ public class PlayerControl : MonoBehaviour
 
     IEnumerator MoveToTarget(Enemy target)
     {
+        character.CurrentState = CharacterState.running;
         character.SetDestination(target.transform.position);
         while (!IsTargetInRange(target.gameObject))
         {
             yield return new WaitForEndOfFrame();
-            character.SetDestination(target.transform.position);
         }
+        character.SetDestination(character.transform.position);
         yield return new WaitForEndOfFrame();
     }
 
     IEnumerator MoveAndAttack(Enemy enemy)
     {
         yield return StartCoroutine(MoveToTarget(enemy));
-        weaponSystem.AttackTargetOnce(enemy.gameObject);
+        weaponSystem.AttackTarget(enemy.gameObject);
+    }
+
+    private void StandStill()
+    {
+        character.CurrentState = CharacterState.idling;
+    }
+
+    void OnDrawGizmos()
+    {
+        if (weaponSystem != null)
+        {
+            Gizmos.color = new Color(255f, 0, 0, .5f);
+            Gizmos.DrawWireSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange());
+        }
     }
 }

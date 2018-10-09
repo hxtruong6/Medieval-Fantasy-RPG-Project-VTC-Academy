@@ -9,21 +9,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 629dc909419d1014ca0187f048f8db74, type: 3}
-  m_Name: Swordlv1
+  m_Name: Bow LV1
   m_EditorClassIdentifier: 
-  gripTransform: {fileID: 4780827250440542, guid: a7b0099240586fb44bf5ba4c6e31861f,
+  gripTransform: {fileID: 4780827250440542, guid: 96596f8f22ee72841a1775f5e8157f78,
     type: 2}
-  weaponPrefab: {fileID: 1063650569646210, guid: 98bdbdccb98f8fe4cb3a263171da5bf6,
+  weaponPrefab: {fileID: 1380331436140364, guid: f3ce5cb40172b874c87ae0b4e6801e69,
     type: 2}
   attackAnimations:
-  - {fileID: 7400138, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
-  - {fileID: 7400132, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
-  minTimeBetweenHits: 0.5
-  maxAttackRange: 2
+  - {fileID: 7400000, guid: 24d693751e9fd0b42ba8f9595d8b5f5e, type: 3}
+  minTimeBetweenHits: 1
+  maxAttackRange: 10
   minDamage: 1
-  maxDamage: 10
-  isRightHandWeapon: 1
-  isMeleeWeapon: 1
+  maxDamage: 7
+  isRightHandWeapon: 0
+  isMeleeWeapon: 0
   criticalHitParticlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
     type: 2}
-  destroyParticleAfterSec: 5
+  destroyParticleAfterSec: 2

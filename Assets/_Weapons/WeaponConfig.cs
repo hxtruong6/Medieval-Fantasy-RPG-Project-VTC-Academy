@@ -9,14 +9,20 @@ public class WeaponConfig : ScriptableObject
     public Transform gripTransform;
 
     [SerializeField] GameObject weaponPrefab;
-    [SerializeField] AnimationClip attackAnimation;
-    [SerializeField] float minTimeBetweenHits = .5f;
+    [SerializeField] AnimationClip[] attackAnimations;
+    [SerializeField] float minTimeBetweenHits = 0.5f;
     [SerializeField] float maxAttackRange = 2f;
-    [SerializeField] float additionalDamage = 10f;
+    [SerializeField] int minDamage = 1;
+    [SerializeField] int maxDamage = 10;
+    [SerializeField] bool isRightHandWeapon = true;
+    [SerializeField] bool isMeleeWeapon = true;
+    [SerializeField] GameObject criticalHitParticlePrefab;
+    [SerializeField] float destroyParticleAfterSec;
 
     public float GetMinTimeBetweenHits()
     {
         return minTimeBetweenHits;
+        //return GetAttackAnimClip().length;
     }
 
     public float GetMaxAttackRange()
@@ -31,18 +37,37 @@ public class WeaponConfig : ScriptableObject
 
     public AnimationClip GetAttackAnimClip()
     {
-        //RemoveAnimationEvents();
-        return attackAnimation;
+        var clip = attackAnimations[Random.Range(0, attackAnimations.Length)];
+        return clip;
     }
 
-    public float GetAdditionalDamage()
+    public GameObject GetCriticalHitPrefab()
     {
-        return additionalDamage;
+        return criticalHitParticlePrefab;
     }
 
-    //In case animations has events
-    //private void RemoveAnimationEvents()
-    //{
-    //    attackAnimation.events = new AnimationEvent[0];
-    //}
+    public float GetDestroyParticleTime()
+    {
+        return destroyParticleAfterSec;
+    }
+
+    public int GetMinDamage()
+    {
+        return minDamage;
+    }
+
+    public int GetMaxDamage()
+    {
+        return maxDamage;
+    }
+
+    public bool IsRightHandWeapon()
+    {
+        return isRightHandWeapon;
+    }
+
+    public bool IsMeleeWeapon()
+    {
+        return isMeleeWeapon;
+    }
 }

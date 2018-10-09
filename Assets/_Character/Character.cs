@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum CharacterState { idling, attacking, running }
+
 [RequireComponent(typeof(NavMeshAgent))]
 
 public class Character : MonoBehaviour
@@ -13,6 +15,7 @@ public class Character : MonoBehaviour
     [SerializeField] float moveThreshold = 1f;
     [SerializeField] float animationSpeedMultiplier = 1.5f;
     [SerializeField] AnimatorOverrideController animatorOverrideController;
+    [SerializeField] float baseDamage = 10f;
 
     Vector3 clickPoint;
     NavMeshAgent agent;
@@ -21,6 +24,18 @@ public class Character : MonoBehaviour
     float turnAmount;
     float forwardAmount;
     bool isAlive = true;
+    CharacterState currentState = CharacterState.idling;
+
+    public CharacterState CurrentState
+    {
+        get { return currentState; }
+        set { currentState = value; }
+    }
+
+    public float GetBaseDamage()
+    {
+        return baseDamage;
+    }
 
     void Start()
     {

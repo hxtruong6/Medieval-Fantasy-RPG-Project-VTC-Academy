@@ -1991,7 +1991,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426971202604980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.91, y: 0, z: 0}
+  m_LocalPosition: {x: -4.602768, y: 0, z: 1.5975189}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4607892170150080}
@@ -2616,7 +2616,7 @@ Animator:
   m_GameObject: {fileID: 1426971202604980}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b235179bd2a63d1468dd430670338c55, type: 3}
-  m_Controller: {fileID: 22100000, guid: 8f9ee5843ea677648b2a21eba5135184, type: 2}
+  m_Controller: {fileID: 9100000, guid: e35d890dd6bcf704d922b05e16a9ee81, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2663,6 +2663,7 @@ MonoBehaviour:
   animationSpeedMultiplier: 1.5
   animatorOverrideController: {fileID: 22100000, guid: 8f9ee5843ea677648b2a21eba5135184,
     type: 2}
+  baseDamage: 10
 --- !u!114 &114429576729298094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2677,7 +2678,6 @@ MonoBehaviour:
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   criticalHitParticle: {fileID: 0}
-  baseDamage: 10
   currentWeaponConfig: {fileID: 11400000, guid: fa315f5d65e7a7e4c8f78743c384a5a5,
     type: 2}
 --- !u!114 &114433243277102902
@@ -2705,7 +2705,7 @@ MonoBehaviour:
   maxHealthPoints: 100
   healthBar: {fileID: 114866330780413922}
   damageSounds:
-  - {fileID: 8300000, guid: 9567384b500fe6c40a4b0971056d5f56, type: 3}
+  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deathSounds:
   - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deadVanishAfter: 6
@@ -2801,7 +2801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 6
+  chaseRadius: 3
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypointTime: 3
