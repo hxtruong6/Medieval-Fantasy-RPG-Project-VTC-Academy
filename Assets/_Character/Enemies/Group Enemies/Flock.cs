@@ -18,6 +18,8 @@ public class Flock : MonoBehaviour
         distances = new float[agents.Length, agents.Length];
     }
 
+
+
     private void CalculateDistances()
     {
         for (int i = 0; i < agents.Length; i++)
@@ -36,26 +38,25 @@ public class Flock : MonoBehaviour
         var steering = Vector3.zero;
         var neighbours = GetNeighbours(agentIndex);
 
-		if (agents[agentIndex].alignment)
-		{
-			steering += Aligment(agentIndex, neighbours) * aligmentWeight;
-		}
-		if (agents[agentIndex].cohesion)
-		{
-			steering += Cohesion(agentIndex, neighbours) * cohesionWeight;
-		}
-		if (agents[agentIndex].separation)
-		{
-			steering += Separation(agentIndex, neighbours) * separationWeight;
-		}
+        if (agents[agentIndex].alignment)
+        {
+            steering += Aligment(agentIndex, neighbours) * aligmentWeight;
+        }
+        if (agents[agentIndex].cohesion)
+        {
+            steering += Cohesion(agentIndex, neighbours) * cohesionWeight;
+        }
+        if (agents[agentIndex].separation)
+        {
+            steering += Separation(agentIndex, neighbours) * separationWeight;
+        }
 
         return steering;
     }
 
-
-
     public Vector3 Aligment(int agentIndex, List<int> neighbours)
     {
+
         var averangeHeading = Vector3.zero;
 
         if (neighbours.Count > 0)
@@ -126,9 +127,20 @@ public class Flock : MonoBehaviour
         return list;
     }
 
+    void OnDrawGizmos()
+    {
+        // Draw attack sphere
+        Gizmos.color = new Color(255f, 0, 30f, 0.5f);
+        for (int i = 0; i < agents.Length; i++)
+        {
+            Gizmos.DrawWireSphere(agents[i].gameObject.transform.position, neighbourDistance);
+        }
+
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Get References")]
-    private void  GetReferncesNeighbors()
+    private void GetReferncesNeighbors()
     {
         for (int i = 0; i < agents.Length; i++)
         {

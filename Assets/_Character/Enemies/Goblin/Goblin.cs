@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(WeaponSystem))]
 
-public class ShortGoblin : Enemy
-{
+public class Goblin : Enemy
+{  
     void Update()
     {
         this.PlayerOrEnemyAliveToContinue();
@@ -15,5 +15,6 @@ public class ShortGoblin : Enemy
         this.Patroling();
         this.Attacking();
         this.Chasing();
+        this.Fleeing();
     }
 }
