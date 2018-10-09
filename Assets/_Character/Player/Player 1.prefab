@@ -2319,7 +2319,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1906630212303482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4236402141228704}
@@ -3907,7 +3907,9 @@ MonoBehaviour:
   criticalHitChance: 1
   criticalHitMultiplier: 1.25
   criticalHitParticle: {fileID: 0}
-  currentWeaponConfig: {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8,
+  arrowPrefab: {fileID: 1815938172978866, guid: 4c7646c12e827f7408d18f25c1a7393b,
+    type: 2}
+  currentWeaponConfig: {fileID: 11400000, guid: fcac733c874429948a3a6c5d5ded89bd,
     type: 2}
 --- !u!114 &114298108163537292
 MonoBehaviour:
@@ -3964,7 +3966,7 @@ MonoBehaviour:
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
   moveThreshold: 1
-  animationSpeedMultiplier: 1.5
+  animationSpeedMultiplier: 1
   animatorOverrideController: {fileID: 22100000, guid: aa56a9c4da4cb1147b4e11f1e9e56743,
     type: 2}
   baseDamage: 10

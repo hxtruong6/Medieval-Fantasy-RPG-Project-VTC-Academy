@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum CharacterState { idling, attacking, running }
+
 [RequireComponent(typeof(NavMeshAgent))]
 
 public class Character : MonoBehaviour
@@ -22,6 +24,13 @@ public class Character : MonoBehaviour
     float turnAmount;
     float forwardAmount;
     bool isAlive = true;
+    CharacterState currentState = CharacterState.idling;
+
+    public CharacterState CurrentState
+    {
+        get { return currentState; }
+        set { currentState = value; }
+    }
 
     public float GetBaseDamage()
     {

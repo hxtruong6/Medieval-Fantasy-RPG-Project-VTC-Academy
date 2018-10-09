@@ -16,6 +16,8 @@ public class WeaponConfig : ScriptableObject
     [SerializeField] int maxDamage = 10;
     [SerializeField] bool isRightHandWeapon = true;
     [SerializeField] bool isMeleeWeapon = true;
+    [SerializeField] GameObject criticalHitParticlePrefab;
+    [SerializeField] float destroyParticleAfterSec;
 
     public float GetMinTimeBetweenHits()
     {
@@ -37,6 +39,16 @@ public class WeaponConfig : ScriptableObject
     {
         var clip = attackAnimations[Random.Range(0, attackAnimations.Length)];
         return clip;
+    }
+
+    public GameObject GetCriticalHitPrefab()
+    {
+        return criticalHitParticlePrefab;
+    }
+
+    public float GetDestroyParticleTime()
+    {
+        return destroyParticleAfterSec;
     }
 
     public int GetMinDamage()

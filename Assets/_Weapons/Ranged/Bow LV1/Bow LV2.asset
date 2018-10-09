@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 629dc909419d1014ca0187f048f8db74, type: 3}
-  m_Name: Bow LV 1
+  m_Name: Bow LV2
   m_EditorClassIdentifier: 
   gripTransform: {fileID: 4780827250440542, guid: 96596f8f22ee72841a1775f5e8157f78,
     type: 2}

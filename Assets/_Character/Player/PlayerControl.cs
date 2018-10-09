@@ -9,10 +9,7 @@ public class PlayerControl : MonoBehaviour
     Character character;
     Enemy enemy;
     WeaponSystem weaponSystem;
-
-    public enum PlayerState { idle, attacking, running }
-    PlayerState playerState = PlayerState.idle;
-
+    
     void Start()
     {
         character = GetComponent<Character>();
@@ -33,18 +30,12 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    public PlayerState StateOfPlayer
-    {
-        get {   return playerState; }
-        set { playerState = value; }
-    }
-
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
     {
         if (Input.GetMouseButton(0))
         {
             weaponSystem.CancleAttack();
-            weaponSystem.StopAttacking();
+            character.CurrentState = CharacterState.running;
             character.SetDestination(destination);
         }
     }
@@ -73,7 +64,7 @@ public class PlayerControl : MonoBehaviour
 
     IEnumerator MoveToTarget(Enemy target)
     {
-        playerState = PlayerState.running;
+        character.CurrentState = CharacterState.running;
         character.SetDestination(target.transform.position);
         while (!IsTargetInRange(target.gameObject))
         {
@@ -87,6 +78,11 @@ public class PlayerControl : MonoBehaviour
     {
         yield return StartCoroutine(MoveToTarget(enemy));
         weaponSystem.AttackTarget(enemy.gameObject);
+    }
+
+    private void StandStill()
+    {
+        character.CurrentState = CharacterState.idling;
     }
 
     void OnDrawGizmos()
