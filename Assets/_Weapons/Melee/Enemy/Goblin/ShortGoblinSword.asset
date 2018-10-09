@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629dc909419d1014ca0187f048f8db74, type: 3}
+  m_Name: ShortGoblinSword
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 4780827250440542, guid: 152e9201f25d381418fb195fb15f7f3d,
+    type: 2}
+  weaponPrefab: {fileID: 1187864358893322, guid: ba5a9c8ae9dd1a643bbedd0f15ae8fff,
+    type: 2}
+  attackAnimation: {fileID: 7400130, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
+  minTimeBetweenHits: 0.5
+  maxAttackRange: 2
+  additionalDamage: 10
