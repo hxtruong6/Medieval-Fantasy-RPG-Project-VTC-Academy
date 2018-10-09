@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour
         {
             state = State.attacking;
             StopAllCoroutines();
-            weaponSystem.AttackTargetOnce(player.gameObject);
+            weaponSystem.AttackTarget(player.gameObject);
         }
     }
 
