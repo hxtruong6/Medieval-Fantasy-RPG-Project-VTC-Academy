@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] float maxHealthPoints = 100f;

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4780827250440542}
   m_Layer: 0
-  m_Name: dagger_R_Grip
+  m_Name: Goblin_Sling_Grip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

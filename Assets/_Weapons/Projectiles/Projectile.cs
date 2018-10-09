@@ -31,6 +31,7 @@ public class Projectile : MonoBehaviour
     {
         var objectBeingHit = collision.gameObject;
         var damage = shooter.GetComponent<WeaponSystem>().CalculateDamage();
-        objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
+        if(objectBeingHit.GetComponent<HealthSystem>())
+            objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
     }
 }
