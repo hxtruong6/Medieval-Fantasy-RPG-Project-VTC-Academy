@@ -61,6 +61,7 @@ public class WeaponSystem : MonoBehaviour
         {
             dominantHand = RequestLeftHand();
         }
+        //TODO add change weapon animation if weaponObject != null
         Destroy(weaponObject);
         weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
         weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.localPosition;
@@ -81,25 +82,26 @@ public class WeaponSystem : MonoBehaviour
         return projectileObject;
     }
 
-    public void FiringOffProjectile(ProjectileConfig projectileToUse)
+    public void SetProjectileDirection(ProjectileConfig projectileToUse)
     {
         currentProjectileConfig = projectileToUse;
         var projectileObject = SpawnProjectile();
 
         var targetToShoot = target.GetComponentInChildren<Renderer>().bounds.center;
-        StartCoroutine(MoveObject(projectileObject,
-                                  projectileObject.transform.position,
-                                  targetToShoot,
-                                  currentProjectileConfig.GetProjectileSpeed(),
-                                  currentProjectileConfig.GetVanishTime()));
+
+        StartCoroutine(MoveProjectile(projectileObject,
+                                      projectileObject.transform.position,
+                                      targetToShoot,
+                                      currentProjectileConfig.GetProjectileSpeed(),
+                                      currentProjectileConfig.GetVanishTime()));
     }
 
-    IEnumerator MoveObject(GameObject projectile, Vector3 from, Vector3 target, float speed, float vanishAfterSec)
+    IEnumerator MoveProjectile(GameObject projectile, Vector3 from, Vector3 target, float speed, float vanishAfterSec)
     {
         float startTime = Time.time;
         var normalizeDirection = (target - from).normalized;
         var vanishTime = Time.time + vanishAfterSec;
-        while (Time.time < vanishTime && projectile)
+        while (Time.time < vanishTime && projectile != null)
         {
             projectile.transform.position += normalizeDirection * (Time.deltaTime * speed);
             yield return null;
@@ -147,7 +149,7 @@ public class WeaponSystem : MonoBehaviour
 
     public void ShootArrow()
     {
-        FiringOffProjectile(currentProjectileConfig);
+        SetProjectileDirection(currentProjectileConfig);
     }
 
     public void StopAttacking()
