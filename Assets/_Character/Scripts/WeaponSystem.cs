@@ -86,8 +86,7 @@ public class WeaponSystem : MonoBehaviour
         currentProjectileConfig = projectileToUse;
         var projectileObject = SpawnProjectile();
 
-        var targetToShoot = target.transform.position;
-        //targetToShoot.y = projectileObject.transform.position.y;
+        var targetToShoot = target.GetComponentInChildren<Renderer>().bounds.center;
         StartCoroutine(MoveObject(projectileObject,
                                   projectileObject.transform.position,
                                   targetToShoot,
