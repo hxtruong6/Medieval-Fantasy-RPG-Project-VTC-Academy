@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 [RequireComponent(typeof(Character))]
@@ -15,6 +18,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float waypointTolerance = 2f;
     [SerializeField] protected float waitAtWaypointTime = 3f;
     [SerializeField] protected float radiusThreshold = 1f;
+    [SerializeField] protected float angleAbleLooking = 30f;
+    [SerializeField] protected float radiusAbleLooking = 10f;
     PlayerControl player;
     Character character;
     float distanceToPlayer;
@@ -180,6 +185,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     void OnDrawGizmos()
     {
         // Draw attack sphere 
@@ -194,7 +200,8 @@ public class Enemy : MonoBehaviour
         Gizmos.color = new Color(0, 255, 255, .5f);
         Gizmos.DrawWireSphere(transform.position, fleeRadius);
 
-
-
+        // Draw able looking
+        Handles.DrawSolidArc(transform.forward, Vector3.up, transform.position, angleAbleLooking,  radiusAbleLooking);
     }
+#endif
 }
