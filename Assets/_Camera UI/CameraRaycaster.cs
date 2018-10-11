@@ -10,7 +10,7 @@ public class CameraRaycaster : MonoBehaviour {
     [SerializeField] Vector2 cursorHotspot;
 
     const int POTENTIALLY_WALKABLE_LAYER = 8;
-    float maxRaycastDepth = 100f;
+    float maxRaycastDepth = 25f;
 
     public delegate void OnMouseOverEnemy(Enemy enemy);
     public event OnMouseOverEnemy onMouseOverEnemy;
