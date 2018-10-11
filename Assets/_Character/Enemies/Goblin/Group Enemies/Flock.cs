@@ -18,8 +18,6 @@ public class Flock : MonoBehaviour
         distances = new float[agents.Length, agents.Length];
     }
 
-
-
     private void CalculateDistances()
     {
         for (int i = 0; i < agents.Length; i++)
