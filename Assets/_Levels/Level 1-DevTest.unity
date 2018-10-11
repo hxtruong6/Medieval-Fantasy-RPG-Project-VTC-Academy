@@ -11013,7 +11013,8 @@ Prefab:
       propertyPath: maxRaycastDepth
       value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114402443489682222, guid: 79cd3c5d3e393be44a0af23f77c07cb6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 79cd3c5d3e393be44a0af23f77c07cb6, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1739026773
