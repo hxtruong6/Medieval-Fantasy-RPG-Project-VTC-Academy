@@ -2424,7 +2424,7 @@ MonoBehaviour:
   safeDistance: 4.36
   angleAbleLooking: 60
   radiusAbleLooking: 15
-  seeking: 1
+  seeking: 0
   fleeing: 0
   alignment: 1
   cohesion: 1
