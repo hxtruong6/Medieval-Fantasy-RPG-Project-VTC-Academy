@@ -9,11 +9,15 @@ public class PlayerControl : MonoBehaviour
     Character character;
     Enemy enemy;
     WeaponSystem weaponSystem;
-    
+    InventorySystem inventorySystem;
+
+    KeyCode switchWeaponKey = KeyCode.Tab;
+
     void Start()
     {
         character = GetComponent<Character>();
         weaponSystem = GetComponent<WeaponSystem>();
+        inventorySystem = GetComponent<InventorySystem>();
 
         RegisterForMouseEvents();
     }
@@ -27,14 +31,18 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(switchWeaponKey))
+        {
+            StopAllCoroutines();
+            inventorySystem.SwitchWeapon();
+        }
     }
 
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
     {
         if (Input.GetMouseButton(0))
         {
-            weaponSystem.CancleAttack();
+            weaponSystem.CancleAction();
             character.CurrentState = CharacterState.running;
             character.SetDestination(destination);
         }

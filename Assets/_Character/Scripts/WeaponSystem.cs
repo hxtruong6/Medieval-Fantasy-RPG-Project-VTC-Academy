@@ -10,24 +10,34 @@ public class WeaponSystem : MonoBehaviour
 
     [SerializeField] WeaponConfig currentWeaponConfig;
     [SerializeField] ProjectileConfig currentProjectileConfig;
+    [SerializeField] float attackAnimSpeedMultiplier = 1;
 
     const string TEMP_OBJECTS = "TempObjects";
     const string ATTACK_TRIGGER = "Attack";
+    const string ATTACK_SPEED = "AttackSpeed";
     const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 
     GameObject target;
     GameObject weaponObject;
     Animator animator;
+    AnimationClip attackClip;
     Character character;
-    float lastHitTime;
+    InventorySystem inventorySystem;
+    float lastHitTime; 
+
+    public WeaponConfig GetCurrentWeapon()
+    {
+        return currentWeaponConfig;
+    }
 
     void Start()
     {
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
+        inventorySystem = GetComponent<InventorySystem>();
 
         PutWeaponInHand(currentWeaponConfig);
-        SetAttackAnimation();
+        SetAttackAnimation();      
     }
 
     private GameObject RequestRighHand()
@@ -61,7 +71,6 @@ public class WeaponSystem : MonoBehaviour
         {
             dominantHand = RequestLeftHand();
         }
-        //TODO add change weapon animation if weaponObject != null
         Destroy(weaponObject);
         weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
         weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.localPosition;
@@ -109,11 +118,6 @@ public class WeaponSystem : MonoBehaviour
         Destroy(projectile);
     }
 
-    public WeaponConfig GetCurrentWeapon()
-    {
-        return currentWeaponConfig;
-    }
-
     private void SetAttackAnimation()
     {
         if (!character.GetOverrideController())
@@ -125,21 +129,17 @@ public class WeaponSystem : MonoBehaviour
         {
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
-            var attackClip = currentWeaponConfig.GetAttackAnimClip();
+            attackClip = currentWeaponConfig.GetAttackAnimClip();
             animatorOverrideController[DEFAULT_ATTACK] = attackClip;
 
-            //float animSpeed = attackClip.length / currentWeaponConfig.GetMinTimeBetweenHits();
-            //animator.SetFloat("AttackSpeed", animSpeed);
-            //animator.SetFloat("AnimOffSet", Random.Range(0f, 0.2f));
+            animator.SetFloat(ATTACK_SPEED, attackAnimSpeedMultiplier);
         }
     }
 
-    public void CancleAttack()
+    public void CancleAction()
     {
-        if (character.CurrentState == CharacterState.attacking)
-        {
-            animator.Play("Grounded");
-        }
+        character.SetDestination(character.transform.position);
+        animator.Play("Grounded");
     }
 
     public void Hit()
@@ -159,6 +159,9 @@ public class WeaponSystem : MonoBehaviour
 
     public void AttackTarget(GameObject targetToAttack)
     {
+        if (weaponObject == null)
+            PutWeaponInHand(currentWeaponConfig);
+
         target = targetToAttack;
 
         bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage > 0;
@@ -166,8 +169,8 @@ public class WeaponSystem : MonoBehaviour
 
         if (attackerStillAlive && targetStillAlive)
         {
-            float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
-            float timeToWait = weaponHitPeriod * character.GetAnimationSpeedMultiplier();
+            float weaponHitPeriod = attackClip.length;
+            float timeToWait = weaponHitPeriod + currentWeaponConfig.GetMinTimeBetweenHits();
 
             if (Time.time - lastHitTime >= timeToWait)
             {
@@ -226,5 +229,10 @@ public class WeaponSystem : MonoBehaviour
             yield return new WaitForSeconds(currentWeaponConfig.GetDestroyParticleTime());
         }
         Destroy(particlePrefab);
+    }
+
+    public void DestroyWeaponObject()
+    {
+        Destroy(weaponObject);
     }
 }

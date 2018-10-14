@@ -22,7 +22,6 @@ public class WeaponConfig : ScriptableObject
     public float GetMinTimeBetweenHits()
     {
         return minTimeBetweenHits;
-        //return GetAttackAnimClip().length;
     }
 
     public float GetMaxAttackRange()
