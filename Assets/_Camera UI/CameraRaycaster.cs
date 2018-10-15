@@ -7,11 +7,16 @@ public class CameraRaycaster : MonoBehaviour {
     [SerializeField] Texture2D walkCursor;
     [SerializeField] Texture2D enemyCursor;
     [SerializeField] Texture2D unknownCursor;
+    [SerializeField] Texture2D lootCursor;
     [SerializeField] Vector2 cursorHotspot;
     [SerializeField] float maxRaycastDepth = 25f;
 
     const int POTENTIALLY_WALKABLE_LAYER = 8;
-    
+    const int DROP_ITEM = 10;
+
+    public delegate void OnMouseOverDropItem(DropItem item);
+    public event OnMouseOverDropItem onMouseOverDropItem;
+
     public delegate void OnMouseOverEnemy(Enemy enemy);
     public event OnMouseOverEnemy onMouseOverEnemy;
 
@@ -34,6 +39,10 @@ public class CameraRaycaster : MonoBehaviour {
     void PerformRaycasts()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (RaycastForDropItem(ray))
+        {
+            return;
+        }
         if (RaycastForEnemy(ray))
         {
             return;
@@ -45,7 +54,24 @@ public class CameraRaycaster : MonoBehaviour {
         Cursor.SetCursor(unknownCursor, cursorHotspot, CursorMode.Auto);
     }
 
-    bool RaycastForEnemy(Ray ray)
+    private bool RaycastForDropItem(Ray ray)
+    {
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo, maxRaycastDepth))
+        {
+            var gameObjectHit = hitInfo.collider.gameObject;
+            var itemHit = gameObjectHit.GetComponent<DropItem>();
+            if (itemHit)
+            {
+                Cursor.SetCursor(lootCursor, cursorHotspot, CursorMode.Auto);
+                onMouseOverDropItem(itemHit);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool RaycastForEnemy(Ray ray)
     {
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, maxRaycastDepth))

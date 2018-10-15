@@ -10,7 +10,7 @@ public class WeaponSystem : MonoBehaviour
 
     [SerializeField] WeaponConfig currentWeaponConfig;
     [SerializeField] ProjectileConfig currentProjectileConfig;
-    [SerializeField] float attackAnimSpeedMultiplier = 1;
+    
 
     const string TEMP_OBJECTS = "TempObjects";
     const string ATTACK_TRIGGER = "Attack";
@@ -132,7 +132,7 @@ public class WeaponSystem : MonoBehaviour
             attackClip = currentWeaponConfig.GetAttackAnimClip();
             animatorOverrideController[DEFAULT_ATTACK] = attackClip;
 
-            animator.SetFloat(ATTACK_SPEED, attackAnimSpeedMultiplier);
+            animator.SetFloat(ATTACK_SPEED, currentWeaponConfig.GetAttackAnimSpeedMultiplier());
         }
     }
 

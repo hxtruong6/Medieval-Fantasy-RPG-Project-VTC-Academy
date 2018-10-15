@@ -50,35 +50,6 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void SwitchWeapon()
-    {
-        if (canSwitchWeapon)
-        {
-            switchWeaponText.SetActive(false);
-            weaponSystem.CancleAction();
-            weaponSystem.DestroyWeaponObject();
-
-            var currentWeapon = weaponSystem.GetCurrentWeapon();
-            if (currentWeapon.IsMeleeWeapon())
-            {
-                currentWeapon = rangedWeaponConfig;
-            }
-            else
-            {
-                currentWeapon = meleeWeaponConfig;
-            }
-
-            SwitchIconImages();
-            weaponSystem.PutWeaponInHand(currentWeapon);
-            canSwitchWeapon = false;
-            lastSwitchWeaponTime = Time.time;
-        }
-        else
-        {
-            ShowSwitchWeaponText();
-        }
-    }
-
     private void SwitchIconImages()
     {
         tempWeaponImage = currentWeaponImage.sprite;
@@ -93,5 +64,60 @@ public class InventorySystem : MonoBehaviour
     {
         switchWeaponText.SetActive(true);
         hideSwitchWeaponTextTime = Time.time + switchWeaponCoolDownTime;
+    }
+
+    private WeaponConfig ChangeWeaponType(WeaponConfig currentWeapon)
+    {
+        if (currentWeapon.IsMeleeWeapon())
+        {
+            currentWeapon = rangedWeaponConfig;
+        }
+        else
+        {
+            currentWeapon = meleeWeaponConfig;
+        }
+        return currentWeapon;
+    }
+
+    public void SwitchWeapon()
+    {
+        if (canSwitchWeapon)
+        {
+            switchWeaponText.SetActive(false);
+            weaponSystem.CancleAction();
+            weaponSystem.DestroyWeaponObject();
+
+            var currentWeapon = weaponSystem.GetCurrentWeapon();
+            currentWeapon = ChangeWeaponType(currentWeapon);           
+            weaponSystem.PutWeaponInHand(currentWeapon);
+
+            SwitchIconImages();
+            canSwitchWeapon = false;
+            lastSwitchWeaponTime = Time.time;
+        }
+        else
+        {
+            ShowSwitchWeaponText();
+        }
+    } 
+    
+    public void PickUpNewWeapon(DropItem dropItem)
+    {
+        var newWeapon = dropItem.GetComponent<DropItem>().GetDropItemWeaponConfig();
+        bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();
+
+        if (newWeapon.IsMeleeWeapon())
+        {
+            meleeWeaponConfig = newWeapon;
+        }
+        else
+        {
+            rangedWeaponConfig = newWeapon;
+        }
+
+        if(matchCurrentWeaponType)
+        {
+            weaponSystem.PutWeaponInHand(newWeapon);
+        }
     }
 }

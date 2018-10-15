@@ -1578,6 +1578,7 @@ GameObject:
   - component: {fileID: 114631479581500298}
   - component: {fileID: 114371592975599224}
   - component: {fileID: 114229515851490242}
+  - component: {fileID: 114365983444898036}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -2335,8 +2336,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1906630212303482}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.41, y: 9.99, z: 16.83}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.594, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4236402141228704}
@@ -3936,7 +3937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
-  currentWeaponConfig: {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8,
+  currentWeaponConfig: {fileID: 11400000, guid: fcac733c874429948a3a6c5d5ded89bd,
     type: 2}
   currentProjectileConfig: {fileID: 11400000, guid: c8ef703c498a67d4db01a4a3e3bd12e6,
     type: 2}
@@ -3951,6 +3952,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddf57256c2f06048b60238b8ad055b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114365983444898036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1906630212303482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec18369545b771740acb2ef8cc62b11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeWeaponConfig: {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8, type: 2}
+  rangedWeaponConfig: {fileID: 11400000, guid: fcac733c874429948a3a6c5d5ded89bd, type: 2}
+  switchWeaponCoolDownTime: 1.5
+  switchWeaponText: {fileID: 0}
+  currentWeaponImage: {fileID: 0}
+  nextWeaponImage: {fileID: 0}
 --- !u!114 &114371592975599224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3980,6 +3998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c278776634989418cb1603aa6f4462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickItemRadius: 2.5
 --- !u!114 &114672765092337464
 MonoBehaviour:
   m_ObjectHideFlags: 1

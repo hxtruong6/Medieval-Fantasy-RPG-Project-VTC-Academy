@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    [SerializeField] float pickItemRadius = 2.5f;
+
     CameraRaycaster cameraRaycaster;
 
     Character character;
     Enemy enemy;
+    DropItem dropItem;
     WeaponSystem weaponSystem;
     InventorySystem inventorySystem;
 
@@ -22,13 +25,6 @@ public class PlayerControl : MonoBehaviour
         RegisterForMouseEvents();
     }
 
-    void RegisterForMouseEvents()
-    {
-        cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-        cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
-        cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(switchWeaponKey))
@@ -36,6 +32,43 @@ public class PlayerControl : MonoBehaviour
             StopAllCoroutines();
             inventorySystem.SwitchWeapon();
         }
+    }
+
+    private bool IsItemInPickUpRange(GameObject target)
+    {
+        float distanceToTarget = (target.transform.position - transform.position).magnitude;
+        return distanceToTarget <= pickItemRadius;
+    }
+
+    void OnMouseOverDropItem(DropItem itemToSet)
+    {
+        dropItem = itemToSet;
+
+        if (Input.GetMouseButton(0) && IsItemInPickUpRange(dropItem.gameObject))
+        {
+            inventorySystem.PickUpNewWeapon(dropItem);
+        }
+        else if (Input.GetMouseButton(0) && !IsItemInPickUpRange(dropItem.gameObject))
+        {
+            StartCoroutine(MoveAndPickUpItem(dropItem));
+        }
+    }
+
+    void OnMouseOverEnemy(Enemy enemyToSet)
+    {
+        enemy = enemyToSet;
+        
+        if (Input.GetMouseButton(0) && IsTargetInAttackRange(enemy.gameObject))
+        {
+            transform.LookAt(enemy.transform);
+            weaponSystem.AttackTarget(enemy.gameObject);
+        }
+        else if (Input.GetMouseButton(0) && !IsTargetInAttackRange(enemy.gameObject))
+        {
+            StartCoroutine(MoveAndAttack(enemy));
+        }
+
+        //TODO Impliment Move to enemy and use skills
     }
 
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
@@ -48,44 +81,54 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private bool IsTargetInRange(GameObject target)
+    void RegisterForMouseEvents()
+    {
+        cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+        cameraRaycaster.onMouseOverDropItem += OnMouseOverDropItem;
+        cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+        cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
+    }
+
+    private bool IsTargetInAttackRange(GameObject target)
     {
         float distanceToTarget = (target.transform.position - transform.position).magnitude;
         return distanceToTarget <= weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
     }
 
-    void OnMouseOverEnemy(Enemy enemyToSet)
-    {
-        enemy = enemyToSet;
-
-        if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
-        {
-            weaponSystem.AttackTarget(enemy.gameObject);
-        }
-        else if (Input.GetMouseButton(0) && !IsTargetInRange(enemy.gameObject))
-        {
-            StartCoroutine(MoveAndAttack(enemy));
-        }
-
-        //TODO Impliment Move to enemy and use skills
-    }
-
-    IEnumerator MoveToTarget(Enemy target)
+    IEnumerator MoveToTarget(GameObject target)
     {
         character.CurrentState = CharacterState.running;
         character.SetDestination(target.transform.position);
-        while (!IsTargetInRange(target.gameObject))
+        
+        if(target.GetComponent<Enemy>())
         {
-            yield return new WaitForEndOfFrame();
+            while (!IsTargetInAttackRange(target.gameObject))
+            {
+                yield return null;
+            }
         }
+        if(target.GetComponent<DropItem>())
+        {
+            while (!IsItemInPickUpRange(target.gameObject))
+            {
+                yield return null;
+            }
+        }
+
         character.SetDestination(character.transform.position);
         yield return new WaitForEndOfFrame();
     }
 
     IEnumerator MoveAndAttack(Enemy enemy)
     {
-        yield return StartCoroutine(MoveToTarget(enemy));
+        yield return StartCoroutine(MoveToTarget(enemy.gameObject));
         weaponSystem.AttackTarget(enemy.gameObject);
+    }
+
+    IEnumerator MoveAndPickUpItem(DropItem item)
+    {
+        yield return StartCoroutine(MoveToTarget(item.gameObject));
+        inventorySystem.PickUpNewWeapon(item);
     }
 
     private void StandStill()
@@ -100,5 +143,8 @@ public class PlayerControl : MonoBehaviour
             Gizmos.color = new Color(255f, 0, 0, .5f);
             Gizmos.DrawWireSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange());
         }
+
+        Gizmos.color = new Color(0, 0, 255f, .5f);
+        Gizmos.DrawWireSphere(transform.position, pickItemRadius);
     }
 }
