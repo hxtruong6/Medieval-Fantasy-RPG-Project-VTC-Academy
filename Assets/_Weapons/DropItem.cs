@@ -6,7 +6,6 @@ public class DropItem : MonoBehaviour
 {
     [SerializeField] WeaponConfig weaponConfig;
 
-
     public WeaponConfig GetDropItemWeaponConfig()
     {
         if (weaponConfig != null)

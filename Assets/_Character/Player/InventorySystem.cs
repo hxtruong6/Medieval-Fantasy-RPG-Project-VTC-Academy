@@ -103,7 +103,7 @@ public class InventorySystem : MonoBehaviour
     
     public void PickUpNewWeapon(DropItem dropItem)
     {
-        var newWeapon = dropItem.GetComponent<DropItem>().GetDropItemWeaponConfig();
+        var newWeapon = dropItem.GetDropItemWeaponConfig();
         bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();
 
         if (newWeapon.IsMeleeWeapon())
@@ -119,5 +119,7 @@ public class InventorySystem : MonoBehaviour
         {
             weaponSystem.PutWeaponInHand(newWeapon);
         }
+
+        Destroy(dropItem.gameObject);
     }
 }

@@ -56,8 +56,8 @@ public class PlayerControl : MonoBehaviour
 
     void OnMouseOverEnemy(Enemy enemyToSet)
     {
-        enemy = enemyToSet;
-        
+        ChangeTargetEnemy(enemyToSet);
+
         if (Input.GetMouseButton(0) && IsTargetInAttackRange(enemy.gameObject))
         {
             transform.LookAt(enemy.transform);
@@ -69,6 +69,17 @@ public class PlayerControl : MonoBehaviour
         }
 
         //TODO Impliment Move to enemy and use skills
+    }
+
+    private void ChangeTargetEnemy(Enemy enemyToSet)
+    {
+        if (enemyToSet != enemy && enemy != null)
+        {
+            enemy.GetComponent<InteractiveEnemy>().SetHighLight(false);
+        }
+
+        enemy = enemyToSet;
+        enemy.GetComponent<InteractiveEnemy>().SetHighLight(true);
     }
 
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
