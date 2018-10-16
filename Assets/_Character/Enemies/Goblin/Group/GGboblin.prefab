@@ -2420,15 +2420,15 @@ MonoBehaviour:
   rigid: {fileID: 54947766200339660}
   seekingSpeed: 10
   seekingRadius: 8
-  fleeingSpeed: 10
-  safeDistance: 4.36
+  fleeingSpeed: 5
+  safeDistance: 5
   angleAbleLooking: 60
   radiusAbleLooking: 15
-  seeking: 1
+  seeking: 0
   fleeing: 0
   alignment: 1
-  cohesion: 1
-  separation: 1
+  cohesion: 0
+  separation: 0
   flocking: 1
   chasingTimeLimited: 12
   flock: {fileID: 0}

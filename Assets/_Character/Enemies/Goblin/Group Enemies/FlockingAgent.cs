@@ -61,10 +61,10 @@ public class FlockingAgent : MonoBehaviour
     void OnDrawGizmos()
     {
         // Draw attack sphere 
-        //Gizmos.color = new Color(255f, 240f, 0, .5f);
+        Gizmos.color = new Color(25f, 140f, 0, .5f);
         //Gizmos.DrawWireSphere(transform.position, safeDistance);
+        //Gizmos.DrawWireSphere(transform.position, seekingRadius);
         Handles.color = new Color(0, 1f, 0, 0.2f);
-        //Handles.DrawWireArc(transform.position, transform.up, transform.forward, angleAbleLooking, radiusAbleLooking);
         Handles.DrawSolidArc(transform.position, transform.up, transform.forward, -angleAbleLooking / 2, radiusAbleLooking);
         Handles.DrawSolidArc(transform.position, transform.up, transform.forward, angleAbleLooking / 2, radiusAbleLooking);
 
@@ -99,7 +99,11 @@ public class FlockingAgent : MonoBehaviour
         if (seeking)
         {
             //Debug.Log(gameObject.name + " is looking Target");
-            steering += Seek(target.position);
+            if (Vector3.Distance(target.position, transform.position) <= seekingRadius
+                 || CheckTargetInLooking())
+                steering += Seek(target.position);
+            else
+                steering = Vector3.zero;
             if (gameObject.name == "GGboblin (1)")
                 Debug.Log(gameObject.name + "/ " + steering + "/ " + chasingTime + "/ " + chasingTimeLimited);
 
@@ -123,10 +127,10 @@ public class FlockingAgent : MonoBehaviour
             //            }
             steering += Flee(target.position);
         }
-        //        if (flocking)
-        //        {
-        //            steering += flock.Calculate(index);
-        //        }
+        if (flocking)
+        {
+            steering += flock.Calculate(index);
+        }
         //steering /= 10f;
         agent.SetDestination(rigid.position + steering);
         //rigid.velocity += steering;
@@ -137,7 +141,12 @@ public class FlockingAgent : MonoBehaviour
         FindTarget();
         var steering = Vector3.zero;
 
-        if (seeking)
+        //TODO: need to an expand radius when is chasing target
+        //            || (stateMoving == StateMoving.SEEKING
+        //                && Vector3.Distance(pos, transform.position) + expandSeekingRadius > seekingRadius))
+
+        if (seeking && (Vector3.Distance(target.position, transform.position) <= seekingRadius
+                        || CheckTargetInLooking()))
         {
             steering += Seek(target.position);
         }
@@ -178,12 +187,7 @@ public class FlockingAgent : MonoBehaviour
         //            return Vector3.zero;
         //        }
         var dis = Vector3.Distance(pos, transform.position);
-        if (!seeking
-            || (Vector3.Distance(pos, transform.position) > seekingRadius
-                && !CheckTargetInLooking()))
-        //TODO: need to an expand radius when is chasing target
-        //            || (stateMoving == StateMoving.SEEKING
-        //                && Vector3.Distance(pos, transform.position) + expandSeekingRadius > seekingRadius))
+        if (!seeking)
         {
             //Debug.Log(gameObject.name + "Distance: " + dis);
             return Vector3.zero;

@@ -333,6 +333,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.79999995
       objectReference: {fileID: 0}
+    - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
+        type: 2}
+      propertyPath: index
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
   m_IsPrefabParent: 0
@@ -473,6 +478,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.79999995
       objectReference: {fileID: 0}
+    - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
+        type: 2}
+      propertyPath: index
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
   m_IsPrefabParent: 0
@@ -607,6 +617,11 @@ Prefab:
     - target: {fileID: 4141603162253722, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
       propertyPath: m_LocalScale.y
       value: 0.79999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
+        type: 2}
+      propertyPath: index
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
@@ -925,6 +940,21 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.79999995
       objectReference: {fileID: 0}
+    - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
+        type: 2}
+      propertyPath: index
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
+        type: 2}
+      propertyPath: separation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
+        type: 2}
+      propertyPath: cohesion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
   m_IsPrefabParent: 0
@@ -983,6 +1013,11 @@ Prefab:
       propertyPath: flock
       value: 
       objectReference: {fileID: 2042354247}
+    - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
+        type: 2}
+      propertyPath: index
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
   m_IsPrefabParent: 0
@@ -1092,7 +1127,7 @@ MonoBehaviour:
   - {fileID: 1095504881}
   - {fileID: 1893847192}
   - {fileID: 875273778}
-  neighbourDistance: 7
+  neighbourDistance: 20
   aligmentWeight: 3
   cohesionWeight: 4
   separationWeight: 5
