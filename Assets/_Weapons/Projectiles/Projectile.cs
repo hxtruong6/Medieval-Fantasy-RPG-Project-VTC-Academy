@@ -22,8 +22,7 @@ public class Projectile : MonoBehaviour
         var layerCollidedWith = collision.gameObject.layer;
         if (shooter && layerCollidedWith != shooter.layer)
         {
-            DealDamage(collision);
-            Destroy(gameObject);
+            DealDamage(collision);           
         }
     }
 
@@ -32,6 +31,12 @@ public class Projectile : MonoBehaviour
         var objectBeingHit = collision.gameObject;
         var damage = shooter.GetComponent<WeaponSystem>().CalculateDamage();
         if(objectBeingHit.GetComponent<HealthSystem>())
-            objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
+        {
+            if(objectBeingHit.GetComponent<HealthSystem>().healthAsPercentage > 0)
+            {
+                objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
     }
 }
