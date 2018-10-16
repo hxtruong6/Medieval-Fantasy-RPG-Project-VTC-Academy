@@ -2424,12 +2424,13 @@ MonoBehaviour:
   safeDistance: 4.36
   angleAbleLooking: 60
   radiusAbleLooking: 15
-  seeking: 0
+  seeking: 1
   fleeing: 0
   alignment: 1
   cohesion: 1
   separation: 1
   flocking: 1
+  chasingTimeLimited: 12
   flock: {fileID: 0}
   index: 1
 --- !u!114 &114742001509077976

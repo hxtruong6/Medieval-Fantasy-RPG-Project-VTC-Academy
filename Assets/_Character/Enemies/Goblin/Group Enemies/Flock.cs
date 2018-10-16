@@ -54,7 +54,6 @@ public class Flock : MonoBehaviour
 
     public Vector3 Aligment(int agentIndex, List<int> neighbours)
     {
-
         var averangeHeading = Vector3.zero;
 
         if (neighbours.Count > 0)

@@ -1093,6 +1093,6 @@ MonoBehaviour:
   - {fileID: 1893847192}
   - {fileID: 875273778}
   neighbourDistance: 7
-  aligmentWeight: 5
-  cohesionWeight: 5
+  aligmentWeight: 3
+  cohesionWeight: 4
   separationWeight: 5
