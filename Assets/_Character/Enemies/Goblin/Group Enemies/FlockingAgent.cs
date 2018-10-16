@@ -187,11 +187,11 @@ public class FlockingAgent : MonoBehaviour
         //            return Vector3.zero;
         //        }
         var dis = Vector3.Distance(pos, transform.position);
-        if (!seeking)
-        {
-            //Debug.Log(gameObject.name + "Distance: " + dis);
-            return Vector3.zero;
-        }
+//        if (!seeking)
+//        {
+//            //Debug.Log(gameObject.name + "Distance: " + dis);
+//            return Vector3.zero;
+//        }
         var desiredVel = (pos - transform.position);
 
         if (desiredVel.magnitude < 0.2f)
@@ -205,7 +205,7 @@ public class FlockingAgent : MonoBehaviour
 
     private Vector3 Flee(Vector3 pos)
     {
-        if (!fleeing) return Vector3.zero;
+//        if (!fleeing) return Vector3.zero;
         var desiredVel = transform.position - pos;
         if (desiredVel.magnitude > safeDistance)
             return Vector3.zero;
