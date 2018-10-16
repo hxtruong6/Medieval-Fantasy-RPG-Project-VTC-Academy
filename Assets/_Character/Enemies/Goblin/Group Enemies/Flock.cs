@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Flock : MonoBehaviour
@@ -35,7 +34,7 @@ public class Flock : MonoBehaviour
     {
         var steering = Vector3.zero;
         var neighbours = GetNeighbours(agentIndex);
-        Debug.Log(agentIndex + " has : " + neighbours.Count);
+        //Debug.Log(agentIndex + " has : " + neighbours.Count);
         if (agents[agentIndex].alignment)
         {
             steering += Aligment(agentIndex, neighbours) * aligmentWeight;
@@ -49,7 +48,7 @@ public class Flock : MonoBehaviour
             steering += Separation(agentIndex, neighbours) * separationWeight;
         }
 
-        Debug.Log(agentIndex + " move: "+ steering);
+        //Debug.Log(agentIndex + " move: "+ steering);
         return steering;
     }
 

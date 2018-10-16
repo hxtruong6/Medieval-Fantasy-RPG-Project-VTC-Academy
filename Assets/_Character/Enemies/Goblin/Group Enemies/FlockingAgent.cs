@@ -7,15 +7,9 @@ using UnityEditor;
 
 public class FlockingAgent : MonoBehaviour
 {
-    //    enum StateMoving
-    //    {
-    //        IDLE = 0,
-    //        SEEKING,
-    //        FLEEING 
-    //    }
-    //
-    //    private StateMoving stateMoving = StateMoving.IDLE;
-    private Transform target;
+    enum State { IDLE, PATROLLING, ATTACKING, CHASING, FLEEING }
+    [SerializeField] State state = State.IDLE;
+    Character character;
     //    public Transform[] enemies;
     public Rigidbody rigid;
     public float seekingSpeed;
@@ -39,6 +33,10 @@ public class FlockingAgent : MonoBehaviour
     public int index;
     NavMeshAgent agent;
 
+    private WeaponSystem weaponSystem;
+    private float currentWeaponRange;
+    PlayerControl player;
+
 
     public Vector3 Heading()
     {
@@ -47,17 +45,19 @@ public class FlockingAgent : MonoBehaviour
 
     void Start()
     {
-        FindTarget();
+        character = GetComponent<Character>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updatePosition = true;
         chasingTime = 0f;
 
+        player = GameObject.FindObjectOfType<PlayerControl>();
+        weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on 
+        currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
     }
 
 
 #if UNITY_EDITOR
-
     void OnDrawGizmos()
     {
         // Draw attack sphere 
@@ -71,13 +71,22 @@ public class FlockingAgent : MonoBehaviour
     }
 #endif
 
+    public void PlayerOrEnemyAliveToContinue()
+    {
+        if (player.GetComponent<HealthSystem>().healthAsPercentage <= 0 ||
+            GetComponent<HealthSystem>().healthAsPercentage <= 0)
+        {
+            Destroy(this);//to stop enemies from continue moving even when died
+        }
+    }
+
     bool CheckTargetInLooking()
     {
-        Vector3 vecToTarget = target.position - transform.position;
+        Vector3 vecToTarget = player.transform.position - transform.position;
         var flatVecToTarget = Vector3.ProjectOnPlane(vecToTarget, Vector3.up);
         var flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
         var angle = Vector3.Angle(flatVecToTarget, flatForward);
-        if (angle < angleAbleLooking / 2 && Vector3.Distance(transform.position, target.position) < radiusAbleLooking)
+        if (angle < angleAbleLooking / 2 && Vector3.Distance(transform.position, character.transform.position) < radiusAbleLooking)
         {
             return true;
         }
@@ -88,84 +97,124 @@ public class FlockingAgent : MonoBehaviour
 
     void FixedUpdate()
     {
-        FindTarget();
-        //        if (CheckTargetInLooking())
-        //        {
-        //            Debug.Log(gameObject.name + " is looking Target");
-        //        }
-
+        PlayerOrEnemyAliveToContinue();
         var steering = Vector3.zero;
-
-        if (seeking)
+        var distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        switch (state)
         {
-            //Debug.Log(gameObject.name + " is looking Target");
-            if (Vector3.Distance(target.position, transform.position) <= seekingRadius
-                 || CheckTargetInLooking())
-                steering += Seek(target.position);
-            else
-                steering = Vector3.zero;
-            if (gameObject.name == "GGboblin (1)")
-                Debug.Log(gameObject.name + "/ " + steering + "/ " + chasingTime + "/ " + chasingTimeLimited);
+            case State.ATTACKING:
+                {
+                    if (distanceToPlayer > currentWeaponRange)
+                    {
+                        state = State.IDLE;
+                    }
+                    else
+                        weaponSystem.AttackTarget(player.gameObject);
+                    break;
+                }
+            case State.CHASING:
+                {
+                    if (distanceToPlayer <= currentWeaponRange)
+                    {
+                        state = State.ATTACKING;
+                        break;
+                    }
+                    else if (distanceToPlayer > seekingRadius && !CheckTargetInLooking())
+                    {
+                        state = State.IDLE;
+                        break;
+                    }
 
-            // when target is not in the able seeking area
-            if (steering == Vector3.zero)
-            {
-                chasingTime = 0f;
-            }
-            else if (chasingTime > chasingTimeLimited)
-            {
-                steering = Vector3.zero;
-            }
-            else chasingTime += Time.deltaTime;
+                    if (chasingTime > chasingTimeLimited)
+                    {
+                        steering = Vector3.zero;
+                    }
+                    else
+                    {
+                        chasingTime += Time.deltaTime;
+                        steering += Seek(player.transform.position);
+                    }
+
+                    break;
+                }
+            case State.FLEEING:
+                {
+                    if (distanceToPlayer <= currentWeaponRange)
+                    {
+                        state = State.ATTACKING;
+                        break;
+                    }
+                    else if (distanceToPlayer > safeDistance)
+                    {
+                        state = State.IDLE;
+                        break;
+                    }
+
+                    steering += Flee(player.transform.position);
+                    break;
+                }
+            case State.IDLE:
+                {
+                    if (distanceToPlayer <= currentWeaponRange)
+                    {
+                        state = State.ATTACKING;
+                    }
+                    else if (seeking && (distanceToPlayer <= seekingRadius
+                                    || CheckTargetInLooking()))
+                    {
+                        state = State.CHASING;
+                        chasingTime = 0f;
+                    }
+                    else if (fleeing && distanceToPlayer <= safeDistance)
+                    {
+                        state = State.FLEEING;
+                    }
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+
         }
 
-        if (fleeing)
-        {
-            //            for (int i = 0; i < enemies.Length; i++)
-            //            {
-            //                steering += Flee(enemies[i].position);
-            //            }
-            steering += Flee(target.position);
-        }
         if (flocking)
         {
             steering += flock.Calculate(index);
         }
-        //steering /= 10f;
-        agent.SetDestination(rigid.position + steering);
-        //rigid.velocity += steering;
-    }
-
-    void EnemyMoving()
-    {
-        FindTarget();
-        var steering = Vector3.zero;
-
-        //TODO: need to an expand radius when is chasing target
-        //            || (stateMoving == StateMoving.SEEKING
-        //                && Vector3.Distance(pos, transform.position) + expandSeekingRadius > seekingRadius))
-
-        if (seeking && (Vector3.Distance(target.position, transform.position) <= seekingRadius
-                        || CheckTargetInLooking()))
-        {
-            steering += Seek(target.position);
-        }
-        if (fleeing)
-        {
-            steering += Flee(target.position);
-        }
-        if (flocking)
-        {
-            steering += flock.Calculate(index);
-        }
         agent.SetDestination(rigid.position + steering);
     }
 
-    private void FindTarget()
-    {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        //Debug.Log("Player: " + target.position);
-    }
+    //    void EnemyMoving()
+    //    {
+    //        FindTarget();
+    //        var steering = Vector3.zero;
+    //
+    //        //TODO: need to an expand radius when is chasing target
+    //        //            || (stateMoving == StateMoving.SEEKING
+    //        //                && Vector3.Distance(pos, transform.position) + expandSeekingRadius > seekingRadius))
+    //
+    //        if (seeking && (Vector3.Distance(target.position, transform.position) <= seekingRadius
+    //                        || CheckTargetInLooking()))
+    //        {
+    //            steering += Seek(target.position);
+    //        }
+    //        if (fleeing)
+    //        {
+    //            steering += Flee(target.position);
+    //        }
+    //        if (flocking)
+    //        {
+    //            steering += flock.Calculate(index);
+    //        }
+    //        agent.SetDestination(rigid.position + steering);
+    //    }
+
+    //    private void FindTarget()
+    //    {
+    //        target = GameObject.FindGameObjectWithTag("Player").transform;
+    //        //Debug.Log("Player: " + target.position);
+    //    }
 
     public void EnableSeek()
     {
@@ -179,21 +228,15 @@ public class FlockingAgent : MonoBehaviour
         flocking = true;
     }
 
+    public void Attacking()
+    {
+        weaponSystem.AttackTarget(player.gameObject);
+
+    }
+
     public Vector3 Seek(Vector3 pos)
     {
-        //        if (!seeking) return Vector3.zero;
-        //        if (Vector3.Distance(target.position, flock.transform.position) > seekingRadius)
-        //        {
-        //            return Vector3.zero;
-        //        }
-        var dis = Vector3.Distance(pos, transform.position);
-//        if (!seeking)
-//        {
-//            //Debug.Log(gameObject.name + "Distance: " + dis);
-//            return Vector3.zero;
-//        }
         var desiredVel = (pos - transform.position);
-
         if (desiredVel.magnitude < 0.2f)
         {
             return Vector3.zero;
@@ -205,7 +248,6 @@ public class FlockingAgent : MonoBehaviour
 
     private Vector3 Flee(Vector3 pos)
     {
-//        if (!fleeing) return Vector3.zero;
         var desiredVel = transform.position - pos;
         if (desiredVel.magnitude > safeDistance)
             return Vector3.zero;
