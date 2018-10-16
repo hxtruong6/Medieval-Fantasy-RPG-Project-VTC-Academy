@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4252926354875532}
   - component: {fileID: 198622578909957534}
   - component: {fileID: 199830082676799066}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4993208770503288}
   - component: {fileID: 198077076772248828}
   - component: {fileID: 199722109037442170}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShockWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4530824488960732}
   - component: {fileID: 198592343416245196}
   - component: {fileID: 199882099294153122}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlasmaExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4272571451574706}
   - component: {fileID: 198760496742543884}
   - component: {fileID: 199704127165924666}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4432803176178874}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: swordplasma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4598233398428116}
   - component: {fileID: 33728665730914054}
   - component: {fileID: 23133214960289630}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755594158349556}
   m_LocalRotation: {x: -0.6912283, y: -0.14900848, z: -0.14900848, w: 0.6912283}
-  m_LocalPosition: {x: -45.09, y: 10.26, z: 104.5}
+  m_LocalPosition: {x: 1.6965942, y: 1.63, z: 6.8823547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4598233398428116}

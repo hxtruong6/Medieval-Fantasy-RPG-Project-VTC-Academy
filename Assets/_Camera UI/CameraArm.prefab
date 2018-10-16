@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 124529669258970262}
   - component: {fileID: 81558635259891566}
   - component: {fileID: 114534897073272236}
+  - component: {fileID: 114402443489682222}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -66,8 +67,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822510497621232}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.32, z: -10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.32, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4122720179801734}
@@ -116,6 +117,18 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822510497621232}
   m_Enabled: 1
+--- !u!114 &114402443489682222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822510497621232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: c441a9cabb4420742b730540dab77f27, type: 2}
 --- !u!114 &114534897073272236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,10 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3522005424cb794ba0106007a022011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkCursor: {fileID: 2800000, guid: fe7b76f64ddb74f4e9dad060020d410f, type: 3}
-  enemyCursor: {fileID: 2800000, guid: 806bb3b34e460e64999729cf8a60ed3f, type: 3}
-  unknownCursor: {fileID: 2800000, guid: 806bb3b34e460e64999729cf8a60ed3f, type: 3}
+  walkCursor: {fileID: 2800000, guid: f50d8b182562ada4482a04741c875aa6, type: 3}
+  enemyCursor: {fileID: 2800000, guid: b1f2d2d20f6d96d4cb8c04ddcab74bb7, type: 3}
+  unknownCursor: {fileID: 2800000, guid: 01f1f22c15f64a8498ad7225c4ae871b, type: 3}
   cursorHotspot: {x: 0, y: 0}
+  maxRaycastDepth: 100
 --- !u!114 &114566730922714518
 MonoBehaviour:
   m_ObjectHideFlags: 1

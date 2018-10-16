@@ -18,11 +18,11 @@ public class WeaponConfig : ScriptableObject
     [SerializeField] bool isMeleeWeapon = true;
     [SerializeField] GameObject criticalHitParticlePrefab;
     [SerializeField] float destroyParticleAfterSec;
+    [SerializeField] float attackAnimSpeedMultiplier = 1;
 
     public float GetMinTimeBetweenHits()
     {
         return minTimeBetweenHits;
-        //return GetAttackAnimClip().length;
     }
 
     public float GetMaxAttackRange()
@@ -69,5 +69,10 @@ public class WeaponConfig : ScriptableObject
     public bool IsMeleeWeapon()
     {
         return isMeleeWeapon;
+    }
+
+    public float GetAttackAnimSpeedMultiplier()
+    {
+        return attackAnimSpeedMultiplier;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum CharacterState { idling, attacking, running }
+public enum CharacterState { idling, attacking, running, changingWeapon }
 
 [RequireComponent(typeof(NavMeshAgent))]
 
