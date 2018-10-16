@@ -96,11 +96,12 @@ public class WeaponSystem : MonoBehaviour
         currentProjectileConfig = projectileToUse;
         var projectileObject = SpawnProjectile();
 
-        var targetToShoot = target.GetComponentInChildren<Renderer>().bounds.center;
+        var targetToShoot = target.GetComponentInChildren<MainBody>();
+        var targetCenter = targetToShoot.GetComponentInChildren<Renderer>().bounds.center;
 
         StartCoroutine(MoveProjectile(projectileObject,
                                       projectileObject.transform.position,
-                                      targetToShoot,
+                                      targetCenter,
                                       currentProjectileConfig.GetProjectileSpeed(),
                                       currentProjectileConfig.GetVanishTime()));
     }
