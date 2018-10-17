@@ -1579,6 +1579,7 @@ GameObject:
   - component: {fileID: 114371592975599224}
   - component: {fileID: 114229515851490242}
   - component: {fileID: 114365983444898036}
+  - component: {fileID: 114481191799111288}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -3987,6 +3988,22 @@ MonoBehaviour:
   deathSounds:
   - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deadVanishAfter: 5
+--- !u!114 &114481191799111288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1906630212303482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fd3615bc514fb428d6349678a8c73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities: []
+  energyBar: {fileID: 0}
+  maxEnergyPoints: 100
+  regenPointsPerSecond: 1
+  outOfEnergy: {fileID: 0}
 --- !u!114 &114631479581500298
 MonoBehaviour:
   m_ObjectHideFlags: 1

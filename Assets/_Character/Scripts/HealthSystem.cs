@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -66,10 +67,13 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator KillCharacter()
     {
-        character.Kill();
         animator.SetTrigger(DEATH_TRIGGER);
         var playerComponent = GetComponent<PlayerControl>();
         audioSource.Play();
+        if(playerComponent)
+        {
+            playerComponent.Killed();
+        }
         yield return new WaitForSecondsRealtime(deadVanishAfter);
 
         if (playerComponent && playerComponent.isActiveAndEnabled)

@@ -6,23 +6,37 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] float pickItemRadius = 2.5f;
 
-    CameraRaycaster cameraRaycaster;
-
     Character character;
     Enemy enemy;
     DropItem dropItem;
     WeaponSystem weaponSystem;
     InventorySystem inventorySystem;
-
     KeyCode switchWeaponKey = KeyCode.Tab;
+    SpecialAbilities abilities;
+
+    bool isAlive = true;
 
     void Start()
     {
         character = GetComponent<Character>();
         weaponSystem = GetComponent<WeaponSystem>();
         inventorySystem = GetComponent<InventorySystem>();
+        abilities = GetComponent<SpecialAbilities>();
 
         RegisterForMouseEvents();
+    }
+
+    void RegisterForMouseEvents()
+    {
+        var cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+        cameraRaycaster.onMouseOverDropItem += OnMouseOverDropItem;
+        cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+        cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
+    }
+
+    private void StopMoving()
+    {
+        character.SetDestination(transform.position);
     }
 
     void Update()
@@ -40,8 +54,24 @@ public class PlayerControl : MonoBehaviour
         return distanceToTarget <= pickItemRadius;
     }
 
+    private void ChangeTargetEnemy(Enemy enemyToSet)
+    {
+        if (enemyToSet != enemy && enemy != null)
+        {
+            enemy.GetComponent<InteractiveEnemy>().SetHighLight(false);
+        }
+        
+        enemy = enemyToSet;
+        enemy.GetComponent<InteractiveEnemy>().SetHighLight(true);
+    }
+
     void OnMouseOverDropItem(DropItem itemToSet)
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         dropItem = itemToSet;
 
         if (Input.GetMouseButton(0) && IsItemInPickUpRange(dropItem.gameObject))
@@ -56,48 +86,44 @@ public class PlayerControl : MonoBehaviour
 
     void OnMouseOverEnemy(Enemy enemyToSet)
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         ChangeTargetEnemy(enemyToSet);
 
         if (Input.GetMouseButton(0) && IsTargetInAttackRange(enemy.gameObject))
         {
-            transform.LookAt(enemy.transform);
-            weaponSystem.AttackTarget(enemy.gameObject);
+            StopAllCoroutines();
+            transform.LookAt(enemy.transform);          
+            StopMoving();
+            weaponSystem.AttackTarget(enemy.gameObject);          
         }
         else if (Input.GetMouseButton(0) && !IsTargetInAttackRange(enemy.gameObject))
         {
             StartCoroutine(MoveAndAttack(enemy));
         }
-
-        //TODO Impliment Move to enemy and use skills
-    }
-
-    private void ChangeTargetEnemy(Enemy enemyToSet)
-    {
-        if (enemyToSet != enemy && enemy != null)
+        else if (Input.GetMouseButtonDown(1) && IsTargetInAttackRange(enemy.gameObject))
         {
-            enemy.GetComponent<InteractiveEnemy>().SetHighLight(false);
+            abilities.AttemptSpecialAbility(0, enemy.gameObject);
         }
-
-        enemy = enemyToSet;
-        enemy.GetComponent<InteractiveEnemy>().SetHighLight(true);
+        //TODO Impliment Move to enemy and use skills
     }
 
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(0))
         {
             weaponSystem.CancleAction();
             character.CurrentState = CharacterState.running;
             character.SetDestination(destination);
         }
-    }
-
-    void RegisterForMouseEvents()
-    {
-        cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-        cameraRaycaster.onMouseOverDropItem += OnMouseOverDropItem;
-        cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
-        cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
     }
 
     private bool IsTargetInAttackRange(GameObject target)
@@ -126,7 +152,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        character.SetDestination(character.transform.position);
+        StopMoving();
         yield return new WaitForEndOfFrame();
     }
 
@@ -142,10 +168,18 @@ public class PlayerControl : MonoBehaviour
         inventorySystem.PickUpNewWeapon(item);
     }
 
-    private void StandStill()
+    private void IdlingState()
     {
         character.CurrentState = CharacterState.idling;
     }
+
+    public void Killed()
+    {
+        isAlive = false;
+        StopAllCoroutines();
+        StopMoving();
+    }
+
 
     void OnDrawGizmos()
     {

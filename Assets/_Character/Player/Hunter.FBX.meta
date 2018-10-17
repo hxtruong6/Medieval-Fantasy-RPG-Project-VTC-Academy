@@ -530,7 +530,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: StandStill
+        functionName: IdlingState
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

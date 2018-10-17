@@ -23,7 +23,7 @@ public class Character : MonoBehaviour
     Rigidbody myRigidBody;
     float turnAmount;
     float forwardAmount;
-    bool isAlive = true;
+
     CharacterState currentState = CharacterState.idling;
 
     public CharacterState CurrentState
@@ -52,7 +52,7 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        if (agent.remainingDistance > agent.stoppingDistance && isAlive)
+        if (agent.remainingDistance > agent.stoppingDistance)
         {
             Move(agent.desiredVelocity);
         }
@@ -82,11 +82,6 @@ public class Character : MonoBehaviour
         SetForwardAndTurn(movement);
         ApplyExtraTurnRotation();
         UpdateAnimator(movement);
-    }
-
-    public void Kill()
-    {
-        isAlive = false;
     }
 
     void SetForwardAndTurn(Vector3 movement)
