@@ -4,38 +4,53 @@ using UnityEngine.AI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+enum State { IDLE, PATROLLING, ATTACKING, CHASING, FLEEING }
 public class FlockingAgent : MonoBehaviour
 {
-    enum State { IDLE, PATROLLING, ATTACKING, CHASING, FLEEING }
+    public Flock flock;
+    public int index;
+
     [SerializeField] State state = State.IDLE;
-    Character character;
-    //    public Transform[] enemies;
+
     public Rigidbody rigid;
-    public float seekingSpeed;
-    public float seekingRadius; // if player is out of this distance, the enemy doesn't seek
-                                //    public float expandSeekingRadius = 4f; // if enemy is chasing player, seekingRadius will expand the radius until player is be out of range 
-    public float fleeingSpeed;
-    public float safeDistance;
-    [SerializeField] protected float angleAbleLooking = 30f;
-    [SerializeField] protected float radiusAbleLooking = 10f;
 
     public bool seeking;
     public bool fleeing;
-    public bool alignment;
-    public bool cohesion;
-    public bool separation;
+    public bool alignment = true;
+    public bool cohesion = true;
+    public bool separation = true;
     public bool flocking;
+
+
+    public float seekingSpeed;
+    //    public float expandSeekingRadius = 4f; // if enemy is chasing player, seekingRadius will expand the radius until player is be out of range 
+    public float fleeingSpeed;
+    public float patrolSpeed = 0.5f;
+
+
+    public float seekingRadius; // if player is out of this distance, the enemy doesn't seek
+    public float fleeingRadius;
+    public float patrollRadius = 5f;
+
+    [SerializeField] protected float angleAbleLooking = 30f;
+    [SerializeField] protected float radiusAbleLooking = 10f;
+    [SerializeField] protected WaypointContainer patrolPath;
+    [SerializeField] private float waypointTolerance = 1f;
+
+    public float idleTimeLimited = 5f;
     public float chasingTimeLimited = 10f;
-    private float chasingTime = 0f;
+    public float patrolTimeLimited = 8f;
 
-    public Flock flock;
-    public int index;
+    Character character;
+    PlayerControl player;
     NavMeshAgent agent;
-
+    private float idleTime;
+    private float chasingTime = 0f;
     private WeaponSystem weaponSystem;
     private float currentWeaponRange;
-    PlayerControl player;
+    private Vector3 nextWaypointPos;
+    private float patrolTime;
+    private int nextWaypointIndex = 0;
 
 
     public Vector3 Heading()
@@ -62,7 +77,7 @@ public class FlockingAgent : MonoBehaviour
     {
         // Draw attack sphere 
         Gizmos.color = new Color(25f, 140f, 0, .5f);
-        //Gizmos.DrawWireSphere(transform.position, safeDistance);
+        //Gizmos.DrawWireSphere(transform.position, fleeingRadius);
         //Gizmos.DrawWireSphere(transform.position, seekingRadius);
         Handles.color = new Color(0, 1f, 0, 0.2f);
         Handles.DrawSolidArc(transform.position, transform.up, transform.forward, -angleAbleLooking / 2, radiusAbleLooking);
@@ -86,7 +101,7 @@ public class FlockingAgent : MonoBehaviour
         var flatVecToTarget = Vector3.ProjectOnPlane(vecToTarget, Vector3.up);
         var flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
         var angle = Vector3.Angle(flatVecToTarget, flatForward);
-        if (angle < angleAbleLooking / 2 && Vector3.Distance(transform.position, character.transform.position) < radiusAbleLooking)
+        if (angle < angleAbleLooking / 2 && Vector3.Distance(transform.position, player.transform.position) < radiusAbleLooking)
         {
             return true;
         }
@@ -125,6 +140,7 @@ public class FlockingAgent : MonoBehaviour
                         break;
                     }
 
+                    // Chasing player
                     if (chasingTime > chasingTimeLimited)
                     {
                         steering = Vector3.zero;
@@ -142,15 +158,15 @@ public class FlockingAgent : MonoBehaviour
                     if (distanceToPlayer <= currentWeaponRange)
                     {
                         state = State.ATTACKING;
-                        break;
+
                     }
-                    else if (distanceToPlayer > safeDistance)
+                    else if (distanceToPlayer > fleeingRadius)
                     {
                         state = State.IDLE;
-                        break;
-                    }
 
-                    steering += Flee(player.transform.position);
+                    }
+                    else
+                        steering += Flee(player.transform.position);
                     break;
                 }
             case State.IDLE:
@@ -158,17 +174,81 @@ public class FlockingAgent : MonoBehaviour
                     if (distanceToPlayer <= currentWeaponRange)
                     {
                         state = State.ATTACKING;
+                        idleTime = 0f;
                     }
                     else if (seeking && (distanceToPlayer <= seekingRadius
                                     || CheckTargetInLooking()))
                     {
                         state = State.CHASING;
                         chasingTime = 0f;
+                        idleTime = 0f;
                     }
-                    else if (fleeing && distanceToPlayer <= safeDistance)
+                    else if (fleeing && distanceToPlayer <= fleeingRadius)
                     {
                         state = State.FLEEING;
+                        idleTime = 0f;
                     }
+
+                    // after idle time. enemy will patrolling
+                    if (idleTime > idleTimeLimited)
+                    {
+                        state = State.PATROLLING;
+                        idleTime = 0f;
+                        // set to get new position
+                        nextWaypointPos = transform.position;
+                        patrolTime = 0f;
+                    }
+                    else
+                        idleTime += Time.deltaTime;
+                    break;
+                }
+            case State.PATROLLING:
+                {
+                    if (distanceToPlayer <= currentWeaponRange)
+                    {
+                        state = State.ATTACKING;
+                        idleTime = 0f;
+                    }
+                    else if (seeking && (distanceToPlayer <= seekingRadius
+                                         || CheckTargetInLooking()))
+                    {
+                        state = State.CHASING;
+                        chasingTime = 0f;
+                        idleTime = 0f;
+                    }
+                    else if (fleeing && distanceToPlayer <= fleeingRadius)
+                    {
+                        state = State.FLEEING;
+                        idleTime = 0f;
+                    }
+                    /*
+                    * patrolTime is used to avoid some destination, enemy can not reach.
+                    */
+                    if (Vector3.Distance(transform.position, nextWaypointPos) <= waypointTolerance
+                        || (patrolPath == null && patrolTime > patrolTimeLimited))
+                    {
+                        // Choose next waypoint index, cycling to start if necessary
+                        if (patrolPath != null)
+                        {
+                            nextWaypointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
+                            nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
+                        }
+                        else
+                        {
+                            nextWaypointPos = transform.position +
+                                              new Vector3(
+                                                    Random.Range(-patrollRadius, patrollRadius),
+                                                    0,
+                                                    Random.Range(-patrollRadius, patrollRadius));
+                            patrolTime = 0f;
+                        }
+                    }
+                    else if (patrolPath == null)
+                    {
+                        patrolTime += Time.deltaTime;
+                    }
+
+                    steering += Seek(nextWaypointPos) * patrolSpeed;
                     break;
                 }
             default:
@@ -178,10 +258,10 @@ public class FlockingAgent : MonoBehaviour
 
         }
 
-        if (flocking)
-        {
-            steering += flock.Calculate(index);
-        }
+        //        if (flocking)
+        //        {
+        //            steering += flock.Calculate(index);
+        //        }
         agent.SetDestination(rigid.position + steering);
     }
 
@@ -249,7 +329,7 @@ public class FlockingAgent : MonoBehaviour
     private Vector3 Flee(Vector3 pos)
     {
         var desiredVel = transform.position - pos;
-        if (desiredVel.magnitude > safeDistance)
+        if (desiredVel.magnitude > fleeingRadius)
             return Vector3.zero;
 
         desiredVel = desiredVel.normalized * fleeingSpeed;

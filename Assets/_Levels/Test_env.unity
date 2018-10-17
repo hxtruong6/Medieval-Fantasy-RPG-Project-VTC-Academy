@@ -204,19 +204,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1621832025424294, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
+      propertyPath: m_Name
+      value: GGboblin (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
         type: 2}
       propertyPath: flock
       value: 
       objectReference: {fileID: 2042354247}
-    - target: {fileID: 1621832025424294, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
-      propertyPath: m_Name
-      value: GGboblin (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4141603162253722, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.79999995
-      objectReference: {fileID: 0}
     - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
         type: 2}
       propertyPath: index
@@ -362,19 +358,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1621832025424294, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
+      propertyPath: m_Name
+      value: GGboblin (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
         type: 2}
       propertyPath: flock
       value: 
       objectReference: {fileID: 2042354247}
-    - target: {fileID: 1621832025424294, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
-      propertyPath: m_Name
-      value: GGboblin (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4141603162253722, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.79999995
-      objectReference: {fileID: 0}
     - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
         type: 2}
       propertyPath: index
@@ -612,19 +604,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1621832025424294, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
+      propertyPath: m_Name
+      value: GGboblin (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
         type: 2}
       propertyPath: flock
       value: 
       objectReference: {fileID: 2042354247}
-    - target: {fileID: 1621832025424294, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
-      propertyPath: m_Name
-      value: GGboblin (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4141603162253722, guid: b6e76e4dcf8974d4ca7506f15aa9df81, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.79999995
-      objectReference: {fileID: 0}
     - target: {fileID: 114439905020492064, guid: b6e76e4dcf8974d4ca7506f15aa9df81,
         type: 2}
       propertyPath: index

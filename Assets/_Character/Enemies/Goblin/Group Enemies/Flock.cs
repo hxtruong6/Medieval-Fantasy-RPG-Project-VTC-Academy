@@ -54,20 +54,19 @@ public class Flock : MonoBehaviour
 
     public Vector3 Aligment(int agentIndex, List<int> neighbours)
     {
-        var averangeHeading = Vector3.zero;
-
         if (neighbours.Count > 0)
         {
+            var averangeHeading = Vector3.zero;
             for (int i = 0; i < neighbours.Count; i++)
             {
                 averangeHeading += agents[agentIndex].Heading();
             }
-
             averangeHeading /= neighbours.Count;
             averangeHeading -= agents[agentIndex].Heading();
+            return averangeHeading;
         }
+        return Vector3.zero;
 
-        return averangeHeading;
     }
 
     public Vector3 Cohesion(int agentIndex, List<int> neighbours)
@@ -89,19 +88,22 @@ public class Flock : MonoBehaviour
 
     public Vector3 Separation(int agentIndex, List<int> neighbours)
     {
-        var steering = Vector3.zero;
-        for (int i = 0; i < neighbours.Count; i++)
+        if (neighbours.Count > 0)
         {
-            var toAgent = agents[agentIndex].transform.position -
-                          agents[neighbours[i]].transform.position;
-            var mag = toAgent.magnitude;
-            if (mag > 0)
+            var steering = Vector3.zero;
+            for (int i = 0; i < neighbours.Count; i++)
             {
-                steering += toAgent.normalized / mag;
+                var toAgent = agents[agentIndex].transform.position -
+                              agents[neighbours[i]].transform.position;
+                var mag = toAgent.magnitude;
+                if (mag > 0)
+                {
+                    steering += toAgent.normalized / mag;
+                }
             }
+            return steering;
         }
-
-        return steering;
+        return Vector3.zero;
     }
 
     public List<int> GetNeighbours(int agentIndex)

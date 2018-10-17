@@ -2498,23 +2498,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54dfc46ef58530b42a806782a50a6c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flock: {fileID: 0}
+  index: 0
   state: 0
   rigid: {fileID: 54947766200339660}
-  seekingSpeed: 10
-  seekingRadius: 8
-  fleeingSpeed: 5
-  safeDistance: 5
-  angleAbleLooking: 60
-  radiusAbleLooking: 15
-  seeking: 0
+  seeking: 1
   fleeing: 0
   alignment: 1
   cohesion: 1
   separation: 1
-  flocking: 1
-  chasingTimeLimited: 12
-  flock: {fileID: 0}
-  index: 0
+  flocking: 0
+  seekingSpeed: 10
+  fleeingSpeed: 5
+  patrolSpeed: 0.2
+  seekingRadius: 8
+  fleeingRadius: 0
+  patrollRadius: 10
+  angleAbleLooking: 60
+  radiusAbleLooking: 15
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  idleTimeLimited: 3
+  chasingTimeLimited: 11.81
+  patrolTimeLimited: 8
 --- !u!114 &114616961195937376
 MonoBehaviour:
   m_ObjectHideFlags: 1
