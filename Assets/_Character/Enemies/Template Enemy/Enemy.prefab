@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 114919470073403168}
   - component: {fileID: 114567848365195938}
   - component: {fileID: 114429576729298094}
+  - component: {fileID: 114007783729722852}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -734,7 +735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1534661096832376
 GameObject:
   m_ObjectHideFlags: 1
@@ -999,6 +1000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4607892170150080}
   - component: {fileID: 137315147816014334}
+  - component: {fileID: 114000205032915344}
   m_Layer: 9
   m_Name: EthanBody
   m_TagString: Untagged
@@ -1991,7 +1993,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426971202604980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -35.012768, y: -9.99, z: -15.232481}
+  m_LocalPosition: {x: -5.86, y: 0, z: 1.5975189}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4607892170150080}
@@ -2624,6 +2626,31 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000205032915344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761877337965614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114007783729722852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426971202604980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7556a0c18ba2fce45932dcd3f24547cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: 2220ace89749b604899705d43b03f32d, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: 5df4d7978bee9ed4d9c3171a2415e94f, type: 2}
+  enemyCanvas: {fileID: 1513741803827028}
 --- !u!114 &114135385436711784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2818,7 +2845,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.8
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
