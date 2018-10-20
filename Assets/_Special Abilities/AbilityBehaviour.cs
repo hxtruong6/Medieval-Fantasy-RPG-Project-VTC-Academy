@@ -9,7 +9,8 @@ public abstract class AbilityBehaviour : MonoBehaviour
     const string ATTACK_TRIGGER = "Attack";
     const string DEFAULT_ATTACK_STATE = "DEFAULT ATTACK";
     const float PARTICLE_CLEAN_UP_DELAY = 20f;
-    public abstract void Use(GameObject target);//AbilityUseParams useParams
+
+    public abstract void Use(AbilityUseParams useParams); 
 
     public void SetConfig(AbilityConfig configToSet)
     {

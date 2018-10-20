@@ -192,11 +192,15 @@ public class WeaponSystem : MonoBehaviour
         animator.SetTrigger(ATTACK_TRIGGER);
     }
 
+    public int GetWeaponDamage()
+    {
+        return Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
+    }
+
     public float CalculateDamage()
     {
         bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
-        int weaponDamage = Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
-        float damageBeforeCritical = character.GetBaseDamage() + weaponDamage;
+        float damageBeforeCritical = character.GetBaseDamage() + GetWeaponDamage();
         if (isCriticalHit)
         {
             PlayCriticalHitParticle();

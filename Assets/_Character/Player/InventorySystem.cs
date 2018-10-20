@@ -14,24 +14,17 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] Image nextWeaponImage;
 
     WeaponSystem weaponSystem;
-    bool canSwitchWeapon = true;
-    float lastSwitchWeaponTime;
+    float? lastSwitchWeaponTime;
     float hideSwitchWeaponTextTime;
-    Sprite tempWeaponImage;
 
-    public WeaponConfig GetEquippedMeleeWeapon()
-    {
-        return meleeWeaponConfig;
-    }
+    public WeaponConfig GetEquippedMeleeWeapon() { return meleeWeaponConfig; }
 
-    public WeaponConfig GetEquippedRangedWeapon()
-    {
-        return rangedWeaponConfig;
-    }
+    public WeaponConfig GetEquippedRangedWeapon() { return rangedWeaponConfig; }
 
     void Start()
     {
         weaponSystem = GetComponent<WeaponSystem>();
+        UpdateWeaponIcons();
     }
 
     void Update()
@@ -40,24 +33,17 @@ public class InventorySystem : MonoBehaviour
         {
             switchWeaponText.SetActive(false);
         }
-
-        if(!canSwitchWeapon && 
-           Time.time - lastSwitchWeaponTime >= switchWeaponCoolDownTime)
-        {
-            canSwitchWeapon = true;
-            currentWeaponImage.GetComponent<Button>().interactable = true;
-            nextWeaponImage.GetComponent<Button>().interactable = true;
-        }
     }
 
-    private void SwitchIconImages()
+    private void UpdateWeaponIcons()
     {
-        tempWeaponImage = currentWeaponImage.sprite;
-        currentWeaponImage.sprite = nextWeaponImage.sprite;
-        nextWeaponImage.sprite = tempWeaponImage;
+        var currentUseWeapon = weaponSystem.GetCurrentWeapon();
+        currentWeaponImage.sprite = currentUseWeapon.GetWeaponIcon();
 
-        currentWeaponImage.GetComponent<Button>().interactable = false;
-        nextWeaponImage.GetComponent<Button>().interactable = false;
+        if (currentUseWeapon.IsMeleeWeapon())
+            nextWeaponImage.sprite = rangedWeaponConfig.GetWeaponIcon();
+        else
+            nextWeaponImage.sprite = meleeWeaponConfig.GetWeaponIcon();
     }
 
     private void ShowSwitchWeaponText()
@@ -68,20 +54,34 @@ public class InventorySystem : MonoBehaviour
 
     private WeaponConfig ChangeWeaponType(WeaponConfig currentWeapon)
     {
+        var abilites = GetComponent<SpecialAbilities>();
+
         if (currentWeapon.IsMeleeWeapon())
         {
             currentWeapon = rangedWeaponConfig;
+            abilites.LockMeleeAbilites(true);
         }
         else
         {
             currentWeapon = meleeWeaponConfig;
+            abilites.LockMeleeAbilites(false);
         }
         return currentWeapon;
     }
 
+    IEnumerator SwitchWeaponCoolDown()
+    {
+        currentWeaponImage.GetComponent<Button>().interactable = false;
+        nextWeaponImage.GetComponent<Button>().interactable = false;
+        yield return new WaitForSeconds(switchWeaponCoolDownTime);
+        currentWeaponImage.GetComponent<Button>().interactable = true;
+        nextWeaponImage.GetComponent<Button>().interactable = true;
+    }
+
     public void SwitchWeapon()
     {
-        if (canSwitchWeapon)
+        if (lastSwitchWeaponTime == null ||
+            Time.time - lastSwitchWeaponTime >= switchWeaponCoolDownTime)
         {
             switchWeaponText.SetActive(false);
             weaponSystem.CancleAction();
@@ -91,8 +91,8 @@ public class InventorySystem : MonoBehaviour
             currentWeapon = ChangeWeaponType(currentWeapon);           
             weaponSystem.PutWeaponInHand(currentWeapon);
 
-            SwitchIconImages();
-            canSwitchWeapon = false;
+            UpdateWeaponIcons();
+            StartCoroutine(SwitchWeaponCoolDown());
             lastSwitchWeaponTime = Time.time;
         }
         else
@@ -119,7 +119,7 @@ public class InventorySystem : MonoBehaviour
         {
             weaponSystem.PutWeaponInHand(newWeapon);
         }
-
+        UpdateWeaponIcons();
         Destroy(dropItem.gameObject);
     }
 }

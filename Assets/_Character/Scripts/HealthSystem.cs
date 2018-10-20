@@ -16,11 +16,13 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] float deadVanishAfter = 2f;
 
     const string DEATH_TRIGGER = "Death";
+    const string ENEMY_UI = "Enemy Canvas";
     Animator animator;
     AudioSource audioSource;
     Character character;
 
     float currentHealthPoints;
+    float flashTime = 2f;
 
     public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
@@ -53,6 +55,8 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        FlashEnemyHealthBar();
+
         bool characterDies = (currentHealthPoints - damage) <= 0;
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         //play sound
@@ -63,6 +67,23 @@ public class HealthSystem : MonoBehaviour
         {
             StartCoroutine(KillCharacter());
         }
+    }
+
+    private void FlashEnemyHealthBar()
+    {
+        if (!GetComponent<Enemy>())
+            return;
+
+        StopAllCoroutines();
+        var healthBar = transform.Find(ENEMY_UI);
+        StartCoroutine(FlashHealthBar(healthBar.gameObject));        
+    }
+
+    IEnumerator FlashHealthBar(GameObject healthBar)
+    {
+        healthBar.SetActive(true);
+        yield return new WaitForSeconds(flashTime);
+        healthBar.SetActive(false);
     }
 
     IEnumerator KillCharacter()

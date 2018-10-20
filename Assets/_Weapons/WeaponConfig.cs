@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = ("Medieval-Fantasy-RPG/Weapon"))]
 
@@ -19,21 +20,13 @@ public class WeaponConfig : ScriptableObject
     [SerializeField] GameObject criticalHitParticlePrefab;
     [SerializeField] float destroyParticleAfterSec;
     [SerializeField] float attackAnimSpeedMultiplier = 1;
+    [SerializeField] Sprite weaponIcon;
 
-    public float GetMinTimeBetweenHits()
-    {
-        return minTimeBetweenHits;
-    }
+    public float GetMinTimeBetweenHits() { return minTimeBetweenHits; }
 
-    public float GetMaxAttackRange()
-    {
-        return maxAttackRange;
-    }
+    public float GetMaxAttackRange() { return maxAttackRange; }
 
-    public GameObject GetWeaponPrefab()
-    {
-        return weaponPrefab;
-    }
+    public GameObject GetWeaponPrefab() { return weaponPrefab; }
 
     public AnimationClip GetAttackAnimClip()
     {
@@ -41,38 +34,19 @@ public class WeaponConfig : ScriptableObject
         return clip;
     }
 
-    public GameObject GetCriticalHitPrefab()
-    {
-        return criticalHitParticlePrefab;
-    }
+    public GameObject GetCriticalHitPrefab() { return criticalHitParticlePrefab; }
 
-    public float GetDestroyParticleTime()
-    {
-        return destroyParticleAfterSec;
-    }
+    public float GetDestroyParticleTime() { return destroyParticleAfterSec; }
 
-    public int GetMinDamage()
-    {
-        return minDamage;
-    }
+    public int GetMinDamage() { return minDamage; }
 
-    public int GetMaxDamage()
-    {
-        return maxDamage;
-    }
+    public int GetMaxDamage() { return maxDamage; }
 
-    public bool IsRightHandWeapon()
-    {
-        return isRightHandWeapon;
-    }
+    public bool IsRightHandWeapon() { return isRightHandWeapon; }
 
-    public bool IsMeleeWeapon()
-    {
-        return isMeleeWeapon;
-    }
+    public bool IsMeleeWeapon() { return isMeleeWeapon; }
 
-    public float GetAttackAnimSpeedMultiplier()
-    {
-        return attackAnimSpeedMultiplier;
-    }
+    public float GetAttackAnimSpeedMultiplier() { return attackAnimSpeedMultiplier; }
+
+    public Sprite GetWeaponIcon() { return weaponIcon; }
 }

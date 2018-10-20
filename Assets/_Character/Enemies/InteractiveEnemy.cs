@@ -10,24 +10,14 @@ public class InteractiveEnemy : MonoBehaviour {
 
     GameObject mainBody;
     Material[] mats;
-    bool isMouseOver = false;
 
     void Start()
     {
         mainBody = GetComponentInChildren<MainBody>().gameObject;
     }
 
-    public void SetHighLight(bool value)
-    {       
-        if (isMouseOver != value)
-        {
-            HighLight(value);
-            isMouseOver = value;
-        }       
-    }
 
-
-    private void HighLight(bool turnOn)
+    public void HighLight(bool turnOn)
     {
         mats = mainBody.GetComponent<SkinnedMeshRenderer>().materials;       
        
@@ -43,5 +33,19 @@ public class InteractiveEnemy : MonoBehaviour {
         }
 
         mainBody.GetComponent<SkinnedMeshRenderer>().materials = mats;
+    }
+
+    private void OnMouseOver()
+    {
+        var enemyHP = GetComponent<HealthSystem>().healthAsPercentage;
+        if ( enemyHP > 0)
+        {
+            HighLight(true);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        HighLight(false);
     }
 }

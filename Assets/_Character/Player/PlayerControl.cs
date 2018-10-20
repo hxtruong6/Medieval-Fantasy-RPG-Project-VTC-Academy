@@ -43,7 +43,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetKeyDown(switchWeaponKey))
         {
-            StopAllCoroutines();
+            StopCurrentAction();
             inventorySystem.SwitchWeapon();
         }
     }
@@ -54,23 +54,24 @@ public class PlayerControl : MonoBehaviour
         return distanceToTarget <= pickItemRadius;
     }
 
-    private void ChangeTargetEnemy(Enemy enemyToSet)
+    private bool CheckAttackConditions(Enemy enemyToCheck)
     {
-        if (enemyToSet != enemy && enemy != null)
+        if (!isAlive)
+            return false;
+
+        if (enemyToCheck.GetComponent<HealthSystem>().healthAsPercentage <= 0)
         {
-            enemy.GetComponent<InteractiveEnemy>().SetHighLight(false);
+            if (enemyToCheck == enemy)
+                enemy.GetComponent<InteractiveEnemy>().HighLight(false);
+            return false;
         }
-        
-        enemy = enemyToSet;
-        enemy.GetComponent<InteractiveEnemy>().SetHighLight(true);
+        return true;
     }
 
     void OnMouseOverDropItem(DropItem itemToSet)
     {
         if (!isAlive)
-        {
             return;
-        }
 
         dropItem = itemToSet;
 
@@ -86,18 +87,16 @@ public class PlayerControl : MonoBehaviour
 
     void OnMouseOverEnemy(Enemy enemyToSet)
     {
-        if (!isAlive)
-        {
+        if (!CheckAttackConditions(enemyToSet))
             return;
-        }
 
-        ChangeTargetEnemy(enemyToSet);
+        enemy = enemyToSet;
 
         if (Input.GetMouseButton(0) && IsTargetInAttackRange(enemy.gameObject))
         {
-            StopAllCoroutines();
-            transform.LookAt(enemy.transform);          
+            StopCurrentAction();
             StopMoving();
+            transform.LookAt(enemy.transform);           
             weaponSystem.AttackTarget(enemy.gameObject);          
         }
         else if (Input.GetMouseButton(0) && !IsTargetInAttackRange(enemy.gameObject))
@@ -106,9 +105,20 @@ public class PlayerControl : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1) && IsTargetInAttackRange(enemy.gameObject))
         {
-            abilities.AttemptSpecialAbility(0, enemy.gameObject);
+            UsePowerAttack();
         }
-        //TODO Impliment Move to enemy and use skills
+        else if (Input.GetMouseButtonDown(1) && !IsTargetInAttackRange(enemy.gameObject))
+        {
+            StartCoroutine(MoveAndPowerAttack(enemy)); ;
+        }
+        //TODO Impliment move to enemy and use target aoe skills
+    }
+
+    private void UsePowerAttack()
+    {
+        abilities.SetSkillTarget(enemy.gameObject);
+        int skillIndex = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() ? 0 : 1;
+        abilities.AttemptSpecialAbility(skillIndex);
     }
 
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
@@ -120,10 +130,16 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            StopCurrentAction();
             weaponSystem.CancleAction();
             character.CurrentState = CharacterState.running;
             character.SetDestination(destination);
         }
+    }
+
+    private void StopCurrentAction()
+    {
+        StopAllCoroutines();
     }
 
     private bool IsTargetInAttackRange(GameObject target)
@@ -162,6 +178,12 @@ public class PlayerControl : MonoBehaviour
         weaponSystem.AttackTarget(enemy.gameObject);
     }
 
+    IEnumerator MoveAndPowerAttack(Enemy enemy)
+    {
+        yield return StartCoroutine(MoveToTarget(enemy.gameObject));
+        UsePowerAttack();
+    }
+
     IEnumerator MoveAndPickUpItem(DropItem item)
     {
         yield return StartCoroutine(MoveToTarget(item.gameObject));
@@ -176,7 +198,7 @@ public class PlayerControl : MonoBehaviour
     public void Killed()
     {
         isAlive = false;
-        StopAllCoroutines();
+        StopCurrentAction();
         StopMoving();
     }
 
