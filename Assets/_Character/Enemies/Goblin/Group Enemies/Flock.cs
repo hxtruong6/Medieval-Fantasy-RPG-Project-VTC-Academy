@@ -35,15 +35,15 @@ public class Flock : MonoBehaviour
         var steering = Vector3.zero;
         var neighbours = GetNeighbours(agentIndex);
         //Debug.Log(agentIndex + " has : " + neighbours.Count);
-        if (agents[agentIndex].alignment)
+        //if (agents[agentIndex].alignment)
         {
             steering += Aligment(agentIndex, neighbours) * aligmentWeight;
         }
-        if (agents[agentIndex].cohesion)
+        //if (agents[agentIndex].cohesion)
         {
             steering += Cohesion(agentIndex, neighbours) * cohesionWeight;
         }
-        if (agents[agentIndex].separation)
+        // if (agents[agentIndex].separation)
         {
             steering += Separation(agentIndex, neighbours) * separationWeight;
         }
@@ -127,18 +127,17 @@ public class Flock : MonoBehaviour
         return list;
     }
 
+#if UNITY_EDITOR
     void OnDrawGizmos()
     {
         // Draw attack sphere
         Gizmos.color = new Color(255f, 0, 30f, 0.5f);
-        for (int i = 0; i < agents.Length; i++)
-        {
-            Gizmos.DrawWireSphere(agents[i].gameObject.transform.position, neighbourDistance);
-        }
+        //for (int i = 0; i < agents.Length; i++)
+        //{
+        //    Gizmos.DrawWireSphere(agents[i].gameObject.transform.position, neighbourDistance);
+        //}
 
     }
-
-#if UNITY_EDITOR
     [ContextMenu("Get References")]
     private void GetReferncesNeighbors()
     {

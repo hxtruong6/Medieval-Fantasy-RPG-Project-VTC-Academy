@@ -721,6 +721,7 @@ GameObject:
   - component: {fileID: 114255880112750370}
   - component: {fileID: 114746711094811814}
   - component: {fileID: 114831175651942664}
+  - component: {fileID: 114776018155460438}
   - component: {fileID: 114439905020492064}
   m_Layer: 0
   m_Name: GGboblin
@@ -2500,27 +2501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flock: {fileID: 0}
   index: 0
-  state: 0
-  rigid: {fileID: 54947766200339660}
-  seeking: 1
-  fleeing: 0
-  alignment: 1
-  cohesion: 1
-  separation: 1
   flocking: 0
-  seekingSpeed: 10
-  fleeingSpeed: 5
-  patrolSpeed: 0.2
-  seekingRadius: 8
-  fleeingRadius: 0
-  patrollRadius: 10
-  angleAbleLooking: 60
-  radiusAbleLooking: 15
-  patrolPath: {fileID: 0}
-  waypointTolerance: 1
-  idleTimeLimited: 3
-  chasingTimeLimited: 11.81
-  patrolTimeLimited: 8
 --- !u!114 &114616961195937376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2575,6 +2556,28 @@ MonoBehaviour:
   damageSounds: []
   deathSounds: []
   deadVanishAfter: 2
+--- !u!114 &114776018155460438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621832025424294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeking: 1
+  fleeing: 0
+  seekingSpeed: 10
+  fleeingSpeed: 8
+  patrolSpeed: 0.5
+  seekingRadius: 8
+  fleeingRadius: 4
+  patrollRadius: 10
+  idleTimeLimited: 3
+  chasingTimeLimited: 10
+  patrolTimeLimited: 8
 --- !u!114 &114811412697754084
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Character))]
 [RequireComponent(typeof(HealthSystem))]
@@ -12,72 +10,66 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float chaseRadius = 10f;
-    [SerializeField] protected float fleeRadius = 4f;
-    [SerializeField] protected WaypointContainer patrolPath;
-    [SerializeField] protected float waypointTolerance = 2f;
-    [SerializeField] protected float waitAtWaypointTime = 3f;
-    [SerializeField] protected float radiusThreshold = 1f;
-    [SerializeField] protected float angleAbleLooking = 30f;
-    [SerializeField] protected float radiusAbleLooking = 10f;
-    PlayerControl player;
-    Character character;
+    public bool seeking;
+    public bool fleeing;
+
+    public float seekingSpeed = 8f;
+    //    public float expandSeekingRadius = 4f; // if enemy is chasing player, seekingRadius will expand the radius until player is be out of range 
+    public float fleeingSpeed = 8f;
+    public float patrolSpeed = 0.5f;
+
+
+    public float seekingRadius = 8f; // if player is out of this distance, the enemy doesn't seek
+    public float fleeingRadius = 5f;
+    public float patrollRadius = 5f;
+
+    public float idleTimeLimited = 5f;
+    public float chasingTimeLimited = 10f;
+    public float patrolTimeLimited = 8f;
+
+    protected PlayerControl player;
+    protected Character character;
+
+    protected float idleTime = 0f;
+    protected float chasingTime = 0f;
+    protected float patrolTime = 0f;
+    protected float currentWeaponRange;
+    protected int nextWaypointIndex;
+    protected WeaponSystem weaponSystem;
+    protected Vector3 nextWaypointPos;
+
+    protected float chaseRadius = 10f;
+    protected float fleeRadius = 4f;
+    protected WaypointContainer patrolPath;
+    protected float waypointTolerance = 2f;
+    protected float waitAtWaypointTime = 3f;
+    protected float radiusThreshold = 1f;
+    float angleAbleLooking = 30f;
+    float radiusAbleLooking = 10f;
+    Rigidbody rigid;
+    NavMeshAgent agent;
     float distanceToPlayer;
-    float currentWeaponRange;
-    int nextWaypointIndex;
-
-    public bool enableFleeing = false;
-    enum State { idle, patrolling, attacking, chasing, fleeing }
-    [SerializeField] State state = State.idle;
-
-    private WeaponSystem weaponSystem;
 
     void Start()
     {
+        rigid = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updatePosition = true;
         character = GetComponent<Character>();
-        player = GameObject.FindObjectOfType<PlayerControl>();
+        player = FindObjectOfType<PlayerControl>();
         weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on 
         currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
     }
 
-    //    void Update()
-    //    {
-    //        PlayerOrEnemyAliveToContinue();
-    //        if (distanceToPlayer > chaseRadius && state != State.patrolling)
-    //        {
-    //            StopAllCoroutines();
-    //            weaponSystem.StopAttacking();
-    //            StartCoroutine(Patrol());
-    //        }
-    //        if (enableChasing
-    //            && distanceToPlayer <= chaseRadius
-    //            && distanceToPlayer > fleeRadius
-    //            && state != State.chasing)
-    //        {
-    //            StopAllCoroutines();
-    //            weaponSystem.StopAttacking();
-    //            StartCoroutine(ChasePlayer());
-    //        }
-    //
-    //        if (enableFleeing
-    //            && distanceToPlayer <= fleeRadius - radiusThreshold
-    //            && state != State.fleeing)
-    //        {
-    //            StopAllCoroutines();
-    //            weaponSystem.StopAttacking();
-    //            StartCoroutine(FleePlayer());
-    //        }
-    //        if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
-    //        {
-    //            state = State.attacking;
-    //            StopAllCoroutines();
-    //            weaponSystem.AttackTargetOnce(player.gameObject);
-    //        }
-    //    }
-
-    public void UpdateDistanceToPlayer()
+    public Vector3 GetHeading()
     {
-        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+        return rigid.velocity;
+    }
+
+    public float GetDistanceToPlayer()
+    {
+        return Vector3.Distance(player.transform.position, transform.position);
     }
 
     public void PlayerOrEnemyAliveToContinue()
@@ -86,104 +78,198 @@ public class Enemy : MonoBehaviour
         if (player.GetComponent<HealthSystem>().healthAsPercentage <= 0 ||
             GetComponent<HealthSystem>().healthAsPercentage <= 0)
         {
-            StopAllCoroutines();
             Destroy(this);//to stop enemies from continue moving even when died
         }
     }
-
-    public void Patroling()
+    bool CheckTargetInLooking()
     {
-        if (distanceToPlayer > chaseRadius && state != State.patrolling)
+        Vector3 vecToTarget = player.transform.position - transform.position;
+        var flatVecToTarget = Vector3.ProjectOnPlane(vecToTarget, Vector3.up);
+        var flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
+        var angle = Vector3.Angle(flatVecToTarget, flatForward);
+        if (angle < angleAbleLooking / 2 && Vector3.Distance(transform.position, player.transform.position) < radiusAbleLooking)
         {
-            StopAllCoroutines();
-            weaponSystem.StopAttacking();
-            StartCoroutine(Patrol());
+            return true;
         }
+
+        return false;
+    }
+    void FixedUpdate()
+    {
+        PlayerOrEnemyAliveToContinue();
+        var steering = Vector3.zero;
+        distanceToPlayer = GetDistanceToPlayer();
+        switch (character.CurrentState)
+        {
+            case CharacterState.attacking:
+                {
+                    if (distanceToPlayer > currentWeaponRange)
+                    {
+                        character.CurrentState = CharacterState.idling;
+                    }
+                    else
+                        weaponSystem.AttackTarget(player.gameObject);
+                    break;
+                }
+            case CharacterState.chasing:
+                {
+                    if (distanceToPlayer <= currentWeaponRange)
+                    {
+                        character.CurrentState = CharacterState.attacking;
+                        break;
+                    }
+                    if (distanceToPlayer > seekingRadius && !CheckTargetInLooking())
+                    {
+                        character.CurrentState = CharacterState.idling;
+                        break;
+                    }
+
+                    // Chasing player
+                    if (chasingTime > chasingTimeLimited)
+                    {
+                        steering = Vector3.zero;
+                    }
+                    else
+                    {
+                        chasingTime += Time.deltaTime;
+                        steering += Seek(player.transform.position);
+                    }
+
+                    break;
+                }
+            case CharacterState.fleeing:
+                {
+                    if (distanceToPlayer <= currentWeaponRange)
+                    {
+                        character.CurrentState = CharacterState.attacking;
+
+                    }
+                    else if (distanceToPlayer > fleeingRadius)
+                    {
+                        character.CurrentState = CharacterState.idling;
+
+                    }
+                    else
+                        steering += Flee(player.transform.position);
+                    break;
+                }
+            case CharacterState.idling:
+                {
+                    if (distanceToPlayer <= currentWeaponRange)
+                    {
+                        character.CurrentState = CharacterState.attacking;
+                        idleTime = 0f;
+                    }
+                    else if (seeking && (distanceToPlayer <= seekingRadius
+                                    || CheckTargetInLooking()))
+                    {
+                        character.CurrentState = CharacterState.chasing;
+                        chasingTime = 0f;
+                        idleTime = 0f;
+                    }
+                    else if (fleeing && distanceToPlayer <= fleeingRadius)
+                    {
+                        character.CurrentState = CharacterState.fleeing;
+                        idleTime = 0f;
+                    }
+
+                    // after idle time. enemy will patrolling
+                    if (idleTime > idleTimeLimited)
+                    {
+                        character.CurrentState = CharacterState.patrolling;
+                        idleTime = 0f;
+                        // set to get new position
+                        nextWaypointPos = transform.position;
+                        patrolTime = 0f;
+                    }
+                    else
+                        idleTime += Time.deltaTime;
+                    break;
+                }
+            case CharacterState.patrolling:
+                {
+                    if (distanceToPlayer <= currentWeaponRange)
+                    {
+                        character.CurrentState = CharacterState.attacking;
+                        idleTime = 0f;
+                    }
+                    else if (seeking && (distanceToPlayer <= seekingRadius
+                                         || CheckTargetInLooking()))
+                    {
+                        character.CurrentState = CharacterState.chasing;
+                        chasingTime = 0f;
+                        idleTime = 0f;
+                    }
+                    else if (fleeing && distanceToPlayer <= fleeingRadius)
+                    {
+                        character.CurrentState = CharacterState.fleeing;
+                        idleTime = 0f;
+                    }
+                    /*
+                    * patrolTime is used to avoid some destination, enemy can not reach.
+                    */
+                    if (Vector3.Distance(transform.position, nextWaypointPos) <= waypointTolerance
+                        || (patrolPath == null && patrolTime > patrolTimeLimited))
+                    {
+                        // Choose next waypoint index, cycling to start if necessary
+                        if (patrolPath != null)
+                        {
+                            nextWaypointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
+                            nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
+                        }
+                        else
+                        {
+                            nextWaypointPos = transform.position +
+                                              new Vector3(
+                                                    Random.Range(-patrollRadius, patrollRadius),
+                                                    0,
+                                                    Random.Range(-patrollRadius, patrollRadius));
+                            patrolTime = 0f;
+                        }
+                    }
+                    else if (patrolPath == null)
+                    {
+                        patrolTime += Time.deltaTime;
+                    }
+                    steering += Seek(nextWaypointPos) * patrolSpeed;
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+
+        }
+        agent.SetDestination(rigid.position + steering);
     }
 
     public void Attacking()
     {
-        if (distanceToPlayer <= currentWeaponRange && state != State.attacking)
-        {
-            state = State.attacking;
-            StopAllCoroutines();
-            weaponSystem.AttackTarget(player.gameObject);
-        }
+        weaponSystem.AttackTarget(player.gameObject);
     }
 
-    public void Chasing()
+    public Vector3 Seek(Vector3 pos)
     {
-        if (distanceToPlayer <= chaseRadius
-            && ((enableFleeing && distanceToPlayer > fleeRadius + radiusThreshold) || !enableFleeing)  // if flee then chasing in range[fleeRadius + threshold, chasingRadius] else chasing
-            && state != State.chasing)
+        var desiredVel = (pos - transform.position);
+        if (desiredVel.magnitude < 0.2f)
         {
-            StopAllCoroutines();
-            weaponSystem.StopAttacking();
-            StartCoroutine(ChasePlayer());
+            return Vector3.zero;
         }
+
+        desiredVel = desiredVel.normalized * seekingSpeed;
+        return desiredVel - rigid.velocity;
     }
 
-    public void Fleeing()
+    private Vector3 Flee(Vector3 pos)
     {
-        if (enableFleeing
-            && distanceToPlayer <= fleeRadius - radiusThreshold
-            && state != State.fleeing)
-        {
-            StopAllCoroutines();
-            weaponSystem.StopAttacking();
-            StartCoroutine(FleePlayer());
-        }
+        var desiredVel = transform.position - pos;
+        if (desiredVel.magnitude > fleeingRadius)
+            return Vector3.zero;
+
+        desiredVel = desiredVel.normalized * fleeingSpeed;
+        return desiredVel - rigid.velocity;
     }
 
-    IEnumerator Patrol()
-    {
-        state = State.patrolling;
-        while (patrolPath != null)
-        {
-            Vector3 nextWaypointPos =
-               patrolPath.transform.GetChild(nextWaypointIndex).position;
-            character.SetDestination(nextWaypointPos);
-
-            if (Vector3.Distance(transform.position, nextWaypointPos) <= waypointTolerance)
-            {
-                yield return new WaitForSeconds(waitAtWaypointTime);
-                // Choose next waypoint index, cycling to start if necessary
-                nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
-                character.SetDestination(nextWaypointPos);
-            }
-            else
-            {
-                yield return new WaitForEndOfFrame();
-            }
-        }
-    }
-
-    IEnumerator ChasePlayer()
-    {
-        state = State.chasing;
-        while (distanceToPlayer >= currentWeaponRange
-               && distanceToPlayer <= chaseRadius
-               && ((enableFleeing && distanceToPlayer > fleeRadius + radiusThreshold) || !enableFleeing))
-        {
-            character.SetDestination(player.transform.position);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    IEnumerator FleePlayer()
-    {
-        state = State.fleeing;
-        Vector3 newPos = Vector3.zero;
-        Vector3 dirToPlayer = Vector3.zero;
-
-        while (distanceToPlayer <= fleeRadius)
-        {
-            dirToPlayer = transform.position - player.transform.position;
-            newPos = transform.position + dirToPlayer;
-            character.SetDestination(newPos);
-            yield return new WaitForEndOfFrame();
-        }
-    }
 
 #if UNITY_EDITOR
     void OnDrawGizmos()
@@ -194,14 +280,18 @@ public class Enemy : MonoBehaviour
 
         // Draw chase sphere 
         Gizmos.color = new Color(0, 0, 255, .5f);
-        Gizmos.DrawWireSphere(transform.position, chaseRadius);
+        //Gizmos.DrawWireSphere(transform.position, chaseRadius);
 
         // Draw flee sphere 
         Gizmos.color = new Color(0, 255, 255, .5f);
-        Gizmos.DrawWireSphere(transform.position, fleeRadius);
+        //Gizmos.DrawWireSphere(transform.position, fleeRadius);
 
         // Draw able looking
-        Handles.DrawSolidArc(transform.forward, Vector3.up, transform.position, angleAbleLooking,  radiusAbleLooking);
+        Handles.color = new Color(0, 1f, 0, 0.2f);
+        Handles.DrawSolidArc(transform.position, transform.up, transform.forward, -angleAbleLooking / 2, radiusAbleLooking);
+        Handles.DrawSolidArc(transform.position, transform.up, transform.forward, angleAbleLooking / 2, radiusAbleLooking);
+
     }
 #endif
+
 }

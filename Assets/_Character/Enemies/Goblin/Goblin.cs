@@ -10,11 +10,11 @@ public class Goblin : Enemy
 {  
     void Update()
     {
-        this.PlayerOrEnemyAliveToContinue();
-        this.UpdateDistanceToPlayer();
-        this.Patroling();
-        this.Attacking();
-        this.Chasing();
-        this.Fleeing();
+        //this.PlayerOrEnemyAliveToContinue();
+        //this.UpdateDistanceToPlayer();
+        //this.Patroling();
+        //this.Attacking();
+        //this.Chasing();
+        //this.Fleeing();
     }
 }
