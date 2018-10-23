@@ -2170,7 +2170,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2194,7 +2194,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95985392087185886
 Animator:
   serializedVersion: 3
@@ -2326,9 +2326,9 @@ MonoBehaviour:
   maxHealthPoints: 200
   healthBar: {fileID: 114283081700552970}
   damageSounds:
-  - {fileID: 8300000, guid: 6230595d6ec0939488b053a19207be55, type: 3}
+  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: 9567384b500fe6c40a4b0971056d5f56, type: 3}
+  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deadVanishAfter: 2
 --- !u!114 &114780171536665862
 MonoBehaviour:
@@ -2366,7 +2366,7 @@ MonoBehaviour:
   fleeing: 0
   seekingSpeed: 8
   fleeingSpeed: 8
-  patrolSpeed: 0.15
+  patrolSpeed: 0.1
   seekingRadius: 8
   fleeingRadius: 5
   patrollRadius: 5
