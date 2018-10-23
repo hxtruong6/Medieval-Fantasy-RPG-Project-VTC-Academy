@@ -17,16 +17,16 @@ public abstract class AbilityBehaviour : MonoBehaviour
         config = configToSet;
     }
 
-    protected void PlayParticleEffect()
+    protected void PlayParticleEffect(GameObject target)
     {
         var particlePrefab = config.GetParticlePrefab();
         var particleObject = Instantiate
         (
             particlePrefab,
-            transform.position,
+            target.transform.position,
             particlePrefab.transform.rotation
         );
-        particleObject.transform.parent = transform;
+        particleObject.transform.parent = target.transform;
         particleObject.GetComponent<ParticleSystem>().Play();
         StartCoroutine(DestroyParticleWhenFinished(particleObject));
     }

@@ -8,13 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc328291265b9147bf236a625cb5953, type: 3}
+  m_Script: {fileID: 11500000, guid: 4959ee4029f56ac4fb4667321b9b1e74, type: 3}
   m_Name: Ranged Power Attack
   m_EditorClassIdentifier: 
   energyCost: 10
   particlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
     type: 2}
-  abilityAnimation: {fileID: 7400180, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
+  abilityAnimation: {fileID: 7400000, guid: 53ddfb67396ece24ba7f176345cb3c96, type: 3}
   audioClips: []
   coolDownTime: 2
   extraDamage: 100
+  projectileConfig: {fileID: 11400000, guid: f399dd570e9426d4fb3d1219a4e9817e, type: 2}

@@ -9,12 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9556821456258fa4ab945148c91e762c, type: 3}
-  m_Name: Arrow LV1
+  m_Name: Power Attack Arrow
   m_EditorClassIdentifier: 
-  startPosition: {fileID: 4795313343879006, guid: 97271a3e6a33f15418987f6c57d4c0c0,
-    type: 2}
-  projectilePrefab: {fileID: 1546999143280692, guid: 0464fec161fd8fc45958b2a4d0adb0c9,
+  projectilePrefab: {fileID: 1546999143280692, guid: 253ccfef8eb879c40a4fe2f6a120e53a,
     type: 2}
   flyingAnimations: []
   speed: 30
   vanishAfterSec: 1
+  isAbilityProjectile: 1

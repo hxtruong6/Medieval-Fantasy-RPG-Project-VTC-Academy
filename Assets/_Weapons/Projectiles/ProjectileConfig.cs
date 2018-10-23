@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = ("Medieval-Fantasy-RPG/Projectile"))]
 
 public class ProjectileConfig : ScriptableObject
-{
-    public Transform startPosition;
-
+{   
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] AnimationClip[] flyingAnimations;
     [SerializeField] float speed;
     [SerializeField] float vanishAfterSec = 1f;
+
+    public bool isAbilityProjectile;
 
     public GameObject GetProjectilePrefab()
     {

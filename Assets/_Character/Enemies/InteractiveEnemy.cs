@@ -35,7 +35,7 @@ public class InteractiveEnemy : MonoBehaviour {
         mainBody.GetComponent<SkinnedMeshRenderer>().materials = mats;
     }
 
-    private void OnMouseOver()
+    private void OnMouseEnter()
     {
         var enemyHP = GetComponent<HealthSystem>().healthAsPercentage;
         if ( enemyHP > 0)

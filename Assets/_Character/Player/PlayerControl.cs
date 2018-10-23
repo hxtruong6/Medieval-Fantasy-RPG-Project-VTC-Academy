@@ -94,10 +94,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetMouseButton(0) && IsTargetInAttackRange(enemy.gameObject))
         {
-            StopCurrentAction();
-            StopMoving();
-            transform.LookAt(enemy.transform);           
-            weaponSystem.AttackTarget(enemy.gameObject);          
+            NormalAttack(enemy);
         }
         else if (Input.GetMouseButton(0) && !IsTargetInAttackRange(enemy.gameObject))
         {
@@ -105,7 +102,7 @@ public class PlayerControl : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1) && IsTargetInAttackRange(enemy.gameObject))
         {
-            UsePowerAttack();
+            UsePowerAttack(enemy);
         }
         else if (Input.GetMouseButtonDown(1) && !IsTargetInAttackRange(enemy.gameObject))
         {
@@ -114,9 +111,17 @@ public class PlayerControl : MonoBehaviour
         //TODO Impliment move to enemy and use target aoe skills
     }
 
-    private void UsePowerAttack()
+    private void NormalAttack(Enemy enemy)
     {
-        abilities.SetSkillTarget(enemy.gameObject);
+        StopCurrentAction();
+        StopMoving();
+        transform.LookAt(enemy.transform);
+        weaponSystem.AttackTarget(enemy.gameObject);
+    }
+
+    private void UsePowerAttack(Enemy target)
+    {
+        abilities.SetSkillTarget(target.gameObject);
         int skillIndex = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() ? 0 : 1;
         abilities.AttemptSpecialAbility(skillIndex);
     }
@@ -178,10 +183,10 @@ public class PlayerControl : MonoBehaviour
         weaponSystem.AttackTarget(enemy.gameObject);
     }
 
-    IEnumerator MoveAndPowerAttack(Enemy enemy)
+    IEnumerator MoveAndPowerAttack(Enemy target)
     {
         yield return StartCoroutine(MoveToTarget(enemy.gameObject));
-        UsePowerAttack();
+        UsePowerAttack(target);
     }
 
     IEnumerator MoveAndPickUpItem(DropItem item)
