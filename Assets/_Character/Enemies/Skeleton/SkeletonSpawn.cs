@@ -6,15 +6,15 @@ public class SkeletonSpawn : MonoBehaviour
     [SerializeField] WeaponConfig[] listOfWeapon;
     [SerializeField] private int selectedWeapon = 0;
 
-
-    void OnGUI()
-    {
-
-    }
     private Enemy enemy;
     // Use this for initialization;
     private WeaponSystem weaponSystem;
 
+    [ExecuteInEditMode]
+    void OnValidate()
+    {
+        selectedWeapon = Mathf.Clamp(selectedWeapon, 0, listOfWeapon.Length - 1);
+    }
 
     void Start()
     {

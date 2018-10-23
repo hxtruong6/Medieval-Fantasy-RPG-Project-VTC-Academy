@@ -1085,7 +1085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1998564831978650
 GameObject:
   m_ObjectHideFlags: 1
@@ -2787,8 +2787,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 60
   healthBar: {fileID: 114386398859251104}
-  damageSounds: []
-  deathSounds: []
+  damageSounds:
+  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deadVanishAfter: 2
 --- !u!135 &135280627421569554
 SphereCollider:
