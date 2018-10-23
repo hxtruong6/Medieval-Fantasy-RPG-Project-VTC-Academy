@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629dc909419d1014ca0187f048f8db74, type: 3}
+  m_Name: OrcAxe
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 4780827250440542, guid: 0d836fd793fb6c6418a3bd8fa742f38c,
+    type: 2}
+  weaponPrefab: {fileID: 1652450787965636, guid: bc022b2efa42fa646bad3e13c892f080,
+    type: 2}
+  attackAnimations:
+  - {fileID: 7400000, guid: f50fb31ed4e32cf4192033a45e0fa1bd, type: 3}
+  - {fileID: 7400000, guid: c0a3774fd41baab4281f1ce0adff6f0c, type: 3}
+  - {fileID: 7400000, guid: f74815380b1a9d347afcd5cb2ad2cbde, type: 3}
+  minTimeBetweenHits: 5
+  maxAttackRange: 2
+  minDamage: 6
+  maxDamage: 10
+  isRightHandWeapon: 1
+  isMeleeWeapon: 1
+  criticalHitParticlePrefab: {fileID: 0}
+  destroyParticleAfterSec: 1
+  attackAnimSpeedMultiplier: 4

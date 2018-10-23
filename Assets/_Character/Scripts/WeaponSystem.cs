@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -10,7 +9,7 @@ public class WeaponSystem : MonoBehaviour
 
     [SerializeField] WeaponConfig currentWeaponConfig;
     [SerializeField] ProjectileConfig currentProjectileConfig;
-    
+
 
     const string TEMP_OBJECTS = "TempObjects";
     const string ATTACK_TRIGGER = "Attack";
@@ -23,11 +22,16 @@ public class WeaponSystem : MonoBehaviour
     AnimationClip attackClip;
     Character character;
     InventorySystem inventorySystem;
-    float lastHitTime; 
+    float lastHitTime;
 
     public WeaponConfig GetCurrentWeapon()
     {
         return currentWeaponConfig;
+    }
+
+    public void SetCurrentWeapon(WeaponConfig weapon)
+    {
+        currentWeaponConfig = weapon;
     }
 
     void Start()
@@ -37,7 +41,7 @@ public class WeaponSystem : MonoBehaviour
         inventorySystem = GetComponent<InventorySystem>();
 
         PutWeaponInHand(currentWeaponConfig);
-        SetAttackAnimation();      
+        SetAttackAnimation();
     }
 
     private GameObject RequestRighHand()
