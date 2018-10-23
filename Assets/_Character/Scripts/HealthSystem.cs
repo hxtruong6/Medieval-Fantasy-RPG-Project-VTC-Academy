@@ -88,6 +88,7 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator KillCharacter()
     {
+        GetComponent<CapsuleCollider>().isTrigger = true;
         animator.SetTrigger(DEATH_TRIGGER);
         var playerComponent = GetComponent<PlayerControl>();
         audioSource.Play();

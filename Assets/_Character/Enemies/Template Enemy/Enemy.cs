@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] State state = State.idle;
 
     private WeaponSystem weaponSystem;
-    bool temp;
+
     void Start()
     {
         character = GetComponent<Character>();
@@ -39,14 +39,7 @@ public class Enemy : MonoBehaviour
         weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on 
         currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
     }
-    private void Update()
-    {
-        if(!temp)
-        {
-            StartCoroutine(Patrol());
-            temp = true;
-        }
-    }
+
     //    void Update()
     //    {
     //        PlayerOrEnemyAliveToContinue();

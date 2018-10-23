@@ -224,6 +224,7 @@ public class WeaponSystem : MonoBehaviour
             particlePrefab.transform.rotation
         );
         particleObject.transform.parent = target.transform;
+        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         particleObject.GetComponent<ParticleSystem>().Play();
         particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         StartCoroutine(DestroyParticleAfterFinishedSec(particleObject));
