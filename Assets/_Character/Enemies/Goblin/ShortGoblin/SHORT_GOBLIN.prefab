@@ -1059,8 +1059,8 @@ GameObject:
   - component: {fileID: 114699152533074962}
   - component: {fileID: 114957391950295440}
   - component: {fileID: 114748713566109292}
-  - component: {fileID: 114489050551805402}
   - component: {fileID: 82906796539382538}
+  - component: {fileID: 114700612109360826}
   m_Layer: 9
   m_Name: SHORT_GOBLIN
   m_TagString: Untagged
@@ -2438,7 +2438,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2590,25 +2590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddf57256c2f06048b60238b8ad055b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114489050551805402
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1985939858056000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58f0f5904ec446e429af1b6c332e1600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseRadius: 6
-  fleeRadius: 4
-  patrolPath: {fileID: 0}
-  waypointTolerance: 2
-  waitAtWaypointTime: 3
-  radiusThreshold: 1
-  enableFleeing: 0
-  state: 1
 --- !u!114 &114584059442294832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2649,8 +2630,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
-  currentWeaponConfig: {fileID: 0}
+  currentWeaponConfig: {fileID: 11400000, guid: cee8a41bf6c52aa40b924e4d68d0b657,
+    type: 2}
   currentProjectileConfig: {fileID: 0}
+--- !u!114 &114700612109360826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985939858056000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeking: 1
+  fleeing: 0
+  seekingSpeed: 8
+  fleeingSpeed: 8
+  patrolSpeed: 0.5
+  seekingRadius: 8
+  fleeingRadius: 5
+  patrollRadius: 5
+  chasingRadius: 10
+  idleTimeLimited: 5
+  chasingTimeLimited: 10
+  patrolTimeLimited: 8
+  patrolPath: {fileID: 0}
+  waypointTolerance: 2
+  waitAtWaypointTime: 3
+  angleAbleLooking: 30
+  radiusAbleLooking: 10
 --- !u!114 &114748713566109292
 MonoBehaviour:
   m_ObjectHideFlags: 1

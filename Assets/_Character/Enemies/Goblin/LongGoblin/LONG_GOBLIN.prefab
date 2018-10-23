@@ -1003,17 +1003,18 @@ GameObject:
   - component: {fileID: 54380510852519902}
   - component: {fileID: 136965916414276130}
   - component: {fileID: 195954849686849286}
-  - component: {fileID: 114069511075372994}
   - component: {fileID: 114699152533074962}
   - component: {fileID: 114957391950295440}
   - component: {fileID: 114748713566109292}
+  - component: {fileID: 114782215563193312}
+  - component: {fileID: 82723841250591836}
   m_Layer: 0
   m_Name: LONG_GOBLIN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1998564831978650
 GameObject:
   m_ObjectHideFlags: 1
@@ -2373,6 +2374,86 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &82723841250591836
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985939858056000}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95925660379314174
 Animator:
   serializedVersion: 3
@@ -2390,25 +2471,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114069511075372994
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1985939858056000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58f0f5904ec446e429af1b6c332e1600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseRadius: 10
-  fleeRadius: 5
-  patrolPath: {fileID: 0}
-  waypointTolerance: 2
-  waitAtWaypointTime: 3
-  radiusThreshold: 1
-  enableFleeing: 1
-  state: 1
 --- !u!114 &114408164061408648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2455,6 +2517,34 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: 40e31bd39b0d56245aca0767d83c8ee5,
     type: 2}
   baseDamage: 10
+--- !u!114 &114782215563193312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985939858056000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeking: 0
+  fleeing: 1
+  seekingSpeed: 8
+  fleeingSpeed: 8
+  patrolSpeed: 0.2
+  seekingRadius: 8
+  fleeingRadius: 5
+  patrollRadius: 5
+  chasingRadius: 14
+  idleTimeLimited: 5
+  chasingTimeLimited: 10
+  patrolTimeLimited: 8
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  waitAtWaypointTime: 3
+  angleAbleLooking: 30
+  radiusAbleLooking: 10
 --- !u!114 &114957391950295440
 MonoBehaviour:
   m_ObjectHideFlags: 1
