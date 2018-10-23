@@ -6,30 +6,44 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] float pickItemRadius = 2.5f;
 
-    CameraRaycaster cameraRaycaster;
-
     Character character;
     Enemy enemy;
     DropItem dropItem;
     WeaponSystem weaponSystem;
     InventorySystem inventorySystem;
-
     KeyCode switchWeaponKey = KeyCode.Tab;
+    SpecialAbilities abilities;
+
+    bool isAlive = true;
 
     void Start()
     {
         character = GetComponent<Character>();
         weaponSystem = GetComponent<WeaponSystem>();
         inventorySystem = GetComponent<InventorySystem>();
+        abilities = GetComponent<SpecialAbilities>();
 
         RegisterForMouseEvents();
+    }
+
+    void RegisterForMouseEvents()
+    {
+        var cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+        cameraRaycaster.onMouseOverDropItem += OnMouseOverDropItem;
+        cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+        cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
+    }
+
+    private void StopMoving()
+    {
+        character.SetDestination(transform.position);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(switchWeaponKey))
         {
-            StopAllCoroutines();
+            StopCurrentAction();
             inventorySystem.SwitchWeapon();
         }
     }
@@ -40,8 +54,25 @@ public class PlayerControl : MonoBehaviour
         return distanceToTarget <= pickItemRadius;
     }
 
+    private bool CheckAttackConditions(Enemy enemyToCheck)
+    {
+        if (!isAlive)
+            return false;
+
+        if (enemyToCheck.GetComponent<HealthSystem>().healthAsPercentage <= 0)
+        {
+            if (enemyToCheck == enemy)
+                enemy.GetComponent<InteractiveEnemy>().HighLight(false);
+            return false;
+        }
+        return true;
+    }
+
     void OnMouseOverDropItem(DropItem itemToSet)
     {
+        if (!isAlive)
+            return;
+
         dropItem = itemToSet;
 
         if (Input.GetMouseButton(0) && IsItemInPickUpRange(dropItem.gameObject))
@@ -56,48 +87,64 @@ public class PlayerControl : MonoBehaviour
 
     void OnMouseOverEnemy(Enemy enemyToSet)
     {
-        ChangeTargetEnemy(enemyToSet);
+        if (!CheckAttackConditions(enemyToSet))
+            return;
+
+        enemy = enemyToSet;
 
         if (Input.GetMouseButton(0) && IsTargetInAttackRange(enemy.gameObject))
         {
-            transform.LookAt(enemy.transform);
-            weaponSystem.AttackTarget(enemy.gameObject);
+            NormalAttack(enemy);
         }
         else if (Input.GetMouseButton(0) && !IsTargetInAttackRange(enemy.gameObject))
         {
             StartCoroutine(MoveAndAttack(enemy));
         }
-
-        //TODO Impliment Move to enemy and use skills
+        else if (Input.GetMouseButtonDown(1) && IsTargetInAttackRange(enemy.gameObject))
+        {
+            UsePowerAttack(enemy);
+        }
+        else if (Input.GetMouseButtonDown(1) && !IsTargetInAttackRange(enemy.gameObject))
+        {
+            StartCoroutine(MoveAndPowerAttack(enemy)); ;
+        }
+        //TODO Impliment move to enemy and use target aoe skills
     }
 
-    private void ChangeTargetEnemy(Enemy enemyToSet)
+    private void NormalAttack(Enemy enemy)
     {
-        if (enemyToSet != enemy && enemy != null)
-        {
-            enemy.GetComponent<InteractiveEnemy>().SetHighLight(false);
-        }
+        StopCurrentAction();
+        StopMoving();
+        transform.LookAt(enemy.transform);
+        weaponSystem.AttackTarget(enemy.gameObject);
+    }
 
-        enemy = enemyToSet;
-        enemy.GetComponent<InteractiveEnemy>().SetHighLight(true);
+    private void UsePowerAttack(Enemy target)
+    {
+        abilities.SetSkillTarget(target.gameObject);
+        int skillIndex = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() ? 0 : 1;
+        abilities.AttemptSpecialAbility(skillIndex);
     }
 
     void OnMouseOverPotentiallyWalkable(Vector3 destination)
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(0))
         {
+            StopCurrentAction();
             weaponSystem.CancleAction();
             character.CurrentState = CharacterState.running;
             character.SetDestination(destination);
         }
     }
 
-    void RegisterForMouseEvents()
+    private void StopCurrentAction()
     {
-        cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-        cameraRaycaster.onMouseOverDropItem += OnMouseOverDropItem;
-        cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
-        cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
+        StopAllCoroutines();
     }
 
     private bool IsTargetInAttackRange(GameObject target)
@@ -126,7 +173,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        character.SetDestination(character.transform.position);
+        StopMoving();
         yield return new WaitForEndOfFrame();
     }
 
@@ -136,16 +183,30 @@ public class PlayerControl : MonoBehaviour
         weaponSystem.AttackTarget(enemy.gameObject);
     }
 
+    IEnumerator MoveAndPowerAttack(Enemy target)
+    {
+        yield return StartCoroutine(MoveToTarget(enemy.gameObject));
+        UsePowerAttack(target);
+    }
+
     IEnumerator MoveAndPickUpItem(DropItem item)
     {
         yield return StartCoroutine(MoveToTarget(item.gameObject));
         inventorySystem.PickUpNewWeapon(item);
     }
 
-    private void StandStill()
+    private void IdlingState()
     {
         character.CurrentState = CharacterState.idling;
     }
+
+    public void Killed()
+    {
+        isAlive = false;
+        StopCurrentAction();
+        StopMoving();
+    }
+
 
     void OnDrawGizmos()
     {

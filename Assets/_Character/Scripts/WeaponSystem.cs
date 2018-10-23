@@ -87,12 +87,27 @@ public class WeaponSystem : MonoBehaviour
         var firingPos = GetComponentInChildren<ArrowShootingPosition>();
         var projectileObject = Instantiate(projectilePrefab, firingPos.transform);
 
-        var projectile = projectileObject.GetComponent<Projectile>();
+        var projectile = projectileObject.GetComponentInChildren<Projectile>();
         projectile.SetProjectileConfig(currentProjectileConfig);
         projectile.SetShooter(gameObject);
 
         projectileObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         return projectileObject;
+    }
+
+    IEnumerator MoveProjectile(GameObject projectile, Vector3 from, Vector3 target, float speed, float vanishAfterSec)
+    {
+        float startTime = Time.time;
+        var normalizeDirection = (target - from).normalized;
+        var vanishTime = Time.time + vanishAfterSec;
+        projectile.transform.LookAt(target);
+
+        while (Time.time < vanishTime && projectile != null)
+        {
+            projectile.transform.position += normalizeDirection * (Time.deltaTime * speed);
+            yield return null;
+        }
+        Destroy(projectile);
     }
 
     public void SetProjectileDirection(ProjectileConfig projectileToUse)
@@ -110,17 +125,9 @@ public class WeaponSystem : MonoBehaviour
                                       currentProjectileConfig.GetVanishTime()));
     }
 
-    IEnumerator MoveProjectile(GameObject projectile, Vector3 from, Vector3 target, float speed, float vanishAfterSec)
+    private void ShootArrow()
     {
-        float startTime = Time.time;
-        var normalizeDirection = (target - from).normalized;
-        var vanishTime = Time.time + vanishAfterSec;
-        while (Time.time < vanishTime && projectile != null)
-        {
-            projectile.transform.position += normalizeDirection * (Time.deltaTime * speed);
-            yield return null;
-        }
-        Destroy(projectile);
+        SetProjectileDirection(currentProjectileConfig);
     }
 
     private void SetAttackAnimation()
@@ -147,14 +154,9 @@ public class WeaponSystem : MonoBehaviour
         animator.Play("Grounded");
     }
 
-    public void Hit()
+    private void Hit()
     {
-        target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
-    }
-
-    public void ShootArrow()
-    {
-        SetProjectileDirection(currentProjectileConfig);
+        target.GetComponent<HealthSystem>().TakeDamage(NormalAttackDamage());
     }
 
     public void StopAttacking()
@@ -196,11 +198,15 @@ public class WeaponSystem : MonoBehaviour
         animator.SetTrigger(ATTACK_TRIGGER);
     }
 
-    public float CalculateDamage()
+    public int GetWeaponDamage()
+    {
+        return Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
+    }
+
+    public float NormalAttackDamage()
     {
         bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
-        int weaponDamage = Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
-        float damageBeforeCritical = character.GetBaseDamage() + weaponDamage;
+        float damageBeforeCritical = character.GetBaseDamage() + GetWeaponDamage();
         if (isCriticalHit)
         {
             PlayCriticalHitParticle();
@@ -222,6 +228,7 @@ public class WeaponSystem : MonoBehaviour
             particlePrefab.transform.rotation
         );
         particleObject.transform.parent = target.transform;
+        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         particleObject.GetComponent<ParticleSystem>().Play();
         particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         StartCoroutine(DestroyParticleAfterFinishedSec(particleObject));

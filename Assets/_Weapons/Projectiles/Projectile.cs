@@ -29,8 +29,20 @@ public class Projectile : MonoBehaviour
     private void DealDamage(Collision collision)
     {
         var objectBeingHit = collision.gameObject;
-        var damage = shooter.GetComponent<WeaponSystem>().CalculateDamage();
-        if(objectBeingHit.GetComponent<HealthSystem>())
+        float damage = 0;
+
+        if (projectileConfig.isAbilityProjectile)
+        {
+            damage = shooter.GetComponent<WeaponSystem>().GetWeaponDamage();
+            damage += shooter.GetComponent<Character>().GetBaseDamage();
+            damage += shooter.GetComponent<RangedPowerAttackBehaviour>().GetAbilityDamage();
+        }
+        else
+        {
+            damage = shooter.GetComponent<WeaponSystem>().NormalAttackDamage();
+        }
+
+        if (objectBeingHit.GetComponent<HealthSystem>())
         {
             if(objectBeingHit.GetComponent<HealthSystem>().healthAsPercentage > 0)
             {

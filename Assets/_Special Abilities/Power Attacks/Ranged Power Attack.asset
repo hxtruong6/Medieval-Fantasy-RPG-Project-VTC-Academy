@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4959ee4029f56ac4fb4667321b9b1e74, type: 3}
+  m_Name: Ranged Power Attack
+  m_EditorClassIdentifier: 
+  energyCost: 10
+  particlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
+    type: 2}
+  abilityAnimation: {fileID: 7400000, guid: 53ddfb67396ece24ba7f176345cb3c96, type: 3}
+  audioClips: []
+  coolDownTime: 2
+  extraDamage: 100
+  projectileConfig: {fileID: 11400000, guid: f399dd570e9426d4fb3d1219a4e9817e, type: 2}
