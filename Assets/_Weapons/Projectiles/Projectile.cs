@@ -38,7 +38,9 @@ public class Projectile : MonoBehaviour
             damage += shooter.GetComponent<RangedPowerAttackBehaviour>().GetAbilityDamage();
         }
         else
+        {
             damage = shooter.GetComponent<WeaponSystem>().NormalAttackDamage();
+        }
 
         if (objectBeingHit.GetComponent<HealthSystem>())
         {
