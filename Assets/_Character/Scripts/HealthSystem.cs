@@ -74,6 +74,8 @@ public class HealthSystem : MonoBehaviour
 
         if (playerComponent && playerComponent.isActiveAndEnabled)
         {
+            Destroy(playerComponent);
+            Destroy(GetComponent<Character>());
             SceneManager.LoadScene(0);
         }
         else
