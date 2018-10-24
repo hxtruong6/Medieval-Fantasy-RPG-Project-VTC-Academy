@@ -4908,21 +4908,28 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 455850227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 3
-  fleeRadius: 4
+  seeking: 0
+  fleeing: 0
+  seekingSpeed: 8
+  fleeingSpeed: 8
+  patrolSpeed: 0.5
+  seekingRadius: 8
+  fleeingRadius: 5
+  patrollRadius: 5
+  chasingRadius: 10
+  idleTimeLimited: 5
+  chasingTimeLimited: 10
+  patrolTimeLimited: 8
   patrolPath: {fileID: 533057600}
   waypointTolerance: 2
   waitAtWaypointTime: 0.1
-  radiusThreshold: 1
   angleAbleLooking: 30
   radiusAbleLooking: 10
-  enableFleeing: 0
-  state: 0
 --- !u!114 &455850232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13019,6 +13026,11 @@ Prefab:
         type: 2}
       propertyPath: deadVanishAfter
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114919470073403168, guid: 640ec172c9bf40f488f5f4cc4e2505d6,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 640ec172c9bf40f488f5f4cc4e2505d6, type: 2}
@@ -21931,16 +21943,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f0f5904ec446e429af1b6c332e1600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 6
-  fleeRadius: 4
+  seeking: 0
+  fleeing: 0
+  seekingSpeed: 8
+  fleeingSpeed: 8
+  patrolSpeed: 0.5
+  seekingRadius: 8
+  fleeingRadius: 5
+  patrollRadius: 5
+  chasingRadius: 10
+  idleTimeLimited: 5
+  chasingTimeLimited: 10
+  patrolTimeLimited: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypointTime: 3
-  radiusThreshold: 1
   angleAbleLooking: 30
   radiusAbleLooking: 10
-  enableFleeing: 0
-  state: 1
 --- !u!114 &2050958726
 MonoBehaviour:
   m_ObjectHideFlags: 0

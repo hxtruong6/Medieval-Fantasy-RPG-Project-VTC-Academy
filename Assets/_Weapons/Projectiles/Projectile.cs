@@ -29,26 +29,35 @@ public class Projectile : MonoBehaviour
     private void DealDamage(Collision collision)
     {
         var objectBeingHit = collision.gameObject;
-        float damage = 0;
 
+        if (!objectBeingHit.GetComponent<HealthSystem>() ||
+            objectBeingHit.GetComponent<HealthSystem>().healthAsPercentage < 0)
+        {
+            return;
+        }
+     
+        var shooterWeapon = shooter.GetComponent<WeaponSystem>();
+        float damage = 0;
+        
         if (projectileConfig.isAbilityProjectile)
         {
-            damage = shooter.GetComponent<WeaponSystem>().GetWeaponDamage();
+            damage = shooterWeapon.GetWeaponDamage();
             damage += shooter.GetComponent<Character>().GetBaseDamage();
             damage += shooter.GetComponent<RangedPowerAttackBehaviour>().GetAbilityDamage();
         }
         else
         {
-            damage = shooter.GetComponent<WeaponSystem>().NormalAttackDamage();
-        }
-
-        if (objectBeingHit.GetComponent<HealthSystem>())
-        {
-            if(objectBeingHit.GetComponent<HealthSystem>().healthAsPercentage > 0)
-            {
-                objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
-                Destroy(gameObject);
+            damage = shooterWeapon.NormalAttackDamage();
+            if (shooterWeapon.IsCriticalHit())
+            {               
+                objectBeingHit.GetComponent<HealthSystem>().PlayCriticalHitParticle(
+                    shooterWeapon.GetCurrentWeapon().GetCriticalHitPrefab(),
+                    shooterWeapon.GetCurrentWeapon().GetDestroyParticleTime());
+                damage = damage * shooterWeapon.GetCriticalHitMultiplier();
             }
         }
+
+        objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
+        Destroy(gameObject);
     }
 }

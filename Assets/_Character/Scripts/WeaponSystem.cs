@@ -24,15 +24,11 @@ public class WeaponSystem : MonoBehaviour
     InventorySystem inventorySystem;
     float lastHitTime;
 
-    public WeaponConfig GetCurrentWeapon()
-    {
-        return currentWeaponConfig;
-    }
+    public WeaponConfig GetCurrentWeapon() { return currentWeaponConfig; }
 
-    public void SetCurrentWeapon(WeaponConfig weapon)
-    {
-        currentWeaponConfig = weapon;
-    }
+    public void SetCurrentWeapon(WeaponConfig weapon) { currentWeaponConfig = weapon; }
+
+    public float GetCriticalHitMultiplier() { return criticalHitMultiplier; }
 
     void Start()
     {
@@ -156,7 +152,15 @@ public class WeaponSystem : MonoBehaviour
 
     private void Hit()
     {
-        target.GetComponent<HealthSystem>().TakeDamage(NormalAttackDamage());
+        float damageToDeal = NormalAttackDamage();
+        if (IsCriticalHit())
+        {
+            damageToDeal = damageToDeal * criticalHitMultiplier;
+            target.GetComponent<HealthSystem>().PlayCriticalHitParticle(
+                currentWeaponConfig.GetCriticalHitPrefab(),
+                currentWeaponConfig.GetDestroyParticleTime());
+        }
+        target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
     }
 
     public void StopAttacking()
@@ -203,44 +207,15 @@ public class WeaponSystem : MonoBehaviour
         return Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
     }
 
-    public float NormalAttackDamage()
+    public bool IsCriticalHit()
     {
         bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
-        float damageBeforeCritical = character.GetBaseDamage() + GetWeaponDamage();
-        if (isCriticalHit)
-        {
-            PlayCriticalHitParticle();
-            return damageBeforeCritical * criticalHitMultiplier;
-        }
-        else
-        {
-            return damageBeforeCritical;
-        }
+        return isCriticalHit;
     }
 
-    protected void PlayCriticalHitParticle()
+    public float NormalAttackDamage()
     {
-        var particlePrefab = currentWeaponConfig.GetCriticalHitPrefab();
-        var particleObject = Instantiate
-        (
-            particlePrefab,
-            target.transform.position,
-            particlePrefab.transform.rotation
-        );
-        particleObject.transform.parent = target.transform;
-        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
-        particleObject.GetComponent<ParticleSystem>().Play();
-        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
-        StartCoroutine(DestroyParticleAfterFinishedSec(particleObject));
-    }
-
-    IEnumerator DestroyParticleAfterFinishedSec(GameObject particlePrefab)
-    {
-        while (particlePrefab.GetComponent<ParticleSystem>().isPlaying)
-        {
-            yield return new WaitForSeconds(currentWeaponConfig.GetDestroyParticleTime());
-        }
-        Destroy(particlePrefab);
+        return character.GetBaseDamage() + GetWeaponDamage();
     }
 
     public void DestroyWeaponObject()
