@@ -728,6 +728,12 @@ Transform:
   m_Father: {fileID: 1946556650}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &279260924 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114554131125823446, guid: b50cfc05a587a384685b4b5afa8ba281,
+    type: 2}
+  m_PrefabInternal: {fileID: 1468027660}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &294040592
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,12 +966,12 @@ Prefab:
         type: 2}
       propertyPath: meleePAIcon
       value: 
-      objectReference: {fileID: 1184992974}
+      objectReference: {fileID: 1395480831}
     - target: {fileID: 114481191799111288, guid: 9f53ebb1163d7c042b2ca3cdbc58c97e,
         type: 2}
       propertyPath: rangedPAIcon
       value: 
-      objectReference: {fileID: 1184992976}
+      objectReference: {fileID: 279260924}
     - target: {fileID: 114477763979650482, guid: 9f53ebb1163d7c042b2ca3cdbc58c97e,
         type: 2}
       propertyPath: energyBar
@@ -980,12 +986,12 @@ Prefab:
         type: 2}
       propertyPath: currentWeaponImage
       value: 
-      objectReference: {fileID: 818472742}
+      objectReference: {fileID: 1403002250}
     - target: {fileID: 114365983444898036, guid: 9f53ebb1163d7c042b2ca3cdbc58c97e,
         type: 2}
       propertyPath: nextWeaponImage
       value: 
-      objectReference: {fileID: 418174180}
+      objectReference: {fileID: 1274498085}
     - target: {fileID: 114481191799111288, guid: 9f53ebb1163d7c042b2ca3cdbc58c97e,
         type: 2}
       propertyPath: meleePAConfig
@@ -4728,12 +4734,6 @@ Transform:
   m_Father: {fileID: 533057601}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &418174180 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114321565820974480, guid: b50cfc05a587a384685b4b5afa8ba281,
-    type: 2}
-  m_PrefabInternal: {fileID: 1468027660}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &449088308
 GameObject:
   m_ObjectHideFlags: 0
@@ -4908,21 +4908,28 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 455850227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 3
-  fleeRadius: 4
+  seeking: 0
+  fleeing: 0
+  seekingSpeed: 8
+  fleeingSpeed: 8
+  patrolSpeed: 0.5
+  seekingRadius: 8
+  fleeingRadius: 5
+  patrollRadius: 5
+  chasingRadius: 10
+  idleTimeLimited: 5
+  chasingTimeLimited: 10
+  patrolTimeLimited: 8
   patrolPath: {fileID: 533057600}
   waypointTolerance: 2
   waitAtWaypointTime: 0.1
-  radiusThreshold: 1
   angleAbleLooking: 30
   radiusAbleLooking: 10
-  enableFleeing: 0
-  state: 0
 --- !u!114 &455850232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13020,6 +13027,11 @@ Prefab:
       propertyPath: deadVanishAfter
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114919470073403168, guid: 640ec172c9bf40f488f5f4cc4e2505d6,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 640ec172c9bf40f488f5f4cc4e2505d6, type: 2}
   m_IsPrefabParent: 0
@@ -13728,12 +13740,6 @@ Transform:
   m_Father: {fileID: 702639242}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &818472742 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114799311966864130, guid: b50cfc05a587a384685b4b5afa8ba281,
-    type: 2}
-  m_PrefabInternal: {fileID: 1468027660}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &828345637
 GameObject:
   m_ObjectHideFlags: 0
@@ -15058,18 +15064,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1468027660}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!114 &1184992974 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114664858976123444, guid: b50cfc05a587a384685b4b5afa8ba281,
-    type: 2}
-  m_PrefabInternal: {fileID: 1468027660}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!114 &1184992976 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114859469467583636, guid: b50cfc05a587a384685b4b5afa8ba281,
-    type: 2}
-  m_PrefabInternal: {fileID: 1468027660}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1202450883
 GameObject:
   m_ObjectHideFlags: 0
@@ -15481,6 +15475,12 @@ Transform:
   m_Father: {fileID: 1931136416}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1274498085 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114622969303969270, guid: b50cfc05a587a384685b4b5afa8ba281,
+    type: 2}
+  m_PrefabInternal: {fileID: 1468027660}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1275797217
 GameObject:
   m_ObjectHideFlags: 0
@@ -15790,6 +15790,18 @@ Transform:
   m_Father: {fileID: 1831162076}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1395480831 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114088867854530398, guid: b50cfc05a587a384685b4b5afa8ba281,
+    type: 2}
+  m_PrefabInternal: {fileID: 1468027660}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1403002250 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114227306457377742, guid: b50cfc05a587a384685b4b5afa8ba281,
+    type: 2}
+  m_PrefabInternal: {fileID: 1468027660}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1413788536
 GameObject:
   m_ObjectHideFlags: 0
@@ -21931,16 +21943,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f0f5904ec446e429af1b6c332e1600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 6
-  fleeRadius: 4
+  seeking: 0
+  fleeing: 0
+  seekingSpeed: 8
+  fleeingSpeed: 8
+  patrolSpeed: 0.5
+  seekingRadius: 8
+  fleeingRadius: 5
+  patrollRadius: 5
+  chasingRadius: 10
+  idleTimeLimited: 5
+  chasingTimeLimited: 10
+  patrolTimeLimited: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypointTime: 3
-  radiusThreshold: 1
   angleAbleLooking: 30
   radiusAbleLooking: 10
-  enableFleeing: 0
-  state: 1
 --- !u!114 &2050958726
 MonoBehaviour:
   m_ObjectHideFlags: 0
