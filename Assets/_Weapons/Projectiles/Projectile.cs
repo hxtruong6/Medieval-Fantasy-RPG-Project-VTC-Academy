@@ -5,11 +5,17 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     ProjectileConfig projectileConfig;
+    WeaponConfig rangedWeaponConfig;
     GameObject shooter;//who fired this projectile
 
     public void SetProjectileConfig(ProjectileConfig configToSet)
     {
         projectileConfig = configToSet;
+    }
+
+    public void SetRangedWeaponConfig(WeaponConfig configToSet)
+    {
+        rangedWeaponConfig = configToSet;
     }
 
     public void SetShooter(GameObject shooter)
@@ -44,20 +50,14 @@ public class Projectile : MonoBehaviour
             damage = shooterWeapon.GetWeaponDamage();
             damage += shooter.GetComponent<Character>().GetBaseDamage();
             damage += shooter.GetComponent<RangedPowerAttackBehaviour>().GetAbilityDamage();
+            objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
         }
         else
         {
-            damage = shooterWeapon.NormalAttackDamage();
-            if (shooterWeapon.IsCriticalHit())
-            {               
-                objectBeingHit.GetComponent<HealthSystem>().PlayCriticalHitParticle(
-                    shooterWeapon.GetCurrentWeapon().GetCriticalHitPrefab(),
-                    shooterWeapon.GetCurrentWeapon().GetDestroyParticleTime());
-                damage = damage * shooterWeapon.GetCriticalHitMultiplier();
-            }
+            shooterWeapon.SetTarget(objectBeingHit);
+            shooterWeapon.Hit(rangedWeaponConfig);
         }
-
-        objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
+        
         Destroy(gameObject);
     }
 }

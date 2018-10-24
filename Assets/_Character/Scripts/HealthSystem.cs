@@ -21,7 +21,6 @@ public class HealthSystem : MonoBehaviour
 
     Animator animator;
     AudioSource audioSource;
-    Character character;
 
     float currentHealthPoints;
     float flashTime = 2f;
@@ -32,7 +31,6 @@ public class HealthSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        character = GetComponent<Character>();
 
         SetCurrentMaxHealth();
     }
@@ -85,7 +83,8 @@ public class HealthSystem : MonoBehaviour
     {
         healthBar.SetActive(true);
         yield return new WaitForSeconds(flashTime);
-        healthBar.SetActive(false);
+        if(GetComponent<InteractiveEnemy>().isSelected != true)
+            healthBar.SetActive(false);
     }
 
     IEnumerator KillCharacter()

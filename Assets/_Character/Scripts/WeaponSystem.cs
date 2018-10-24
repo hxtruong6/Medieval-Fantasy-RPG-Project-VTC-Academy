@@ -21,7 +21,6 @@ public class WeaponSystem : MonoBehaviour
     Animator animator;
     AnimationClip attackClip;
     Character character;
-    InventorySystem inventorySystem;
     float lastHitTime;
 
     public WeaponConfig GetCurrentWeapon() { return currentWeaponConfig; }
@@ -30,11 +29,12 @@ public class WeaponSystem : MonoBehaviour
 
     public float GetCriticalHitMultiplier() { return criticalHitMultiplier; }
 
+    public void SetTarget(GameObject targetToChange) { target = targetToChange; }
+
     void Start()
     {
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
-        inventorySystem = GetComponent<InventorySystem>();
 
         PutWeaponInHand(currentWeaponConfig);
         SetAttackAnimation();
@@ -85,6 +85,7 @@ public class WeaponSystem : MonoBehaviour
 
         var projectile = projectileObject.GetComponentInChildren<Projectile>();
         projectile.SetProjectileConfig(currentProjectileConfig);
+        projectile.SetRangedWeaponConfig(currentWeaponConfig);
         projectile.SetShooter(gameObject);
 
         projectileObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
@@ -150,16 +151,36 @@ public class WeaponSystem : MonoBehaviour
         animator.Play("Grounded");
     }
 
-    private void Hit()
+    public bool IsCriticalHit()
     {
-        float damageToDeal = NormalAttackDamage();
+        bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
+        return isCriticalHit;
+    }
+
+    public void Hit(WeaponConfig dealDamageWeapon = null)
+    {
+        float damageToDeal = 0;
+        var criticalPrefab = currentWeaponConfig.GetCriticalHitPrefab();
+        var criticalEffectTime = currentWeaponConfig.GetDestroyParticleTime();
+
+        if (dealDamageWeapon == null)
+            damageToDeal = NormalAttackDamage();
+        else
+        {
+            damageToDeal = NormalAttackDamage(dealDamageWeapon);
+            criticalPrefab = dealDamageWeapon.GetCriticalHitPrefab();
+            criticalEffectTime = dealDamageWeapon.GetDestroyParticleTime();
+        }
+
         if (IsCriticalHit())
         {
             damageToDeal = damageToDeal * criticalHitMultiplier;
+
             target.GetComponent<HealthSystem>().PlayCriticalHitParticle(
-                currentWeaponConfig.GetCriticalHitPrefab(),
-                currentWeaponConfig.GetDestroyParticleTime());
+                criticalPrefab,
+                criticalEffectTime);
         }
+
         target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
     }
 
@@ -202,20 +223,20 @@ public class WeaponSystem : MonoBehaviour
         animator.SetTrigger(ATTACK_TRIGGER);
     }
 
-    public int GetWeaponDamage()
+    public int GetWeaponDamage(WeaponConfig weapon = null)
     {
-        return Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
+        if (weapon == null)
+            return Random.Range(currentWeaponConfig.GetMinDamage(), currentWeaponConfig.GetMaxDamage());
+        else
+            return Random.Range(weapon.GetMinDamage(), weapon.GetMaxDamage());
     }
 
-    public bool IsCriticalHit()
+    public float NormalAttackDamage(WeaponConfig weapon = null)
     {
-        bool isCriticalHit = Random.Range(0f, 1f) <= criticalHitChance;
-        return isCriticalHit;
-    }
-
-    public float NormalAttackDamage()
-    {
-        return character.GetBaseDamage() + GetWeaponDamage();
+        if (weapon == null)
+            return character.GetBaseDamage() + GetWeaponDamage();
+        else
+            return character.GetBaseDamage() + GetWeaponDamage(weapon);
     }
 
     public void DestroyWeaponObject()

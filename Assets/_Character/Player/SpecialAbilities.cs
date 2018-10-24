@@ -81,7 +81,6 @@ public class SpecialAbilities : MonoBehaviour
 
     public void AttemptSpecialAbility(int abilityIndex)
     {
-        var energyComponent = GetComponent<SpecialAbilities>();
         var energyCost = abilities[abilityIndex].GetEnergyCost();
 
         if (energyCost <= energySystem.GetCurrentEnergyPoints())

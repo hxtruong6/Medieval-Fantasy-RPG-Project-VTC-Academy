@@ -11,10 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9556821456258fa4ab945148c91e762c, type: 3}
   m_Name: Arrow LV1
   m_EditorClassIdentifier: 
-  startPosition: {fileID: 4795313343879006, guid: 97271a3e6a33f15418987f6c57d4c0c0,
-    type: 2}
   projectilePrefab: {fileID: 1546999143280692, guid: 0464fec161fd8fc45958b2a4d0adb0c9,
     type: 2}
   flyingAnimations: []
   speed: 30
   vanishAfterSec: 1
+  isAbilityProjectile: 0
