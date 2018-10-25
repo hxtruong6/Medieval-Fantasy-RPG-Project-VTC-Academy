@@ -159,7 +159,7 @@ Prefab:
       objectReference: {fileID: 605447600}
     - target: {fileID: 1985939858056000, guid: 59e52afab5ca92b4d932ae57106efe1a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59e52afab5ca92b4d932ae57106efe1a, type: 2}
@@ -415,24 +415,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114653476785160270, guid: 0480cc9e1a694314383a91e28093c0e3,
-        type: 2}
-      propertyPath: animationSpeedMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114653476785160270, guid: 0480cc9e1a694314383a91e28093c0e3,
-        type: 2}
-      propertyPath: movingTurnSpeed
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114653476785160270, guid: 0480cc9e1a694314383a91e28093c0e3,
-        type: 2}
-      propertyPath: stationaryTurnSpeed
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 114653476785160270, guid: 0480cc9e1a694314383a91e28093c0e3,
-        type: 2}
-      propertyPath: moveSpeedMultiplier
+    - target: {fileID: 1618968141221072, guid: 0480cc9e1a694314383a91e28093c0e3, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -876,7 +860,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1985939858056000, guid: 7cc6499f5d1befc46bc8d510571b3114, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cc6499f5d1befc46bc8d510571b3114, type: 2}
@@ -919,10 +903,6 @@ Prefab:
     - target: {fileID: 4816810183083192, guid: b7eaf87e3a0768b47948eca6e3313151, type: 2}
       propertyPath: m_RootOrder
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1804984953598624, guid: b7eaf87e3a0768b47948eca6e3313151, type: 2}
-      propertyPath: m_Name
-      value: Skeleton 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7eaf87e3a0768b47948eca6e3313151, type: 2}

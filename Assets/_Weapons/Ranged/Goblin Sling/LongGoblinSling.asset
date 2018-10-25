@@ -17,7 +17,7 @@ MonoBehaviour:
     type: 2}
   attackAnimations:
   - {fileID: 7400000, guid: d3bd855b40135b74a992deaebf4aec3d, type: 3}
-  minTimeBetweenHits: 3
+  minTimeBetweenHits: 2
   maxAttackRange: 7
   minDamage: 1
   maxDamage: 4
@@ -26,5 +26,5 @@ MonoBehaviour:
   criticalHitParticlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
     type: 2}
   destroyParticleAfterSec: 5
-  attackAnimSpeedMultiplier: 0.7
+  attackAnimSpeedMultiplier: 1
   weaponIcon: {fileID: 0}
