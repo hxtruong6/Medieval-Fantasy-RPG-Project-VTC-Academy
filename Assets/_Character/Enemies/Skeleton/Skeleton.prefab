@@ -2153,7 +2153,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804984953598624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.084, y: 9.998169, z: 27.201965}
+  m_LocalPosition: {x: 26.88, y: 9.998169, z: 27.201965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4641809358181890}
@@ -2686,7 +2686,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2710,7 +2710,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95096188409390072
 Animator:
   serializedVersion: 3
@@ -2835,7 +2835,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0aeba3b92cf501345ac3a71350783413, type: 2}
   - {fileID: 11400000, guid: 186b0ce0ad455a440b5c91fede3965c8, type: 2}
   - {fileID: 11400000, guid: 6e9ac1b91d01f5c48850c3646701ebf0, type: 2}
-  selectedWeapon: 2
+  selectedWeapon: 1
 --- !u!114 &114436358053279724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3117,7 +3117,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

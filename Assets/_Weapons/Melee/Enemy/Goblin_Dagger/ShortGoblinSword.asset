@@ -16,14 +16,16 @@ MonoBehaviour:
   weaponPrefab: {fileID: 1187864358893322, guid: ba5a9c8ae9dd1a643bbedd0f15ae8fff,
     type: 2}
   attackAnimations:
-  - {fileID: 7400138, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
+  - {fileID: 7400000, guid: fc4084b1e1d028746b878982bd15b256, type: 3}
+  - {fileID: 7400000, guid: ab522d7a164368544802131923454582, type: 3}
+  - {fileID: 7400000, guid: 74b2122ba1976204595093b23001d7bf, type: 3}
   minTimeBetweenHits: 0.6
   maxAttackRange: 1.2
   minDamage: 1
   maxDamage: 10
   isRightHandWeapon: 1
   isMeleeWeapon: 1
-  criticalHitParticlePrefab: {fileID: 1686532574603256, guid: 0a37beb3466755b4e8f96ff49e4b1123,
+  criticalHitParticlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
     type: 2}
   destroyParticleAfterSec: 5
   attackAnimSpeedMultiplier: 1

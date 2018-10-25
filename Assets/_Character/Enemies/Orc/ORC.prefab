@@ -2304,11 +2304,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5310a161c535494eb332a947cdb422f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeedMultiplier: 0.7
-  movingTurnSpeed: 360
-  stationaryTurnSpeed: 180
+  moveSpeedMultiplier: 1
+  movingTurnSpeed: 200
+  stationaryTurnSpeed: 150
   moveThreshold: 1
-  animationSpeedMultiplier: 1.5
+  animationSpeedMultiplier: 1
   animatorOverrideController: {fileID: 22100000, guid: 59f7fd080b341554dbe3240c225cfee2,
     type: 2}
   baseDamage: 10
@@ -2326,9 +2326,9 @@ MonoBehaviour:
   maxHealthPoints: 200
   healthBar: {fileID: 114283081700552970}
   damageSounds:
-  - {fileID: 8300000, guid: 6230595d6ec0939488b053a19207be55, type: 3}
+  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: 9567384b500fe6c40a4b0971056d5f56, type: 3}
+  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deadVanishAfter: 2
 --- !u!114 &114780171536665862
 MonoBehaviour:
@@ -2366,7 +2366,7 @@ MonoBehaviour:
   fleeing: 0
   seekingSpeed: 8
   fleeingSpeed: 8
-  patrolSpeed: 0.15
+  patrolSpeed: 0.1
   seekingRadius: 8
   fleeingRadius: 5
   patrollRadius: 5
@@ -2687,7 +2687,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

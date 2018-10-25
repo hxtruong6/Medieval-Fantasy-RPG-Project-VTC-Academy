@@ -17,11 +17,11 @@ MonoBehaviour:
     type: 2}
   attackAnimations:
   - {fileID: 7400000, guid: d3bd855b40135b74a992deaebf4aec3d, type: 3}
-  minTimeBetweenHits: 3
+  minTimeBetweenHits: 2
   maxAttackRange: 7
   minDamage: 1
   maxDamage: 4
-  isRightHandWeapon: 1
+  isRightHandWeapon: 0
   isMeleeWeapon: 0
   criticalHitParticlePrefab: {fileID: 1686532574603256, guid: 0a37beb3466755b4e8f96ff49e4b1123,
     type: 2}
