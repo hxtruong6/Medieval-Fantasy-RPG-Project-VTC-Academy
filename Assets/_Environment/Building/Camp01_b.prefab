@@ -26,8 +26,8 @@ GameObject:
   m_Name: Camp01_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4060907946644982
 Transform:
@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1130779343860204}
   m_LocalRotation: {x: -0.49079618, y: 0.5090375, z: 0.5090374, w: 0.4907962}
   m_LocalPosition: {x: 5.29, y: 0, z: 37.22}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.22, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
