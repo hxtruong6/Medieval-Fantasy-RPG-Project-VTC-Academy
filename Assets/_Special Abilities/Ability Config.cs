@@ -17,11 +17,13 @@ public struct AbilityUseParams
 public abstract class AbilityConfig : ScriptableObject
 {
     [Header("Special Ability General")]
-    [SerializeField] float energyCost = 10f;
-    [SerializeField] GameObject particlePrefab;
+    [SerializeField] float energyCost = 10f; 
     [SerializeField] AnimationClip abilityAnimation;
     [SerializeField] AudioClip[] audioClips;
     [SerializeField] float coolDownTime;
+    [SerializeField] GameObject effectOnSelf;
+    [SerializeField] GameObject effectOnWeapon = null;
+    [SerializeField] GameObject effectOnEnemy = null;
 
     protected AbilityBehaviour behaviour;
     float? lastUseTime = null;
@@ -46,18 +48,28 @@ public abstract class AbilityConfig : ScriptableObject
         return false;
     }
 
-    public float GetEnergyCost()    { return energyCost; }
-
-    public GameObject GetParticlePrefab()   { return particlePrefab; }
+    public float GetEnergyCost() { return energyCost; }   
 
     public AudioClip GetRandomAbilitySound()
     {
-        if(audioClips.Length > 0)
+        if (audioClips.Length > 0)
             return audioClips[Random.Range(0, audioClips.Length)];
         return null;
     }
 
-    public AnimationClip GetAbilityAnimation()  { return abilityAnimation; }
+    public AnimationClip GetAbilityAnimation() { return abilityAnimation; }
 
-    public float GetCoolDownTime()  { return coolDownTime; }
+    public float GetCoolDownTime() { return coolDownTime; }
+
+    public GameObject GetEffectOnSelf() { return effectOnSelf; }
+
+    public GameObject GetEffectOnWeapon()
+    {
+        return effectOnWeapon;
+    }
+
+    public GameObject GetEffectOnEnemy()
+    {
+        return effectOnEnemy;
+    }
 }

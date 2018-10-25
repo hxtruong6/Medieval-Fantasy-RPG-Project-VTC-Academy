@@ -8,7 +8,7 @@ public abstract class AbilityBehaviour : MonoBehaviour
 
     const string ATTACK_TRIGGER = "Attack";
     const string DEFAULT_ATTACK_STATE = "DEFAULT ATTACK";
-    const float PARTICLE_CLEAN_UP_DELAY = 20f;
+    const float PARTICLE_CLEAN_UP_DELAY = 10f;
     const string TEMP_OBJECTS = "TempObjects";
 
     public abstract void Use(AbilityUseParams useParams); 
@@ -18,9 +18,9 @@ public abstract class AbilityBehaviour : MonoBehaviour
         config = configToSet;
     }
 
-    protected void PlayParticleEffect(GameObject target)
+    protected void PlayParticleEffect(GameObject target, GameObject effect)
     {
-        var particlePrefab = config.GetParticlePrefab();
+        var particlePrefab = effect;
         var particleObject = Instantiate
         (
             particlePrefab,
@@ -31,6 +31,21 @@ public abstract class AbilityBehaviour : MonoBehaviour
         particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         particleObject.GetComponent<ParticleSystem>().Play();
         StartCoroutine(DestroyParticleWhenFinished(particleObject));
+    }
+
+    protected GameObject GetEffectOnSelf()
+    {
+        return config.GetEffectOnSelf();
+    }
+
+    protected GameObject GetEffectOnEnemy()
+    {
+        return config.GetEffectOnEnemy();
+    }
+
+    protected GameObject GetEffectOnWeapon()
+    {
+        return config.GetEffectOnWeapon();
     }
 
     IEnumerator DestroyParticleWhenFinished(GameObject particlePrefab)

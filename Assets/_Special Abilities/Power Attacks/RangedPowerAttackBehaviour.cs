@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RangedPowerAttackBehaviour : AbilityBehaviour
 {
-    ParticleSystem myParticleSystem;
     const string TEMP_OBJECTS = "TempObjects";
     AbilityUseParams useParams;
     public override void Use(AbilityUseParams useParamsToSet)//GameObject target
@@ -12,7 +11,6 @@ public class RangedPowerAttackBehaviour : AbilityBehaviour
         useParams = useParamsToSet;
         transform.LookAt(useParams.target.transform);
         var weapon = GetComponent<WeaponSystem>();
-        PlayParticleEffect(useParams.target);
         PlayAbilitySound();
         PlayAbilityAnimation();
     }

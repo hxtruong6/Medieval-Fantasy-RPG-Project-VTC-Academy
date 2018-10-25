@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Name: Melee Power Attack
   m_EditorClassIdentifier: 
   energyCost: 10
-  particlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
-    type: 2}
   abilityAnimation: {fileID: 7400136, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
   audioClips: []
   coolDownTime: 2
+  effectOnSelf: {fileID: 1738276205312878, guid: f563a944dd0731249ab57cc812631dae,
+    type: 2}
+  effectOnWeapon: {fileID: 1023481298165236, guid: 124d071e9bdbf474a99f472ad88d195d,
+    type: 2}
+  effectOnEnemy: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
+    type: 2}
   extraDamage: 100
+  effectDestroyTime: 3

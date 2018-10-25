@@ -25,6 +25,8 @@ public class WeaponSystem : MonoBehaviour
 
     public WeaponConfig GetCurrentWeapon() { return currentWeaponConfig; }
 
+    public GameObject GetCurrentWeaponObject() { return weaponObject; }
+
     public void SetCurrentWeapon(WeaponConfig weapon) { currentWeaponConfig = weapon; }
 
     public float GetCriticalHitMultiplier() { return criticalHitMultiplier; }
