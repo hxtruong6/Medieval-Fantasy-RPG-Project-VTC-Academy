@@ -696,7 +696,6 @@ GameObject:
   - component: {fileID: 82309803568147022}
   - component: {fileID: 114433757231202178}
   - component: {fileID: 114290802866135546}
-  - component: {fileID: 114239729960511938}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -5330,23 +5329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skeleton: {fileID: 1267012955651284}
---- !u!114 &114239729960511938
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1267012955651284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4267b81665351404dae6bd58ee61fc42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listOfWeapon:
-  - {fileID: 11400000, guid: 0aeba3b92cf501345ac3a71350783413, type: 2}
-  - {fileID: 11400000, guid: 186b0ce0ad455a440b5c91fede3965c8, type: 2}
-  - {fileID: 11400000, guid: 6e9ac1b91d01f5c48850c3646701ebf0, type: 2}
-  selectedWeapon: 1
-  spawnRadius: 10
 --- !u!114 &114264928486985634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5421,7 +5403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
-  currentWeaponConfig: {fileID: 11400000, guid: 0aeba3b92cf501345ac3a71350783413,
+  currentWeaponConfig: {fileID: 11400000, guid: 6e9ac1b91d01f5c48850c3646701ebf0,
     type: 2}
   currentProjectileConfig: {fileID: 0}
 --- !u!114 &114433757231202178

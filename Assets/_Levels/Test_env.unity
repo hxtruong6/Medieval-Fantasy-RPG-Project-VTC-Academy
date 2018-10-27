@@ -704,11 +704,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d087119edc49444addc2a9e2e1e90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeleton: {fileID: 1886034783218542, guid: bf78a4eb2f7b93a46805da35c3d48036, type: 2}
+  skeletonPrefab: {fileID: 1886034783218542, guid: bf78a4eb2f7b93a46805da35c3d48036,
+    type: 2}
   listOfSpawn:
   - {fileID: 844027210}
   - {fileID: 1250658170}
   numberSpawn: 1
+  selectedWeapon: 1
+  listOfWeapon:
+  - {fileID: 11400000, guid: 6e9ac1b91d01f5c48850c3646701ebf0, type: 2}
+  - {fileID: 11400000, guid: 186b0ce0ad455a440b5c91fede3965c8, type: 2}
+  - {fileID: 11400000, guid: 0aeba3b92cf501345ac3a71350783413, type: 2}
 --- !u!1 &1482394346
 GameObject:
   m_ObjectHideFlags: 0
