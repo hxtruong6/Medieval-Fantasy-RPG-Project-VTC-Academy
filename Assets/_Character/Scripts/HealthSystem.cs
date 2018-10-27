@@ -17,9 +17,10 @@ public class HealthSystem : MonoBehaviour
 
     const string DEATH_TRIGGER = "Death";
     const string ENEMY_UI = "Enemy Canvas";
+    const string TEMP_OBJECTS = "TempObjects";
+
     Animator animator;
     AudioSource audioSource;
-    Character character;
 
     float currentHealthPoints;
     float flashTime = 2f;
@@ -30,7 +31,6 @@ public class HealthSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        character = GetComponent<Character>();
 
         SetCurrentMaxHealth();
     }
@@ -83,7 +83,8 @@ public class HealthSystem : MonoBehaviour
     {
         healthBar.SetActive(true);
         yield return new WaitForSeconds(flashTime);
-        healthBar.SetActive(false);
+        if(GetComponent<InteractiveEnemy>().isSelected != true)
+            healthBar.SetActive(false);
     }
 
     IEnumerator KillCharacter()
@@ -108,6 +109,30 @@ public class HealthSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void PlayCriticalHitParticle(GameObject effectPrefab, float effectLiveTime)
+    {
+        var particleObject = Instantiate
+        (
+            effectPrefab,
+            transform.position,
+            effectPrefab.transform.rotation
+        );
+        particleObject.transform.parent = transform;
+        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        particleObject.GetComponent<ParticleSystem>().Play();
+        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        StartCoroutine(DestroyParticleAfterFinishedSec(particleObject, effectLiveTime));
+    }
+
+    IEnumerator DestroyParticleAfterFinishedSec(GameObject effectPrefab, float effectLiveTime)
+    {
+        while (effectPrefab.GetComponent<ParticleSystem>().isPlaying)
+        {
+            yield return new WaitForSeconds(effectLiveTime);
+        }
+        Destroy(effectPrefab);
     }
 
 }

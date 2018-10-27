@@ -7,6 +7,7 @@ public class MeleePowerAttackConfig : AbilityConfig
 {
     [Header("Power Attack Specific")]
     [SerializeField] float extraDamage = 10f;
+    [SerializeField] float effectDestroyTime = 5f;
 
     public override AbilityBehaviour GetBehaviourComponent(GameObject objectToAttachTo)
     {
@@ -16,5 +17,10 @@ public class MeleePowerAttackConfig : AbilityConfig
     public float GetExtraDamage()
     {
         return extraDamage;
+    }
+
+    public float GetEffectDestroyTime()
+    {
+        return effectDestroyTime;
     }
 }

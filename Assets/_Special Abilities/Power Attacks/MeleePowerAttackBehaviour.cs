@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class MeleePowerAttackBehaviour : AbilityBehaviour
 {
-    ParticleSystem myParticleSystem;
+    float damageToDeal = 0;
+    GameObject target;
 
     public override void Use(AbilityUseParams useParams)
     {
         transform.LookAt(useParams.target.transform);
-        DealDamage(useParams);
-        PlayParticleEffect(useParams.target);
+        GetReferences(useParams);
+        PlayEffectOnSelf(gameObject);
+        PlayEffectOnWeapon(GetComponent<WeaponSystem>().GetCurrentWeaponObject());
         PlayAbilitySound();
         PlayAbilityAnimation();
     }
 
-    private void DealDamage(AbilityUseParams useParams)
+    private void GetReferences(AbilityUseParams useParams)
     {
-        float damageToDeal = useParams.baseDamage + (config as MeleePowerAttackConfig).GetExtraDamage();
-        useParams.target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
+        damageToDeal = useParams.baseDamage + (config as MeleePowerAttackConfig).GetExtraDamage();
+        target = useParams.target;
+    }
+
+    private void HitPowerAttack()
+    {
+        PlayEffectOnEnemy(target);
+        target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
     }
 }

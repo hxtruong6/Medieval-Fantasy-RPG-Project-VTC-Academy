@@ -6,13 +6,18 @@ using UnityEngine.UI;
 public class SpecialAbilities : MonoBehaviour
 {
     [SerializeField] AudioClip outOfEnergy;
-
     [Header("Melee Power Attack")]
     [SerializeField] AbilityConfig meleePAConfig;
     [SerializeField] Image meleePAIcon;
     [Header("Ranged Power Attack")]
     [SerializeField] AbilityConfig rangedPAConfig;
     [SerializeField] Image rangedPAIcon;
+    [Header("Melee AOE Attack")]
+    [SerializeField] AbilityConfig meleeAOEConfig;
+    [SerializeField] Image meleeAOEIcon;
+    [Header("Ranged AOE Attack")]
+    [SerializeField] AbilityConfig rangedAOEConfig;
+    [SerializeField] Image rangedAOEIcon;
 
     AudioSource audioSource;
     EnergySystem energySystem;
@@ -39,24 +44,30 @@ public class SpecialAbilities : MonoBehaviour
     public void LockMeleeAbilites(bool value)
     {
         abilityIcons[0].GetComponent<Button>().interactable = !value;
+        abilityIcons[2].GetComponent<Button>().interactable = !value;
 
         abilityIcons[1].GetComponent<Button>().interactable = value;
+        abilityIcons[3].GetComponent<Button>().interactable = value;
     }
 
     private void AssignAbilityIndex()
     {
-        abilities = new AbilityConfig[2];
+        abilities = new AbilityConfig[4];
 
         abilities[0] = meleePAConfig;
         abilities[1] = rangedPAConfig;
+        abilities[2] = meleeAOEConfig;
+        abilities[3] = rangedAOEConfig;
     }
 
     private void AssignAbilityIconIndex()
     {
-        abilityIcons = new Image[2];
+        abilityIcons = new Image[4];
 
         abilityIcons[0] = meleePAIcon;
         abilityIcons[1] = rangedPAIcon;
+        abilityIcons[2] = meleeAOEIcon;
+        abilityIcons[3] = rangedAOEIcon;
     }
 
     private void AttachInitialAbilities()
@@ -81,7 +92,6 @@ public class SpecialAbilities : MonoBehaviour
 
     public void AttemptSpecialAbility(int abilityIndex)
     {
-        var energyComponent = GetComponent<SpecialAbilities>();
         var energyCost = abilities[abilityIndex].GetEnergyCost();
 
         if (energyCost <= energySystem.GetCurrentEnergyPoints())

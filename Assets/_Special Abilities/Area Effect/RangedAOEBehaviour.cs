@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedPowerAttackBehaviour : AbilityBehaviour
+public class RangedAOEBehaviour : AbilityBehaviour
 {
     const string TEMP_OBJECTS = "TempObjects";
     AbilityUseParams useParams;
+    float numberOfArrows = 7;
+
     public override void Use(AbilityUseParams useParamsToSet)
     {
         useParams = useParamsToSet;
-        transform.LookAt(useParams.target.transform);
         var weapon = GetComponent<WeaponSystem>();
         PlayAbilitySound();
         PlayAbilityAnimation();
@@ -22,7 +23,7 @@ public class RangedPowerAttackBehaviour : AbilityBehaviour
         var firingPos = GetComponentInChildren<ArrowShootingPosition>();
         var projectileObject = Instantiate(projectilePrefab, firingPos.transform);
 
-        var projectile = projectileObject.GetComponentInChildren<Projectile>();
+        var projectile = projectileObject.GetComponentInChildren<PierceProjectile>();
         projectile.SetProjectileConfig(projectileConfig);
         projectile.SetShooter(gameObject);
 
@@ -35,38 +36,50 @@ public class RangedPowerAttackBehaviour : AbilityBehaviour
         float startTime = Time.time;
         var normalizeDirection = (target - from).normalized;
         var vanishTime = Time.time + vanishAfterSec;
-        projectile.transform.LookAt(target);
+        //projectile.transform.LookAt(target);
         while (Time.time < vanishTime && projectile != null)
-        {            
-            projectile.transform.position += normalizeDirection * (Time.deltaTime * speed);
+        {
+            //projectile.transform.position += normalizeDirection * (Time.deltaTime * speed);
+            projectile.transform.position += projectile.transform.forward * (Time.deltaTime * speed);
             yield return null;
         }
         Destroy(projectile);
     }
 
-    private void SetProjectileDirection(ProjectileConfig configToUse)
+    private void SetProjectileDirection(ProjectileConfig configToUse, float rotationY)
     {
         var projectileObject = SpawnProjectile(configToUse);
-        var target = useParams.target;
-
-        var targetToShoot = target.GetComponentInChildren<MainBody>();
-        var targetCenter = targetToShoot.GetComponentInChildren<Renderer>().bounds.center;
-
+        Vector3 rotationVector = new Vector3(0, rotationY, 0);
+        Quaternion rotation = Quaternion.Euler(rotationVector);
+        projectileObject.transform.rotation = rotation;
+            
+        var firingPos = GetComponentInChildren<ArrowShootingPosition>();
+        var target = firingPos.transform.forward * 10000;
+        target.y = GetComponentInChildren<MainBody>().GetComponent<Renderer>().bounds.center.y;
         StartCoroutine(MoveProjectile(projectileObject,
                                       projectileObject.transform.position,
-                                      targetCenter,
+                                      target,
                                       configToUse.GetProjectileSpeed(),
                                       configToUse.GetVanishTime()));
     }
-
-    private void ShootPowerAttack()
+    
+    private void ShootAOEAttack()
     {
-        SetProjectileDirection((config as RangedPowerAttackConfig).GetProjectileConfig());
+        SetProjectileDirection((config as RangedAOEConfig).GetProjectileConfig(), 0);
+        float degree = (config as RangedAOEConfig).GetDegreeBetweenArrows();
+        for (int i = 1; i <= (numberOfArrows - 1) / 2; i++)
+        {
+            SetProjectileDirection((config as RangedAOEConfig).GetProjectileConfig(), i * degree);
+        }
+        for (int i = 1; i <= (numberOfArrows - 1) / 2; i++)
+        {
+            SetProjectileDirection((config as RangedAOEConfig).GetProjectileConfig(), -(i * degree));
+        }
     }
 
     public float GetAbilityDamage()
     {
-        float damageToDeal = (config as RangedPowerAttackConfig).GetExtraDamage();
+        float damageToDeal = (config as RangedAOEConfig).GetDamageToEachTarget();
         return damageToDeal;
     }
 }

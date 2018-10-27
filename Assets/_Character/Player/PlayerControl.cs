@@ -10,9 +10,12 @@ public class PlayerControl : MonoBehaviour
     Enemy enemy;
     DropItem dropItem;
     WeaponSystem weaponSystem;
-    InventorySystem inventorySystem;
-    KeyCode switchWeaponKey = KeyCode.Tab;
+    InventorySystem inventorySystem;   
     SpecialAbilities abilities;
+
+    KeyCode switchWeaponKey = KeyCode.Tab;
+    KeyCode meleeAOESkillKey = KeyCode.Q;
+    KeyCode rangedAOESkillKey = KeyCode.W;
 
     bool isAlive = true;
 
@@ -46,6 +49,23 @@ public class PlayerControl : MonoBehaviour
             StopCurrentAction();
             inventorySystem.SwitchWeapon();
         }
+        if(Input.GetKeyDown(meleeAOESkillKey))
+        {
+            if(weaponSystem.GetCurrentWeapon().IsMeleeWeapon())
+                UseAoESkill(2);
+        }
+        if (Input.GetKeyDown(rangedAOESkillKey))
+        {
+            UseRangedAOESkill();
+        }
+    }
+
+    private void UseRangedAOESkill()
+    {
+        StopMoving();
+        StopCurrentAction();
+        if (!weaponSystem.GetCurrentWeapon().IsMeleeWeapon())
+            UseAoESkill(3);
     }
 
     private bool IsItemInPickUpRange(GameObject target)
@@ -123,6 +143,11 @@ public class PlayerControl : MonoBehaviour
     {
         abilities.SetSkillTarget(target.gameObject);
         int skillIndex = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() ? 0 : 1;
+        abilities.AttemptSpecialAbility(skillIndex);
+    }
+
+    private void UseAoESkill(int skillIndex)
+    {
         abilities.AttemptSpecialAbility(skillIndex);
     }
 

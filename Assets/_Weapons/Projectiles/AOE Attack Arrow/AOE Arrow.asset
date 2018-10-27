@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9556821456258fa4ab945148c91e762c, type: 3}
-  m_Name: Arrow LV1
+  m_Name: AOE Arrow
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1546999143280692, guid: 0464fec161fd8fc45958b2a4d0adb0c9,
+  projectilePrefab: {fileID: 1297602420341112, guid: 59cb54801ea4ced4e881fc08d8d102e6,
     type: 2}
   flyingAnimations: []
   speed: 30
-  vanishAfterSec: 1
-  isAbilityProjectile: 0
+  vanishAfterSec: 2
+  isAbilityProjectile: 1
