@@ -1,4 +1,6 @@
 ﻿#if UNITY_EDITOR
+using System;
+using System.Collections;
 using UnityEditor;
 #endif
 using UnityEngine;
@@ -60,11 +62,24 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<PlayerControl>();
         weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on 
         currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
+    
+        //StartCoroutine(getCurrentWeaponRange());
 
         //if (fleeing && fleeingRadius < currentWeaponRange)
         //{
         //    fleeingRadius = currentWeaponRange;
         //}
+    }
+
+    public void UpdateCurrentWeaponRange()
+    {
+        currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
+    }
+
+    private IEnumerator getCurrentWeaponRange()
+    {
+        yield return new WaitUntil(() => weaponSystem.GetCurrentWeapon() != null);
+        currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
     }
 
     public Vector3 GetHeading()
@@ -239,9 +254,9 @@ public class Enemy : MonoBehaviour
                         {
                             nextWaypointPos = transform.position +
                                               new Vector3(
-                                                    Random.Range(-patrollRadius, patrollRadius),
+                                                    UnityEngine.Random.Range(-patrollRadius, patrollRadius),
                                                     0,
-                                                    Random.Range(-patrollRadius, patrollRadius));
+                                                    UnityEngine.Random.Range(-patrollRadius, patrollRadius));
 
                         }
                         patrolTime = 0f;

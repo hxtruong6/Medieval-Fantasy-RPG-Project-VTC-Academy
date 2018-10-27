@@ -696,6 +696,7 @@ GameObject:
   - component: {fileID: 82309803568147022}
   - component: {fileID: 114433757231202178}
   - component: {fileID: 114290802866135546}
+  - component: {fileID: 114639306546690484}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -3345,8 +3346,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267012955651284}
-  m_LocalRotation: {x: 0, y: 0.5321494, z: 0, w: 0.84665054}
-  m_LocalPosition: {x: 0, y: -13.039395, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4520433283935732}
@@ -3733,7 +3734,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1687544514523470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15.41, z: 0}
+  m_LocalPosition: {x: 0, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4531033515074846}
@@ -5484,6 +5485,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114639306546690484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267012955651284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c961afd9c72c64e8b668b67108c71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedWeapon: 0
+  randomWeapon: 1
+  listOfWeapon:
+  - {fileID: 11400000, guid: 6e9ac1b91d01f5c48850c3646701ebf0, type: 2}
+  - {fileID: 11400000, guid: 0aeba3b92cf501345ac3a71350783413, type: 2}
+  - {fileID: 11400000, guid: 186b0ce0ad455a440b5c91fede3965c8, type: 2}
+  aniNormal: {fileID: 22100000, guid: 2c5c74201af64cd4ca118edd4ef702c1, type: 2}
+  aniHanded: {fileID: 22100000, guid: 120eab3388118e94d83284c46bbaa8e4, type: 2}
 --- !u!114 &114737550073480662
 MonoBehaviour:
   m_ObjectHideFlags: 1

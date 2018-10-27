@@ -65,6 +65,7 @@ public class WeaponSystem : MonoBehaviour
     public void PutWeaponInHand(WeaponConfig weaponToUse)
     {
         currentWeaponConfig = weaponToUse;
+        //Assert.IsTrue(weaponToUse.GetWeaponPrefab() == null, "There is no current weapon");
         var weaponPrefab = weaponToUse.GetWeaponPrefab();
         GameObject dominantHand;
         if (currentWeaponConfig.IsRightHandWeapon())
