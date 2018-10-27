@@ -1141,6 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4061936218542098}
   - component: {fileID: 137383807739594202}
+  - component: {fileID: 114888311355599146}
   m_Layer: 0
   m_Name: Hunter_Robe
   m_TagString: Untagged
@@ -4019,6 +4020,10 @@ MonoBehaviour:
   meleePAIcon: {fileID: 0}
   rangedPAConfig: {fileID: 11400000, guid: 7eba2f5748b40664c9bd424c2dc622c2, type: 2}
   rangedPAIcon: {fileID: 0}
+  meleeAOEConfig: {fileID: 11400000, guid: 80f87a46e31368c4d96b942adc742789, type: 2}
+  meleeAOEIcon: {fileID: 0}
+  rangedAOEConfig: {fileID: 11400000, guid: 4f58d3ace66e6444aa10f95da9a8de03, type: 2}
+  rangedAOEIcon: {fileID: 0}
 --- !u!114 &114631479581500298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4061,6 +4066,17 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: aa56a9c4da4cb1147b4e11f1e9e56743,
     type: 2}
   baseDamage: 10
+--- !u!114 &114888311355599146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1705814250037886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136968385836516768
 CapsuleCollider:
   m_ObjectHideFlags: 1

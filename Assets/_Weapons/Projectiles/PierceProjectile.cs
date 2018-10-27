@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class PierceProjectile : MonoBehaviour
 {
     ProjectileConfig projectileConfig;
     WeaponConfig rangedWeaponConfig;
     GameObject shooter;//who fired this projectile
+    List<Enemy> contactEnemies;
 
     public void SetProjectileConfig(ProjectileConfig configToSet)
     {      
         projectileConfig = configToSet;
+        contactEnemies = new List<Enemy>();
     }
 
     public void SetRangedWeaponConfig(WeaponConfig configToSet)
@@ -23,12 +25,17 @@ public class Projectile : MonoBehaviour
         this.shooter = shooter;
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        var layerCollidedWith = collision.gameObject.layer;
-        if (shooter && layerCollidedWith != shooter.layer)
+        print("?");
+        if (other.GetComponent<Enemy>())
         {
-            DealDamage(collision.gameObject);       
+            var enemy = other.GetComponent<Enemy>();
+            if (!contactEnemies.Contains(enemy))
+            {
+                DealDamage(other.gameObject);
+                contactEnemies.Add(enemy);
+            }
         }
     }
 
@@ -55,7 +62,5 @@ public class Projectile : MonoBehaviour
             shooterWeapon.SetTarget(objectBeingHit);
             shooterWeapon.Hit(rangedWeaponConfig);
         }
-
-        Destroy(gameObject);
     }
 }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9556821456258fa4ab945148c91e762c, type: 3}
+  m_Name: AOE Arrow
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1297602420341112, guid: 59cb54801ea4ced4e881fc08d8d102e6,
+    type: 2}
+  flyingAnimations: []
+  speed: 30
+  vanishAfterSec: 2
+  isAbilityProjectile: 1

@@ -38,14 +38,48 @@ public abstract class AbilityBehaviour : MonoBehaviour
         return config.GetEffectOnSelf();
     }
 
+    protected void PlayEffectOnSelf(GameObject target)
+    {
+        if (GetEffectOnSelf() == null)
+            return;
+
+        PlayParticleEffect(target, GetEffectOnSelf());
+    }
+
     protected GameObject GetEffectOnEnemy()
     {
         return config.GetEffectOnEnemy();
     }
 
+    protected void PlayEffectOnEnemy(GameObject target)
+    {
+        if (GetEffectOnEnemy() == null)
+            return;
+
+        PlayParticleEffect(target, GetEffectOnEnemy());
+    }
+
     protected GameObject GetEffectOnWeapon()
     {
         return config.GetEffectOnWeapon();
+    }
+
+    protected void PlayEffectOnWeapon(GameObject target)
+    {
+        if (GetEffectOnWeapon() == null)
+            return;
+
+        var particlePrefab = config.GetEffectOnWeapon();
+        var particleObject = Instantiate
+        (
+            particlePrefab,
+            target.transform.position,
+            target.transform.rotation,
+            target.transform
+        );
+        particleObject.GetComponent<ParticleSystem>().Play();
+        var particleCleanUpTime = (config as MeleePowerAttackConfig).GetEffectDestroyTime();
+        Destroy(particleObject, particleCleanUpTime);
     }
 
     IEnumerator DestroyParticleWhenFinished(GameObject particlePrefab)
