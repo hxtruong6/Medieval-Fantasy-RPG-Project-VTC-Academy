@@ -112,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4207881310715370}
   - component: {fileID: 137028152586852734}
+  - component: {fileID: 114684058043168128}
   m_Layer: 0
   m_Name: GOBLIN
   m_TagString: Untagged
@@ -338,7 +339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1294262177557288
 GameObject:
   m_ObjectHideFlags: 1
@@ -1063,6 +1064,7 @@ GameObject:
   - component: {fileID: 114748713566109292}
   - component: {fileID: 114782215563193312}
   - component: {fileID: 82723841250591836}
+  - component: {fileID: 114549888081066816}
   m_Layer: 0
   m_Name: LONG_GOBLIN
   m_TagString: Untagged
@@ -1275,7 +1277,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.49, y: 10.03, z: 20.21}
+  m_LocalPosition: {x: 20.261414, y: 9.998169, z: 25.965271}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4207881310715370}
@@ -2497,7 +2499,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2619,6 +2621,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7f41fb1c670384bb26452c22313ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114549888081066816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985939858056000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7556a0c18ba2fce45932dcd3f24547cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: ad16fcf487d8f7145b5d2d07ea7f9308, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: 895d4ba5992a6cf4990e0a69efb36847, type: 2}
+  enemyCanvas: {fileID: 1286889090959276}
+--- !u!114 &114684058043168128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1110789783083740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114699152533074962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2677,8 +2704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeking: 0
-  fleeing: 1
+  seeking: 1
+  fleeing: 0
   seekingSpeed: 8
   fleeingSpeed: 8
   patrolSpeed: 0.2

@@ -635,6 +635,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4609484618179094}
+  - component: {fileID: 114744127320600624}
   m_Layer: 0
   m_Name: Meshes
   m_TagString: Untagged
@@ -3982,7 +3983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bcbb102272d5e4d901329708d0e461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
+  maxHealthPoints: 1000
   healthBar: {fileID: 0}
   damageSounds:
   - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
@@ -4061,6 +4062,17 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: aa56a9c4da4cb1147b4e11f1e9e56743,
     type: 2}
   baseDamage: 10
+--- !u!114 &114744127320600624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1485935031957386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136968385836516768
 CapsuleCollider:
   m_ObjectHideFlags: 1
