@@ -9,6 +9,7 @@ public class SkeletonSpawn : MonoBehaviour
     private Enemy enemy;
     // Use this for initialization;
     private WeaponSystem weaponSystem;
+    public float spawnRadius = 10f;
 
     [ExecuteInEditMode]
     void OnValidate()
