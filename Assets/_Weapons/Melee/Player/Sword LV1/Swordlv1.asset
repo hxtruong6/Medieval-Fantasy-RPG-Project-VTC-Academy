@@ -24,7 +24,7 @@ MonoBehaviour:
   maxDamage: 10
   isRightHandWeapon: 1
   isMeleeWeapon: 1
-  criticalHitParticlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
+  criticalHitParticlePrefab: {fileID: 1957452408923040, guid: 0a37beb3466755b4e8f96ff49e4b1123,
     type: 2}
   destroyParticleAfterSec: 5
   attackAnimSpeedMultiplier: 1

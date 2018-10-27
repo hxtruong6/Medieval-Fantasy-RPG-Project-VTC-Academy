@@ -27,7 +27,6 @@ public class PierceProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("?");
         if (other.GetComponent<Enemy>())
         {
             var enemy = other.GetComponent<Enemy>();

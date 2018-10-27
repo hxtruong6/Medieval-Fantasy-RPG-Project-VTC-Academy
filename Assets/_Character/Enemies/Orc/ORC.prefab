@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4845987875858356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Structure007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4225114814893098}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4431459817241232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4898682697099950}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4307257791710006}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4895147981863686}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4726163264423416}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1102037611726828
 GameObject:
   m_ObjectHideFlags: 1
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4762406963664480}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4605685617664504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4809754382762954}
   - component: {fileID: 137563272467560386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SHOULDER_PADS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4277847455813260}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4958809450388134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4451892291532544}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4393328702009706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4066870768037412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4086603504265454}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4913540843113970}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4744539628037996}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4541348998384120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Queue de cheval 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4960347460864032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Queue de cheval 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4354737950849826}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4633964117867166}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4678864698097670}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4626712849084254}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Queue de cheval 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4287872725702756}
   - component: {fileID: 137513379487856820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_PONYTAIL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4946324656389534}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Structure006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4209873100580624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4038602880132878}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Queue de cheval 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4783011642955432}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4386691871627180}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ Queue de cheval 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4151265822147656}
   - component: {fileID: 137048524549611226}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BELLY_CLOTHE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4337784199603402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4714179074319738}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4995305800638586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4265212515373912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4234601969309310}
   - component: {fileID: 137369437216770470}
-  m_Layer: 0
+  - component: {fileID: 114636525423719816}
+  m_Layer: 9
   m_Name: ORC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +600,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4013446103578046}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +615,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4887875339845862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +630,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4433960823839134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -644,7 +645,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4573310602289306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Structure005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +660,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4719891751749968}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,13 +684,14 @@ GameObject:
   - component: {fileID: 114678673597662100}
   - component: {fileID: 114653476785160270}
   - component: {fileID: 114885056161801916}
-  m_Layer: 0
+  - component: {fileID: 114801478658407898}
+  m_Layer: 9
   m_Name: ORC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1621378047565238
 GameObject:
   m_ObjectHideFlags: 1
@@ -698,7 +700,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4384731286517874}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +717,7 @@ GameObject:
   - component: {fileID: 4087400964788382}
   - component: {fileID: 33698185943358718}
   - component: {fileID: 23680359525072748}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FOREARM_ARMOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +732,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4609032593322948}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +747,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4887993908303884}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +762,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4857236102856392}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Structure003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +777,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4340251956320644}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Structure002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +792,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4189123182586052}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +807,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4136311921067538}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,7 +822,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4591961672950056}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Structure001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +837,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4176636238815992}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +852,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4923567402577912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +869,7 @@ GameObject:
   - component: {fileID: 4758691704821802}
   - component: {fileID: 33343102955158698}
   - component: {fileID: 23893590626436608}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FOREARM_ARMOR001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4419769316971496}
   - component: {fileID: 114545591090907416}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,13 +902,13 @@ GameObject:
   - component: {fileID: 4889011485305564}
   - component: {fileID: 33884722348075382}
   - component: {fileID: 23779917161809702}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: axe_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1794534104824758
 GameObject:
   m_ObjectHideFlags: 1
@@ -915,7 +917,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4426019645175152}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -930,7 +932,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4940231368364000}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -962,7 +964,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4612759059501674}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +979,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4943171683590798}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +994,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4271450183665160}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1007,7 +1009,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4194177919995958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ L Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1022,7 +1024,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4781392165154196}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1039,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4619496746263286}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1052,7 +1054,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4867742968738410}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ORC_ R Finger12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1743,7 +1745,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1618968141221072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.904663, y: 9.998169, z: 28.517487}
+  m_LocalPosition: {x: 28.420502, y: 9.998169, z: 21.585358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4151265822147656}
@@ -2114,7 +2116,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!82 &82313412851804564
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2293,6 +2295,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddf57256c2f06048b60238b8ad055b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114636525423719816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1544106860462232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114653476785160270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2351,6 +2364,21 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114801478658407898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618968141221072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7556a0c18ba2fce45932dcd3f24547cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: 453e197dc72b66140b5ca072e7e3ace1, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: 9a06f3ae0285887408c0bdd8d3422905, type: 2}
+  enemyCanvas: {fileID: 1080964954626464}
+  isSelected: 0
 --- !u!114 &114885056161801916
 MonoBehaviour:
   m_ObjectHideFlags: 1
