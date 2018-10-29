@@ -28,12 +28,20 @@ public class Projectile : MonoBehaviour
         var layerCollidedWith = collision.gameObject.layer;
         if (shooter && layerCollidedWith != shooter.layer)
         {
+            print("Get dame");
             DealDamage(collision.gameObject);       
         }
     }
 
     private void DealDamage(GameObject objectBeingHit)
     {
+        if(objectBeingHit.GetComponent<PlayerControl>())
+        {
+            print("2");
+            
+        }
+
+        print(objectBeingHit.GetComponent<HealthSystem>());
         if (!objectBeingHit.GetComponent<HealthSystem>() ||
             objectBeingHit.GetComponent<HealthSystem>().healthAsPercentage < 0)
         {
@@ -54,6 +62,7 @@ public class Projectile : MonoBehaviour
         {
             shooterWeapon.SetTarget(objectBeingHit);
             shooterWeapon.Hit(rangedWeaponConfig);
+            print("Dame: " + damage);
         }
 
         Destroy(gameObject);

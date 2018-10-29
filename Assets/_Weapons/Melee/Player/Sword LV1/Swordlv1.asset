@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gripTransform: {fileID: 4780827250440542, guid: a7b0099240586fb44bf5ba4c6e31861f,
     type: 2}
-  weaponPrefab: {fileID: 1333470217440250, guid: 661867993426c8b4b996b1ab1fc8adf1,
+  weaponPrefab: {fileID: 1063650569646210, guid: 98bdbdccb98f8fe4cb3a263171da5bf6,
     type: 2}
   attackAnimations:
   - {fileID: 7400138, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
@@ -24,8 +24,8 @@ MonoBehaviour:
   maxDamage: 10
   isRightHandWeapon: 1
   isMeleeWeapon: 1
-  criticalHitParticlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
+  criticalHitParticlePrefab: {fileID: 1686532574603256, guid: 0a37beb3466755b4e8f96ff49e4b1123,
     type: 2}
   destroyParticleAfterSec: 5
   attackAnimSpeedMultiplier: 1
-  weaponIcon: {fileID: 21300000, guid: 806bb3b34e460e64999729cf8a60ed3f, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 2c752e9990c7af24eb45d91adce11d18, type: 3}
