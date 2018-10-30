@@ -16,7 +16,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
         PlayAbilityAnimation();
     }
 
-    private GameObject SpawnProjectile(ProjectileConfig configToUse)
+    private GameObject SpawnProjectile(ProjectileConfig configToUse, float rotationY)
     {
         var projectileConfig = configToUse;
         var projectilePrefab = projectileConfig.GetProjectilePrefab();
@@ -27,6 +27,10 @@ public class RangedAOEBehaviour : AbilityBehaviour
         projectile.SetProjectileConfig(projectileConfig);
         projectile.SetShooter(gameObject);
 
+        Vector3 rotationVector = new Vector3(0, rotationY, 0);
+        Quaternion rotation = Quaternion.Euler(rotationVector);
+        projectileObject.transform.localRotation = rotation;
+
         projectileObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         return projectileObject;
     }
@@ -36,10 +40,8 @@ public class RangedAOEBehaviour : AbilityBehaviour
         float startTime = Time.time;
         var normalizeDirection = (target - from).normalized;
         var vanishTime = Time.time + vanishAfterSec;
-        //projectile.transform.LookAt(target);
         while (Time.time < vanishTime && projectile != null)
         {
-            //projectile.transform.position += normalizeDirection * (Time.deltaTime * speed);
             projectile.transform.position += projectile.transform.forward * (Time.deltaTime * speed);
             yield return null;
         }
@@ -48,10 +50,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
 
     private void SetProjectileDirection(ProjectileConfig configToUse, float rotationY)
     {
-        var projectileObject = SpawnProjectile(configToUse);
-        Vector3 rotationVector = new Vector3(0, rotationY, 0);
-        Quaternion rotation = Quaternion.Euler(rotationVector);
-        projectileObject.transform.rotation = rotation;
+        var projectileObject = SpawnProjectile(configToUse, rotationY);
             
         var firingPos = GetComponentInChildren<ArrowShootingPosition>();
         var target = firingPos.transform.forward * 10000;

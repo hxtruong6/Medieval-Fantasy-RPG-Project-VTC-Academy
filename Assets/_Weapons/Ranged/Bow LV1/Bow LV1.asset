@@ -27,4 +27,4 @@ MonoBehaviour:
     type: 2}
   destroyParticleAfterSec: 2
   attackAnimSpeedMultiplier: 1
-  weaponIcon: {fileID: 21300000, guid: 81185535da1f79f4684a2ba19b6167b1, type: 3}
+  weaponIcon: {fileID: 21300000, guid: f375b33884aca154580ab86ee670e5a9, type: 3}

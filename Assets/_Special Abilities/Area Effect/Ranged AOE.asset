@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d61e0aface7d34e9b4a9d129be3b9b, type: 3}
   m_Name: Ranged AOE
   m_EditorClassIdentifier: 
-  energyCost: 30
+  energyCost: 1
   abilityAnimation: {fileID: 7400188, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
   audioClips: []
   coolDownTime: 0

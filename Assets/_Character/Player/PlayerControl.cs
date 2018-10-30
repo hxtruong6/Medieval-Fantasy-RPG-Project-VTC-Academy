@@ -8,7 +8,6 @@ public class PlayerControl : MonoBehaviour
 
     Character character;
     Enemy enemy;
-    DropItem dropItem;
     WeaponSystem weaponSystem;
     InventorySystem inventorySystem;   
     SpecialAbilities abilities;
@@ -68,12 +67,6 @@ public class PlayerControl : MonoBehaviour
             UseAoESkill(3);
     }
 
-    private bool IsItemInPickUpRange(GameObject target)
-    {
-        float distanceToTarget = (target.transform.position - transform.position).magnitude;
-        return distanceToTarget <= pickItemRadius;
-    }
-
     private bool CheckAttackConditions(Enemy enemyToCheck)
     {
         if (!isAlive)
@@ -88,20 +81,24 @@ public class PlayerControl : MonoBehaviour
         return true;
     }
 
-    void OnMouseOverDropItem(DropItem itemToSet)
+    private bool IsItemInPickUpRange(GameObject target)
+    {
+        float distanceToTarget = (target.transform.position - transform.position).magnitude;
+        return distanceToTarget <= pickItemRadius;
+    }
+
+    void OnMouseOverDropItem(LootWeapon itemToPick)
     {
         if (!isAlive)
             return;
 
-        dropItem = itemToSet;
-
-        if (Input.GetMouseButton(0) && IsItemInPickUpRange(dropItem.gameObject))
+        if (Input.GetMouseButton(0) && IsItemInPickUpRange(itemToPick.gameObject))
         {
-            inventorySystem.PickUpNewWeapon(dropItem);
+            inventorySystem.PickUpNewWeapon(itemToPick);
         }
-        else if (Input.GetMouseButton(0) && !IsItemInPickUpRange(dropItem.gameObject))
+        else if (Input.GetMouseButton(0) && !IsItemInPickUpRange(itemToPick.gameObject))
         {
-            StartCoroutine(MoveAndPickUpItem(dropItem));
+            StartCoroutine(MoveAndPickUpItem(itemToPick));
         }
     }
 
@@ -190,7 +187,7 @@ public class PlayerControl : MonoBehaviour
                 yield return null;
             }
         }
-        if(target.GetComponent<DropItem>())
+        if(target.GetComponent<LootWeapon>())
         {
             while (!IsItemInPickUpRange(target.gameObject))
             {
@@ -214,7 +211,7 @@ public class PlayerControl : MonoBehaviour
         UsePowerAttack(target);
     }
 
-    IEnumerator MoveAndPickUpItem(DropItem item)
+    IEnumerator MoveAndPickUpItem(LootWeapon item)
     {
         yield return StartCoroutine(MoveToTarget(item.gameObject));
         inventorySystem.PickUpNewWeapon(item);

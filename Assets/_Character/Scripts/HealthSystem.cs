@@ -15,6 +15,8 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] AudioClip[] deathSounds;
     [SerializeField] float deadVanishAfter = 2f;
 
+    DamageTextSpawner damageTextSpawner;
+
     const string DEATH_TRIGGER = "Death";
     const string ENEMY_UI = "Enemy Canvas";
     const string TEMP_OBJECTS = "TempObjects";
@@ -31,6 +33,7 @@ public class HealthSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        damageTextSpawner = GetComponent<DamageTextSpawner>();
 
         SetCurrentMaxHealth();
     }
@@ -55,13 +58,17 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        print("Hello");
         FlashEnemyHealthBar();
 
         bool characterDies = (currentHealthPoints - damage) <= 0;
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         //play sound
+        //damageTextSpawner.Create(damage, transform.position);
         var clip = damageSounds[Random.Range(0, damageSounds.Length)];
         audioSource.PlayOneShot(clip);
+
+        
 
         if (characterDies)
         {
@@ -89,7 +96,9 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator KillCharacter()
     {
-        GetComponent<CapsuleCollider>().isTrigger = true;
+        GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;//TODO check with designer, player dont need it
+
         animator.SetTrigger(DEATH_TRIGGER);
         var playerComponent = GetComponent<PlayerControl>();
         audioSource.Play();
@@ -97,6 +106,12 @@ public class HealthSystem : MonoBehaviour
         {
             playerComponent.Killed();
         }
+
+        if(GetComponent<DropItem>())
+        {
+            GetComponent<DropItem>().DropLoot();
+        }
+
         yield return new WaitForSecondsRealtime(deadVanishAfter);
 
         if (playerComponent && playerComponent.isActiveAndEnabled)

@@ -101,13 +101,16 @@ public class InventorySystem : MonoBehaviour
         }
     } 
     
-    public void PickUpNewWeapon(DropItem dropItem)
+    public void PickUpNewWeapon(LootWeapon lootItem)
     {
-        if (dropItem.gameObject == null)
+        if (!lootItem.isPicked)
+            lootItem.isPicked = true;
+        else
             return;
 
-        var newWeapon = dropItem.GetDropItemWeaponConfig();
-        bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();
+        transform.LookAt(lootItem.gameObject.transform);
+        var newWeapon = lootItem.GetDropItemWeaponConfig();
+        bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();      
 
         if (newWeapon.IsMeleeWeapon())
         {
@@ -123,6 +126,6 @@ public class InventorySystem : MonoBehaviour
             weaponSystem.PutWeaponInHand(newWeapon);
         }
         UpdateWeaponIcons();
-        Destroy(dropItem.gameObject);
+        Destroy(lootItem.gameObject);
     }
 }
