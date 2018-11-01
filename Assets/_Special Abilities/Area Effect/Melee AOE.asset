@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Name: Melee AOE
   m_EditorClassIdentifier: 
   energyCost: 50
-  abilityAnimation: {fileID: 7400142, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
+  abilityAnimation: {fileID: 7400000, guid: 051ab2cf5978c874eb8f90c68efbe36f, type: 3}
   audioClips: []
   coolDownTime: 0
-  effectOnSelf: {fileID: 1141513900482118, guid: f0b7255f4d3f2314c99061f96da80f3f,
+  effectOnSelf: {fileID: 1009585610755140, guid: 5443f6d4f6971e74dad685cad3917051,
     type: 2}
   effectOnWeapon: {fileID: 0}
-  effectOnEnemy: {fileID: 0}
+  effectOnEnemy: {fileID: 1428911946222078, guid: 1ccf00130593c254cb2ac3ab9cce9de9,
+    type: 2}
   radius: 5
   damageToEachTarget: 50

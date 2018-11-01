@@ -1208,6 +1208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4905906721306702}
   - component: {fileID: 137207541719149786}
+  - component: {fileID: 114243166904016780}
   m_Layer: 0
   m_Name: Hunter_Shirt
   m_TagString: Untagged
@@ -2244,6 +2245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4960938715067636}
   - component: {fileID: 137851899842025078}
+  - component: {fileID: 114224514769100404}
   m_Layer: 0
   m_Name: Hunter_Hood
   m_TagString: Untagged
@@ -2325,7 +2327,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4893048891066016}
   - component: {fileID: 137182532305424894}
-  - component: {fileID: 114222299746868898}
   m_Layer: 0
   m_Name: Hunter_Robe
   m_TagString: Untagged
@@ -3416,13 +3417,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148474319889830}
-  m_LocalRotation: {x: -0.04965328, y: -0.7492372, z: -0.049246732, w: 0.6585993}
-  m_LocalPosition: {x: -0.182, y: 0.016, z: -0.027}
+  m_LocalRotation: {x: 0.38534176, y: -0.6515775, z: -0.33261812, w: 0.5624267}
+  m_LocalPosition: {x: -0.283, y: 0.03, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4567137112202514}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: -8.001, y: -97.406006, z: 0.55200005}
+  m_LocalEulerAnglesHint: {x: 0, y: -98.4, z: -61.2}
 --- !u!4 &4163853613917600
 Transform:
   m_ObjectHideFlags: 1
@@ -6030,12 +6031,12 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114222299746868898
+--- !u!114 &114224514769100404
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1742415070402470}
+  m_GameObject: {fileID: 1718453254284100}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
@@ -6135,6 +6136,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114243166904016780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399632249240016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114250360175223110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6344,7 +6356,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6768afdecbb80ab4b9502d6d13def74b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63802cb6c4f620c4f913c465c2003936, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7649,7 +7661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bcbb102272d5e4d901329708d0e461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
+  maxHealthPoints: 200
   healthBar: {fileID: 114648599042991644}
   damageSounds:
   - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
@@ -7748,7 +7760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: c441a9cabb4420742b730540dab77f27, type: 2}
+  profile: {fileID: 11400000, guid: 53cab36b8b90f1240948f9994c2edd47, type: 2}
 --- !u!114 &114756791440879706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7926,7 +7938,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6768afdecbb80ab4b9502d6d13def74b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 244cc5572b3f09740ac2e5ffc482e952, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

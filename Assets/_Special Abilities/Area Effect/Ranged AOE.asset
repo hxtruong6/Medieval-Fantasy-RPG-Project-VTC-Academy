@@ -17,7 +17,8 @@ MonoBehaviour:
   coolDownTime: 0
   effectOnSelf: {fileID: 0}
   effectOnWeapon: {fileID: 0}
-  effectOnEnemy: {fileID: 0}
+  effectOnEnemy: {fileID: 1428911946222078, guid: 1ccf00130593c254cb2ac3ab9cce9de9,
+    type: 2}
   damageToEachTarget: 10
   projectileConfig: {fileID: 11400000, guid: 54360ba17d6e9494991b4238e830bb34, type: 2}
   degreeBetweenArrows: 15

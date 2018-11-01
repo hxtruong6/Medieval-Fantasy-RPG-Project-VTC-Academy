@@ -2698,7 +2698,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2805,8 +2805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seeking: 1
   fleeing: 0
-  seekingSpeed: 7
-  fleeingSpeed: 8
+  seekingSpeed: 6
+  fleeingSpeed: 6
   patrolSpeed: 0
   seekingRadius: 20
   fleeingRadius: 5

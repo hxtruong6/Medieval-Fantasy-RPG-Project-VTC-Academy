@@ -17,9 +17,9 @@ MonoBehaviour:
   coolDownTime: 2
   effectOnSelf: {fileID: 1738276205312878, guid: f563a944dd0731249ab57cc812631dae,
     type: 2}
-  effectOnWeapon: {fileID: 1023481298165236, guid: 124d071e9bdbf474a99f472ad88d195d,
+  effectOnWeapon: {fileID: 1395277242014862, guid: 9110780e06652c743a825c6f9c1d9609,
     type: 2}
-  effectOnEnemy: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
+  effectOnEnemy: {fileID: 1854895818629388, guid: 5d54d48558947c247addea11f91f25b4,
     type: 2}
   extraDamage: 100
   effectDestroyTime: 3

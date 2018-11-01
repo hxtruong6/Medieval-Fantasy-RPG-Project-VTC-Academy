@@ -10,8 +10,6 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
     public override void Use(AbilityUseParams useParams)
     {
         GetReferences(useParams);
-        PlayEffectOnSelf(gameObject);
-        DealRadialDamage(useParams);
         PlayAbilitySound();
         PlayAbilityAnimation();
     }
@@ -22,9 +20,10 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
         target = useParams.target;
     }  
 
-    private void DealRadialDamage(AbilityUseParams useParams)
+    private void DealRadialDamage()
     {
         //Static sphere cast for targets
+        PlayEffectOnSelf(gameObject);
         RaycastHit[] hits = Physics.SphereCastAll
         (
             transform.position,
@@ -41,6 +40,7 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
             if (damageable != null && !hitPlayer)
             {
                 damageable.TakeDamage(damageToDeal);
+                PlayEffectOnEnemy(damageable.gameObject);
             }
         }
     }
