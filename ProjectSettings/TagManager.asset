@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - TempObjects
+  - WyvernWing
+  - WyvernForearm
+  - WyvernLeg
+  - WyvernHead
   layers:
   - Default
   - TransparentFX
