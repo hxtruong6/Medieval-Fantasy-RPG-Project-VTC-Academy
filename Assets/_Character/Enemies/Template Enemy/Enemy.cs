@@ -161,6 +161,8 @@ public class Enemy : MonoBehaviour
                     if (chasingTime > chasingTimeLimited)
                     {
                         steering = Vector3.zero;
+                        character.CurrentState = CharacterState.patrolling;
+
                     }
                     else
                     {
