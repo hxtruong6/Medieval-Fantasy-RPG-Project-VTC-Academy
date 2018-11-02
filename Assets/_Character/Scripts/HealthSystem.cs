@@ -27,7 +27,7 @@ public class HealthSystem : MonoBehaviour
     float currentHealthPoints;
     float flashTime = 2f;
 
-    public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
+    public float HealthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
     void Start()
     {
@@ -52,13 +52,12 @@ public class HealthSystem : MonoBehaviour
     {
         if (healthBar)
         {
-            healthBar.fillAmount = healthAsPercentage;
+            healthBar.fillAmount = HealthAsPercentage;
         }
     }
 
     public void TakeDamage(float damage)
     {
-        print("Hello");
         FlashEnemyHealthBar();
 
         bool characterDies = (currentHealthPoints - damage) <= 0;
@@ -66,14 +65,23 @@ public class HealthSystem : MonoBehaviour
         //play sound
         //damageTextSpawner.Create(damage, transform.position);
         var clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        audioSource.PlayOneShot(clip);
-
-        
+        audioSource.PlayOneShot(clip);   
 
         if (characterDies)
         {
             StartCoroutine(KillCharacter());
         }
+    }
+
+    public void RestoreAmount(float amount)
+    {
+        currentHealthPoints = Mathf.Clamp(currentHealthPoints + amount, 0f, maxHealthPoints);
+    }
+
+    public void RestorePercentage(int percentage)
+    {
+        float healAmount = maxHealthPoints / 100 * percentage;
+        RestoreAmount(healAmount);
     }
 
     private void FlashEnemyHealthBar()
@@ -96,20 +104,23 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator KillCharacter()
     {
+        var playerComponent = GetComponent<PlayerControl>();
+
         GetComponent<CapsuleCollider>().enabled = false;
-        GetComponent<BoxCollider>().enabled = false;//TODO check with designer, player dont need it
+        if(GetComponent<BoxCollider>() && !playerComponent)
+            GetComponent<BoxCollider>().enabled = false;//TODO check with designer
 
         animator.SetTrigger(DEATH_TRIGGER);
-        var playerComponent = GetComponent<PlayerControl>();
+        
         audioSource.Play();
         if(playerComponent)
         {
             playerComponent.Killed();
         }
 
-        if(GetComponent<DropItem>())
+        if(GetComponent<DropLoot>())
         {
-            GetComponent<DropItem>().DropLoot();
+            GetComponent<DropLoot>().DropWeaponAndItem();
         }
 
         yield return new WaitForSecondsRealtime(deadVanishAfter);

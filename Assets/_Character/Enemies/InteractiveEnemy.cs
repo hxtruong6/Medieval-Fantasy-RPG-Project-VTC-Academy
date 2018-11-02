@@ -42,7 +42,7 @@ public class InteractiveEnemy : MonoBehaviour {
 
     private void OnMouseEnter()
     {
-        var enemyHP = GetComponent<HealthSystem>().healthAsPercentage;
+        var enemyHP = GetComponent<HealthSystem>().HealthAsPercentage;
         if ( enemyHP > 0)
         {
             HighLight(true);

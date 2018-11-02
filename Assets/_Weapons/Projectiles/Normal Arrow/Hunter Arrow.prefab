@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65984314121410302}
   - component: {fileID: 54310288553056950}
   - component: {fileID: 114623421618148534}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hunter_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4323148465011674}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hunter Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

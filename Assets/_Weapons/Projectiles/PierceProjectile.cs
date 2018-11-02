@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PierceProjectile : MonoBehaviour
 {
+    const string TEMP_OBJECTS = "TempObjects";
+
     ProjectileConfig projectileConfig;
     WeaponConfig rangedWeaponConfig;
     GameObject shooter;//who fired this projectile
     List<Enemy> contactEnemies;
+    GameObject effectOnEnemy;
 
     public void SetProjectileConfig(ProjectileConfig configToSet)
     {      
@@ -25,6 +28,25 @@ public class PierceProjectile : MonoBehaviour
         this.shooter = shooter;
     }
 
+    public void SetEfectOnContact(GameObject effect)
+    {
+        effectOnEnemy = effect;
+    }
+
+    protected void PlayParticleEffect(GameObject target, GameObject effect)
+    {
+        var particlePrefab = effect;
+        var particleObject = Instantiate
+        (
+            particlePrefab,
+            target.transform.position,
+            particlePrefab.transform.rotation
+        );
+        particleObject.transform.parent = target.transform;
+        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        particleObject.GetComponent<ParticleSystem>().Play();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Enemy>())
@@ -34,6 +56,7 @@ public class PierceProjectile : MonoBehaviour
             {
                 DealDamage(other.gameObject);
                 contactEnemies.Add(enemy);
+                PlayParticleEffect(enemy.gameObject, effectOnEnemy);
             }
         }
     }
@@ -41,7 +64,7 @@ public class PierceProjectile : MonoBehaviour
     private void DealDamage(GameObject objectBeingHit)
     {
         if (!objectBeingHit.GetComponent<HealthSystem>() ||
-            objectBeingHit.GetComponent<HealthSystem>().healthAsPercentage < 0)
+            objectBeingHit.GetComponent<HealthSystem>().HealthAsPercentage < 0)
         {
             return;
         }

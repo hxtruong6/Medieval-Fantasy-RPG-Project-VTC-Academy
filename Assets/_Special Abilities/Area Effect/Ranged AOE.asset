@@ -11,13 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d61e0aface7d34e9b4a9d129be3b9b, type: 3}
   m_Name: Ranged AOE
   m_EditorClassIdentifier: 
-  energyCost: 1
+  energyCost: 30
   abilityAnimation: {fileID: 7400188, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
   audioClips: []
   coolDownTime: 0
   effectOnSelf: {fileID: 0}
   effectOnWeapon: {fileID: 0}
-  effectOnEnemy: {fileID: 0}
+  effectOnEnemy: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
+    type: 2}
   damageToEachTarget: 10
   projectileConfig: {fileID: 11400000, guid: 54360ba17d6e9494991b4238e830bb34, type: 2}
   degreeBetweenArrows: 15

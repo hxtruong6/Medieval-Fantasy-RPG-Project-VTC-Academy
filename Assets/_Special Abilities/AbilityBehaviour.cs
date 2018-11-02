@@ -8,7 +8,6 @@ public abstract class AbilityBehaviour : MonoBehaviour
 
     const string ATTACK_TRIGGER = "Attack";
     const string DEFAULT_ATTACK_STATE = "DEFAULT ATTACK";
-    const float PARTICLE_CLEAN_UP_DELAY = 10f;
     const string TEMP_OBJECTS = "TempObjects";
 
     public abstract void Use(AbilityUseParams useParams); 
@@ -30,7 +29,6 @@ public abstract class AbilityBehaviour : MonoBehaviour
         particleObject.transform.parent = target.transform;
         particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         particleObject.GetComponent<ParticleSystem>().Play();
-        StartCoroutine(DestroyParticleWhenFinished(particleObject));
     }
 
     protected GameObject GetEffectOnSelf()
@@ -59,6 +57,11 @@ public abstract class AbilityBehaviour : MonoBehaviour
         PlayParticleEffect(target, GetEffectOnEnemy());
     }
 
+    protected float GetEnergyCost()
+    {
+        return config.GetEnergyCost();
+    }
+
     protected GameObject GetEffectOnWeapon()
     {
         return config.GetEffectOnWeapon();
@@ -80,16 +83,6 @@ public abstract class AbilityBehaviour : MonoBehaviour
         particleObject.GetComponent<ParticleSystem>().Play();
         var particleCleanUpTime = (config as MeleePowerAttackConfig).GetEffectDestroyTime();
         Destroy(particleObject, particleCleanUpTime);
-    }
-
-    IEnumerator DestroyParticleWhenFinished(GameObject particlePrefab)
-    {
-        while (particlePrefab.GetComponent<ParticleSystem>().isPlaying)
-        {
-            yield return new WaitForSeconds(PARTICLE_CLEAN_UP_DELAY);
-        }
-        Destroy(particlePrefab);
-        yield return new WaitForEndOfFrame();
     }
 
     protected void PlayAbilitySound()

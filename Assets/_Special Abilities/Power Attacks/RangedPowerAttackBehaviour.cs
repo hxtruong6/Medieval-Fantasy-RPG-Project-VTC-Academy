@@ -10,7 +10,6 @@ public class RangedPowerAttackBehaviour : AbilityBehaviour
     {
         useParams = useParamsToSet;
         transform.LookAt(useParams.target.transform);
-        var weapon = GetComponent<WeaponSystem>();
         PlayAbilitySound();
         PlayAbilityAnimation();
     }
@@ -24,6 +23,7 @@ public class RangedPowerAttackBehaviour : AbilityBehaviour
 
         var projectile = projectileObject.GetComponentInChildren<Projectile>();
         projectile.SetProjectileConfig(projectileConfig);
+        projectile.SetEfectOnContact(GetEffectOnEnemy());
         projectile.SetShooter(gameObject);
 
         projectileObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
@@ -61,6 +61,8 @@ public class RangedPowerAttackBehaviour : AbilityBehaviour
 
     private void ShootPowerAttack()
     {
+       
+        GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
         SetProjectileDirection((config as RangedPowerAttackConfig).GetProjectileConfig());
     }
 

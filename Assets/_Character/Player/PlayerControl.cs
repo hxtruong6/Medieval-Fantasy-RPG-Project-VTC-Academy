@@ -5,6 +5,13 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] float pickItemRadius = 2.5f;
+    [SerializeField] KeyCode switchWeaponKey = KeyCode.Tab;
+    [SerializeField] KeyCode meleeAOESkillKey = KeyCode.Q;
+    [SerializeField] KeyCode rangedAOESkillKey = KeyCode.W;
+    [SerializeField] KeyCode useSmallHealthKey = KeyCode.Alpha1;
+    [SerializeField] KeyCode useLargeHealthKey = KeyCode.Alpha2;
+    [SerializeField] KeyCode useSmallManaKey = KeyCode.Alpha3;
+    [SerializeField] KeyCode useLargeManaKey = KeyCode.Alpha4;
 
     Character character;
     Enemy enemy;
@@ -12,9 +19,7 @@ public class PlayerControl : MonoBehaviour
     InventorySystem inventorySystem;   
     SpecialAbilities abilities;
 
-    KeyCode switchWeaponKey = KeyCode.Tab;
-    KeyCode meleeAOESkillKey = KeyCode.Q;
-    KeyCode rangedAOESkillKey = KeyCode.W;
+    
 
     bool isAlive = true;
 
@@ -57,6 +62,24 @@ public class PlayerControl : MonoBehaviour
         {
             UseRangedAOESkill();
         }
+
+        if(Input.GetKeyDown(useSmallHealthKey))
+        {
+            inventorySystem.UseSmallHealthPotion();
+        }
+        if (Input.GetKeyDown(useLargeHealthKey))
+        {
+            inventorySystem.UseLargeHealthPotion();
+        }
+
+        if (Input.GetKeyDown(useSmallManaKey))
+        {
+            inventorySystem.UseSmallManaPotion();
+        }
+        if (Input.GetKeyDown(useLargeManaKey))
+        {
+            inventorySystem.UseLargeManaPotion();
+        }
     }
 
     private void UseRangedAOESkill()
@@ -72,7 +95,7 @@ public class PlayerControl : MonoBehaviour
         if (!isAlive)
             return false;
 
-        if (enemyToCheck.GetComponent<HealthSystem>().healthAsPercentage <= 0)
+        if (enemyToCheck.GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
             if (enemyToCheck == enemy)
                 enemy.GetComponent<InteractiveEnemy>().HighLight(false);
@@ -87,16 +110,16 @@ public class PlayerControl : MonoBehaviour
         return distanceToTarget <= pickItemRadius;
     }
 
-    void OnMouseOverDropItem(LootWeapon itemToPick)
+    void OnMouseOverDropItem(LootItem itemToPick)
     {
         if (!isAlive)
             return;
 
-        if (Input.GetMouseButton(0) && IsItemInPickUpRange(itemToPick.gameObject))
+        if (Input.GetMouseButtonDown(0) && IsItemInPickUpRange(itemToPick.gameObject))
         {
-            inventorySystem.PickUpNewWeapon(itemToPick);
+            inventorySystem.PickUpNewItem(itemToPick);
         }
-        else if (Input.GetMouseButton(0) && !IsItemInPickUpRange(itemToPick.gameObject))
+        else if (Input.GetMouseButtonDown(0) && !IsItemInPickUpRange(itemToPick.gameObject))
         {
             StartCoroutine(MoveAndPickUpItem(itemToPick));
         }
@@ -130,6 +153,9 @@ public class PlayerControl : MonoBehaviour
 
     private void NormalAttack(Enemy enemy)
     {
+        if (!weaponSystem.canAttack)
+            return;
+
         StopCurrentAction();
         StopMoving();
         transform.LookAt(enemy.transform);
@@ -138,6 +164,8 @@ public class PlayerControl : MonoBehaviour
 
     private void UsePowerAttack(Enemy target)
     {
+        StopMoving();
+        StopCurrentAction();
         abilities.SetSkillTarget(target.gameObject);
         int skillIndex = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() ? 0 : 1;
         abilities.AttemptSpecialAbility(skillIndex);
@@ -145,6 +173,8 @@ public class PlayerControl : MonoBehaviour
 
     private void UseAoESkill(int skillIndex)
     {
+        StopMoving();
+        StopCurrentAction();
         abilities.AttemptSpecialAbility(skillIndex);
     }
 
@@ -187,7 +217,7 @@ public class PlayerControl : MonoBehaviour
                 yield return null;
             }
         }
-        if(target.GetComponent<LootWeapon>())
+        if(target.GetComponent<LootItem>())
         {
             while (!IsItemInPickUpRange(target.gameObject))
             {
@@ -211,10 +241,10 @@ public class PlayerControl : MonoBehaviour
         UsePowerAttack(target);
     }
 
-    IEnumerator MoveAndPickUpItem(LootWeapon item)
+    IEnumerator MoveAndPickUpItem(LootItem item)
     {
         yield return StartCoroutine(MoveToTarget(item.gameObject));
-        inventorySystem.PickUpNewWeapon(item);
+        inventorySystem.PickUpNewItem(item);
     }
 
     private void IdlingState()

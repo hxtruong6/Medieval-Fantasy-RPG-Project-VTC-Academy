@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Name: Ranged Power Attack
   m_EditorClassIdentifier: 
   energyCost: 10
-  particlePrefab: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
-    type: 2}
   abilityAnimation: {fileID: 7400000, guid: 53ddfb67396ece24ba7f176345cb3c96, type: 3}
   audioClips: []
   coolDownTime: 2
+  effectOnSelf: {fileID: 0}
+  effectOnWeapon: {fileID: 0}
+  effectOnEnemy: {fileID: 1957452408923040, guid: 0a37beb3466755b4e8f96ff49e4b1123,
+    type: 2}
   extraDamage: 100
   projectileConfig: {fileID: 11400000, guid: f399dd570e9426d4fb3d1219a4e9817e, type: 2}

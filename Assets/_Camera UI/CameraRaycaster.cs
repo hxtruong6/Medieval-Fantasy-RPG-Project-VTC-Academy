@@ -14,7 +14,7 @@ public class CameraRaycaster : MonoBehaviour {
     const int POTENTIALLY_WALKABLE_LAYER = 8;
     const int DROP_ITEM_LAYER = 10;
 
-    public delegate void OnMouseOverDropItem(LootWeapon item);
+    public delegate void OnMouseOverDropItem(LootItem item);
     public event OnMouseOverDropItem onMouseOverDropItem;
 
     public delegate void OnMouseOverEnemy(Enemy enemy);
@@ -61,7 +61,7 @@ public class CameraRaycaster : MonoBehaviour {
         if (Physics.Raycast(ray, out hitInfo, maxRaycastDepth))
         {
             var gameObjectHit = hitInfo.collider.gameObject;
-            var itemHit = gameObjectHit.GetComponent<LootWeapon>();
+            var itemHit = gameObjectHit.GetComponent<LootItem>();
             if (itemHit)
             {
                 Cursor.SetCursor(lootCursor, cursorHotspot, CursorMode.Auto);

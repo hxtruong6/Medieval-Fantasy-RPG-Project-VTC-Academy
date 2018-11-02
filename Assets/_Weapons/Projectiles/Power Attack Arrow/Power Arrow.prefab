@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4968720674875196}
   - component: {fileID: 198867151256546856}
   - component: {fileID: 199317177362219738}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4896142159144746}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Power Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 65283278378024328}
   - component: {fileID: 54632448187004370}
   - component: {fileID: 114093764313229060}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hunter_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
