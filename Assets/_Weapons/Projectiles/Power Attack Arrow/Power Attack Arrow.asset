@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9556821456258fa4ab945148c91e762c, type: 3}
   m_Name: Power Attack Arrow
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1297602420341112, guid: 253ccfef8eb879c40a4fe2f6a120e53a,
+  projectilePrefab: {fileID: 1383008156903322, guid: 8eaae7ca863c70e47a255b2e4ed7166a,
     type: 2}
   flyingAnimations: []
-  speed: 5
+  speed: 20
   vanishAfterSec: 1
   isAbilityProjectile: 1

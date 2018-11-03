@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonWeapon : MonoBehaviour {
+public class SkeletonWeapon : MonoBehaviour
+{
 
-	// Use this for initialization
+    // Use this for initialization
     public int selectedWeapon = 0;
     public bool randomWeapon = true;
 
@@ -18,27 +19,28 @@ public class SkeletonWeapon : MonoBehaviour {
         selectedWeapon = Mathf.Clamp(selectedWeapon, 0, listOfWeapon.Length - 1);
     }
 
-	void Start ()
-	{
-	    WeaponSystem currentWeaponSystem = GetComponent<WeaponSystem>();
+    void Start()
+    {
+        WeaponSystem currentWeaponSystem = GetComponent<WeaponSystem>();
 
-	    var weaponIndex = randomWeapon ? Random.Range(0, listOfWeapon.Length - 1) : selectedWeapon;
+        var weaponIndex = randomWeapon ? Random.Range(0, listOfWeapon.Length - 1) : selectedWeapon;
 
-	    currentWeaponSystem.PutWeaponInHand(listOfWeapon[weaponIndex]);
+        currentWeaponSystem.PutWeaponInHand(listOfWeapon[weaponIndex]);
 
-	    Character skeleton = GetComponent<Character>();
-	    skeleton.GetComponent<Enemy>().UpdateCurrentWeaponRange();
+        Character skeleton = GetComponent<Character>();
+        skeleton.GetComponent<Enemy>().UpdateCurrentWeaponRange();
 
-	    if (listOfWeapon[weaponIndex].name == "SkeletonHandedSword" || weaponIndex == 2)
-	        skeleton.GetComponent<Character>().setAnimatorOverideController(aniHanded);
-	    else 
-	        skeleton.GetComponent<Character>().setAnimatorOverideController(aniNormal);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        if (listOfWeapon[weaponIndex].name == "SkeletonHandedSword" || weaponIndex == 2)
+            skeleton.GetComponent<Character>().setAnimatorOverideController(aniHanded);
+        else
+            skeleton.GetComponent<Character>().setAnimatorOverideController(aniNormal);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
 
 }

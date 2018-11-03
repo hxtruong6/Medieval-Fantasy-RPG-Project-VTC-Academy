@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4189245454418284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4963023867430682}
   - component: {fileID: 135802549369085292}
   - component: {fileID: 114428656665522862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkeletonSpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217504830142318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.16, y: 11.55, z: 23}
+  m_LocalPosition: {x: 25.887268, y: 9.998169, z: 18.594193}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4189245454418284}
@@ -85,17 +85,6 @@ MonoBehaviour:
     type: 2}
   listOfSpawn:
   - {fileID: 1140291282071228}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   numberSpawn: 1
 --- !u!135 &135802549369085292
 SphereCollider:

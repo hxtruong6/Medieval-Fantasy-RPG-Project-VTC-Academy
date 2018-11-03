@@ -19,12 +19,12 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 24d693751e9fd0b42ba8f9595d8b5f5e, type: 3}
   minTimeBetweenHits: 0.3
   maxAttackRange: 11
-  minDamage: 10
-  maxDamage: 10
+  minDamage: 1
+  maxDamage: 5
   isRightHandWeapon: 0
   isMeleeWeapon: 0
   criticalHitParticlePrefab: {fileID: 1957452408923040, guid: 0a37beb3466755b4e8f96ff49e4b1123,
     type: 2}
   destroyParticleAfterSec: 2
   attackAnimSpeedMultiplier: 1
-  weaponIcon: {fileID: 21300000, guid: 81185535da1f79f4684a2ba19b6167b1, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 06e3b0fde9265384e8f10bd6a44f48f3, type: 3}

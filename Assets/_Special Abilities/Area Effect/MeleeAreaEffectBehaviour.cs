@@ -40,6 +40,7 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
             if (damageable != null && !hitPlayer)
             {
                 damageable.TakeDamage(damageToDeal);
+                PlayEffectOnEnemy(damageable.gameObject);
             }
         }
     }

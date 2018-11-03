@@ -9,9 +9,9 @@ public class SkeletonArea : MonoBehaviour
     public GameObject skeletonPrefab;
     public GameObject[] listOfSpawn;
     public int numberSpawn = 1;
-   
 
-  
+
+
     void Start()
     {
     }
@@ -35,7 +35,7 @@ public class SkeletonArea : MonoBehaviour
                     skeletonClone.transform.SetParent(listOfSpawn[i].transform);
 
                     //var animatorDummny = skeletonClone.GetComponentInChildren<Animator>();
-                   // StartCoroutine(spawnWeapon(skeletonClone, animatorDummny.runtimeAnimatorController.animationClips[0].length));
+                    // StartCoroutine(spawnWeapon(skeletonClone, animatorDummny.runtimeAnimatorController.animationClips[0].length));
                 }
             }
         }
@@ -44,9 +44,9 @@ public class SkeletonArea : MonoBehaviour
     IEnumerator spawnWeapon(GameObject skeletonClone, float clipLength)
     {
         yield return new WaitForSeconds(clipLength);
-       
 
-       
+
+
 
     }
 }

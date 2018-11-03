@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629dc909419d1014ca0187f048f8db74, type: 3}
+  m_Name: SwordPlasma
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 4780827250440542, guid: b651d859a15dfe145b7c97358120866e,
+    type: 2}
+  weaponPrefab: {fileID: 1212401009350674, guid: c4ff5e906cf284e4283db8ee25fea365,
+    type: 2}
+  attackAnimations:
+  - {fileID: 7400000, guid: 97df0c516bfd2644da9a2f718adf467f, type: 3}
+  - {fileID: 7400000, guid: 60c05460cd42d2e48add9d9cda34db3e, type: 3}
+  minTimeBetweenHits: 0
+  maxAttackRange: 2
+  minDamage: 10
+  maxDamage: 20
+  isRightHandWeapon: 1
+  isMeleeWeapon: 1
+  criticalHitParticlePrefab: {fileID: 1985736286063262, guid: d850462245630e84caadc6d3c63efc5c,
+    type: 2}
+  destroyParticleAfterSec: 2
+  attackAnimSpeedMultiplier: 2
+  weaponIcon: {fileID: 21300000, guid: 39960f55e14f74d4d9fdd5b5c60f80b5, type: 3}

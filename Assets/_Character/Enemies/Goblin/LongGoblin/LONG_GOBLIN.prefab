@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4207881310715370}
   - component: {fileID: 137028152586852734}
-  - component: {fileID: 114915905492236788}
+  - component: {fileID: 114634999240908244}
   m_Layer: 9
   m_Name: GOBLIN
   m_TagString: Untagged
@@ -1064,14 +1064,14 @@ GameObject:
   - component: {fileID: 114748713566109292}
   - component: {fileID: 114782215563193312}
   - component: {fileID: 82723841250591836}
-  - component: {fileID: 114506981364585062}
+  - component: {fileID: 114206633220878276}
   m_Layer: 9
   m_Name: LONG_GOBLIN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1998564831978650
 GameObject:
   m_ObjectHideFlags: 1
@@ -1276,8 +1276,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.029785, y: 9.998169, z: 20.87793}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.666412, y: 9.998169, z: 29.287323}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4207881310715370}
@@ -2431,7 +2431,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!82 &82723841250591836
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2499,7 +2499,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2545,6 +2545,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114206633220878276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985939858056000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7556a0c18ba2fce45932dcd3f24547cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: ad16fcf487d8f7145b5d2d07ea7f9308, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: 895d4ba5992a6cf4990e0a69efb36847, type: 2}
+  enemyCanvas: {fileID: 1286889090959276}
+  isSelected: 0
 --- !u!114 &114386398859251104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2621,21 +2636,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7f41fb1c670384bb26452c22313ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114506981364585062
+--- !u!114 &114634999240908244
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1985939858056000}
+  m_GameObject: {fileID: 1110789783083740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7556a0c18ba2fce45932dcd3f24547cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMaterial: {fileID: 2100000, guid: ad16fcf487d8f7145b5d2d07ea7f9308, type: 2}
-  outlineMaterial: {fileID: 2100000, guid: 895d4ba5992a6cf4990e0a69efb36847, type: 2}
-  enemyCanvas: {fileID: 1286889090959276}
-  isSelected: 0
 --- !u!114 &114699152533074962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2647,7 +2658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71117c36d95366244a398e1259408410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criticalHitChance: 0.1
+  criticalHitChance: 0.3
   criticalHitMultiplier: 1.25
   currentWeaponConfig: {fileID: 11400000, guid: 7de753ba6f532c24ba6cbff16bc3a3c1,
     type: 2}
@@ -2694,23 +2705,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeking: 0
+  seeking: 1
   fleeing: 1
-  seekingSpeed: 8
-  fleeingSpeed: 8
+  seekingSpeed: 4
+  fleeingSpeed: 4
   patrolSpeed: 0.2
-  seekingRadius: 8
+  seekingRadius: 9
   fleeingRadius: 5
   patrollRadius: 5
-  chasingRadius: 14
-  idleTimeLimited: 5
+  chasingRadius: 17
+  idleTimeLimited: 0
   chasingTimeLimited: 10
   patrolTimeLimited: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   waitAtWaypointTime: 3
-  angleAbleLooking: 30
-  radiusAbleLooking: 10
+  angleAbleLooking: 40
+  radiusAbleLooking: 8
 --- !u!114 &114820727551935992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2743,17 +2754,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114915905492236788
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110789783083740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114957391950295440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2768,17 +2768,21 @@ MonoBehaviour:
   maxHealthPoints: 60
   healthBar: {fileID: 114386398859251104}
   damageSounds:
-  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
+  - {fileID: 8300000, guid: b020ab3899bdfa843b6a50a55f474c79, type: 3}
+  - {fileID: 8300000, guid: 1cc7afd2c42b6ba4abee99506a506c8c, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
-  deadVanishAfter: 2
+  - {fileID: 8300000, guid: d8e925ffb634ecc4d91a60c01eef8f12, type: 3}
+  - {fileID: 8300000, guid: d144fbd7fd288e642a1186f99d4a539b, type: 3}
+  - {fileID: 8300000, guid: 6e3e8e40af33377488f953aa6e3c8fa2, type: 3}
+  - {fileID: 8300000, guid: 6534c2b3c8f8687478e5fad93034b554, type: 3}
+  deadVanishAfter: 5
 --- !u!136 &136965916414276130
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
-  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.6

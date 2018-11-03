@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<PlayerControl>();
         weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on 
         currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
-    
+
         //StartCoroutine(getCurrentWeaponRange());
 
         //if (fleeing && fleeingRadius < currentWeaponRange)
@@ -161,6 +161,8 @@ public class Enemy : MonoBehaviour
                     if (chasingTime > chasingTimeLimited)
                     {
                         steering = Vector3.zero;
+                        character.CurrentState = CharacterState.patrolling;
+
                     }
                     else
                     {
