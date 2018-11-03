@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4028694437984836}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4524959297140760}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4373589256807930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4698337297404868}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4645642774752526}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4800042152773694}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4531570462823118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4243163076981912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4660588413848610}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4469883958543126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4316542332629344}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4592716691061574}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4467475573174656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4725443583493224}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4628267173322858}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4430315595864156}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4864665529393096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4594760712167680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Toe0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4539333428393990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 4310907793360154}
   - component: {fileID: 33547769377563180}
   - component: {fileID: 23573958981254660}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkeletonHandedSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +672,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4150658525518496}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,9 @@ GameObject:
   - component: {fileID: 114433757231202178}
   - component: {fileID: 114290802866135546}
   - component: {fileID: 114639306546690484}
-  m_Layer: 0
+  - component: {fileID: 114183818996263900}
+  - component: {fileID: 65098597681911632}
+  m_Layer: 9
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,7 +714,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4768873470127908}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ HeadNub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +729,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4381625130106862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +744,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4437779811266336}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +759,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4067353887705404}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger3Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +804,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4283383963454620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +894,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4906092661545938}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Toe01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1321224864149292
 GameObject:
   m_ObjectHideFlags: 1
@@ -926,7 +928,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4743365350373708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -986,7 +988,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4015394718478140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1018,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4999414171236386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger4Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1033,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4764840206552894}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1076,7 +1078,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4653192362481984}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Toe01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,7 +1093,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4586748798626442}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,7 +1108,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4314393230885904}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1199,7 +1201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4725207315636098}
   - component: {fileID: 114268639391795972}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1246,7 +1248,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4103429769235202}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1261,7 +1263,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4903904646927450}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1306,7 +1308,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4543094884256740}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1336,7 +1338,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4152361237299760}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Toe02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1366,7 +1368,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4200706391351818}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1396,7 +1398,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4121895278367756}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1457,7 +1459,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4728608248183690}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1472,7 +1474,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4250075892744914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1487,7 +1489,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4476843764148174}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,7 +1504,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4538278427999612}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger4Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1517,7 +1519,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4717774748206904}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1532,7 +1534,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4023850021558716}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1577,7 +1579,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4315310858764942}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ Footsteps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1623,7 +1625,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4152343604668528}
   - component: {fileID: 137686688835463672}
-  m_Layer: 0
+  - component: {fileID: 114992903652802360}
+  m_Layer: 9
   m_Name: skeleton_knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1638,7 +1641,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4762635403041128}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1699,7 +1702,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4276397033968734}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1729,7 +1732,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4570115506482126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1746,7 +1749,7 @@ GameObject:
   - component: {fileID: 4637734823770000}
   - component: {fileID: 33779832974869524}
   - component: {fileID: 23589050510156054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: shield_rondache
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4520433283935732}
   - component: {fileID: 137125372898217056}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: protection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1809,7 +1812,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4433581514607498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Toe02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1839,7 +1842,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4966807164805720}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1854,7 +1857,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4812698984458198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1869,7 +1872,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4230954103626442}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1884,7 +1887,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4322188651558906}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1916,7 +1919,7 @@ GameObject:
   - component: {fileID: 4477664257524692}
   - component: {fileID: 33580905883727432}
   - component: {fileID: 23839057417582794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: helmet_a_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1933,7 +1936,7 @@ GameObject:
   - component: {fileID: 4776954865263846}
   - component: {fileID: 33238432805291460}
   - component: {fileID: 23614259655857306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkeletonSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1965,7 +1968,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4330213708739042}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2010,7 +2013,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4272692951090052}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger3Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2025,7 +2028,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4464075902440514}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2055,7 +2058,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4865162163059724}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2070,7 +2073,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4661187409998470}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger2Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2100,7 +2103,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4507895544068210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger2Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2162,7 +2165,7 @@ GameObject:
   - component: {fileID: 4095818500817872}
   - component: {fileID: 33328877914075486}
   - component: {fileID: 23857743667082624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: femur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2192,7 +2195,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4231193933485572}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2222,7 +2225,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4556638449093182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2283,7 +2286,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4354599034481726}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2298,7 +2301,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4565655028295908}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Toe0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2313,7 +2316,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4949569296664102}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2373,7 +2376,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4730435368810066}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2388,7 +2391,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4502990774649954}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L Finger42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2403,7 +2406,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4091955810026392}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2450,7 +2453,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4731075618085838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ R Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2465,7 +2468,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4948511249965248}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2495,7 +2498,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4514461141561730}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: skeleton_knight_ Neck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5204,6 +5207,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65098597681911632
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267012955651284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0338478, y: 2.5562525, z: 1.391613}
+  m_Center: {x: 0.022346497, y: 1.05, z: -0.1958065}
 --- !u!82 &82309803568147022
 AudioSource:
   m_ObjectHideFlags: 1
@@ -5330,6 +5345,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skeleton: {fileID: 1267012955651284}
+--- !u!114 &114183818996263900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267012955651284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7556a0c18ba2fce45932dcd3f24547cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: 3e800c9ebf0eb4e478a085cda345f2c1, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: b446d20f16b818943a24d631d1ef5b47, type: 2}
+  enemyCanvas: {fileID: 1319605595022366}
+  isSelected: 0
 --- !u!114 &114264928486985634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5420,8 +5450,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 60
   healthBar: {fileID: 114945972876519984}
-  damageSounds: []
-  deathSounds: []
+  damageSounds:
+  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 9567384b500fe6c40a4b0971056d5f56, type: 3}
   deadVanishAfter: 2
 --- !u!114 &114506009193159646
 MonoBehaviour:
@@ -5552,6 +5584,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114992903652802360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636822647460160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136573970038352876
 CapsuleCollider:
   m_ObjectHideFlags: 1

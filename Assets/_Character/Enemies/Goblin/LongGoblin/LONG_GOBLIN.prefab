@@ -2658,7 +2658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71117c36d95366244a398e1259408410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criticalHitChance: 0.1
+  criticalHitChance: 0.3
   criticalHitMultiplier: 1.25
   currentWeaponConfig: {fileID: 11400000, guid: 7de753ba6f532c24ba6cbff16bc3a3c1,
     type: 2}
@@ -2705,16 +2705,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeking: 0
+  seeking: 1
   fleeing: 1
-  seekingSpeed: 5
-  fleeingSpeed: 5
+  seekingSpeed: 4
+  fleeingSpeed: 4
   patrolSpeed: 0.2
-  seekingRadius: 8
+  seekingRadius: 9
   fleeingRadius: 5
   patrollRadius: 5
   chasingRadius: 17
-  idleTimeLimited: 5
+  idleTimeLimited: 0
   chasingTimeLimited: 10
   patrolTimeLimited: 8
   patrolPath: {fileID: 0}
@@ -2768,9 +2768,13 @@ MonoBehaviour:
   maxHealthPoints: 60
   healthBar: {fileID: 114386398859251104}
   damageSounds:
-  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
+  - {fileID: 8300000, guid: b020ab3899bdfa843b6a50a55f474c79, type: 3}
+  - {fileID: 8300000, guid: 1cc7afd2c42b6ba4abee99506a506c8c, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
+  - {fileID: 8300000, guid: d8e925ffb634ecc4d91a60c01eef8f12, type: 3}
+  - {fileID: 8300000, guid: d144fbd7fd288e642a1186f99d4a539b, type: 3}
+  - {fileID: 8300000, guid: 6e3e8e40af33377488f953aa6e3c8fa2, type: 3}
+  - {fileID: 8300000, guid: 6534c2b3c8f8687478e5fad93034b554, type: 3}
   deadVanishAfter: 5
 --- !u!136 &136965916414276130
 CapsuleCollider:

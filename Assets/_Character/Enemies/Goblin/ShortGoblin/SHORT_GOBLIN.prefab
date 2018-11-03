@@ -1276,7 +1276,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.06, y: 9.998169, z: 26.46}
+  m_LocalPosition: {x: 9.47, y: 9.998169, z: 26.46}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4207881310715370}
@@ -2669,7 +2669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71117c36d95366244a398e1259408410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criticalHitChance: 0.1
+  criticalHitChance: 0.3
   criticalHitMultiplier: 1.25
   currentWeaponConfig: {fileID: 11400000, guid: cee8a41bf6c52aa40b924e4d68d0b657,
     type: 2}
@@ -2694,12 +2694,12 @@ MonoBehaviour:
   fleeingRadius: 6
   patrollRadius: 5
   chasingRadius: 17
-  idleTimeLimited: 3
+  idleTimeLimited: 0
   chasingTimeLimited: 13
   patrolTimeLimited: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 1
-  waitAtWaypointTime: 2
+  waitAtWaypointTime: 1
   angleAbleLooking: 40
   radiusAbleLooking: 8
 --- !u!114 &114748713566109292
@@ -2756,10 +2756,14 @@ MonoBehaviour:
   maxHealthPoints: 60
   healthBar: {fileID: 114044583478172376}
   damageSounds:
-  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
+  - {fileID: 8300000, guid: b020ab3899bdfa843b6a50a55f474c79, type: 3}
+  - {fileID: 8300000, guid: 1cc7afd2c42b6ba4abee99506a506c8c, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
-  deadVanishAfter: 2
+  - {fileID: 8300000, guid: d8e925ffb634ecc4d91a60c01eef8f12, type: 3}
+  - {fileID: 8300000, guid: d144fbd7fd288e642a1186f99d4a539b, type: 3}
+  - {fileID: 8300000, guid: 6e3e8e40af33377488f953aa6e3c8fa2, type: 3}
+  - {fileID: 8300000, guid: 6534c2b3c8f8687478e5fad93034b554, type: 3}
+  deadVanishAfter: 5
 --- !u!136 &136965916414276130
 CapsuleCollider:
   m_ObjectHideFlags: 1

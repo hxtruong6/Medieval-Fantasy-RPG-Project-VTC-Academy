@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfb6392aa823054ea270038e804fcde, type: 3}
   m_Name: Melee AOE
   m_EditorClassIdentifier: 
-  energyCost: 50
+  energyCost: 70
   abilityAnimation: {fileID: 7400000, guid: 051ab2cf5978c874eb8f90c68efbe36f, type: 3}
-  audioClips: []
-  coolDownTime: 0
+  audioClips:
+  - {fileID: 8300000, guid: ae8511fc469ac90439a51d5a4820274a, type: 3}
+  coolDownTime: 10
   effectOnSelf: {fileID: 1009585610755140, guid: 5443f6d4f6971e74dad685cad3917051,
     type: 2}
   effectOnWeapon: {fileID: 0}
