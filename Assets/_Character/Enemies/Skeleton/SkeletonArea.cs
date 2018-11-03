@@ -24,16 +24,17 @@ public class SkeletonArea : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (numberSpawn-- > 0)
+        if (numberSpawn > 0)
         {
             if (other.GetComponent<PlayerControl>())
             {
+                numberSpawn--;
                 for (int i = 0; i < listOfSpawn.Length; i++)
                 {
                     GameObject skeletonClone = Instantiate(skeletonPrefab);
                     skeletonClone.transform.position = listOfSpawn[i].transform.position;
                     skeletonClone.transform.SetParent(listOfSpawn[i].transform);
-
+                    Destroy(this.gameObject.GetComponent<SphereCollider>());
                     //var animatorDummny = skeletonClone.GetComponentInChildren<Animator>();
                     // StartCoroutine(spawnWeapon(skeletonClone, animatorDummny.runtimeAnimatorController.animationClips[0].length));
                 }
