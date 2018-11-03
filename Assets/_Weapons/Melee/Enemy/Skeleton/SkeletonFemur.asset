@@ -27,6 +27,7 @@ MonoBehaviour:
   isMeleeWeapon: 1
   criticalHitParticlePrefab: {fileID: 1000012909287652, guid: 6415e4da6de88134183ec1d5e4242e51,
     type: 2}
-  destroyParticleAfterSec: 0
-  attackAnimSpeedMultiplier: 2.5
+  destroyParticleAfterSec: 5
+  attackAnimSpeedMultiplier: 2
   weaponIcon: {fileID: 0}
+  dropParticlePrefab: {fileID: 0}

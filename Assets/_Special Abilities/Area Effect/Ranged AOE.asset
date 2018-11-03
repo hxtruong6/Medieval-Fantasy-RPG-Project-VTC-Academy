@@ -13,11 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyCost: 30
   abilityAnimation: {fileID: 7400188, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
-  audioClips: []
-  coolDownTime: 0
+  audioClips:
+  - {fileID: 8300000, guid: 3a0a573acd2128249aaa369802869bc3, type: 3}
+  coolDownTime: 2
   effectOnSelf: {fileID: 0}
   effectOnWeapon: {fileID: 0}
-  effectOnEnemy: {fileID: 1905204345665972, guid: 75c27c89f2e30af40b42e26be5c73167,
+  effectOnEnemy: {fileID: 1686532574603256, guid: 0a37beb3466755b4e8f96ff49e4b1123,
     type: 2}
   damageToEachTarget: 10
   projectileConfig: {fileID: 11400000, guid: 54360ba17d6e9494991b4238e830bb34, type: 2}
