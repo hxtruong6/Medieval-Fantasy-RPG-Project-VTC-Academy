@@ -9,6 +9,7 @@ TagManager:
   - WyvernForearm
   - WyvernLeg
   - WyvernHead
+  - WyvernTail
   layers:
   - Default
   - TransparentFX

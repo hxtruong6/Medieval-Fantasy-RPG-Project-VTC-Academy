@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 928814b547d8f20479cddc9ef8f84a43
+guid: d77d3d5b172923c4b8e795134636295c
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -177,7 +177,7 @@ ModelImporter:
     400168: wivern_ Tail7
     400170: wivern_ Tail8
     400172: //RootNode
-    7400000: 4LegsIdle
+    7400000: 4LegsGetHit
     9500000: //RootNode
     11100000: //RootNode
   externalObjects: {}
@@ -195,8 +195,8 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
       in configuration does not match rotation in animation file:\n\t'wivern_ L HorseLink'
-      : rotation error = 57.041988 deg\n\t'wivern_ R HorseLink' : rotation error =
-      57.041340 deg\n"
+      : rotation error = 57.041996 deg\n\t'wivern_ R HorseLink' : rotation error =
+      57.041378 deg\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\n\t'wivern_ Neck1' is inbetween humanoid transforms
@@ -221,18 +221,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 4LegsIdle
+      name: 4LegsGetHit
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
@@ -650,19 +650,19 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: wyvern@4LegsIdle(Clone)
+    - name: wyvern@4LegsGetHit(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0.00000079024784, z: 0.00000079024784, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: wivern_
-      parentName: wyvern@4LegsIdle(Clone)
+      parentName: wyvern@4LegsGetHit(Clone)
       position: {x: -0, y: 3.3610427, z: 0.45286548}
       rotation: {x: -0.08419158, y: 0.0841905, z: 0.7020767, w: 0.702077}
       scale: {x: 1, y: 1, z: 1}
     - name: wivern_ Pelvis
       parentName: wivern_
-      position: {x: -4.302536, y: -0.00000047683716, z: 3.6273084}
+      position: {x: -4.3025365, y: -0.00000047683716, z: 3.6273088}
       rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
       scale: {x: 0.99999994, y: 0.99999994, z: 1}
     - name: wivern_ Spine
@@ -677,57 +677,57 @@ ModelImporter:
       scale: {x: 0.99999994, y: 1, z: 1}
     - name: wivern_ L Calf
       parentName: wivern_ L Thigh
-      position: {x: -1.8803316, y: 0, z: 0}
+      position: {x: -1.8803314, y: -0.00000030517577, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
+      scale: {x: 0.9999998, y: 1, z: 1}
     - name: wivern_ L HorseLink
       parentName: wivern_ L Calf
-      position: {x: -1.8803314, y: 0, z: -0.00000015258789}
+      position: {x: -1.8803315, y: 0.00000015258789, z: 0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1, z: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: wivern_ L Foot
       parentName: wivern_ L HorseLink
-      position: {x: -0.9401655, y: 0, z: -0.00000015258789}
+      position: {x: -0.9401657, y: 0, z: -0.00000030517577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: wivern_ L Toe0
       parentName: wivern_ L Foot
-      position: {x: -0.4697609, y: 0.6951309, z: -0.14392059}
+      position: {x: -0.4697609, y: 0.69513077, z: -0.1439209}
       rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.0000001, y: 1, z: 1}
     - name: wivern_ L Toe01
       parentName: wivern_ L Toe0
-      position: {x: -0.3041446, y: -0.0000000047683715, z: -0.00000015258789}
+      position: {x: -0.3041446, y: -0.0000000047683715, z: -0.00000030517577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
     - name: wivern_ L Toe02
       parentName: wivern_ L Toe01
-      position: {x: -0.32398283, y: 0, z: -0.00000015258789}
+      position: {x: -0.32398313, y: 0, z: 0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
     - name: wivern_ L Toe1
       parentName: wivern_ L Foot
-      position: {x: -0.46567065, y: 0.6987527, z: 0.09674911}
+      position: {x: -0.46567065, y: 0.6987529, z: 0.09674896}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: wivern_ L Toe11
       parentName: wivern_ L Toe1
-      position: {x: -0.3955484, y: -0.000000007152557, z: -0.00000015258789}
+      position: {x: -0.3955487, y: -0.000000007152557, z: -0.00000045776366}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: wivern_ L Toe12
       parentName: wivern_ L Toe11
-      position: {x: -0.29173186, y: 0.0000000047683715, z: 0}
+      position: {x: -0.29173127, y: 0.0000000047683715, z: 0.00000030517577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: wivern_ L Toe2
       parentName: wivern_ L Foot
-      position: {x: -0.5405956, y: 0.7029694, z: 0.32173598}
+      position: {x: -0.5405956, y: 0.7029694, z: 0.32173577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: wivern_ L Toe21
       parentName: wivern_ L Toe2
-      position: {x: -0.31941923, y: 0, z: 0.00000030517577}
+      position: {x: -0.3194191, y: 0.000000009536743, z: 0.00000030517577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 0.99999994}
     - name: wivern_ L Toe22
@@ -737,17 +737,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 0.99999994}
     - name: wivern_ L Toe3
       parentName: wivern_ L Foot
-      position: {x: -0.36347395, y: 0.15388641, z: 0.33964485}
+      position: {x: -0.36347395, y: 0.15388626, z: 0.33964476}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: wivern_ L Toe31
       parentName: wivern_ L Toe3
-      position: {x: -0.244858, y: 0.0000000047683715, z: -0.00000015258789}
+      position: {x: -0.24485792, y: 0.0000000047683715, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: wivern_ L Toe32
       parentName: wivern_ L Toe31
-      position: {x: -0.24485797, y: 0, z: 0}
+      position: {x: -0.24485797, y: -0.0000000047683715, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: wivern_ R Thigh
@@ -757,79 +757,79 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: wivern_ R Calf
       parentName: wivern_ R Thigh
-      position: {x: -1.8803316, y: -0.00000030517577, z: -0.00000015258789}
+      position: {x: -1.8803314, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.9999999, y: 1, z: 1}
+      scale: {x: 0.9999999, y: 1, z: 0.9999998}
     - name: wivern_ R HorseLink
       parentName: wivern_ R Calf
-      position: {x: -1.8803314, y: -0.00000015258789, z: 0}
+      position: {x: -1.8803324, y: 0.00000022888183, z: -0.00000030517577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 1, z: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
     - name: wivern_ R Foot
       parentName: wivern_ R HorseLink
-      position: {x: -0.9401657, y: -0.00000015258789, z: 0}
+      position: {x: -0.9401654, y: 0.00000030517577, z: 0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
     - name: wivern_ R Toe0
       parentName: wivern_ R Foot
-      position: {x: -0.4697609, y: 0.69513077, z: 0.14392075}
+      position: {x: -0.46976084, y: 0.6951306, z: 0.14392075}
       rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
-      scale: {x: 1.0000001, y: 1, z: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: wivern_ R Toe01
       parentName: wivern_ R Toe0
-      position: {x: -0.3041446, y: 0, z: 0.00000030517577}
+      position: {x: -0.3041446, y: -0.0000000047683715, z: 0.00000030517577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+      scale: {x: 1, y: 1, z: 0.9999999}
     - name: wivern_ R Toe02
       parentName: wivern_ R Toe01
-      position: {x: -0.32398283, y: 0.0000000047683715, z: -0.00000015258789}
+      position: {x: -0.32398283, y: 0.000000009536743, z: -0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+      scale: {x: 1, y: 1, z: 0.9999999}
     - name: wivern_ R Toe1
       parentName: wivern_ R Foot
-      position: {x: -0.46567068, y: 0.6987532, z: -0.09674866}
+      position: {x: -0.46567062, y: 0.6987532, z: -0.0967485}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: wivern_ R Toe11
       parentName: wivern_ R Toe1
-      position: {x: -0.39554763, y: 0.0000000023841857, z: -0.00000045776366}
+      position: {x: -0.39554793, y: 0.000000007152557, z: -0.00000030517577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1.0000001, z: 1}
+      scale: {x: 0.99999994, y: 1, z: 0.9999999}
     - name: wivern_ R Toe12
       parentName: wivern_ R Toe11
-      position: {x: -0.29173216, y: -0.0000000023841857, z: 0.00000015258789}
+      position: {x: -0.29173216, y: 0, z: -0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1.0000001, z: 1}
+      scale: {x: 0.99999994, y: 1, z: 0.9999999}
     - name: wivern_ R Toe2
       parentName: wivern_ R Foot
-      position: {x: -0.5405956, y: 0.702969, z: -0.32173598}
+      position: {x: -0.5405956, y: 0.702969, z: -0.32173568}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
     - name: wivern_ R Toe21
       parentName: wivern_ R Toe2
-      position: {x: -0.31941938, y: -0.000000009536743, z: -0.00000015258789}
+      position: {x: -0.31941956, y: 0.000000019073486, z: 0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999999}
+      scale: {x: 1, y: 1, z: 1}
     - name: wivern_ R Toe22
       parentName: wivern_ R Toe21
-      position: {x: -0.27365983, y: 0, z: 0.00000045776366}
+      position: {x: -0.2736595, y: -0.000000019073486, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999999}
+      scale: {x: 1, y: 1, z: 1}
     - name: wivern_ R Toe3
       parentName: wivern_ R Foot
-      position: {x: -0.363474, y: 0.15388641, z: -0.33964446}
+      position: {x: -0.36347395, y: 0.15388641, z: -0.3396446}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 1, z: 1}
+      scale: {x: 0.9999998, y: 1, z: 0.99999994}
     - name: wivern_ R Toe31
       parentName: wivern_ R Toe3
-      position: {x: -0.24485795, y: 0.0000000047683715, z: 0.00000015258789}
+      position: {x: -0.244858, y: -0.0000000047683715, z: 0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1.0000001, z: 1}
+      scale: {x: 0.99999994, y: 1, z: 1}
     - name: wivern_ R Toe32
       parentName: wivern_ R Toe31
-      position: {x: -0.24485782, y: 0, z: -0.00000015258789}
+      position: {x: -0.24485782, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1.0000001, z: 1}
+      scale: {x: 0.99999994, y: 1, z: 1}
     - name: wivern_ Spine1
       parentName: wivern_ Spine
       position: {x: -0.9861914, y: -0.00078063965, z: -0.000000002165325}
@@ -854,107 +854,107 @@ ModelImporter:
       parentName: wivern_ L Clavicle
       position: {x: -0.84254056, y: 0, z: 0.00000030517577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
     - name: wivern_ L Forearm
       parentName: wivern_ L UpperArm
-      position: {x: -2.921463, y: -0.00000015258789, z: 0}
+      position: {x: -2.9214635, y: -0.00000061035155, z: -0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 0.9999999, z: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
     - name: wivern_ L Hand
       parentName: wivern_ L Forearm
-      position: {x: -3.0478466, y: 0, z: 0.00000015258789}
+      position: {x: -3.047847, y: -0.00000045776366, z: -0.00000015258789}
       rotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
-      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
     - name: wivern_ L Finger0
       parentName: wivern_ L Hand
-      position: {x: -0.3309564, y: -0.02073637, z: -0.27602157}
+      position: {x: -0.3309558, y: -0.02073635, z: -0.27602112}
       rotation: {x: 0, y: 0.3826835, z: 0, w: -0.9238795}
-      scale: {x: 1.0000001, y: 1, z: 0.9999999}
+      scale: {x: 1, y: 0.99999994, z: 0.9999999}
     - name: wivern_ L Finger01
       parentName: wivern_ L Finger0
-      position: {x: -0.18555358, y: 0.00000061035155, z: -0.00000015258789}
+      position: {x: -0.1855545, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 0.9999999}
+      scale: {x: 1, y: 1, z: 1}
     - name: wivern_ L Finger02
       parentName: wivern_ L Finger01
-      position: {x: -0.28216064, y: -0.00000061035155, z: -0.00000015258789}
+      position: {x: -0.28216, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: wivern_ L Finger1
       parentName: wivern_ L Hand
-      position: {x: -0.5478772, y: 0.0010201454, z: -0.22368622}
+      position: {x: -0.5478778, y: 0.0010201073, z: -0.2236859}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1, z: 0.99999994}
+      scale: {x: 1, y: 0.99999994, z: 0.9999999}
     - name: wivern_ L Finger11
       parentName: wivern_ L Finger1
-      position: {x: -3.8078878, y: -0.000000028610229, z: -0.00000061035155}
+      position: {x: -3.8078866, y: 0.000000028610229, z: -0.00000061035155}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
     - name: wivern_ L Finger12
       parentName: wivern_ L Finger11
-      position: {x: -3.6578653, y: 0.000000009536743, z: 0.00000061035155}
+      position: {x: -3.6578667, y: -0.000000009536743, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.9999998}
     - name: wivern_ L Finger2
       parentName: wivern_ L Hand
-      position: {x: -0.5777814, y: 0.000042858122, z: 0.044769898}
+      position: {x: -0.5777814, y: 0.000042877196, z: 0.044769745}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: wivern_ L Finger21
       parentName: wivern_ L Finger2
-      position: {x: -2.9686666, y: 0, z: 0}
+      position: {x: -2.9686666, y: 0.000000009536743, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
+      scale: {x: 0.9999999, y: 1, z: 1}
     - name: wivern_ L Finger22
       parentName: wivern_ L Finger21
-      position: {x: -2.6687253, y: 0.000000019073486, z: 0.00000061035155}
+      position: {x: -2.6687255, y: 0.000000028610229, z: 0.00000061035155}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
     - name: wivern_ L Finger3
       parentName: wivern_ L Hand
-      position: {x: -0.5251892, y: -0.00081617356, z: 0.32873625}
+      position: {x: -0.5251892, y: -0.00081615447, z: 0.3287361}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 0.9999998, z: 1}
+      scale: {x: 0.99999994, y: 0.9999998, z: 1}
     - name: wivern_ L Finger31
       parentName: wivern_ L Finger3
-      position: {x: -1.9235454, y: -0.000000038146972, z: 0}
+      position: {x: -1.923545, y: -0.000000038146972, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1, z: 1.0000001}
+      scale: {x: 1.0000001, y: 1, z: 1}
     - name: wivern_ L Finger32
       parentName: wivern_ L Finger31
-      position: {x: -2.1871033, y: 0.000000076293944, z: 0}
+      position: {x: -2.187103, y: -0.000000076293944, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.99999994}
     - name: wivern_ Neck1
       parentName: wivern_ Neck
-      position: {x: -0.6848434, y: -0.0006411743, z: -0.0000000017799903}
+      position: {x: -0.6848434, y: -0.0006414795, z: -0.0000000017811543}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: wivern_ Neck2
       parentName: wivern_ Neck1
-      position: {x: -0.8055508, y: -0.0007220459, z: -0.0000000020035076}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
-    - name: wivern_ Neck3
-      parentName: wivern_ Neck2
-      position: {x: -0.9312097, y: -0.00065856933, z: -0.0000000018277205}
+      position: {x: -0.8055505, y: -0.0007220459, z: -0.0000000020023434}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+    - name: wivern_ Neck3
+      parentName: wivern_ Neck2
+      position: {x: -0.93121, y: -0.00065795897, z: -0.0000000018253922}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
     - name: wivern_ Neck4
       parentName: wivern_ Neck3
-      position: {x: -0.831481, y: -0.0006646728, z: -0.0000000018440186}
+      position: {x: -0.8314813, y: -0.0006652832, z: -0.0000000018440186}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: wivern_ Neck5
       parentName: wivern_ Neck4
-      position: {x: -0.86416686, y: -0.0007696533, z: -0.000000002135057}
+      position: {x: -0.86416805, y: -0.0007693481, z: -0.0000000021315645}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 0.99999994, y: 0.99999994, z: 1}
     - name: wivern_ Head
       parentName: wivern_ Neck5
-      position: {x: -1.0014013, y: -0.00000015258789, z: 0}
+      position: {x: -1.0014019, y: -0.00000030517577, z: -5.820766e-13}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: wivern_ Ponytail1
       parentName: wivern_ Head
       position: {x: -0.4033844, y: 0.2643982, z: -0.00000005316513}
@@ -969,77 +969,77 @@ ModelImporter:
       parentName: wivern_ R Clavicle
       position: {x: -0.84254044, y: -0.00000030517577, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.9999999, y: 1, z: 0.99999994}
+      scale: {x: 1, y: 1, z: 0.9999999}
     - name: wivern_ R Forearm
       parentName: wivern_ R UpperArm
-      position: {x: -2.9214635, y: 0.00000030517577, z: -0.00000030517577}
+      position: {x: -2.921463, y: 0.00000015258789, z: -0.00000045776366}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 1, z: 1}
+      scale: {x: 0.99999976, y: 0.99999994, z: 1}
     - name: wivern_ R Hand
       parentName: wivern_ R Forearm
-      position: {x: -3.0478463, y: 0.00000030517577, z: 0}
+      position: {x: -3.047847, y: 0.00000030517577, z: 0.00000061035155}
       rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
     - name: wivern_ R Finger0
       parentName: wivern_ R Hand
-      position: {x: -0.3309564, y: -0.02073635, z: 0.27602157}
+      position: {x: -0.3309558, y: -0.02073635, z: 0.27602142}
       rotation: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
-      scale: {x: 1, y: 1, z: 1}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.9999999}
     - name: wivern_ R Finger01
       parentName: wivern_ R Finger0
-      position: {x: -0.1855539, y: 0, z: -0.00000015258789}
+      position: {x: -0.1855545, y: -0.00000030517577, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1, z: 0.99999994}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: wivern_ R Finger02
       parentName: wivern_ R Finger01
-      position: {x: -0.28216064, y: -0.00000030517577, z: 0}
+      position: {x: -0.28216, y: 0.00000061035155, z: -0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.9999998, y: 1, z: 1}
+      scale: {x: 0.9999999, y: 1, z: 0.9999999}
     - name: wivern_ R Finger1
       parentName: wivern_ R Hand
-      position: {x: -0.5478772, y: 0.0010201645, z: 0.22368637}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
-    - name: wivern_ R Finger11
-      parentName: wivern_ R Finger1
-      position: {x: -3.8078876, y: -0.000000047683713, z: -0.0000009155273}
+      position: {x: -0.5478772, y: 0.0010201263, z: 0.22368622}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: wivern_ R Finger11
+      parentName: wivern_ R Finger1
+      position: {x: -3.807888, y: 0.000000009536743, z: 0.00000061035155}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 1}
     - name: wivern_ R Finger12
       parentName: wivern_ R Finger11
-      position: {x: -3.6578674, y: 0.000000028610229, z: 0.0000012207031}
+      position: {x: -3.6578665, y: -0.000000019073486, z: 0.00000061035155}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 0.99999994}
+      scale: {x: 0.99999994, y: 1, z: 1}
     - name: wivern_ R Finger2
       parentName: wivern_ R Hand
-      position: {x: -0.577782, y: 0.000042858122, z: -0.044769287}
+      position: {x: -0.5777814, y: 0.00004283905, z: -0.044769134}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: wivern_ R Finger21
       parentName: wivern_ R Finger2
-      position: {x: -2.9686654, y: 0, z: -0.00000061035155}
+      position: {x: -2.9686654, y: 0.000000028610229, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      scale: {x: 1, y: 1, z: 1}
     - name: wivern_ R Finger22
       parentName: wivern_ R Finger21
-      position: {x: -2.6687262, y: 0, z: 0}
+      position: {x: -2.668725, y: 0, z: -0.00000061035155}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+      scale: {x: 0.9999999, y: 1, z: 1}
     - name: wivern_ R Finger3
       parentName: wivern_ R Hand
-      position: {x: -0.5251892, y: -0.00081615447, z: -0.32873642}
+      position: {x: -0.5251892, y: -0.00081615447, z: -0.32873687}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+      scale: {x: 0.99999994, y: 0.9999999, z: 1}
     - name: wivern_ R Finger31
       parentName: wivern_ R Finger3
-      position: {x: -1.9235452, y: 0, z: 0}
+      position: {x: -1.9235452, y: 0, z: 0.00000061035155}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+      scale: {x: 0.99999994, y: 0.9999999, z: 1}
     - name: wivern_ R Finger32
       parentName: wivern_ R Finger31
-      position: {x: -2.187103, y: 0.000000038146972, z: -0.00000061035155}
+      position: {x: -2.1871033, y: 0, z: -0.00000061035155}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
     - name: wivern_ Tail
       parentName: wivern_ Spine
       position: {x: 1.4836688, y: -0.18058105, z: -0.0000004956109}

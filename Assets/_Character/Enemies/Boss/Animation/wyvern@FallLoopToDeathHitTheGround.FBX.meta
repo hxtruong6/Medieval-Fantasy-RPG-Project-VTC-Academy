@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a099884326fe2c542a266c794f82349d
+guid: 0f776c810c91f3a42b3dc12ac3590fdb
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -203,7 +203,7 @@ ModelImporter:
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
-    animationWrapMode: 2
+    animationWrapMode: 1
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
