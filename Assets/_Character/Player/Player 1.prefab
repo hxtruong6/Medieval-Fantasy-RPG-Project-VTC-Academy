@@ -3054,13 +3054,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1024721158545564}
-  m_LocalRotation: {x: -0.04965328, y: -0.7492372, z: -0.049246732, w: 0.6585993}
-  m_LocalPosition: {x: -0.182, y: 0.016, z: -0.027}
+  m_LocalRotation: {x: 0.3859103, y: -0.65124094, z: -0.33310887, w: 0.5621361}
+  m_LocalPosition: {x: -0.283, y: 0.03, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4070363541560036}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: -8.001, y: -97.406006, z: 0.55200005}
+  m_LocalEulerAnglesHint: {x: 0, y: -98.4, z: -61.3}
 --- !u!4 &4793512173102452
 Transform:
   m_ObjectHideFlags: 1
@@ -3938,12 +3938,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71117c36d95366244a398e1259408410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criticalHitChance: 1
+  criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   currentWeaponConfig: {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8,
     type: 2}
   currentProjectileConfig: {fileID: 11400000, guid: c8ef703c498a67d4db01a4a3e3bd12e6,
     type: 2}
+  canAttack: 1
 --- !u!114 &114298108163537292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3969,9 +3970,21 @@ MonoBehaviour:
   meleeWeaponConfig: {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8, type: 2}
   rangedWeaponConfig: {fileID: 11400000, guid: fcac733c874429948a3a6c5d5ded89bd, type: 2}
   switchWeaponCoolDownTime: 1.5
-  switchWeaponText: {fileID: 0}
+  switchWeaponPanel: {fileID: 0}
   currentWeaponImage: {fileID: 0}
   nextWeaponImage: {fileID: 0}
+  amountOfSmallHealthPotion: 5
+  amountOfLargeHealthPotion: 5
+  amountOfSmallManaPotion: 5
+  amountOfLargeManaPotion: 5
+  smallHealthImage: {fileID: 0}
+  textSmallHPotion: {fileID: 0}
+  largeHealthImage: {fileID: 0}
+  textLargeHPotion: {fileID: 0}
+  smallManaImage: {fileID: 0}
+  textSmallMPotion: {fileID: 0}
+  largeManaImage: {fileID: 0}
+  textLargeMPotion: {fileID: 0}
 --- !u!114 &114371592975599224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4035,7 +4048,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c278776634989418cb1603aa6f4462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickItemRadius: 2.5
+  pickItemRadius: 3
+  switchWeaponKey: 9
+  meleeAOESkillKey: 113
+  rangedAOESkillKey: 119
+  useSmallHealthKey: 49
+  useLargeHealthKey: 50
+  useSmallManaKey: 51
+  useLargeManaKey: 52
 --- !u!114 &114672765092337464
 MonoBehaviour:
   m_ObjectHideFlags: 1

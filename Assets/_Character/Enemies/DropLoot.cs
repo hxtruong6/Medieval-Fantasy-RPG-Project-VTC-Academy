@@ -50,7 +50,7 @@ public class DropLoot : MonoBehaviour
                     weaponPrefab.transform.rotation,
                     GameObject.FindGameObjectWithTag(TEMP_OBJECTS_TAG).transform);
 
-        dropItemObject.layer = DROP_ITEM_LAYER;
+        //dropItemObject.layer = DROP_ITEM_LAYER;
         dropItemObject.AddComponent<LootItem>();
         dropItemObject.GetComponent<LootItem>().SetDropWeaponConfig(weaponConfig);
 

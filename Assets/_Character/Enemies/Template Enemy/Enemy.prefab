@@ -2738,6 +2738,7 @@ MonoBehaviour:
   currentWeaponConfig: {fileID: 11400000, guid: fa315f5d65e7a7e4c8f78743c384a5a5,
     type: 2}
   currentProjectileConfig: {fileID: 0}
+  canAttack: 1
 --- !u!114 &114433243277102902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2805,14 +2806,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df79457e282ff2e4297855a2d6658017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropChance: 1
   weaponList:
   - {fileID: 11400000, guid: 00226377cd2a2c6459c53bc00744a48e, type: 2}
   - {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8, type: 2}
-  itemList: []
-  minWeaponDrop: 1
-  maxWeaponDrop: 2
-  maxItemDrop: 0
+  healthPotionList:
+  - {fileID: 11400000, guid: c3b071f5dc7c3b34495a715670f5521d, type: 2}
+  - {fileID: 11400000, guid: b86a7e8f01ae23b44a4927f43a9f06d2, type: 2}
+  manaPotionList:
+  - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
+  - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
+  minWeaponDrop: 0
+  maxWeaponDrop: 0
+  minHealthDrop: 5
+  maxHealthDrop: 5
+  minManaDrop: 1
+  maxManaDrop: 3
 --- !u!114 &114751819948934152
 MonoBehaviour:
   m_ObjectHideFlags: 1
