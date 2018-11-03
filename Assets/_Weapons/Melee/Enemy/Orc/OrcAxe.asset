@@ -16,9 +16,7 @@ MonoBehaviour:
   weaponPrefab: {fileID: 1652450787965636, guid: bc022b2efa42fa646bad3e13c892f080,
     type: 2}
   attackAnimations:
-  - {fileID: 7400000, guid: f50fb31ed4e32cf4192033a45e0fa1bd, type: 3}
   - {fileID: 7400000, guid: c0a3774fd41baab4281f1ce0adff6f0c, type: 3}
-  - {fileID: 7400000, guid: f74815380b1a9d347afcd5cb2ad2cbde, type: 3}
   minTimeBetweenHits: 2
   maxAttackRange: 2
   minDamage: 6
@@ -30,3 +28,4 @@ MonoBehaviour:
   destroyParticleAfterSec: 1
   attackAnimSpeedMultiplier: 0.5
   weaponIcon: {fileID: 0}
+  dropParticlePrefab: {fileID: 0}

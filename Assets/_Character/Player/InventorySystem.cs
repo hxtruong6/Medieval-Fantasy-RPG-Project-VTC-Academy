@@ -9,29 +9,93 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] WeaponConfig meleeWeaponConfig;
     [SerializeField] WeaponConfig rangedWeaponConfig;
     [SerializeField] float switchWeaponCoolDownTime = 3f;
-    [SerializeField] GameObject switchWeaponText;
+    [SerializeField] GameObject switchWeaponPanel;
     [SerializeField] Image currentWeaponImage;
     [SerializeField] Image nextWeaponImage;
+    [SerializeField] int amountOfSmallHealthPotion;   
+    [SerializeField] int amountOfLargeHealthPotion;   
+    [SerializeField] int amountOfSmallManaPotion;  
+    [SerializeField] int amountOfLargeManaPotion;
+    [SerializeField] Image smallHealthImage;
+    public Text textSmallHPotion;
+    [SerializeField] Image largeHealthImage;
+    public Text textLargeHPotion;
+    [SerializeField] Image smallManaImage;
+    public Text textSmallMPotion;
+    [SerializeField] Image largeManaImage;
+    public Text textLargeMPotion;
+
 
     WeaponSystem weaponSystem;
     float? lastSwitchWeaponTime;
     float hideSwitchWeaponTextTime;
+    GameManager gameManager;
 
     public WeaponConfig GetEquippedMeleeWeapon() { return meleeWeaponConfig; }
 
     public WeaponConfig GetEquippedRangedWeapon() { return rangedWeaponConfig; }
 
+    public int AmountOfSmallHPotion
+    {
+        get { return amountOfSmallHealthPotion; }
+
+        set
+        {
+            amountOfSmallHealthPotion = value;
+            textSmallHPotion.text = amountOfSmallHealthPotion.ToString();
+        }
+    }
+
+    public int AmountOfLargeHPotion
+    {
+        get { return amountOfLargeHealthPotion; }
+
+        set
+        {
+            amountOfLargeHealthPotion = value;
+            textLargeHPotion.text = amountOfLargeHealthPotion.ToString();
+        }
+    }
+
+    public int AmountOfSmallMPotion
+    {
+        get { return amountOfSmallManaPotion; }
+
+        set
+        {
+            amountOfSmallManaPotion = value;
+            textSmallMPotion.text = amountOfSmallManaPotion.ToString();
+        }
+    }
+
+    public int AmountOfLargeMPotion
+    {
+        get { return amountOfLargeManaPotion; }
+
+        set
+        {
+            amountOfLargeManaPotion = value;
+            textLargeMPotion.text = amountOfLargeManaPotion.ToString();
+        }
+    }
+
     void Start()
     {
         weaponSystem = GetComponent<WeaponSystem>();
+        gameManager = FindObjectOfType<GameManager>();
+
         UpdateWeaponIcons();
+        textSmallHPotion.text = AmountOfSmallHPotion.ToString();
+        textLargeHPotion.text = amountOfLargeHealthPotion.ToString();
+        textSmallMPotion.text = amountOfSmallManaPotion.ToString();
+        textLargeMPotion.text = amountOfLargeManaPotion.ToString();
     }
 
     void Update()
     {
         if (Time.time >= hideSwitchWeaponTextTime)
         {
-            switchWeaponText.SetActive(false);
+            switchWeaponPanel.SetActive(false);
         }
     }
 
@@ -48,7 +112,7 @@ public class InventorySystem : MonoBehaviour
 
     private void ShowSwitchWeaponText()
     {
-        switchWeaponText.SetActive(true);
+        switchWeaponPanel.SetActive(true);
         hideSwitchWeaponTextTime = Time.time + switchWeaponCoolDownTime;
     }
 
@@ -69,13 +133,11 @@ public class InventorySystem : MonoBehaviour
         return currentWeapon;
     }
 
-    IEnumerator SwitchWeaponCoolDown()
+    IEnumerator DisableIconForAPeriod(Image icon, float disableTime)
     {
-        currentWeaponImage.GetComponent<Button>().interactable = false;
-        nextWeaponImage.GetComponent<Button>().interactable = false;
-        yield return new WaitForSeconds(switchWeaponCoolDownTime);
-        currentWeaponImage.GetComponent<Button>().interactable = true;
-        nextWeaponImage.GetComponent<Button>().interactable = true;
+        icon.GetComponent<Button>().interactable = false;
+        yield return new WaitForSeconds(disableTime);
+        icon.GetComponent<Button>().interactable = true;
     }
 
     public void SwitchWeapon()
@@ -83,7 +145,7 @@ public class InventorySystem : MonoBehaviour
         if (lastSwitchWeaponTime == null ||
             Time.time - lastSwitchWeaponTime >= switchWeaponCoolDownTime)
         {
-            switchWeaponText.SetActive(false);
+            switchWeaponPanel.SetActive(false);
             weaponSystem.CancleAction();
             weaponSystem.DestroyWeaponObject();
 
@@ -92,22 +154,53 @@ public class InventorySystem : MonoBehaviour
             weaponSystem.PutWeaponInHand(currentWeapon);
 
             UpdateWeaponIcons();
-            StartCoroutine(SwitchWeaponCoolDown());
+            StartCoroutine(DisableIconForAPeriod(currentWeaponImage, switchWeaponCoolDownTime));
+            StartCoroutine(DisableIconForAPeriod(nextWeaponImage, switchWeaponCoolDownTime));
             lastSwitchWeaponTime = Time.time;
         }
         else
         {
             ShowSwitchWeaponText();
         }
-    } 
+    }
     
-    public void PickUpNewWeapon(DropItem dropItem)
+    public void PickUpNewItem(LootItem newItem)
     {
-        if (dropItem.gameObject == null)
+        if (newItem.isPicked)
             return;
 
-        var newWeapon = dropItem.GetDropItemWeaponConfig();
-        bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();
+        if (newItem.GetDropWeaponConfig())
+        {
+            PickUpNewWeapon(newItem);
+        }
+        else
+        {         
+            if (newItem.GetDropPotionConfig() == gameManager.smallHealthPotion)
+            {
+                AmountOfSmallHPotion += 1;
+            }
+            if(newItem.GetDropPotionConfig() == gameManager.largeHealthPotion)
+            {
+                AmountOfLargeHPotion += 1;
+            }
+            if(newItem.GetDropPotionConfig() == gameManager.smallManaPotion)
+            {
+                AmountOfSmallMPotion += 1;
+            }
+            if(newItem.GetDropPotionConfig() == gameManager.largeManaPotion)
+            {
+                AmountOfLargeMPotion += 1;
+            }                     
+        }
+        newItem.isPicked = true;
+        Destroy(newItem.gameObject);
+    }
+    
+    private void PickUpNewWeapon(LootItem lootWeapon)
+    {
+        transform.LookAt(lootWeapon.gameObject.transform);
+        var newWeapon = lootWeapon.GetDropWeaponConfig();
+        bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();      
 
         if (newWeapon.IsMeleeWeapon())
         {
@@ -123,6 +216,49 @@ public class InventorySystem : MonoBehaviour
             weaponSystem.PutWeaponInHand(newWeapon);
         }
         UpdateWeaponIcons();
-        Destroy(dropItem.gameObject);
+    }
+
+    public void UseSmallHealthPotion()
+    {
+        if (amountOfSmallHealthPotion <= 0 || !smallHealthImage.GetComponent<Button>().interactable)
+            return;
+
+        var amount = gameManager.smallHealthPotion.GetRestoreAmount();
+        GetComponent<HealthSystem>().RestoreAmount(amount);
+        AmountOfSmallHPotion -= 1;
+        StartCoroutine(DisableIconForAPeriod(smallHealthImage, gameManager.smallHealthPotion.GetUseCoolDown()));
+    }
+
+    public void UseLargeHealthPotion()
+    {
+        if (amountOfLargeHealthPotion <= 0 || !largeHealthImage.GetComponent<Button>().interactable)
+            return;
+
+        var percentage = gameManager.largeHealthPotion.GetRestorePercentage();
+        GetComponent<HealthSystem>().RestorePercentage(percentage);
+        AmountOfLargeHPotion -= 1;
+        StartCoroutine(DisableIconForAPeriod(largeHealthImage, gameManager.largeHealthPotion.GetUseCoolDown()));
+    }
+
+    public void UseSmallManaPotion()
+    {
+        if (amountOfSmallManaPotion <= 0 || !smallManaImage.GetComponent<Button>().interactable)
+            return;
+
+        var amount = gameManager.smallManaPotion.GetRestoreAmount();
+        GetComponent<EnergySystem>().RestoreAmount(amount);
+        AmountOfSmallMPotion -= 1;
+        StartCoroutine(DisableIconForAPeriod(smallManaImage, gameManager.smallManaPotion.GetUseCoolDown()));
+    }
+
+    public void UseLargeManaPotion()
+    {
+        if (amountOfLargeManaPotion <= 0 || !largeManaImage.GetComponent<Button>().interactable)
+            return;
+
+        var percentage = gameManager.largeManaPotion.GetRestorePercentage();
+        GetComponent<EnergySystem>().RestorePercentage(percentage);
+        AmountOfLargeMPotion -= 1;
+        StartCoroutine(DisableIconForAPeriod(largeManaImage, gameManager.largeManaPotion.GetUseCoolDown()));
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class MeleeAreaEffectBehaviour : AbilityBehaviour
 {
     float damageToDeal = 0;
-    GameObject target;
 
     public override void Use(AbilityUseParams useParams)
     {
@@ -17,12 +16,12 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
     private void GetReferences(AbilityUseParams useParams)
     {
         damageToDeal = useParams.baseDamage + (config as MeleeAreaEffectConfig).GetDamageToEachTarget();
-        target = useParams.target;
     }  
 
     private void DealRadialDamage()
     {
-        //Static sphere cast for targets
+        GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
+
         PlayEffectOnSelf(gameObject);
         RaycastHit[] hits = Physics.SphereCastAll
         (

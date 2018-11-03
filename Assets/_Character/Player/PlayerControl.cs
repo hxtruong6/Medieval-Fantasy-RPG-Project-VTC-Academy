@@ -5,17 +5,21 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] float pickItemRadius = 2.5f;
+    [SerializeField] KeyCode switchWeaponKey = KeyCode.Tab;
+    [SerializeField] KeyCode meleeAOESkillKey = KeyCode.Q;
+    [SerializeField] KeyCode rangedAOESkillKey = KeyCode.W;
+    [SerializeField] KeyCode useSmallHealthKey = KeyCode.Alpha1;
+    [SerializeField] KeyCode useLargeHealthKey = KeyCode.Alpha2;
+    [SerializeField] KeyCode useSmallManaKey = KeyCode.Alpha3;
+    [SerializeField] KeyCode useLargeManaKey = KeyCode.Alpha4;
 
     Character character;
     Enemy enemy;
-    DropItem dropItem;
     WeaponSystem weaponSystem;
     InventorySystem inventorySystem;   
     SpecialAbilities abilities;
 
-    KeyCode switchWeaponKey = KeyCode.Tab;
-    KeyCode meleeAOESkillKey = KeyCode.Q;
-    KeyCode rangedAOESkillKey = KeyCode.W;
+    
 
     bool isAlive = true;
 
@@ -58,6 +62,24 @@ public class PlayerControl : MonoBehaviour
         {
             UseRangedAOESkill();
         }
+
+        if(Input.GetKeyDown(useSmallHealthKey))
+        {
+            inventorySystem.UseSmallHealthPotion();
+        }
+        if (Input.GetKeyDown(useLargeHealthKey))
+        {
+            inventorySystem.UseLargeHealthPotion();
+        }
+
+        if (Input.GetKeyDown(useSmallManaKey))
+        {
+            inventorySystem.UseSmallManaPotion();
+        }
+        if (Input.GetKeyDown(useLargeManaKey))
+        {
+            inventorySystem.UseLargeManaPotion();
+        }
     }
 
     private void UseRangedAOESkill()
@@ -68,18 +90,12 @@ public class PlayerControl : MonoBehaviour
             UseAoESkill(3);
     }
 
-    private bool IsItemInPickUpRange(GameObject target)
-    {
-        float distanceToTarget = (target.transform.position - transform.position).magnitude;
-        return distanceToTarget <= pickItemRadius;
-    }
-
     private bool CheckAttackConditions(Enemy enemyToCheck)
     {
         if (!isAlive)
             return false;
 
-        if (enemyToCheck.GetComponent<HealthSystem>().healthAsPercentage <= 0)
+        if (enemyToCheck.GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
             if (enemyToCheck == enemy)
                 enemy.GetComponent<InteractiveEnemy>().HighLight(false);
@@ -88,20 +104,24 @@ public class PlayerControl : MonoBehaviour
         return true;
     }
 
-    void OnMouseOverDropItem(DropItem itemToSet)
+    private bool IsItemInPickUpRange(GameObject target)
+    {
+        float distanceToTarget = (target.transform.position - transform.position).magnitude;
+        return distanceToTarget <= pickItemRadius;
+    }
+
+    void OnMouseOverDropItem(LootItem itemToPick)
     {
         if (!isAlive)
             return;
 
-        dropItem = itemToSet;
-
-        if (Input.GetMouseButton(0) && IsItemInPickUpRange(dropItem.gameObject))
+        if (Input.GetMouseButtonDown(0) && IsItemInPickUpRange(itemToPick.gameObject))
         {
-            inventorySystem.PickUpNewWeapon(dropItem);
+            inventorySystem.PickUpNewItem(itemToPick);
         }
-        else if (Input.GetMouseButton(0) && !IsItemInPickUpRange(dropItem.gameObject))
+        else if (Input.GetMouseButtonDown(0) && !IsItemInPickUpRange(itemToPick.gameObject))
         {
-            StartCoroutine(MoveAndPickUpItem(dropItem));
+            StartCoroutine(MoveAndPickUpItem(itemToPick));
         }
     }
 
@@ -133,6 +153,9 @@ public class PlayerControl : MonoBehaviour
 
     private void NormalAttack(Enemy enemy)
     {
+        if (!weaponSystem.canAttack)
+            return;
+
         StopCurrentAction();
         StopMoving();
         transform.LookAt(enemy.transform);
@@ -141,6 +164,8 @@ public class PlayerControl : MonoBehaviour
 
     private void UsePowerAttack(Enemy target)
     {
+        StopMoving();
+        StopCurrentAction();
         abilities.SetSkillTarget(target.gameObject);
         int skillIndex = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() ? 0 : 1;
         abilities.AttemptSpecialAbility(skillIndex);
@@ -148,6 +173,8 @@ public class PlayerControl : MonoBehaviour
 
     private void UseAoESkill(int skillIndex)
     {
+        StopMoving();
+        StopCurrentAction();
         abilities.AttemptSpecialAbility(skillIndex);
     }
 
@@ -190,7 +217,7 @@ public class PlayerControl : MonoBehaviour
                 yield return null;
             }
         }
-        if(target.GetComponent<DropItem>())
+        if(target.GetComponent<LootItem>())
         {
             while (!IsItemInPickUpRange(target.gameObject))
             {
@@ -214,10 +241,10 @@ public class PlayerControl : MonoBehaviour
         UsePowerAttack(target);
     }
 
-    IEnumerator MoveAndPickUpItem(DropItem item)
+    IEnumerator MoveAndPickUpItem(LootItem item)
     {
         yield return StartCoroutine(MoveToTarget(item.gameObject));
-        inventorySystem.PickUpNewWeapon(item);
+        inventorySystem.PickUpNewItem(item);
     }
 
     private void IdlingState()

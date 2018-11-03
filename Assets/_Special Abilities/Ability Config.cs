@@ -17,13 +17,13 @@ public struct AbilityUseParams
 public abstract class AbilityConfig : ScriptableObject
 {
     [Header("Special Ability General")]
-    [SerializeField] float energyCost = 10f; 
+    [SerializeField] float energyCost = 10f;
     [SerializeField] AnimationClip abilityAnimation;
     [SerializeField] AudioClip[] audioClips;
     [SerializeField] float coolDownTime;
     [SerializeField] GameObject effectOnSelf;
-    [SerializeField] GameObject effectOnWeapon = null;
-    [SerializeField] GameObject effectOnEnemy = null;
+    [SerializeField] GameObject effectOnWeapon;
+    [SerializeField] GameObject effectOnEnemy;
 
     protected AbilityBehaviour behaviour;
     float? lastUseTime = null;
@@ -48,7 +48,7 @@ public abstract class AbilityConfig : ScriptableObject
         return false;
     }
 
-    public float GetEnergyCost() { return energyCost; }   
+    public float GetEnergyCost() { return energyCost; }
 
     public AudioClip GetRandomAbilitySound()
     {
@@ -63,13 +63,7 @@ public abstract class AbilityConfig : ScriptableObject
 
     public GameObject GetEffectOnSelf() { return effectOnSelf; }
 
-    public GameObject GetEffectOnWeapon()
-    {
-        return effectOnWeapon;
-    }
+    public GameObject GetEffectOnWeapon() { return effectOnWeapon; }
 
-    public GameObject GetEffectOnEnemy()
-    {
-        return effectOnEnemy;
-    }
+    public GameObject GetEffectOnEnemy() { return effectOnEnemy; }
 }

@@ -9,7 +9,7 @@ public class WeaponSystem : MonoBehaviour
 
     [SerializeField] WeaponConfig currentWeaponConfig;
     [SerializeField] ProjectileConfig currentProjectileConfig;
-
+    [HideInInspector] public bool canAttack = true;
 
     const string TEMP_OBJECTS = "TempObjects";
     const string ATTACK_TRIGGER = "Attack";
@@ -187,10 +187,14 @@ public class WeaponSystem : MonoBehaviour
         target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
     }
 
-    public void StopAttacking()
+    IEnumerator ChangeAttackStatus()
     {
-        //TODO impliment
+        float timeToWait = attackClip.length + currentWeaponConfig.GetMinTimeBetweenHits();
+        canAttack = false;
+        yield return new WaitForSeconds(timeToWait);
+        canAttack = true;
     }
+
 
     public void AttackTarget(GameObject targetToAttack)
     {
@@ -199,8 +203,8 @@ public class WeaponSystem : MonoBehaviour
 
         target = targetToAttack;
 
-        bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage > 0;
-        bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > 0;
+        bool attackerStillAlive = GetComponent<HealthSystem>().HealthAsPercentage > 0;
+        bool targetStillAlive = target.GetComponent<HealthSystem>().HealthAsPercentage > 0;
 
         if (attackerStillAlive && targetStillAlive)
         {
@@ -209,6 +213,7 @@ public class WeaponSystem : MonoBehaviour
 
             if (Time.time - lastHitTime >= timeToWait)
             {
+                StartCoroutine(ChangeAttackStatus());
                 lastHitTime = Time.time;
                 RunAnimationAttackOnce();
             }

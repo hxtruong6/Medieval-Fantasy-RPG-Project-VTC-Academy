@@ -21,6 +21,7 @@ public class WeaponConfig : ScriptableObject
     [SerializeField] float destroyParticleAfterSec;
     [SerializeField] float attackAnimSpeedMultiplier = 1;
     [SerializeField] Sprite weaponIcon;
+    [SerializeField] GameObject dropParticlePrefab;
 
     public float GetMinTimeBetweenHits() { return minTimeBetweenHits; }
 
@@ -49,4 +50,6 @@ public class WeaponConfig : ScriptableObject
     public float GetAttackAnimSpeedMultiplier() { return attackAnimSpeedMultiplier; }
 
     public Sprite GetWeaponIcon() { return weaponIcon; }
+
+    public GameObject GetDropParticlePrefab() { return dropParticlePrefab; }
 }

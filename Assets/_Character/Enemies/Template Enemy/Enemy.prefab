@@ -605,6 +605,8 @@ GameObject:
   - component: {fileID: 114567848365195938}
   - component: {fileID: 114429576729298094}
   - component: {fileID: 114007783729722852}
+  - component: {fileID: 65650267529211470}
+  - component: {fileID: 114606789809359950}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1993,7 +1995,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426971202604980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.86, y: 0, z: 1.5975189}
+  m_LocalPosition: {x: -3.01, y: 0, z: 1.5975189}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4607892170150080}
@@ -2529,6 +2531,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &65650267529211470
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426971202604980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.76, y: 1.9, z: 1}
+  m_Center: {x: 0, y: 1.08, z: 0}
 --- !u!82 &82256693711202160
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2651,6 +2665,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: 2220ace89749b604899705d43b03f32d, type: 2}
   outlineMaterial: {fileID: 2100000, guid: 5df4d7978bee9ed4d9c3171a2415e94f, type: 2}
   enemyCanvas: {fileID: 1513741803827028}
+  isSelected: 0
 --- !u!114 &114135385436711784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2723,6 +2738,7 @@ MonoBehaviour:
   currentWeaponConfig: {fileID: 11400000, guid: fa315f5d65e7a7e4c8f78743c384a5a5,
     type: 2}
   currentProjectileConfig: {fileID: 0}
+  canAttack: 1
 --- !u!114 &114433243277102902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2778,7 +2794,33 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
   deathSounds:
   - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
-  deadVanishAfter: 6
+  deadVanishAfter: 100
+--- !u!114 &114606789809359950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426971202604980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df79457e282ff2e4297855a2d6658017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponList:
+  - {fileID: 11400000, guid: 00226377cd2a2c6459c53bc00744a48e, type: 2}
+  - {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8, type: 2}
+  healthPotionList:
+  - {fileID: 11400000, guid: c3b071f5dc7c3b34495a715670f5521d, type: 2}
+  - {fileID: 11400000, guid: b86a7e8f01ae23b44a4927f43a9f06d2, type: 2}
+  manaPotionList:
+  - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
+  - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
+  minWeaponDrop: 0
+  maxWeaponDrop: 0
+  minHealthDrop: 5
+  maxHealthDrop: 5
+  minManaDrop: 1
+  maxManaDrop: 3
 --- !u!114 &114751819948934152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2823,19 +2865,28 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426971202604980}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 807b552d48654964392d5d00aaaa9835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 3
-  fleeRadius: 4
+  seeking: 0
+  fleeing: 0
+  seekingSpeed: 8
+  fleeingSpeed: 8
+  patrolSpeed: 0.5
+  seekingRadius: 8
+  fleeingRadius: 5
+  patrollRadius: 5
+  chasingRadius: 10
+  idleTimeLimited: 5
+  chasingTimeLimited: 10
+  patrolTimeLimited: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 2
   waitAtWaypointTime: 3
-  radiusThreshold: 1
-  enableFleeing: 0
-  state: 0
+  angleAbleLooking: 30
+  radiusAbleLooking: 10
 --- !u!136 &136038131391907074
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -727,6 +727,11 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114490219547054678, guid: f1456ee600a611b42a91c8c9fdc1e7f7,
+        type: 2}
+      propertyPath: switchWeaponPanel
+      value: 
+      objectReference: {fileID: 537678731}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1456ee600a611b42a91c8c9fdc1e7f7, type: 2}
   m_IsPrefabParent: 0
@@ -5142,6 +5147,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e8cbac9550cec674baa1b39f86ea920e, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &537678731 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1997481165457492, guid: f1456ee600a611b42a91c8c9fdc1e7f7,
+    type: 2}
+  m_PrefabInternal: {fileID: 159681347}
 --- !u!1 &543629787
 GameObject:
   m_ObjectHideFlags: 0
@@ -5303,6 +5313,10 @@ Prefab:
     - target: {fileID: 4058025957304892, guid: 2e101446062166d4394685d2a9b95e01, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1883047411280228, guid: 2e101446062166d4394685d2a9b95e01, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e101446062166d4394685d2a9b95e01, type: 2}

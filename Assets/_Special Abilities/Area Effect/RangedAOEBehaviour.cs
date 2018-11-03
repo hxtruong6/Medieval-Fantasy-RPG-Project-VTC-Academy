@@ -5,13 +5,10 @@ using UnityEngine;
 public class RangedAOEBehaviour : AbilityBehaviour
 {
     const string TEMP_OBJECTS = "TempObjects";
-    AbilityUseParams useParams;
     float numberOfArrows = 7;
 
     public override void Use(AbilityUseParams useParamsToSet)
     {
-        useParams = useParamsToSet;
-        var weapon = GetComponent<WeaponSystem>();
         PlayAbilitySound();
         PlayAbilityAnimation();
     }
@@ -25,6 +22,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
 
         var projectile = projectileObject.GetComponentInChildren<PierceProjectile>();
         projectile.SetProjectileConfig(projectileConfig);
+        projectile.SetEfectOnContact(GetEffectOnEnemy());
         projectile.SetShooter(gameObject);
 
         Vector3 rotationVector = new Vector3(0, rotationY, 0);
@@ -51,7 +49,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
     private void SetProjectileDirection(ProjectileConfig configToUse, float rotationY)
     {
         var projectileObject = SpawnProjectile(configToUse, rotationY);
-
+            
         var firingPos = GetComponentInChildren<ArrowShootingPosition>();
         var target = firingPos.transform.forward * 10000;
         target.y = GetComponentInChildren<MainBody>().GetComponent<Renderer>().bounds.center.y;
@@ -61,9 +59,11 @@ public class RangedAOEBehaviour : AbilityBehaviour
                                       configToUse.GetProjectileSpeed(),
                                       configToUse.GetVanishTime()));
     }
-
+    
     private void ShootAOEAttack()
     {
+        GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
+
         SetProjectileDirection((config as RangedAOEConfig).GetProjectileConfig(), 0);
         float degree = (config as RangedAOEConfig).GetDegreeBetweenArrows();
         for (int i = 1; i <= (numberOfArrows - 1) / 2; i++)

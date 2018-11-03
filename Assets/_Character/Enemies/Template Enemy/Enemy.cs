@@ -95,8 +95,8 @@ public class Enemy : MonoBehaviour
     public void PlayerOrEnemyAliveToContinue()
     {
         //player = GameObject.FindObjectOfType<PlayerControl>();
-        if (player.GetComponent<HealthSystem>().healthAsPercentage <= 0 ||
-            GetComponent<HealthSystem>().healthAsPercentage <= 0)
+        if (player.GetComponent<HealthSystem>().HealthAsPercentage <= 0 ||
+            GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
             Destroy(this);//to stop enemies from continue moving even when died
         }

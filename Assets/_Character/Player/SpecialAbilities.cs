@@ -102,9 +102,7 @@ public class SpecialAbilities : MonoBehaviour
             var abilityParams = new AbilityUseParams(target, characterDamage + weaponDamage);
 
             if (abilities[abilityIndex].Use(abilityParams))
-            {
-                energySystem.ConsumeEnergy(energyCost);
-
+            {              
                 var skillCoolDown = abilities[abilityIndex].GetCoolDownTime();
                 var skillIcon = abilityIcons[abilityIndex];
                 StartCoroutine(DisableIconForAPeriod(skillIcon, skillCoolDown));

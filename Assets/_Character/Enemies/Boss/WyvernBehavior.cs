@@ -57,8 +57,8 @@ public class WyvernBehavior : MonoBehaviour
 
     public void PlayerOrEnemyAliveToContinue()
     {
-        if (player.GetComponent<HealthSystem>().healthAsPercentage <= 0 ||
-           wyvernHealth.healthAsPercentage <= 0)
+        if (player.gameObject.GetComponent<HealthSystem>().HealthAsPercentage <= 0 ||
+           wyvernHealth.HealthAsPercentage <= 0)
         {
             Destroy(this);//to stop enemies from continue moving even when died
         }

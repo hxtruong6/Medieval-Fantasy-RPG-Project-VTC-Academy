@@ -15,6 +15,8 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] AudioClip[] deathSounds;
     [SerializeField] float deadVanishAfter = 2f;
 
+    DamageTextSpawner damageTextSpawner;
+
     const string DEATH_TRIGGER = "Death";
     const string ENEMY_UI = "Enemy Canvas";
     const string TEMP_OBJECTS = "TempObjects";
@@ -25,12 +27,13 @@ public class HealthSystem : MonoBehaviour
     float currentHealthPoints;
     float flashTime = 2f;
 
-    public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
+    public float HealthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        damageTextSpawner = GetComponent<DamageTextSpawner>();
 
         SetCurrentMaxHealth();
     }
@@ -49,7 +52,7 @@ public class HealthSystem : MonoBehaviour
     {
         if (healthBar)
         {
-            healthBar.fillAmount = healthAsPercentage;
+            healthBar.fillAmount = HealthAsPercentage;
         }
     }
 
@@ -60,13 +63,25 @@ public class HealthSystem : MonoBehaviour
         bool characterDies = (currentHealthPoints - damage) <= 0;
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         //play sound
+        //damageTextSpawner.Create(damage, transform.position);
         var clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        audioSource.PlayOneShot(clip);
+        audioSource.PlayOneShot(clip);   
 
         if (characterDies)
         {
             StartCoroutine(KillCharacter());
         }
+    }
+
+    public void RestoreAmount(float amount)
+    {
+        currentHealthPoints = Mathf.Clamp(currentHealthPoints + amount, 0f, maxHealthPoints);
+    }
+
+    public void RestorePercentage(int percentage)
+    {
+        float healAmount = maxHealthPoints / 100 * percentage;
+        RestoreAmount(healAmount);
     }
 
     private void FlashEnemyHealthBar()
@@ -89,14 +104,25 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator KillCharacter()
     {
-        GetComponent<CapsuleCollider>().isTrigger = true;
-        animator.SetTrigger(DEATH_TRIGGER);
         var playerComponent = GetComponent<PlayerControl>();
+
+        GetComponent<CapsuleCollider>().enabled = false;
+        if(GetComponent<BoxCollider>() && !playerComponent)
+            GetComponent<BoxCollider>().enabled = false;//TODO check with designer
+
+        animator.SetTrigger(DEATH_TRIGGER);
+        
         audioSource.Play();
         if(playerComponent)
         {
             playerComponent.Killed();
         }
+
+        if(GetComponent<DropLoot>())
+        {
+            GetComponent<DropLoot>().DropWeaponAndItem();
+        }
+
         yield return new WaitForSecondsRealtime(deadVanishAfter);
 
         if (playerComponent && playerComponent.isActiveAndEnabled)

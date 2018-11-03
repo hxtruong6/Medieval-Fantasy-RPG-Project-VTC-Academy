@@ -11,13 +11,7 @@ public class EnergySystem : MonoBehaviour
 
     float currentEnergyPoints;
 
-    float energyAsPercent
-    {
-        get
-        {
-            return currentEnergyPoints / maxEnergyPoints;
-        }
-    }
+    float EnergyAsPercent{get{return currentEnergyPoints / maxEnergyPoints;}}
 
     public float GetCurrentEnergyPoints() { return currentEnergyPoints; }
 
@@ -31,12 +25,12 @@ public class EnergySystem : MonoBehaviour
     {
         if (currentEnergyPoints < maxEnergyPoints)
         {
-            AddEnergyPoints();
+            RegenEnergyPoints();
             UpdateEnergyBar();
         }
     }
 
-    void AddEnergyPoints()
+    private void RegenEnergyPoints()
     {
         var pointsToAdd = regenPointsPerSecond * Time.deltaTime;
         currentEnergyPoints = Mathf.Clamp(currentEnergyPoints + pointsToAdd, 0, maxEnergyPoints);
@@ -49,8 +43,20 @@ public class EnergySystem : MonoBehaviour
         UpdateEnergyBar();
     }
 
+    public void RestoreAmount(float amount)
+    {
+        currentEnergyPoints = Mathf.Clamp(currentEnergyPoints + amount, 0f, maxEnergyPoints);
+        UpdateEnergyBar();
+    }
+
+    public void RestorePercentage(int percentage)
+    {
+        float restoreAmount = maxEnergyPoints / 100 * percentage;
+        RestoreAmount(restoreAmount);
+    }
+
     private void UpdateEnergyBar()
     {
-        energyBar.fillAmount = energyAsPercent;
+        energyBar.fillAmount = EnergyAsPercent;
     }
 }

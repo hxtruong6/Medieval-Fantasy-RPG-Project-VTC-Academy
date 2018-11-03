@@ -25,6 +25,7 @@ public class MeleePowerAttackBehaviour : AbilityBehaviour
 
     private void HitPowerAttack()
     {
+        GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
         PlayEffectOnEnemy(target);
         target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
     }

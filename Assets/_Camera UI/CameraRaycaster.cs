@@ -12,9 +12,9 @@ public class CameraRaycaster : MonoBehaviour {
     [SerializeField] float maxRaycastDepth = 25f;
 
     const int POTENTIALLY_WALKABLE_LAYER = 8;
-    const int DROP_ITEM = 10;
+    const int DROP_ITEM_LAYER = 10;
 
-    public delegate void OnMouseOverDropItem(DropItem item);
+    public delegate void OnMouseOverDropItem(LootItem item);
     public event OnMouseOverDropItem onMouseOverDropItem;
 
     public delegate void OnMouseOverEnemy(Enemy enemy);
@@ -29,6 +29,7 @@ public class CameraRaycaster : MonoBehaviour {
         if (EventSystem.current.IsPointerOverGameObject())
         {
             // Impliment UI interaction
+            // TODO Consider call highlight enemy/loot from here
         }
         else
         {
@@ -60,7 +61,7 @@ public class CameraRaycaster : MonoBehaviour {
         if (Physics.Raycast(ray, out hitInfo, maxRaycastDepth))
         {
             var gameObjectHit = hitInfo.collider.gameObject;
-            var itemHit = gameObjectHit.GetComponent<DropItem>();
+            var itemHit = gameObjectHit.GetComponent<LootItem>();
             if (itemHit)
             {
                 Cursor.SetCursor(lootCursor, cursorHotspot, CursorMode.Auto);

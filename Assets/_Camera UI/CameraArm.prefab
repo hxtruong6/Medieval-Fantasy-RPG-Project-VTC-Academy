@@ -140,9 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3522005424cb794ba0106007a022011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkCursor: {fileID: 2800000, guid: f50d8b182562ada4482a04741c875aa6, type: 3}
-  enemyCursor: {fileID: 2800000, guid: b1f2d2d20f6d96d4cb8c04ddcab74bb7, type: 3}
-  unknownCursor: {fileID: 2800000, guid: 01f1f22c15f64a8498ad7225c4ae871b, type: 3}
+  walkCursor: {fileID: 2800000, guid: 990b989b4ca9095439a628a7af80dcb4, type: 3}
+  enemyCursor: {fileID: 2800000, guid: ff23d35218c96e3429ad5d7a140cacb9, type: 3}
+  unknownCursor: {fileID: 2800000, guid: 109fd538c8c79de44b6f1fc82cf9929b, type: 3}
+  lootCursor: {fileID: 2800000, guid: 21bb9f8320005c04a8224744e0b41a5e, type: 3}
   cursorHotspot: {x: 0, y: 0}
   maxRaycastDepth: 100
 --- !u!114 &114566730922714518

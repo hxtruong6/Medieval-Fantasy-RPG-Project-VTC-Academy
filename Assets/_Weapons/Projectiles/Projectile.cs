@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    const string TEMP_OBJECTS = "TempObjects";
+
     ProjectileConfig projectileConfig;
     WeaponConfig rangedWeaponConfig;
-    GameObject shooter;//who fired this projectile
+    GameObject effectOnEnemy;
+    GameObject shooter;
 
     public void SetProjectileConfig(ProjectileConfig configToSet)
     {      
@@ -18,9 +21,28 @@ public class Projectile : MonoBehaviour
         rangedWeaponConfig = configToSet;
     }
 
+    public void SetEfectOnContact(GameObject effect)
+    {
+        effectOnEnemy = effect;
+    }
+
     public void SetShooter(GameObject shooter)
     {
         this.shooter = shooter;
+    }
+
+    protected void PlayParticleEffect(GameObject target, GameObject effect)
+    {
+        var particlePrefab = effect;
+        var particleObject = Instantiate
+        (
+            particlePrefab,
+            target.transform.position,
+            particlePrefab.transform.rotation
+        );
+        particleObject.transform.parent = target.transform;
+        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        particleObject.GetComponent<ParticleSystem>().Play();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -28,22 +50,17 @@ public class Projectile : MonoBehaviour
         var layerCollidedWith = collision.gameObject.layer;
         if (shooter && layerCollidedWith != shooter.layer)
         {
-            print("Get dame");
-            DealDamage(collision.gameObject);       
+            DealDamage(collision.gameObject);
+
+            if(effectOnEnemy)
+                PlayParticleEffect(collision.gameObject, effectOnEnemy);
         }
     }
 
     private void DealDamage(GameObject objectBeingHit)
     {
-        if(objectBeingHit.GetComponent<PlayerControl>())
-        {
-            print("2");
-            
-        }
-
-        print(objectBeingHit.GetComponent<HealthSystem>());
         if (!objectBeingHit.GetComponent<HealthSystem>() ||
-            objectBeingHit.GetComponent<HealthSystem>().healthAsPercentage < 0)
+            objectBeingHit.GetComponent<HealthSystem>().HealthAsPercentage < 0)
         {
             return;
         }
@@ -62,7 +79,6 @@ public class Projectile : MonoBehaviour
         {
             shooterWeapon.SetTarget(objectBeingHit);
             shooterWeapon.Hit(rangedWeaponConfig);
-            print("Dame: " + damage);
         }
 
         Destroy(gameObject);

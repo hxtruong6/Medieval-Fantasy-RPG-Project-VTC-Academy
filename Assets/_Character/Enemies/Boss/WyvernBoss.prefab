@@ -377,9 +377,6 @@ GameObject:
   - component: {fileID: 54278831498377428}
   - component: {fileID: 82487403234085710}
   - component: {fileID: 114978331802896740}
-  - component: {fileID: 114696211584834974}
-  - component: {fileID: 114132152492509598}
-  - component: {fileID: 114009797880455686}
   m_Layer: 0
   m_Name: WyvernBoss
   m_TagString: Untagged
@@ -3277,7 +3274,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241210306296810}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -3378,22 +3375,6 @@ Animator:
     animation clip '2LegsGetHit'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114009797880455686
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241210306296810}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4390575c270ad7f419c2f83cd6339230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wingDamage: 20
-  legDamge: 15
-  tailDamage: 10
-  headDamge: 30
-  foreDamage: 15
 --- !u!114 &114015567895108234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3416,22 +3397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114132152492509598
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241210306296810}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bd72bc74b3e6d54d8346f6c2ee4f8e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackingRadius: 20
-  timeOnPlan: 10
-  timeFireAttacking: 10
-  skeletonGroup: {fileID: 1217504830142318, guid: d3339c2a920e8264984efb696e87b29d,
-    type: 2}
 --- !u!114 &114151624906656392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3567,20 +3532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dde8a14f009df94aae9f70b5433b0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114696211584834974
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241210306296810}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50e05cc1bcb02a489d7a7fa599310b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  biteDamage: 5
-  wingDamage: 6
-  fireDamage: 7
 --- !u!114 &114746560546931042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3653,7 +3604,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241210306296810}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4bcbb102272d5e4d901329708d0e461, type: 3}
   m_Name: 
