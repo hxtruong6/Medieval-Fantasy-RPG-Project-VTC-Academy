@@ -15,5 +15,6 @@ MonoBehaviour:
   restorePercentage: 50
   potionPrefab: {fileID: 1227806566928966, guid: 42748e1f85528514c96b7ab2f3d82b90,
     type: 2}
-  dropParticlePrefab: {fileID: 0}
+  dropParticlePrefab: {fileID: 1261871964191378, guid: 47536f9e78dcb214591b6114833d9eb6,
+    type: 2}
   useCoolDown: 2

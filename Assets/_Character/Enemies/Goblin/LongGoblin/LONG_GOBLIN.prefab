@@ -1065,6 +1065,7 @@ GameObject:
   - component: {fileID: 114782215563193312}
   - component: {fileID: 82723841250591836}
   - component: {fileID: 114206633220878276}
+  - component: {fileID: 114491610676325944}
   m_Layer: 9
   m_Name: LONG_GOBLIN
   m_TagString: Untagged
@@ -2636,6 +2637,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7f41fb1c670384bb26452c22313ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114491610676325944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985939858056000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df79457e282ff2e4297855a2d6658017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponList:
+  - {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8, type: 2}
+  healthPotionList:
+  - {fileID: 11400000, guid: b86a7e8f01ae23b44a4927f43a9f06d2, type: 2}
+  - {fileID: 11400000, guid: c3b071f5dc7c3b34495a715670f5521d, type: 2}
+  manaPotionList:
+  - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
+  - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
+  minWeaponDrop: 0
+  maxWeaponDrop: 1
+  minHealthDrop: 0
+  maxHealthDrop: 2
+  minManaDrop: 1
+  maxManaDrop: 2
 --- !u!114 &114634999240908244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2664,6 +2690,7 @@ MonoBehaviour:
     type: 2}
   currentProjectileConfig: {fileID: 11400000, guid: f55fd4cf8663d81448c8a66703f13518,
     type: 2}
+  canAttack: 1
 --- !u!114 &114748713566109292
 MonoBehaviour:
   m_ObjectHideFlags: 1

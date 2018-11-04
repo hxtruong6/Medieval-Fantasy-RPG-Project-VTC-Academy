@@ -29,3 +29,5 @@ MonoBehaviour:
   destroyParticleAfterSec: 5
   attackAnimSpeedMultiplier: 1
   weaponIcon: {fileID: 21300000, guid: 2c752e9990c7af24eb45d91adce11d18, type: 3}
+  dropParticlePrefab: {fileID: 1261871964191378, guid: 47536f9e78dcb214591b6114833d9eb6,
+    type: 2}
