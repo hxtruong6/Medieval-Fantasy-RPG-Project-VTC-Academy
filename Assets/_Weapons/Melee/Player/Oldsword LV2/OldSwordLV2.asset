@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629dc909419d1014ca0187f048f8db74, type: 3}
+  m_Name: OldSwordLV2
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 4780827250440542, guid: 97cc013480a3d4c499022b30c65582da,
+    type: 2}
+  weaponPrefab: {fileID: 1092640743787742, guid: 673fd32cdb5566d4eafb2e591c82d2ba,
+    type: 2}
+  attackAnimations:
+  - {fileID: 7400000, guid: c0a3774fd41baab4281f1ce0adff6f0c, type: 3}
+  minTimeBetweenHits: 0.6
+  maxAttackRange: 3
+  minDamage: 5
+  maxDamage: 15
+  isRightHandWeapon: 1
+  isMeleeWeapon: 1
+  criticalHitParticlePrefab: {fileID: 1686532574603256, guid: 0a37beb3466755b4e8f96ff49e4b1123,
+    type: 2}
+  destroyParticleAfterSec: 5
+  attackAnimSpeedMultiplier: 0.5
+  weaponIcon: {fileID: 21300000, guid: 74c87a4d4d6810d448b62d79a39e67ac, type: 3}
+  dropParticlePrefab: {fileID: 1261871964191378, guid: 47536f9e78dcb214591b6114833d9eb6,
+    type: 2}
