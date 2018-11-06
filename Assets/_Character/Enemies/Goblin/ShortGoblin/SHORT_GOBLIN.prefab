@@ -1328,7 +1328,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
   m_LocalRotation: {x: -0, y: -0.42885366, z: -0, w: 0.90337396}
-  m_LocalPosition: {x: 9.47, y: 12.497711, z: 26.46}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4207881310715370}
@@ -2506,7 +2506,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2670,10 +2670,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
   minWeaponDrop: 0
   maxWeaponDrop: 0
-  minHealthDrop: 1
-  maxHealthDrop: 2
+  minHealthDrop: 0
+  maxHealthDrop: 3
   minManaDrop: 0
-  maxManaDrop: 1
+  maxManaDrop: 2
 --- !u!114 &114263810106862894
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1328,8 +1328,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
-  m_LocalRotation: {x: -0, y: 0.98270464, z: -0, w: 0.18517986}
-  m_LocalPosition: {x: 13.33, y: 9.998169, z: 42.97}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4207881310715370}
@@ -1338,7 +1338,7 @@ Transform:
   - {fileID: 224686082259316646}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 158.65701, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4207881310715370
 Transform:
   m_ObjectHideFlags: 1
@@ -2495,7 +2495,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2709,11 +2709,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
   - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
   minWeaponDrop: 0
-  maxWeaponDrop: 1
+  maxWeaponDrop: 2
   minHealthDrop: 0
   maxHealthDrop: 2
-  minManaDrop: 1
-  maxManaDrop: 2
+  minManaDrop: 0
+  maxManaDrop: 3
 --- !u!114 &114512538930479304
 MonoBehaviour:
   m_ObjectHideFlags: 1

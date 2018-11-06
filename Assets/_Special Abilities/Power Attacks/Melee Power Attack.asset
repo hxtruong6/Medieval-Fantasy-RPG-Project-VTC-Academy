@@ -23,5 +23,5 @@ MonoBehaviour:
     type: 2}
   effectOnEnemy: {fileID: 1854895818629388, guid: 5d54d48558947c247addea11f91f25b4,
     type: 2}
-  extraDamage: 40
+  extraDamage: 50
   effectDestroyTime: 3

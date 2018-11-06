@@ -8,6 +8,7 @@ public class TimeLineController : MonoBehaviour {
     public GameObject canvasUI;
     public GameObject cameraCM;
     public GameObject follow;
+    public GameObject enemy;
     public float timeCutScene;
     public bool viewTimeLine = false;
     float timer = 0;
@@ -21,6 +22,7 @@ public class TimeLineController : MonoBehaviour {
 		if (viewTimeLine)
         {
             canvasUI.gameObject.SetActive(false);
+            enemy.gameObject.SetActive(false);
             follow.gameObject.SetActive(true);
             cameraCM.gameObject.SetActive(true);
             timeLine.Play();
@@ -29,6 +31,7 @@ public class TimeLineController : MonoBehaviour {
             {
                 viewTimeLine = false;
                 canvasUI.gameObject.SetActive(true);
+                enemy.gameObject.SetActive(true);
                 follow.gameObject.SetActive(false);
                 this.gameObject.SetActive(false);
                 Destroy(this.gameObject);

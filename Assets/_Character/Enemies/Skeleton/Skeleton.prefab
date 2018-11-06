@@ -5505,7 +5505,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
   - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
   minWeaponDrop: 0
-  maxWeaponDrop: 1
+  maxWeaponDrop: 2
   minHealthDrop: 0
   maxHealthDrop: 1
   minManaDrop: 0
