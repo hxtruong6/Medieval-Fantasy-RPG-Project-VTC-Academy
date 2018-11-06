@@ -19,9 +19,10 @@ public class SkeletonDummySpawn : MonoBehaviour
 
     private void DestroySkeletonDummy()
     {
-        Destroy(this.gameObject);
+        
         Skeleton.gameObject.SetActive(true);
-        Skeleton.transform.parent = null;
+        //Skeleton.transform.parent = null;
         Skeleton.gameObject.layer = 9;
+        Destroy(this.gameObject);
     }
 }

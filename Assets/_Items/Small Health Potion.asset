@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e09238c683bc54082a6d0a5eca9297, type: 3}
   m_Name: Small Health Potion
   m_EditorClassIdentifier: 
-  restoreAmount: 50
+  restoreAmount: 100
   restorePercentage: 0
   potionPrefab: {fileID: 1254325132770824, guid: b49507b60190304438af05c47f627279,
     type: 2}
-  dropParticlePrefab: {fileID: 0}
-  useCoolDown: 5
+  dropParticlePrefab: {fileID: 1261871964191378, guid: 47536f9e78dcb214591b6114833d9eb6,
+    type: 2}
+  useCoolDown: 3

@@ -1,0 +1,288 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: wyvernAvatar
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: wivern_
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe0
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe0/wivern_ L Toe01
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe0/wivern_ L Toe01/wivern_ L Toe02
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe1
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe1/wivern_ L Toe11
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe1/wivern_ L Toe11/wivern_ L Toe12
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe2
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe2/wivern_ L Toe21
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe2/wivern_ L Toe21/wivern_ L Toe22
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe3
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe3/wivern_ L Toe31
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ L Thigh/wivern_ L Calf/wivern_
+      L HorseLink/wivern_ L Foot/wivern_ L Toe3/wivern_ L Toe31/wivern_ L Toe32
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe0
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe0/wivern_ R Toe01
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe0/wivern_ R Toe01/wivern_ R Toe02
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe1
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe1/wivern_ R Toe11
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe1/wivern_ R Toe11/wivern_ R Toe12
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe2
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe2/wivern_ R Toe21
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe2/wivern_ R Toe21/wivern_ R Toe22
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe3
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe3/wivern_ R Toe31
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ R Thigh/wivern_ R Calf/wivern_
+      R HorseLink/wivern_ R Foot/wivern_ R Toe3/wivern_ R Toe31/wivern_ R Toe32
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger0
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger0/wivern_ L Finger01
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger0/wivern_ L Finger01/wivern_ L Finger02
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger1
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger1/wivern_ L Finger11
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger1/wivern_ L Finger11/wivern_ L Finger12
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger2
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger2/wivern_ L Finger21
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger2/wivern_ L Finger21/wivern_ L Finger22
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger3
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger3/wivern_ L Finger31
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ L Clavicle/wivern_ L UpperArm/wivern_ L Forearm/wivern_ L Hand/wivern_
+      L Finger3/wivern_ L Finger31/wivern_ L Finger32
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ Neck1
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ Neck1/wivern_ Neck2
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ Neck1/wivern_ Neck2/wivern_ Neck3
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ Neck1/wivern_ Neck2/wivern_ Neck3/wivern_ Neck4
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ Neck1/wivern_ Neck2/wivern_ Neck3/wivern_ Neck4/wivern_ Neck5
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ Neck1/wivern_ Neck2/wivern_ Neck3/wivern_ Neck4/wivern_ Neck5/wivern_
+      Head
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ Neck1/wivern_ Neck2/wivern_ Neck3/wivern_ Neck4/wivern_ Neck5/wivern_
+      Head/wivern_ Ponytail1
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger0
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger0/wivern_ R Finger01
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger0/wivern_ R Finger01/wivern_ R Finger02
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger1
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger1/wivern_ R Finger11
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger1/wivern_ R Finger11/wivern_ R Finger12
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger2
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger2/wivern_ R Finger21
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger2/wivern_ R Finger21/wivern_ R Finger22
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger3
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger3/wivern_ R Finger31
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Spine1/wivern_ Spine2/wivern_
+      Neck/wivern_ R Clavicle/wivern_ R UpperArm/wivern_ R Forearm/wivern_ R Hand/wivern_
+      R Finger3/wivern_ R Finger31/wivern_ R Finger32
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail/wivern_ Tail1
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail/wivern_ Tail1/wivern_
+      Tail2
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail/wivern_ Tail1/wivern_
+      Tail2/wivern_ Tail3
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail/wivern_ Tail1/wivern_
+      Tail2/wivern_ Tail3/wivern_ Tail4
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail/wivern_ Tail1/wivern_
+      Tail2/wivern_ Tail3/wivern_ Tail4/wivern_ Tail5
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail/wivern_ Tail1/wivern_
+      Tail2/wivern_ Tail3/wivern_ Tail4/wivern_ Tail5/wivern_ Tail6
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail/wivern_ Tail1/wivern_
+      Tail2/wivern_ Tail3/wivern_ Tail4/wivern_ Tail5/wivern_ Tail6/wivern_ Tail7
+    m_Weight: 1
+  - m_Path: wivern_/wivern_ Pelvis/wivern_ Spine/wivern_ Tail/wivern_ Tail1/wivern_
+      Tail2/wivern_ Tail3/wivern_ Tail4/wivern_ Tail5/wivern_ Tail6/wivern_ Tail7/wivern_
+      Tail8
+    m_Weight: 1
+  - m_Path: wyvern
+    m_Weight: 1

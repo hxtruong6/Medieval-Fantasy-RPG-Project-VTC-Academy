@@ -127,12 +127,12 @@ MonoBehaviour:
         saturation: 0.5
         contrast: 1.2
       channelMixer:
-        red: {x: 0.84, y: 0.02, z: 0.05}
+        red: {x: 0.89, y: 0.02, z: 0.05}
         green: {x: 0, y: 0.88, z: 0.11}
         blue: {x: -0.09, y: 0.14, z: 1.21}
         currentEditingChannel: 0
       colorWheels:
-        mode: 1
+        mode: 0
         log:
           slope: {r: 1, g: 0.98690486, b: 0.80904055, a: 0.2074936}
           power: {r: 0.87047935, g: 1, b: 0.9927328, a: -0.01665127}
