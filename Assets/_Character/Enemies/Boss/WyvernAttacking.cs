@@ -52,7 +52,7 @@ public class WyvernAttacking : MonoBehaviour
     public void FireAttacking()
     {
         currentAttacking = CurrentAttacking.FireAttacking;
-        Debug.Log("Start fire attacking");
+        //Debug.Log("Start fire attacking");
         animator.SetTrigger("enableFireAttacking");
     }
 
@@ -63,7 +63,7 @@ public class WyvernAttacking : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Collider: " + other. gameObject.tag);
+        //Debug.Log("Collider: " + other. gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
             switch (currentAttacking)
@@ -73,9 +73,11 @@ public class WyvernAttacking : MonoBehaviour
                     other.gameObject.GetComponent<HealthSystem>().TakeDamage(biteDamage);
                     break;
                 case CurrentAttacking.WingAttacking:
+                    Debug.Log("Wing");
                     other.gameObject.GetComponent<HealthSystem>().TakeDamage(wingDamage);
                     break;
                 case CurrentAttacking.FireAttacking:
+                    Debug.Log("Fire");
                     other.gameObject.GetComponent<HealthSystem>().TakeDamage(fireDamage);
                     break;
             }

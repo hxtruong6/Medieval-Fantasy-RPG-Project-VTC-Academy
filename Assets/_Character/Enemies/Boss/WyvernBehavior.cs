@@ -15,7 +15,7 @@ public class WyvernBehavior : MonoBehaviour
     [SerializeField] private float timeOnPlanLimited = 10f; // if it is out of this time, it will fly on the air
     //[SerializeField] private float timeFireAttacking = 10f;
     [SerializeField] private float flyingSpeed = 10f;
-
+    
     [SerializeField] private GameObject skeletonGroup;
     //private bool isAlive = true;
     private WyvernAttacking wyvernAttacking;
@@ -145,29 +145,30 @@ public class WyvernBehavior : MonoBehaviour
 
     }
 
+  
     private void FlyingBehaviour()
     {
         // TODO: before flying spawn skeleton
-        Debug.Log("Wyvern fly");
+        //Debug.Log("Wyvern fly");
 
-        gameObject.GetComponent<Rigidbody>().velocity +=  Vector3.up * flyingSpeed;
-        Debug.Log("position: " + transform.position);
+        gameObject.GetComponent<Rigidbody>().velocity += Vector3.up * flyingSpeed;
+        //Debug.Log("position: " + transform.position);
         //transform.position += transform.up * flyingSpeed * 100;
         //transform.Translate(0, Time.deltaTime * flyingSpeed * 100, 0);
         //transform.Translate(Vector3.up*flyingSpeed);
         var rg = gameObject.GetComponent<Rigidbody>();
         //rg.useGravity = false;
-        rg.MovePosition(rg.position + transform.up * Time.deltaTime * flyingSpeed );
+        rg.MovePosition(rg.position + transform.up * Time.deltaTime * flyingSpeed);
     }
 
     private void EnableFlying()
     {
-        Debug.Log("Start flying");
+        //Debug.Log("Start flying");
         animator.SetBool("enableFlying", true);
     }
     private void DisableFlying()
     {
-        Debug.Log("End flying");
+        //Debug.Log("End flying");
         animator.SetBool("enableFlying", false);
     }
 
