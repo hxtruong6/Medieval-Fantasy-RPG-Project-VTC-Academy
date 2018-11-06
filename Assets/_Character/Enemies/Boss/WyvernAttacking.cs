@@ -34,52 +34,30 @@ public class WyvernAttacking : MonoBehaviour
     public void BiteAttacking()
     {
         currentAttacking = CurrentAttacking.BiteAttacking;
-        animator.SetBool("isBiting", true);
+        animator.SetTrigger("enableBiting");
     }
 
     public void LeftAttacking()
     {
         currentAttacking = CurrentAttacking.WingAttacking;
-        animator.SetBool("isLeftAttacking", true);
+        animator.SetTrigger("enableLeftAttacking");
     }
 
     public void RightAttacking()
     {
         currentAttacking = CurrentAttacking.WingAttacking;
-        animator.SetBool("isRightAttacking", true);
+        animator.SetTrigger("enableRightAttacking");
     }
-
 
     public void FireAttacking()
     {
         currentAttacking = CurrentAttacking.FireAttacking;
-        Debug.Log("endFlying and start fire attacking");
-        animator.SetBool("enableFlying", false);
-        animator.SetBool("enableFireAttacking", true);
+        Debug.Log("Start fire attacking");
+        animator.SetTrigger("enableFireAttacking");
     }
 
-    void endBiting()
+    public void switchState()
     {
-        Debug.Log("End Biting");
-        animator.SetBool("isBiting", false);
-        currentAttacking = CurrentAttacking.None;
-    }
-    void endLeftAttacking()
-    {
-        Debug.Log("endLeftAttacking");
-        animator.SetBool("isLeftAttacking", false);
-        currentAttacking = CurrentAttacking.None;
-    }
-    void endRightAttacking()
-    {
-        Debug.Log("endRightAttacking");
-        animator.SetBool("isRightAttacking", false);
-        currentAttacking = CurrentAttacking.None;
-    }
-    public void endFireAttacking()
-    {
-        Debug.Log("endFireAttacking");
-        animator.SetBool("enableFireAttacking", false);
         currentAttacking = CurrentAttacking.None;
     }
 

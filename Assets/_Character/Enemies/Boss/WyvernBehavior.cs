@@ -7,19 +7,17 @@ public class WyvernBehavior : MonoBehaviour
     {
         Idle = 0,
         Attacking,
-        Chasing,
         Flying
     }
 
     [SerializeField] private float attackingRadius = 10f;
-    [SerializeField] private float chasingRadius = 20f;    
+    [SerializeField] private float fireAttackingRadius = 20f;
     [SerializeField] private float timeOnPlanLimited = 10f; // if it is out of this time, it will fly on the air
-    [SerializeField] private float timeFireAttacking = 10f;
+    //[SerializeField] private float timeFireAttacking = 10f;
     [SerializeField] private float flyingSpeed = 10f;
 
-
     [SerializeField] private GameObject skeletonGroup;
-    private bool isAlive = true;
+    //private bool isAlive = true;
     private WyvernAttacking wyvernAttacking;
     private Animator animator;
 
@@ -31,9 +29,15 @@ public class WyvernBehavior : MonoBehaviour
 
     private float distanceToPlayer;
     private float timeOnPlan;
-    private CurrentState currentState;
+    [SerializeField] private CurrentState currentState;
+    [SerializeField] private float flyTimeLimited = 10f;
+    private float flyTime;
 
-
+    [ExecuteInEditMode]
+    void OnValidate()
+    {
+        fireAttackingRadius = Mathf.Clamp(fireAttackingRadius, attackingRadius + 5f, attackingRadius + 40f);
+    }
     // Use this for initialization
     void Start()
     {
@@ -86,58 +90,94 @@ public class WyvernBehavior : MonoBehaviour
     {
         PlayerOrEnemyAliveToContinue();
         distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
-        FlyingBehaviour();
+        //FlyingBehaviour();
         switch (currentState)
         {
             case CurrentState.Attacking:
-                break;
-            case CurrentState.Chasing:
+                if (timeOnPlan >= timeOnPlanLimited)
+                {
+                    currentState = CurrentState.Flying;
+                    timeOnPlan = 0;
+                    EnableFlying();
+                    FlyingBehaviour();
+                }
+                else if (distanceToPlayer >= fireAttackingRadius)
+                {
+                    currentState = CurrentState.Idle;
+                }
+                else if (distanceToPlayer >= attackingRadius)
+                {
+                    FireAttackingPlayer();
+                }
+                else
+                {
+                    AttackingPlayer();
+                }
+
+                timeOnPlan += Time.deltaTime;
                 break;
             case CurrentState.Flying:
+                // TODO: if all of skeleton died
+                Debug.Log("Is flying. Waiting player kill all of skeleton");
+                flyTime += Time.deltaTime;
+                if (flyTime >= flyTimeLimited)
+                {
+                    currentState = CurrentState.Idle;
+                    DisableFlying();
+                    flyTime = 0f;
+                }
+                //if (skeletonGroup.isAllKilled())
+                //{
+                //    currentState = CurrentState.Idle;
+                //    DisableFlying();
+                //}
                 break;
             case CurrentState.Idle:
-                if (distanceToPlayer <= chasingRadius){
-                    // TODO: attack fire
+                if (distanceToPlayer <= fireAttackingRadius
+                    || distanceToPlayer <= attackingRadius)
+                {
+                    currentState = CurrentState.Attacking;
                 }
-                
+                //else if (timeOnPlan >= timeOnPlanLimited && )
+
                 break;
         }
 
-        // if (distanceToPlayer < attackingRadius)
-        // {
-        //     this.transform.LookAt(player.transform.position);
-        //     if (timeOnPlan >= timeOnPlanLimited)
-        //     {
-        //         if (currentState != CurrentState.Flying)
-        //         {
-        //             animator.SetBool("enableFlying", true);
-        //             currentState = CurrentState.Flying;
-        //             timeOnPlan = 0;
-        //         }
-        //         else
-        //         {
-        //             //TODO: condition to stop flying to go to plan
-        //             FlyingBehaviour();
-        //         }
-        //     }
-        //     else
-        //     {
-        //         timeOnPlan += Time.deltaTime;
-        //         AttackingPlayer();
-        //     }
-        // }
     }
 
     private void FlyingBehaviour()
     {
-        //transform.position.z += Time.deltaTime * flyingSpeed;
+        // TODO: before flying spawn skeleton
         Debug.Log("Wyvern fly");
-        //gameObject.GetComponent<Rigidbody>().velocity +=  Vector3.up * flyingSpeed;
-        //transform.position += transform.up * Time.deltaTime * flyingSpeed;
-        transform.Translate(0,Time.deltaTime*flyingSpeed, 0);
+
+        gameObject.GetComponent<Rigidbody>().velocity +=  Vector3.up * flyingSpeed;
+        Debug.Log("position: " + transform.position);
+        //transform.position += transform.up * flyingSpeed * 100;
+        //transform.Translate(0, Time.deltaTime * flyingSpeed * 100, 0);
+        //transform.Translate(Vector3.up*flyingSpeed);
         var rg = gameObject.GetComponent<Rigidbody>();
-        rg.useGravity = false;
-        //rg.MovePosition(rg.position + transform.up * Time.deltaTime * flyingSpeed );
+        //rg.useGravity = false;
+        rg.MovePosition(rg.position + transform.up * Time.deltaTime * flyingSpeed );
+    }
+
+    private void EnableFlying()
+    {
+        Debug.Log("Start flying");
+        animator.SetBool("enableFlying", true);
+    }
+    private void DisableFlying()
+    {
+        Debug.Log("End flying");
+        animator.SetBool("enableFlying", false);
+    }
+
+    private void FireAttackingPlayer()
+    {
+        transform.LookAt(player.transform.position);
+        wyvernAttacking.FireAttacking();
+        // TODO: shooting fire
+
+        Debug.Log("Fire is shooting....");
     }
 
     void AttackingPlayer()
@@ -146,6 +186,7 @@ public class WyvernBehavior : MonoBehaviour
         var distanceLeftWing = Vector3.Distance(wingLeftPos, player.transform.position);
         var distanceRightWing = Vector3.Distance(wingRighPos, player.transform.position);
 
+        transform.LookAt(player.transform.position);
         if (distanceHead < distanceRightWing && distanceHead < distanceLeftWing)
         {
             // TODO: bite
@@ -168,6 +209,9 @@ public class WyvernBehavior : MonoBehaviour
         // Draw attack sphere 
         Gizmos.color = new Color(255f, 0, 0, .5f);
         Gizmos.DrawWireSphere(transform.position, attackingRadius);
+        // Draw fire attaking
+        Gizmos.color = new Color(100f, 100f, 0, .5f);
+        Gizmos.DrawWireSphere(transform.position, fireAttackingRadius);
     }
 #endif
 }

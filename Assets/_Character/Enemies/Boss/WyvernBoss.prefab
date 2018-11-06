@@ -3005,7 +3005,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &65013817718701214
 BoxCollider:
@@ -3466,6 +3466,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd72bc74b3e6d54d8346f6c2ee4f8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackingRadius: 10
+  fireAttackingRadius: 20
+  timeOnPlanLimited: 10
+  flyingSpeed: 10
+  skeletonGroup: {fileID: 1217504830142318, guid: d3339c2a920e8264984efb696e87b29d,
+    type: 2}
+  currentState: 0
+  flyTimeLimited: 10
 --- !u!114 &114537616747393248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3525,6 +3533,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4390575c270ad7f419c2f83cd6339230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wingDamage: 20
+  legDamge: 15
+  tailDamage: 10
+  headDamge: 30
+  foreDamage: 15
 --- !u!114 &114654662776789528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3547,6 +3560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50e05cc1bcb02a489d7a7fa599310b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  biteDamage: 5
+  wingDamage: 6
+  fireDamage: 7
 --- !u!114 &114746560546931042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3786,7 +3802,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

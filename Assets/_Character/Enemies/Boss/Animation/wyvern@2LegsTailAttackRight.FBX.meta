@@ -244,8 +244,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9966142
-        functionName: endRightAttacking
+      - time: 0.9704378
+        functionName: switchState
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
