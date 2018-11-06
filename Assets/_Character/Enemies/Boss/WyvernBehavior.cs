@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
 public class WyvernBehavior : MonoBehaviour
@@ -13,12 +14,13 @@ public class WyvernBehavior : MonoBehaviour
     [SerializeField] private float attackingRadius = 10f;
     [SerializeField] private float fireAttackingRadius = 20f;
     [SerializeField] private float timeOnPlanLimited = 10f; // if it is out of this time, it will fly on the air
-    //[SerializeField] private float timeFireAttacking = 10f;
     [SerializeField] private float flyingSpeed = 10f;
-    
+    [SerializeField] private float timeForFireShooting = 0.1f;
+
     [SerializeField] private GameObject skeletonGroup;
     //private bool isAlive = true;
     private WyvernAttacking wyvernAttacking;
+    private WyvernFireProjectile wyvernFireProjectile;
     private Animator animator;
 
     private HealthSystem wyvernHealth;
@@ -33,6 +35,7 @@ public class WyvernBehavior : MonoBehaviour
     [SerializeField] private float flyTimeLimited = 10f;
     private float flyTime;
 
+
     [ExecuteInEditMode]
     void OnValidate()
     {
@@ -43,8 +46,10 @@ public class WyvernBehavior : MonoBehaviour
     {
         wyvernAttacking = GetComponent<WyvernAttacking>();
         wyvernHealth = GetComponent<HealthSystem>();
-        animator = GetComponent<Animator>();
+        wyvernFireProjectile = GetComponent<WyvernFireProjectile>();
+        animator = GetComponentInChildren<Animator>();
         player = FindObjectOfType<PlayerControl>();
+
         timeOnPlan = 0f;
         currentState = CurrentState.Idle;
 
@@ -145,20 +150,13 @@ public class WyvernBehavior : MonoBehaviour
 
     }
 
-  
+
     private void FlyingBehaviour()
     {
         // TODO: before flying spawn skeleton
-        //Debug.Log("Wyvern fly");
-
-        gameObject.GetComponent<Rigidbody>().velocity += Vector3.up * flyingSpeed;
-        //Debug.Log("position: " + transform.position);
-        //transform.position += transform.up * flyingSpeed * 100;
-        //transform.Translate(0, Time.deltaTime * flyingSpeed * 100, 0);
-        //transform.Translate(Vector3.up*flyingSpeed);
-        var rg = gameObject.GetComponent<Rigidbody>();
-        //rg.useGravity = false;
-        rg.MovePosition(rg.position + transform.up * Time.deltaTime * flyingSpeed);
+        var newPos = animator.transform.position;
+        newPos.y = 50;
+        animator.transform.position = newPos;
     }
 
     private void EnableFlying()
@@ -177,8 +175,18 @@ public class WyvernBehavior : MonoBehaviour
         transform.LookAt(player.transform.position);
         wyvernAttacking.FireAttacking();
         // TODO: shooting fire
-
         Debug.Log("Fire is shooting....");
+        StartCoroutine(FireSpawnLoop());
+    }
+
+    IEnumerator FireSpawnLoop()
+    {
+        while (currentState == CurrentState.Attacking &&
+               distanceToPlayer >= attackingRadius && distanceToPlayer <= fireAttackingRadius)
+        {
+            yield return new WaitForSeconds(timeForFireShooting);
+            wyvernFireProjectile.fireShooting();
+        }
     }
 
     void AttackingPlayer()

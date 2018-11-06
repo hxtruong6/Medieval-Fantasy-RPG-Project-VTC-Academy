@@ -22,7 +22,7 @@ public class WyvernAttacking : MonoBehaviour
     private Animator animator;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -55,11 +55,12 @@ public class WyvernAttacking : MonoBehaviour
         //Debug.Log("Start fire attacking");
         animator.SetTrigger("enableFireAttacking");
     }
-
-    public void switchState()
-    {
-        currentAttacking = CurrentAttacking.None;
-    }
+    // TODO: a half time to show animation
+    // TODO: start corotine
+    //public void switchState()
+    //{
+    //    currentAttacking = CurrentAttacking.None;
+    //}
 
     void OnCollisionEnter(Collision other)
     {

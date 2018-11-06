@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 [RequireComponent(typeof(HealthSystem))]
-[RequireComponent(typeof(Animator))]
-
 /*
  * This class use to get damage from player 
  */
@@ -12,6 +11,7 @@ public class WyvernDamge : MonoBehaviour
     [SerializeField] private float tailDamage = 10f;
     [SerializeField] private float headDamge = 30f;
     [SerializeField] private float foreDamage = 15f;
+    [SerializeField] private float bodyDamage = 15f;
 
     private HealthSystem wyvernHealth;
 
@@ -21,48 +21,34 @@ public class WyvernDamge : MonoBehaviour
     void Start()
     {
         wyvernHealth = GetComponent<HealthSystem>();
-        wyvernAnimator = GetComponent<Animator>();
+        wyvernAnimator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnBodyPartHit(BodyPartType partType)
     {
-
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        return;
-        // TODO: It isn't player
-        if (other.gameObject.tag == "Player")
+        wyvernAnimator.SetTrigger("GetHit");
+        switch (partType)
         {
-            // decision what ani will act?
-            wyvernAnimator.SetTrigger("GetHit");
-            var bodyTag = this.gameObject.tag;
-            Debug.Log("Tag of Wyvern: " + bodyTag);
-
-            if (bodyTag == "WyvernHead")
-            {
+            case BodyPartType.Head:
                 wyvernHealth.TakeDamage(headDamge);
-            }
-            else if (bodyTag == "WyvernWing")
-            {
+                break;
+            case BodyPartType.Wing:
                 wyvernHealth.TakeDamage(wingDamage);
-            }
-            else if (bodyTag == "WyvernLeg")
-            {
+                break;
+            case BodyPartType.Leg:
                 wyvernHealth.TakeDamage(legDamge);
-            }
-            else if (bodyTag == "WyvernForearm")
-            {
+                break;
+            case BodyPartType.Forearm:
                 wyvernHealth.TakeDamage(foreDamage);
-            }
-            else if (bodyTag == "WyvernTail")
-            {
+                break;
+            case BodyPartType.Tail:
                 wyvernHealth.TakeDamage(tailDamage);
-            }
+                break;
+            case BodyPartType.Body:
+                wyvernHealth.TakeDamage(bodyDamage);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException("partType", partType, null);
         }
     }
-
-
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,9 +65,33 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
+        float damage = 0;
+        if (objectBeingHit.GetComponent<BodyPart>())
+        {
+            var bodyPart = objectBeingHit.GetComponent<BodyPart>();
+            switch (bodyPart.partType)
+            {
+                case BodyPartType.Head:
+                    damage += bodyPart.headDamge;
+                    break;
+                case BodyPartType.Wing:
+                    break;
+                case BodyPartType.Leg:
+                    break;
+                case BodyPartType.Forearm:
+                    break;
+                case BodyPartType.Tail:
+                    break;
+                case BodyPartType.Body:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+         
+        }
      
         var shooterWeapon = shooter.GetComponent<WeaponSystem>();
-        float damage = 0;
+       
         
         if (projectileConfig.isAbilityProjectile)
         {
