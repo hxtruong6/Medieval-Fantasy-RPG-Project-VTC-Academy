@@ -1497,6 +1497,11 @@ Prefab:
       propertyPath: textLargeMPotion
       value: 
       objectReference: {fileID: 1272018241}
+    - target: {fileID: 114719377183398096, guid: 9f53ebb1163d7c042b2ca3cdbc58c97e,
+        type: 2}
+      propertyPath: baseDamage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f53ebb1163d7c042b2ca3cdbc58c97e, type: 2}
   m_IsPrefabParent: 0
