@@ -169,9 +169,11 @@ public class InventorySystem : MonoBehaviour
         if (newItem.isPicked)
             return;
 
+        transform.LookAt(newItem.gameObject.transform);
+
         if (newItem.GetDropWeaponConfig())
         {
-            PickUpNewWeapon(newItem);
+            PickUpNewWeapon(newItem.GetDropWeaponConfig());
         }
         else
         {         
@@ -196,10 +198,8 @@ public class InventorySystem : MonoBehaviour
         Destroy(newItem.gameObject);
     }
     
-    private void PickUpNewWeapon(LootItem lootWeapon)
-    {
-        transform.LookAt(lootWeapon.gameObject.transform);
-        var newWeapon = lootWeapon.GetDropWeaponConfig();
+    public void PickUpNewWeapon(WeaponConfig newWeapon)
+    {        
         bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();      
 
         if (newWeapon.IsMeleeWeapon())

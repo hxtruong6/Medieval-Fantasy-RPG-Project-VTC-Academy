@@ -18,22 +18,25 @@ public class HealthSystem : MonoBehaviour
     DamageTextSpawner damageTextSpawner;
 
     const string DEATH_TRIGGER = "Death";
-    const string ENEMY_UI = "Enemy Canvas";
-    const string TEMP_OBJECTS = "TempObjects";
 
     Animator animator;
     AudioSource audioSource;
 
     float currentHealthPoints;
     float flashTime = 2f;
+    bool isInvincible;
 
     public float HealthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
+
+    public bool GetInvincibility() { return isInvincible; }
+
+    public void SetInvincible(bool value) { isInvincible = value; }
 
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        damageTextSpawner = GetComponent<DamageTextSpawner>();
+        damageTextSpawner = FindObjectOfType<DamageTextSpawner>();
 
         SetCurrentMaxHealth();
     }
@@ -58,12 +61,15 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isInvincible)
+            return;
+
         FlashEnemyHealthBar();
 
         bool characterDies = (currentHealthPoints - damage) <= 0;
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         //play sound
-        //damageTextSpawner.Create(damage, transform.position);
+        damageTextSpawner.Create(damage, transform.position);
         var clip = damageSounds[Random.Range(0, damageSounds.Length)];
         audioSource.PlayOneShot(clip);   
 
@@ -84,13 +90,13 @@ public class HealthSystem : MonoBehaviour
         RestoreAmount(healAmount);
     }
 
-    private void FlashEnemyHealthBar()
+    public void FlashEnemyHealthBar()
     {
         if (!GetComponent<Enemy>())
             return;
 
         StopAllCoroutines();
-        var healthBar = transform.Find(ENEMY_UI);
+        var healthBar = transform.Find(GameManager.instance.ENEMY_UI);
         StartCoroutine(FlashHealthBar(healthBar.gameObject));        
     }
 
@@ -146,9 +152,8 @@ public class HealthSystem : MonoBehaviour
             effectPrefab.transform.rotation
         );
         particleObject.transform.parent = transform;
-        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
         particleObject.GetComponent<ParticleSystem>().Play();
-        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        particleObject.transform.parent = GameManager.instance.tempObjects;
         StartCoroutine(DestroyParticleAfterFinishedSec(particleObject, effectLiveTime));
     }
 

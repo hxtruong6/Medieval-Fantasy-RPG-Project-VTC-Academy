@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class DropLoot : MonoBehaviour
 {
-    const string TEMP_OBJECTS_TAG = "TempObjects";
     const int DROP_ITEM_LAYER = 10;
 
+    [Range(.1f, 1.0f)] [SerializeField] float dropWeaponChance = 0.1f;
     [SerializeField] WeaponConfig[] weaponList;
     [SerializeField] HealthPotionConfig[] healthPotionList;
     [SerializeField] ManaPotionConfig[] manaPotionList;
-    [SerializeField] int minWeaponDrop;
-    [SerializeField] int maxWeaponDrop;
     [SerializeField] int minHealthDrop;
     [SerializeField] int maxHealthDrop;
     [SerializeField] int minManaDrop;
     [SerializeField] int maxManaDrop;
 
     List<WeaponConfig> _weaponList;
-
-    int numberOfWeaponDrop;
-    int numberOfHealthDrop;
-    int numberOfManaDrop;
 
     void Start()
     {
@@ -39,7 +33,7 @@ public class DropLoot : MonoBehaviour
         DropManaPotion();
     }
 
-    private void CreateWeaponLoot(WeaponConfig weaponConfig, int weaponCount)
+    private void CreateWeaponLoot(WeaponConfig weaponConfig)
     {
         var weaponPrefab = weaponConfig.GetWeaponPrefab();
         var dropPos = gameObject.transform.position - Random.insideUnitSphere;
@@ -48,13 +42,16 @@ public class DropLoot : MonoBehaviour
         var dropItemObject = Instantiate(weaponPrefab,
                     dropPos,
                     weaponPrefab.transform.rotation,
-                    GameObject.FindGameObjectWithTag(TEMP_OBJECTS_TAG).transform);
+                    GameManager.instance.tempObjects);
 
         //dropItemObject.layer = DROP_ITEM_LAYER;
         dropItemObject.AddComponent<LootItem>();
         dropItemObject.GetComponent<LootItem>().SetDropWeaponConfig(weaponConfig);
 
         var dropEffectPrefab = weaponConfig.GetDropParticlePrefab();
+
+        if (dropEffectPrefab == null)
+            return;
 
         Instantiate(dropEffectPrefab,
             dropItemObject.transform.position,
@@ -66,17 +63,17 @@ public class DropLoot : MonoBehaviour
     {
         if (weaponList.Length <= 0) { return; }
 
-        numberOfWeaponDrop = Random.Range(minWeaponDrop, maxWeaponDrop);
+        bool isDropWeapon = Random.Range(0f, 1f) <= dropWeaponChance;
 
-        for (int i = 0; i < numberOfWeaponDrop; i++)
+        if(isDropWeapon)
         {
             int weaponIndex = Random.Range(0, _weaponList.Count);
-            CreateWeaponLoot(_weaponList[weaponIndex], i);
+            CreateWeaponLoot(_weaponList[weaponIndex]);
             _weaponList.Remove(_weaponList[weaponIndex]);
         }
     }
 
-    private void CreateHPotionLoot(HealthPotionConfig potionConfig, int itemCount)
+    private void CreateHPotionLoot(HealthPotionConfig potionConfig)
     {
         var itemPrefab = potionConfig.GetPotionPrefab();
         var dropPos = gameObject.transform.position - Random.insideUnitSphere;
@@ -85,7 +82,7 @@ public class DropLoot : MonoBehaviour
         var dropItemObject = Instantiate(itemPrefab,
                     dropPos,
                     itemPrefab.transform.rotation,
-                    GameObject.FindGameObjectWithTag(TEMP_OBJECTS_TAG).transform);
+                    GameManager.instance.tempObjects);
 
         dropItemObject.layer = DROP_ITEM_LAYER;
         dropItemObject.AddComponent<LootItem>();
@@ -106,16 +103,16 @@ public class DropLoot : MonoBehaviour
     {
         if (healthPotionList.Length <= 0) { return; }
 
-        numberOfHealthDrop = Random.Range(minHealthDrop, maxHealthDrop);
+        int numberOfHealthDrop = Random.Range(minHealthDrop, maxHealthDrop);
 
         for (int i = 0; i < numberOfHealthDrop; i++)
         {
             int itemIndex = Random.Range(0, healthPotionList.Length);
-            CreateHPotionLoot(healthPotionList[itemIndex], i + numberOfWeaponDrop);
+            CreateHPotionLoot(healthPotionList[itemIndex]);
         }
     }
 
-    private void CreateMPotionLoot(ManaPotionConfig potionConfig, int itemCount)
+    private void CreateMPotionLoot(ManaPotionConfig potionConfig)
     {
         var itemPrefab = potionConfig.GetPotionPrefab();
         var dropPos = gameObject.transform.position - Random.insideUnitSphere;
@@ -124,7 +121,7 @@ public class DropLoot : MonoBehaviour
         var dropItemObject = Instantiate(itemPrefab,
                     dropPos,
                     itemPrefab.transform.rotation,
-                    GameObject.FindGameObjectWithTag(TEMP_OBJECTS_TAG).transform);
+                    GameManager.instance.tempObjects);
 
         dropItemObject.layer = DROP_ITEM_LAYER;
         dropItemObject.AddComponent<LootItem>();
@@ -145,12 +142,12 @@ public class DropLoot : MonoBehaviour
     {
         if (manaPotionList.Length <= 0) { return; }
 
-        numberOfManaDrop = Random.Range(minManaDrop, maxManaDrop);
+        int numberOfManaDrop = Random.Range(minManaDrop, maxManaDrop);
 
         for (int i = 0; i < numberOfManaDrop; i++)
         {
             int itemIndex = Random.Range(0, manaPotionList.Length);
-            CreateMPotionLoot(manaPotionList[itemIndex], i + numberOfWeaponDrop + numberOfHealthDrop);
+            CreateMPotionLoot(manaPotionList[itemIndex]);
         }
     }
 }

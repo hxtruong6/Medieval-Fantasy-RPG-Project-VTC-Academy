@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1743759469674968}
   m_IsPrefabParent: 1
+--- !u!1 &1072212121167808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4863817814288522}
+  m_Layer: 0
+  m_Name: TempObjects
+  m_TagString: TempObjects
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1743759469674968
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,8 +51,22 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4863817814288522}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4863817814288522
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072212121167808}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4077883011427718}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114761206580686176
@@ -55,3 +84,7 @@ MonoBehaviour:
   largeHealthPotion: {fileID: 11400000, guid: b86a7e8f01ae23b44a4927f43a9f06d2, type: 2}
   smallManaPotion: {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
   largeManaPotion: {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
+  legendaryWeapon: {fileID: 0}
+  masterWeapon: {fileID: 0}
+  ENEMY_UI: Enemy Canvas
+  PARTICLE_CLEAN_UP_DELAY: 10

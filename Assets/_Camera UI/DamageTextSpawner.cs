@@ -10,7 +10,7 @@ public class DamageTextSpawner : MonoBehaviour
     public void Create(float amount, Vector3 location)
     {
         var instance = Instantiate(prefab);
-        instance.transform.parent = transform;
+        instance.transform.SetParent(transform);
         var damageText = instance.GetComponent<DamageText>();
         damageText.Active(amount, location + textOffset);
     }

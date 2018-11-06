@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PierceProjectile : MonoBehaviour
 {
-    const string TEMP_OBJECTS = "TempObjects";
-
     ProjectileConfig projectileConfig;
     WeaponConfig rangedWeaponConfig;
     GameObject shooter;//who fired this projectile
@@ -43,8 +41,19 @@ public class PierceProjectile : MonoBehaviour
             particlePrefab.transform.rotation
         );
         particleObject.transform.parent = target.transform;
-        particleObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        particleObject.transform.parent = GameManager.instance.tempObjects;
         particleObject.GetComponent<ParticleSystem>().Play();
+        StartCoroutine(DestroyParticleWhenFinished(particleObject));
+    }
+
+    IEnumerator DestroyParticleWhenFinished(GameObject particlePrefab)
+    {
+        while (particlePrefab.GetComponent<ParticleSystem>().isPlaying)
+        {
+            yield return new WaitForSeconds(GameManager.instance.PARTICLE_CLEAN_UP_DELAY);
+        }
+        Destroy(particlePrefab);
+        yield return new WaitForEndOfFrame();
     }
 
     private void OnTriggerEnter(Collider other)
