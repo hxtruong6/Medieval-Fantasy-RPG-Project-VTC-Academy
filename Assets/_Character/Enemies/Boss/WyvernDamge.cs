@@ -17,13 +17,11 @@ public class WyvernDamge : MonoBehaviour
 
     private Animator wyvernAnimator;
 
-    private PlayerControl player;
     // Use this for initialization
     void Start()
     {
         wyvernHealth = GetComponent<HealthSystem>();
         wyvernAnimator = GetComponent<Animator>();
-        player = FindObjectOfType<PlayerControl>();
     }
 
     // Update is called once per frame
@@ -34,6 +32,8 @@ public class WyvernDamge : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        return;
+        // TODO: It isn't player
         if (other.gameObject.tag == "Player")
         {
             // decision what ani will act?
