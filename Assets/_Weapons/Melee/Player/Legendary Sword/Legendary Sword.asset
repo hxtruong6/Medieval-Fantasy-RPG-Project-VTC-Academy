@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gripTransform: {fileID: 4780827250440542, guid: f2e3551b7175c214388e5352c89ed2f7,
     type: 2}
-  weaponPrefab: {fileID: 1755594158349556, guid: f64c7cfd55e7ec348b4ead6d62600037,
+  weaponPrefab: {fileID: 1212401009350674, guid: c4ff5e906cf284e4283db8ee25fea365,
     type: 2}
   attackAnimations:
   - {fileID: 7400138, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}

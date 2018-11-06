@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DamageText : MonoBehaviour {
 
-    [SerializeField] TextMeshPro textMesh;
+    [SerializeField] TextMeshProUGUI textMesh;
 
     public void Active(float amount, Vector3 position)
     {

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RangedPowerAttackBehaviour : AbilityBehaviour
 {
-    const string TEMP_OBJECTS = "TempObjects";
     AbilityUseParams useParams;
     public override void Use(AbilityUseParams useParamsToSet)
     {
@@ -26,7 +25,7 @@ public class RangedPowerAttackBehaviour : AbilityBehaviour
         projectile.SetEfectOnContact(GetEffectOnEnemy());
         projectile.SetShooter(gameObject);
 
-        projectileObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        projectileObject.transform.parent = GameManager.instance.tempObjects;
         return projectileObject;
     }
 

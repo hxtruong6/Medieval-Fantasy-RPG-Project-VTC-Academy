@@ -11,7 +11,6 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] ProjectileConfig currentProjectileConfig;
     [HideInInspector] public bool canAttack = true;
 
-    const string TEMP_OBJECTS = "TempObjects";
     const string ATTACK_TRIGGER = "Attack";
     const string ATTACK_SPEED = "AttackSpeed";
     const string DEFAULT_ATTACK = "DEFAULT ATTACK";
@@ -91,7 +90,7 @@ public class WeaponSystem : MonoBehaviour
         projectile.SetRangedWeaponConfig(currentWeaponConfig);
         projectile.SetShooter(gameObject);
 
-        projectileObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        projectileObject.transform.parent = GameManager.instance.tempObjects;
         return projectileObject;
     }
 

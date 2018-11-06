@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RangedAOEBehaviour : AbilityBehaviour
 {
-    const string TEMP_OBJECTS = "TempObjects";
     float numberOfArrows = 7;
 
     public override void Use(AbilityUseParams useParamsToSet)
@@ -29,7 +28,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
         Quaternion rotation = Quaternion.Euler(rotationVector);
         projectileObject.transform.localRotation = rotation;
 
-        projectileObject.transform.parent = GameObject.FindGameObjectWithTag(TEMP_OBJECTS).transform;
+        projectileObject.transform.parent = GameManager.instance.tempObjects;
         return projectileObject;
     }
 

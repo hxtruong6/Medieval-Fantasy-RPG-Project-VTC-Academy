@@ -71,7 +71,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4432803176178874}
   - component: {fileID: 65799651665753956}
-  - component: {fileID: 114014340918623170}
   m_Layer: 10
   m_Name: swordplasma
   m_TagString: Untagged
@@ -244,23 +243,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755594158349556}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114014340918623170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1755594158349556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022ab18c0aaebc1418cf32d90cde97d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponConfig: {fileID: 11400000, guid: 3d59c0ed0cd55324ba66a6157e391715, type: 2}
 --- !u!198 &198077076772248828
 ParticleSystem:
   m_ObjectHideFlags: 1

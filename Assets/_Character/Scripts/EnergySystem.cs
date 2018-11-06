@@ -10,10 +10,13 @@ public class EnergySystem : MonoBehaviour
     [SerializeField] float regenPointsPerSecond = 1f;   
 
     float currentEnergyPoints;
+    bool unlimitedPower;
 
     float EnergyAsPercent{get{return currentEnergyPoints / maxEnergyPoints;}}
 
     public float GetCurrentEnergyPoints() { return currentEnergyPoints; }
+    public bool GetPowerLimit() { return unlimitedPower; }
+    public void SetLimitPower(bool value) { unlimitedPower = value; }
 
     void Start ()
     {
@@ -38,6 +41,9 @@ public class EnergySystem : MonoBehaviour
 
     public void ConsumeEnergy(float amount)
     {
+        if (unlimitedPower)
+            return;
+
         float newEnergyPoints = currentEnergyPoints - amount;
         currentEnergyPoints = Mathf.Clamp(newEnergyPoints, 0, maxEnergyPoints);
         UpdateEnergyBar();
