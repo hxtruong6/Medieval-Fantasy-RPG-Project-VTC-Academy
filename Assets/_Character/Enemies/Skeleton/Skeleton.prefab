@@ -5469,21 +5469,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seeking: 1
   fleeing: 0
-  seekingSpeed: 7
+  seekingSpeed: 6
   fleeingSpeed: 8
   patrolSpeed: 0
-  seekingRadius: 20
+  seekingRadius: Infinity
   fleeingRadius: 5
   patrollRadius: 0
-  chasingRadius: 30
-  idleTimeLimited: 1000
-  chasingTimeLimited: 20
-  patrolTimeLimited: 1000
+  chasingRadius: Infinity
+  idleTimeLimited: Infinity
+  chasingTimeLimited: Infinity
+  patrolTimeLimited: Infinity
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   waitAtWaypointTime: 3
-  angleAbleLooking: 0
-  radiusAbleLooking: 10
+  angleAbleLooking: 360
+  radiusAbleLooking: Infinity
 --- !u!114 &114323271813988286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5506,9 +5506,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
   minWeaponDrop: 0
   maxWeaponDrop: 1
-  minHealthDrop: 1
+  minHealthDrop: 0
   maxHealthDrop: 1
-  minManaDrop: 1
+  minManaDrop: 0
   maxManaDrop: 1
 --- !u!114 &114329145304871354
 MonoBehaviour:
@@ -5552,9 +5552,15 @@ MonoBehaviour:
   maxHealthPoints: 60
   healthBar: {fileID: 114850883348913976}
   damageSounds:
-  - {fileID: 8300000, guid: 9bdeeb1093130e14999bdf81d9cf5d29, type: 3}
+  - {fileID: 8300000, guid: 6dff63127e73a714a982b2928dcb6e38, type: 3}
+  - {fileID: 8300000, guid: 0e06cd94551e9c34f8b2ad651b9bdd75, type: 3}
+  - {fileID: 8300000, guid: f7180999a5fdf65459898214186efa7a, type: 3}
+  - {fileID: 8300000, guid: 140d374ffdb1b644fa69c38d1e274730, type: 3}
+  - {fileID: 8300000, guid: ff26b78e77e60684288474fe83e7bb73, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: 9567384b500fe6c40a4b0971056d5f56, type: 3}
+  - {fileID: 8300000, guid: fdd5e9c61be7ed94b801b38e5b08cdb1, type: 3}
+  - {fileID: 8300000, guid: b69e7afd34834cd4fba01334004f4de5, type: 3}
+  - {fileID: 8300000, guid: 860477b2ef1e4a1479bc64beb59c6707, type: 3}
   deadVanishAfter: 2
 --- !u!114 &114451215055025964
 MonoBehaviour:

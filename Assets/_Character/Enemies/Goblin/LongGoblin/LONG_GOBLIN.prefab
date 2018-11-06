@@ -1328,8 +1328,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.666412, y: 9.998169, z: 29.287323}
+  m_LocalRotation: {x: -0, y: 0.98270464, z: -0, w: 0.18517986}
+  m_LocalPosition: {x: 13.33, y: 9.998169, z: 42.97}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children:
   - {fileID: 4207881310715370}
@@ -1338,7 +1338,7 @@ Transform:
   - {fileID: 224686082259316646}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 158.65701, z: 0}
 --- !u!4 &4207881310715370
 Transform:
   m_ObjectHideFlags: 1
@@ -2850,8 +2850,8 @@ MonoBehaviour:
   fleeingSpeed: 4
   patrolSpeed: 0.2
   seekingRadius: 9
-  fleeingRadius: 5
-  patrollRadius: 5
+  fleeingRadius: 4
+  patrollRadius: 3
   chasingRadius: 17
   idleTimeLimited: 0
   chasingTimeLimited: 10
@@ -2859,8 +2859,8 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   waitAtWaypointTime: 3
-  angleAbleLooking: 40
-  radiusAbleLooking: 8
+  angleAbleLooking: 60
+  radiusAbleLooking: 15
 --- !u!114 &114823521200692400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2873,7 +2873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
