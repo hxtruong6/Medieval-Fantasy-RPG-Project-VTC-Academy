@@ -124,7 +124,7 @@ MonoBehaviour:
         temperature: 0
         tint: 5
         hueShift: -5
-        saturation: 0.5
+        saturation: 0.4
         contrast: 1.2
       channelMixer:
         red: {x: 0.89, y: 0.02, z: 0.05}

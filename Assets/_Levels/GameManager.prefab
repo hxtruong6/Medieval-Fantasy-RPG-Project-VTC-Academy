@@ -84,7 +84,11 @@ MonoBehaviour:
   largeHealthPotion: {fileID: 11400000, guid: b86a7e8f01ae23b44a4927f43a9f06d2, type: 2}
   smallManaPotion: {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
   largeManaPotion: {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
-  legendaryWeapon: {fileID: 0}
-  masterWeapon: {fileID: 0}
+  cheatPotionAddAmount: 10
+  legendaryWeapon: {fileID: 11400000, guid: 3d59c0ed0cd55324ba66a6157e391715, type: 2}
+  masterWeapon: {fileID: 11400000, guid: afef9ef3c82c9bd4e9e3ea0b6dd11e2d, type: 2}
+  enemyManager: {fileID: 0}
+  tempObjects: {fileID: 4863817814288522}
+  cheatScene: {fileID: 0}
   ENEMY_UI: Enemy Canvas
   PARTICLE_CLEAN_UP_DELAY: 10
