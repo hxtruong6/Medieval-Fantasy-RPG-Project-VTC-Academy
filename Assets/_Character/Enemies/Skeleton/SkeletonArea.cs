@@ -19,7 +19,10 @@ public class SkeletonArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //gameObject.GetComponent<Collider>()
+        if (transform.childCount == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,19 +38,10 @@ public class SkeletonArea : MonoBehaviour
                     skeletonClone.transform.position = listOfSpawn[i].transform.position;
                     skeletonClone.transform.SetParent(listOfSpawn[i].transform);
                     Destroy(this.gameObject.GetComponent<SphereCollider>());
-                    //var animatorDummny = skeletonClone.GetComponentInChildren<Animator>();
-                    // StartCoroutine(spawnWeapon(skeletonClone, animatorDummny.runtimeAnimatorController.animationClips[0].length));
                 }
             }
         }
     }
 
-    IEnumerator spawnWeapon(GameObject skeletonClone, float clipLength)
-    {
-        yield return new WaitForSeconds(clipLength);
-
-
-
-
-    }
+   
 }

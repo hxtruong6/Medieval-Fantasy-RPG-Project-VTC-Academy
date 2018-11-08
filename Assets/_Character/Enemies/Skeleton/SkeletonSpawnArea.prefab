@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d087119edc49444addc2a9e2e1e90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonPrefab: {fileID: 1886034783218542, guid: bf78a4eb2f7b93a46805da35c3d48036,
+  skeletonPrefab: {fileID: 1886034783218542, guid: d789a399cc3b4ba44a7303b8641fabfd,
     type: 2}
   listOfSpawn:
   - {fileID: 1140291282071228}

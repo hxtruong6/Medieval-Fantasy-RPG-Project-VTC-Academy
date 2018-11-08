@@ -75,23 +75,28 @@ public class Projectile : MonoBehaviour
             return;
         }
         float damage = 0;
-        if (objectBeingHit.GetComponent<BodyPart>())
-        {
-            var bodyPart = objectBeingHit.GetComponent<BodyPart>();
-            switch (bodyPart.partType)
+        var enemyBodyPart = objectBeingHit.GetComponent<BodyPart>();
+        if (enemyBodyPart){
+            
+            switch (enemyBodyPart.partType)
             {
                 case BodyPartType.Head:
-                    damage += bodyPart.headDamge;
+                    damage += enemyBodyPart.headDamage;
                     break;
                 case BodyPartType.Wing:
+                    damage += enemyBodyPart.wingDamage;
                     break;
                 case BodyPartType.Leg:
+                    damage += enemyBodyPart.legDamage;
                     break;
                 case BodyPartType.Forearm:
+                    damage += enemyBodyPart.forearmDamage;
                     break;
                 case BodyPartType.Tail:
+                    damage += enemyBodyPart.tailDamage;
                     break;
                 case BodyPartType.Body:
+                    damage += enemyBodyPart.bodyDamage;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -104,7 +109,7 @@ public class Projectile : MonoBehaviour
         
         if (projectileConfig.isAbilityProjectile)
         {
-            damage = shooterWeapon.GetWeaponDamage();
+            damage += shooterWeapon.GetWeaponDamage();
             damage += shooter.GetComponent<Character>().GetBaseDamage();
             damage += shooter.GetComponent<RangedPowerAttackBehaviour>().GetAbilityDamage();
             objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
@@ -114,7 +119,11 @@ public class Projectile : MonoBehaviour
             shooterWeapon.SetTarget(objectBeingHit);
             shooterWeapon.Hit(rangedWeaponConfig);
         }
-
+        // TODO: if enough damage -> show animation
+        //if (enemyBodyPart)
+        //{
+        //    if (damage >  enoughToGetHit)
+        //}
         Destroy(gameObject);
     }
 }

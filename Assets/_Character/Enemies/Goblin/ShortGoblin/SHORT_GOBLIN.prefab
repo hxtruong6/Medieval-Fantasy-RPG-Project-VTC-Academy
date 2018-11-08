@@ -1328,7 +1328,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
   m_LocalRotation: {x: -0, y: -0.42885366, z: -0, w: 0.90337396}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20.35, y: 10.76, z: 30.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4207881310715370}
@@ -2663,13 +2663,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df79457e282ff2e4297855a2d6658017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropWeaponChance: 0.1
   weaponList: []
   healthPotionList:
   - {fileID: 11400000, guid: c3b071f5dc7c3b34495a715670f5521d, type: 2}
   manaPotionList:
   - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
-  minWeaponDrop: 0
-  maxWeaponDrop: 0
   minHealthDrop: 0
   maxHealthDrop: 3
   minManaDrop: 0
@@ -2834,17 +2833,16 @@ MonoBehaviour:
   fleeing: 0
   seekingSpeed: 4
   fleeingSpeed: 5
-  patrolSpeed: 0.5
+  patrolSpeed: 0.4
   seekingRadius: 4
   fleeingRadius: 6
-  patrollRadius: 3
+  patrollRadius: 10
   chasingRadius: 17
   idleTimeLimited: 0
   chasingTimeLimited: 13
-  patrolTimeLimited: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 1
-  waitAtWaypointTime: 1
+  waitAtWaypointTime: 5
   angleAbleLooking: 40
   radiusAbleLooking: 8
 --- !u!114 &114748713566109292

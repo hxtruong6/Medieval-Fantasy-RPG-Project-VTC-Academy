@@ -1,5 +1,4 @@
 ﻿#if UNITY_EDITOR
-using System;
 using System.Collections;
 using UnityEditor;
 #endif
@@ -28,7 +27,6 @@ public class Enemy : MonoBehaviour
 
     public float idleTimeLimited = 5f;
     public float chasingTimeLimited = 10f;
-    public float patrolTimeLimited = 8f;
 
     public WaypointContainer patrolPath;
     public float waypointTolerance = 1f;
@@ -41,7 +39,7 @@ public class Enemy : MonoBehaviour
 
     protected float idleTime = 0f;
     protected float chasingTime = 0f;
-    protected float patrolTime = 0f;
+    protected float currentWaitAtWaypointTime = 0f;
     protected float currentWeaponRange;
     protected int nextWaypointIndex;
     protected WeaponSystem weaponSystem;
@@ -211,7 +209,7 @@ public class Enemy : MonoBehaviour
                         idleTime = 0f;
                         // set to get new position
                         nextWaypointPos = transform.position;
-                        patrolTime = 0f;
+                        currentWaitAtWaypointTime = 0f;
                     }
                     else
                         idleTime += Time.deltaTime;
@@ -239,31 +237,44 @@ public class Enemy : MonoBehaviour
                         idleTime = 0f;
                         break;
                     }
-                    /*
-                    * patrolTime is used to avoid some destination, enemy can not reach.
-                    */
-                    if (Vector3.Distance(transform.position, nextWaypointPos) <= waypointTolerance
-                        || (patrolPath == null && patrolTime > patrolTimeLimited)
-                        || (patrolPath != null && patrolTime > waitAtWaypointTime))
+
+                    if (Vector3.Distance(transform.position, nextWaypointPos) <= waypointTolerance)
                     {
-                        // Choose next waypoint index, cycling to start if necessary
-                        if (patrolPath != null)
+                        if (currentWaitAtWaypointTime < waitAtWaypointTime)
                         {
-                            nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
-                            nextWaypointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
+                            currentWaitAtWaypointTime += Time.deltaTime;
                         }
                         else
                         {
-                            nextWaypointPos = transform.position +
-                                              new Vector3(
-                                                    UnityEngine.Random.Range(-patrollRadius, patrollRadius),
-                                                    0,
-                                                    UnityEngine.Random.Range(-patrollRadius, patrollRadius));
+                            currentWaitAtWaypointTime = 0f;
+                            // Choose next waypoint index, cycling to start if necessary
+                            if (patrolPath != null)
+                            {
+                                nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
+                                nextWaypointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
+                            }
+                            else
+                            {
+                                nextWaypointPos = transform.position + new Vector3(
+                                                      UnityEngine.Random.Range(-patrollRadius, patrollRadius),
+                                                      0,
+                                                      UnityEngine.Random.Range(-patrollRadius, patrollRadius));
+                                //Debug.Log("Next: " + nextWaypointPos);
+                                //while (!NavMesh.CalculatePath(transform.position, nextWaypointPos, NavMesh.AllAreas, null))
+                                while (!agent.CalculatePath(nextWaypointPos, new NavMeshPath()))
+                                {
+                                    nextWaypointPos = transform.position + new Vector3(
+                                                          UnityEngine.Random.Range(-patrollRadius, patrollRadius),
+                                                          0,
+                                                          UnityEngine.Random.Range(-patrollRadius, patrollRadius));
+                                    //Debug.Log("Next fixing: " + nextWaypointPos);
 
+                                }
+                            }
                         }
-                        patrolTime = 0f;
+
+
                     }
-                    patrolTime += Time.deltaTime;
 
                     steering += Seek(nextWaypointPos) * patrolSpeed;
                     break;
@@ -303,6 +314,17 @@ public class Enemy : MonoBehaviour
         desiredVel = desiredVel.normalized * fleeingSpeed;
         return desiredVel - rigid.velocity;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Projectile>() &&
+            (character.CurrentState == CharacterState.idling || character.CurrentState == CharacterState.patrolling))
+        {
+            character.CurrentState = CharacterState.chasing;
+        }
+    }
+
+
 
 
 #if UNITY_EDITOR
