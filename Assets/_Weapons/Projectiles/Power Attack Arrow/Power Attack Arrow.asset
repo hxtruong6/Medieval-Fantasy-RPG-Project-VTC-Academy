@@ -16,4 +16,5 @@ MonoBehaviour:
   flyingAnimations: []
   speed: 20
   vanishAfterSec: 1
+  contactSound: {fileID: 8300000, guid: e92b3ac8e3de15f449d827da9f342687, type: 3}
   isAbilityProjectile: 1

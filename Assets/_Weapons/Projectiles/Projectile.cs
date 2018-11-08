@@ -73,7 +73,10 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-     
+
+        AudioSource audioSource = GetComponentInParent<AudioSource>();
+        audioSource.PlayOneShot(projectileConfig.GetContactSound());
+
         var shooterWeapon = shooter.GetComponent<WeaponSystem>();
         float damage = 0;
         
