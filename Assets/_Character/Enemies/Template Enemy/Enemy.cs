@@ -259,9 +259,10 @@ public class Enemy : MonoBehaviour
                                                       UnityEngine.Random.Range(-patrollRadius, patrollRadius),
                                                       0,
                                                       UnityEngine.Random.Range(-patrollRadius, patrollRadius));
-                                //Debug.Log("Next: " + nextWaypointPos);
+                               // Debug.Log("Next: " + nextWaypointPos);
                                 //while (!NavMesh.CalculatePath(transform.position, nextWaypointPos, NavMesh.AllAreas, null))
-                                while (!agent.CalculatePath(nextWaypointPos, new NavMeshPath()))
+                                NavMeshPath tempNavMeshPath = new NavMeshPath();
+                                while (!agent.CalculatePath(nextWaypointPos, tempNavMeshPath))
                                 {
                                     nextWaypointPos = transform.position + new Vector3(
                                                           UnityEngine.Random.Range(-patrollRadius, patrollRadius),
@@ -270,6 +271,9 @@ public class Enemy : MonoBehaviour
                                     //Debug.Log("Next fixing: " + nextWaypointPos);
 
                                 }
+                                
+                                //for (int i = 0; i < tempNavMeshPath.corners.Length - 1; i++)
+                                //    Debug.DrawLine(tempNavMeshPath.corners[i], tempNavMeshPath.corners[i + 1], Color.yellow);
                             }
                         }
 
@@ -285,7 +289,7 @@ public class Enemy : MonoBehaviour
                 }
 
         }
-        agent.SetDestination(rigid.position + steering);
+        agent.SetDestination(transform.position + steering);
     }
 
     public void Attacking()
