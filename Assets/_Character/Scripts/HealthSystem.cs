@@ -70,9 +70,13 @@ public class HealthSystem : MonoBehaviour
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         //play sound
         damageTextSpawner.Create(damage, transform.position);
-        var clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        audioSource.PlayOneShot(clip);   
 
+        if(damageSounds.Length > 0)
+        {
+            var clip = damageSounds[Random.Range(0, damageSounds.Length)];
+            audioSource.PlayOneShot(clip);
+        }
+        
         if (characterDies)
         {
             StartCoroutine(KillCharacter());

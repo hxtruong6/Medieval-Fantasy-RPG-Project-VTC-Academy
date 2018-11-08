@@ -20,7 +20,7 @@ public class WeaponSystem : MonoBehaviour
     Animator animator;
     AnimationClip attackClip;
     Character character;
-    float lastHitTime;
+    float? lastHitTime;
 
     public WeaponConfig GetCurrentWeapon() { return currentWeaponConfig; }
 
@@ -149,6 +149,7 @@ public class WeaponSystem : MonoBehaviour
 
     public void CancleAction()
     {
+        canAttack = true;
         character.SetDestination(character.transform.position);
         animator.Play("Grounded");
     }
@@ -188,8 +189,8 @@ public class WeaponSystem : MonoBehaviour
 
     IEnumerator ChangeAttackStatus()
     {
-        float timeToWait = attackClip.length + currentWeaponConfig.GetMinTimeBetweenHits();
-        canAttack = false;
+        float weaponHitPeriod = attackClip.length + (1 - currentWeaponConfig.GetAttackAnimSpeedMultiplier()) * attackClip.length;
+        float timeToWait = weaponHitPeriod + currentWeaponConfig.GetMinTimeBetweenHits();
         yield return new WaitForSeconds(timeToWait);
         canAttack = true;
     }
@@ -207,13 +208,9 @@ public class WeaponSystem : MonoBehaviour
 
         if (attackerStillAlive && targetStillAlive)
         {
-            float weaponHitPeriod = attackClip.length;
-            float timeToWait = weaponHitPeriod + currentWeaponConfig.GetMinTimeBetweenHits();
-
-            if (Time.time - lastHitTime >= timeToWait)
+            if (canAttack)
             {
-                StartCoroutine(ChangeAttackStatus());
-                lastHitTime = Time.time;
+                canAttack = false;
                 RunAnimationAttackOnce();
             }
         }
@@ -228,6 +225,7 @@ public class WeaponSystem : MonoBehaviour
         transform.LookAt(target.transform);
         SetAttackAnimation();
         animator.SetTrigger(ATTACK_TRIGGER);
+        StartCoroutine(ChangeAttackStatus());
     }
 
     public int GetWeaponDamage(WeaponConfig weapon = null)

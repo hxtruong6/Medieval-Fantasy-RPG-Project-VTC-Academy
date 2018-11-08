@@ -10,6 +10,7 @@ public class ProjectileConfig : ScriptableObject
     [SerializeField] AnimationClip[] flyingAnimations;
     [SerializeField] float speed;
     [SerializeField] float vanishAfterSec = 1f;
+    [SerializeField] AudioClip contactSound;
 
     public bool isAbilityProjectile;
 
@@ -36,5 +37,10 @@ public class ProjectileConfig : ScriptableObject
             return clip;
         }
         return null;
+    }
+
+    public AudioClip GetContactSound()
+    {
+        return contactSound;
     }
 }

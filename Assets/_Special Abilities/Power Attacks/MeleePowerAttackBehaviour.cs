@@ -13,18 +13,18 @@ public class MeleePowerAttackBehaviour : AbilityBehaviour
         GetReferences(useParams);
         PlayEffectOnSelf(gameObject);
         PlayEffectOnWeapon(GetComponent<WeaponSystem>().GetCurrentWeaponObject());
-        PlayAbilitySound();
         PlayAbilityAnimation();
     }
 
     private void GetReferences(AbilityUseParams useParams)
     {
-        damageToDeal = useParams.baseDamage + (config as MeleePowerAttackConfig).GetExtraDamage();
+        damageToDeal = useParams.baseDamage * (config as MeleePowerAttackConfig).GetExtraDamage();
         target = useParams.target;
     }
 
     private void HitPowerAttack()
     {
+        PlayAbilitySound();
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
         PlayEffectOnEnemy(target);
         target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);

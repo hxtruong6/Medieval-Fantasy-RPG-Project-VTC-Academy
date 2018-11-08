@@ -77,7 +77,10 @@ public class PierceProjectile : MonoBehaviour
         {
             return;
         }
-     
+
+        AudioSource audioSource = GetComponentInParent<AudioSource>();
+        audioSource.PlayOneShot(projectileConfig.GetContactSound());
+
         var shooterWeapon = shooter.GetComponent<WeaponSystem>();
         float damage = 0;
         
@@ -85,7 +88,7 @@ public class PierceProjectile : MonoBehaviour
         {
             damage = shooterWeapon.GetWeaponDamage();
             damage += shooter.GetComponent<Character>().GetBaseDamage();
-            damage += shooter.GetComponent<RangedPowerAttackBehaviour>().GetAbilityDamage();
+            damage = damage * shooter.GetComponent<RangedPowerAttackBehaviour>().GetAbilityDamage();
             objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
         }
         else
