@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using EZCameraShake;
 public class MeleeAreaEffectBehaviour : AbilityBehaviour
 {
     float damageToDeal = 0;
@@ -19,6 +19,7 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
 
     private void DealRadialDamage()
     {
+        CameraShaker.Instance.ShakeOnce(5f,6f,.1f,2f);
         PlayAbilitySound();
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
 
