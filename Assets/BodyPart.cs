@@ -12,13 +12,17 @@ public enum BodyPartType
 }
 public class BodyPart : MonoBehaviour
 {
-    // TODO: add part of damage;
-    public float headDamge = 30f;
     public BodyPartType partType;
+    public float headDamage = 30f;
+    public float wingDamage = 15f;
+    public float legDamage = 15f;
+    public float forearmDamage = 15f;
+    public float tailDamage = 20f;
+    public float bodyDamage = 25f;
 
     void Start()
     {
-        // TODO: if enough damage -> show animation
+      
         //GetComponentInParent<Animator>()
     }
     public void OnCollisionEnter(Collision collision)

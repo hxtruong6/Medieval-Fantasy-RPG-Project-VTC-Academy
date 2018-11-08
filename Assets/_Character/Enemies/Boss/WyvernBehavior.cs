@@ -15,10 +15,15 @@ public class WyvernBehavior : MonoBehaviour
     [SerializeField] private float fireAttackingRadius = 20f;
     [SerializeField] private float timeOnPlanLimited = 10f; // if it is out of this time, it will fly on the air
     [SerializeField] private float flyingSpeed = 10f;
+    [SerializeField] private float fallingSpeed = 10f;
     [SerializeField] private float timeForFireShooting = 0.1f;
+    [SerializeField] private float maxFlyingHeight = 10f;
+    [SerializeField] private float timeToFlying = 0.5f;
+    [SerializeField] private CurrentState currentState;
+    [SerializeField] private float flyTimeLimited = 10f;
 
-    [SerializeField] private GameObject skeletonGroup;
-    //private bool isAlive = true;
+
+    private WyvernSkeletonSpawn wyvernSkeletonSpawn;
     private WyvernAttacking wyvernAttacking;
     private WyvernFireProjectile wyvernFireProjectile;
     private Animator animator;
@@ -31,9 +36,9 @@ public class WyvernBehavior : MonoBehaviour
 
     private float distanceToPlayer;
     private float timeOnPlan;
-    [SerializeField] private CurrentState currentState;
-    [SerializeField] private float flyTimeLimited = 10f;
+ 
     private float flyTime;
+    private float currentFallingSpeed;
 
 
     [ExecuteInEditMode]
@@ -49,6 +54,7 @@ public class WyvernBehavior : MonoBehaviour
         wyvernFireProjectile = GetComponent<WyvernFireProjectile>();
         animator = GetComponentInChildren<Animator>();
         player = FindObjectOfType<PlayerControl>();
+        wyvernSkeletonSpawn = GetComponent<WyvernSkeletonSpawn>();
 
         timeOnPlan = 0f;
         currentState = CurrentState.Idle;
@@ -103,8 +109,9 @@ public class WyvernBehavior : MonoBehaviour
                 {
                     currentState = CurrentState.Flying;
                     timeOnPlan = 0;
+                    wyvernSkeletonSpawn.DisplaySkeletonSpawn();
                     EnableFlying();
-                    FlyingBehaviour();
+                    StartCoroutine(FlyingBehaviour());
                 }
                 else if (distanceToPlayer >= fireAttackingRadius)
                 {
@@ -123,6 +130,16 @@ public class WyvernBehavior : MonoBehaviour
                 break;
             case CurrentState.Flying:
                 // TODO: if all of skeleton died
+                if (wyvernSkeletonSpawn.IsCurrentSkeletonGroupDie())
+                {
+                    currentState = CurrentState.Idle;
+                    DisableFlying();
+                    // TODO: falling to plan
+
+                }
+
+                flyingSpeed += Time.deltaTime;
+                currentFallingSpeed -= Time.deltaTime;
                 Debug.Log("Is flying. Waiting player kill all of skeleton");
                 flyTime += Time.deltaTime;
                 if (flyTime >= flyTimeLimited)
@@ -151,12 +168,22 @@ public class WyvernBehavior : MonoBehaviour
     }
 
 
-    private void FlyingBehaviour()
+    IEnumerator FlyingBehaviour()
     {
         // TODO: before flying spawn skeleton
-        var newPos = animator.transform.position;
-        newPos.y = 50;
-        animator.transform.position = newPos;
+        flyingSpeed = 0;
+        currentFallingSpeed = fallingSpeed;
+        while (Vector3.Distance(animator.transform.position, transform.position) <= maxFlyingHeight)
+        {
+            yield return new WaitForSeconds(timeToFlying);
+            var newPos = animator.transform.position;
+            newPos.y += flyingSpeed ;
+            animator.transform.position = newPos;
+            yield return new WaitForSeconds(timeToFlying);
+            newPos = animator.transform.position;
+            newPos.y -= currentFallingSpeed ;
+            animator.transform.position = newPos;
+        }
     }
 
     private void EnableFlying()
@@ -174,7 +201,6 @@ public class WyvernBehavior : MonoBehaviour
     {
         transform.LookAt(player.transform.position);
         wyvernAttacking.FireAttacking();
-        // TODO: shooting fire
         Debug.Log("Fire is shooting....");
         StartCoroutine(FireSpawnLoop());
     }

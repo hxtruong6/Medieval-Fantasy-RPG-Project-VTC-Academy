@@ -1328,7 +1328,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985939858056000}
   m_LocalRotation: {x: -0, y: -0.42885366, z: -0, w: 0.90337396}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20.35, y: 10.76, z: 30.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4207881310715370}
@@ -2833,17 +2833,16 @@ MonoBehaviour:
   fleeing: 0
   seekingSpeed: 4
   fleeingSpeed: 5
-  patrolSpeed: 0.5
+  patrolSpeed: 0.4
   seekingRadius: 4
   fleeingRadius: 6
-  patrollRadius: 3
+  patrollRadius: 10
   chasingRadius: 17
   idleTimeLimited: 0
   chasingTimeLimited: 13
-  patrolTimeLimited: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 1
-  waitAtWaypointTime: 1
+  waitAtWaypointTime: 5
   angleAbleLooking: 40
   radiusAbleLooking: 8
 --- !u!114 &114748713566109292
