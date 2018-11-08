@@ -8,18 +8,18 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
 
     public override void Use(AbilityUseParams useParams)
     {
-        GetReferences(useParams);
-        PlayAbilitySound();
+        GetReferences(useParams);       
         PlayAbilityAnimation();
     }
 
     private void GetReferences(AbilityUseParams useParams)
     {
-        damageToDeal = useParams.baseDamage + (config as MeleeAreaEffectConfig).GetDamageToEachTarget();
+        damageToDeal = useParams.baseDamage * (config as MeleeAreaEffectConfig).GetDamageToEachTarget();
     }  
 
     private void DealRadialDamage()
     {
+        PlayAbilitySound();
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
 
         PlayEffectOnSelf(gameObject);

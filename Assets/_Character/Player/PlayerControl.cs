@@ -96,11 +96,8 @@ public class PlayerControl : MonoBehaviour
             return false;
 
         if (enemyToCheck.GetComponent<HealthSystem>().HealthAsPercentage <= 0)
-        {
-            if (enemyToCheck == enemy)
-                enemy.GetComponent<InteractiveEnemy>().HighLight(false);
             return false;
-        }
+
         return true;
     }
 
@@ -152,10 +149,9 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void NormalAttack(Enemy enemy)
-    {
-        if (!weaponSystem.canAttack)
+    {   
+        if (weaponSystem.canAttack==false)
             return;
-
         StopCurrentAction();
         StopMoving();
         transform.LookAt(enemy.transform);

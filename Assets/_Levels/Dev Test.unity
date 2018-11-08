@@ -2385,6 +2385,21 @@ Prefab:
       propertyPath: dropWeaponChance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65650267529211470, guid: 640ec172c9bf40f488f5f4cc4e2505d6,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 65650267529211470, guid: 640ec172c9bf40f488f5f4cc4e2505d6,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 3.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 65650267529211470, guid: 640ec172c9bf40f488f5f4cc4e2505d6,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 1.95
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 640ec172c9bf40f488f5f4cc4e2505d6, type: 2}
   m_IsPrefabParent: 0
@@ -3932,6 +3947,23 @@ Prefab:
       propertyPath: tempObjects
       value: 
       objectReference: {fileID: 1566996413}
+    - target: {fileID: 114761206580686176, guid: 186b55261709f3d4682c25de0534dbab,
+        type: 2}
+      propertyPath: legendaryWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 00226377cd2a2c6459c53bc00744a48e,
+        type: 2}
+    - target: {fileID: 114761206580686176, guid: 186b55261709f3d4682c25de0534dbab,
+        type: 2}
+      propertyPath: masterWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ff112129432e14448d9394f8bc991e8,
+        type: 2}
+    - target: {fileID: 114761206580686176, guid: 186b55261709f3d4682c25de0534dbab,
+        type: 2}
+      propertyPath: cheatScene
+      value: 
+      objectReference: {fileID: 558887060}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 186b55261709f3d4682c25de0534dbab, type: 2}
   m_IsPrefabParent: 0
@@ -6394,7 +6426,7 @@ MonoBehaviour:
   unknownCursor: {fileID: 2800000, guid: 109fd538c8c79de44b6f1fc82cf9929b, type: 3}
   lootCursor: {fileID: 2800000, guid: 21bb9f8320005c04a8224744e0b41a5e, type: 3}
   cursorHotspot: {x: 0, y: 0}
-  maxRaycastDepth: 50
+  maxRaycastDepth: 25
 --- !u!81 &1585058336
 AudioListener:
   m_ObjectHideFlags: 0
