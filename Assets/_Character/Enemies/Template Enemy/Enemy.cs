@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     Rigidbody rigid;
     NavMeshAgent agent;
     float distanceToPlayer;
-	bool isDead;//NEW
+    bool isDead;//NEW
 
     void Start()
     {
@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
     }
     void FixedUpdate()
     {
-		if (isDead)//NEW
+        if (isDead)//NEW
             return;
         PlayerOrEnemyAliveToContinue();
         var steering = Vector3.zero;
@@ -124,9 +124,12 @@ public class Enemy : MonoBehaviour
         {
             case CharacterState.attacking:
                 {
+                    transform.LookAt(player.transform);
+                    if (weaponSystem.canAttack == false) break;
                     if (fleeing && distanceToPlayer < fleeingRadius)
                     {
                         //TODO: act finish animation
+                        //this.character.GetOverrideController().runtimeAnimatorController.animationClips.
                         character.CurrentState = CharacterState.fleeing;
                     }
 
@@ -135,7 +138,9 @@ public class Enemy : MonoBehaviour
                         character.CurrentState = distanceToPlayer < chasingRadius ? CharacterState.chasing : CharacterState.idling;
                     }
                     else
+                    {
                         weaponSystem.AttackTarget(player.gameObject);
+                    }
                     break;
                 }
             case CharacterState.chasing:
@@ -170,7 +175,6 @@ public class Enemy : MonoBehaviour
                         chasingTime += Time.deltaTime;
                         steering += Seek(player.transform.position);
                     }
-
                     break;
                 }
             case CharacterState.fleeing:
@@ -262,7 +266,7 @@ public class Enemy : MonoBehaviour
                                                       UnityEngine.Random.Range(-patrollRadius, patrollRadius),
                                                       0,
                                                       UnityEngine.Random.Range(-patrollRadius, patrollRadius));
-                               // Debug.Log("Next: " + nextWaypointPos);
+                                // Debug.Log("Next: " + nextWaypointPos);
                                 //while (!NavMesh.CalculatePath(transform.position, nextWaypointPos, NavMesh.AllAreas, null))
                                 NavMeshPath tempNavMeshPath = new NavMeshPath();
                                 while (!agent.CalculatePath(nextWaypointPos, tempNavMeshPath))
@@ -274,7 +278,7 @@ public class Enemy : MonoBehaviour
                                     //Debug.Log("Next fixing: " + nextWaypointPos);
 
                                 }
-                                
+
                                 //for (int i = 0; i < tempNavMeshPath.corners.Length - 1; i++)
                                 //    Debug.DrawLine(tempNavMeshPath.corners[i], tempNavMeshPath.corners[i + 1], Color.yellow);
                             }
@@ -333,7 +337,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-	public IEnumerator Kill(float destroyTime)//NEW
+    public IEnumerator Kill(float destroyTime)//NEW
     {
         character.SetDestination(transform.position);
         isDead = true;
