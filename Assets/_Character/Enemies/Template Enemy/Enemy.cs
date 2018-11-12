@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
     Rigidbody rigid;
     NavMeshAgent agent;
     float distanceToPlayer;
+	bool isDead;//NEW
 
     void Start()
     {
@@ -114,6 +115,8 @@ public class Enemy : MonoBehaviour
     }
     void FixedUpdate()
     {
+		if (isDead)//NEW
+            return;
         PlayerOrEnemyAliveToContinue();
         var steering = Vector3.zero;
         distanceToPlayer = GetDistanceToPlayer();
@@ -289,6 +292,8 @@ public class Enemy : MonoBehaviour
                 }
 
         }
+        //var newPos = transform.position + steering;
+        //while (steering.magnitude < 0.2f) steering += steering;
         agent.SetDestination(transform.position + steering);
     }
 
@@ -328,8 +333,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
-
+	public IEnumerator Kill(float destroyTime)//NEW
+    {
+        character.SetDestination(transform.position);
+        isDead = true;
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(gameObject);
+    }
 
 #if UNITY_EDITOR
     void OnDrawGizmos()

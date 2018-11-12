@@ -19,7 +19,6 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
 
     private void DealRadialDamage()
     {
-        CameraShaker.Instance.ShakeOnce(5f,6f,.1f,2f);
         PlayAbilitySound();
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
 

@@ -8,8 +8,21 @@ public class RangedAOEBehaviour : AbilityBehaviour
 
     public override void Use(AbilityUseParams useParamsToSet)
     {
+        LookAtMousePosition();
         PlayAbilitySound();
         PlayAbilityAnimation();
+    }
+
+    private void LookAtMousePosition()
+    {
+        Vector3 mouse = Input.mousePosition;
+        Camera camera = Camera.main;
+        Ray castPoint = camera.ScreenPointToRay(mouse);
+        RaycastHit hit;
+        if (Physics.Raycast(castPoint, out hit, camera.GetComponent<CameraRaycaster>().maxRaycastDepth))
+        {
+            gameObject.transform.LookAt(hit.point);
+        }
     }
 
     private GameObject SpawnProjectile(ProjectileConfig configToUse, float rotationY)

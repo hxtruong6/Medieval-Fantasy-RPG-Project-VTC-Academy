@@ -116,22 +116,26 @@ public class HealthSystem : MonoBehaviour
     {
         var playerComponent = GetComponent<PlayerControl>();
 
-        GetComponent<CapsuleCollider>().enabled = false;
-        if(GetComponent<BoxCollider>() && !playerComponent)
-            GetComponent<BoxCollider>().enabled = false;//TODO check with designer
-
         animator.SetTrigger(DEATH_TRIGGER);
         
         audioSource.Play();
+
         if(playerComponent)
         {
             playerComponent.Killed();
         }
-
-        if(GetComponent<DropLoot>())
+        else
         {
-            GetComponent<DropLoot>().DropWeaponAndItem();
-        }
+            GetComponent<CapsuleCollider>().enabled = false;
+
+            if (GetComponent<BoxCollider>() && !playerComponent)
+                GetComponent<BoxCollider>().enabled = false;//TODO check with designer
+
+            if (GetComponent<DropLoot>())
+                GetComponent<DropLoot>().DropWeaponAndItem();
+
+            GetComponent<Enemy>().StartCoroutine(GetComponent<Enemy>().Kill(deadVanishAfter));
+        }    
 
         yield return new WaitForSecondsRealtime(deadVanishAfter);
 
@@ -140,10 +144,6 @@ public class HealthSystem : MonoBehaviour
             Destroy(playerComponent);
             Destroy(GetComponent<Character>());
             SceneManager.LoadScene(0);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 

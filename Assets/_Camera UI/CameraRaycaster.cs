@@ -9,7 +9,7 @@ public class CameraRaycaster : MonoBehaviour {
     [SerializeField] Texture2D unknownCursor;
     [SerializeField] Texture2D lootCursor;
     [SerializeField] Vector2 cursorHotspot;
-    [SerializeField] float maxRaycastDepth = 25f;
+    public float maxRaycastDepth = 25f;
 
     const int POTENTIALLY_WALKABLE_LAYER = 8;
     const int DROP_ITEM_LAYER = 10;
