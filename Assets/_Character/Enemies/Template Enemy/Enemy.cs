@@ -50,6 +50,8 @@ public class Enemy : MonoBehaviour
     NavMeshAgent agent;
     float distanceToPlayer;
     bool isDead;//NEW
+    private Vector3 lastPosition;
+    private float fleeingTime = 0f;
 
     void Start()
     {
@@ -61,7 +63,7 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<PlayerControl>();
         weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on 
         currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
-
+        lastPosition = transform.position;
         //StartCoroutine(getCurrentWeaponRange());
 
         //if (fleeing && fleeingRadius < currentWeaponRange)
@@ -128,8 +130,6 @@ public class Enemy : MonoBehaviour
                     if (weaponSystem.canAttack == false) break;
                     if (fleeing && distanceToPlayer < fleeingRadius)
                     {
-                        //TODO: act finish animation
-                        //this.character.GetOverrideController().runtimeAnimatorController.animationClips.
                         character.CurrentState = CharacterState.fleeing;
                     }
 
@@ -139,7 +139,7 @@ public class Enemy : MonoBehaviour
                     }
                     else
                     {
-                        weaponSystem.AttackTarget(player.gameObject);
+                        Attacking();
                     }
                     break;
                 }
@@ -180,13 +180,30 @@ public class Enemy : MonoBehaviour
             case CharacterState.fleeing:
                 {
                     // TODO: finish animation??
+                    lastPosition = transform.position;
                     if (distanceToPlayer > fleeingRadius)
                     {
                         character.CurrentState = distanceToPlayer > chasingRadius ? CharacterState.chasing : CharacterState.idling;
-
+                        break;
                     }
-                    else
-                        steering += Flee(player.transform.position);
+                    //else if (fleeingTime > 1f && Vector3.Distance(lastPosition, transform.position) < 0.5f)
+                    //{
+                    //    fleeingTime = 0;
+                    //    //transform.LookAt(player.transform);
+                    //    transform.position = Vector3.MoveTowards(transform.position, player.transform.position, fleeingSpeed);
+                    //    //steering = Seek(RandomNavSphere(transform.position, patrollRadius, -1));
+                    //}
+                    //else if (fleeingTime > 1f)
+                    //{
+                    //    lastPosition = transform.position;
+                    //}
+                    //else
+                    //{
+                    //    fleeingTime += Time.deltaTime;
+                        
+                    //}
+                    steering += Flee(player.transform.position);
+
                     break;
                 }
             case CharacterState.idling:
@@ -262,31 +279,12 @@ public class Enemy : MonoBehaviour
                             }
                             else
                             {
-                                nextWaypointPos = transform.position + new Vector3(
-                                                      UnityEngine.Random.Range(-patrollRadius, patrollRadius),
-                                                      0,
-                                                      UnityEngine.Random.Range(-patrollRadius, patrollRadius));
-                                // Debug.Log("Next: " + nextWaypointPos);
-                                //while (!NavMesh.CalculatePath(transform.position, nextWaypointPos, NavMesh.AllAreas, null))
-                                NavMeshPath tempNavMeshPath = new NavMeshPath();
-                                while (!agent.CalculatePath(nextWaypointPos, tempNavMeshPath))
-                                {
-                                    nextWaypointPos = transform.position + new Vector3(
-                                                          UnityEngine.Random.Range(-patrollRadius, patrollRadius),
-                                                          0,
-                                                          UnityEngine.Random.Range(-patrollRadius, patrollRadius));
-                                    //Debug.Log("Next fixing: " + nextWaypointPos);
-
-                                }
-
-                                //for (int i = 0; i < tempNavMeshPath.corners.Length - 1; i++)
-                                //    Debug.DrawLine(tempNavMeshPath.corners[i], tempNavMeshPath.corners[i + 1], Color.yellow);
+                                nextWaypointPos = RandomNavSphere(transform.position, patrollRadius, -1);
                             }
                         }
 
 
                     }
-
                     steering += Seek(nextWaypointPos) * patrolSpeed;
                     break;
                 }
@@ -296,9 +294,17 @@ public class Enemy : MonoBehaviour
                 }
 
         }
-        //var newPos = transform.position + steering;
-        //while (steering.magnitude < 0.2f) steering += steering;
+
         agent.SetDestination(transform.position + steering);
+    }
+
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+        randDirection += origin;
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+        return navHit.position;
     }
 
     public void Attacking()
