@@ -1016,7 +1016,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1985939858056000, guid: 7cc6499f5d1befc46bc8d510571b3114, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114782215563193312, guid: 7cc6499f5d1befc46bc8d510571b3114,
         type: 2}
@@ -1232,7 +1232,45 @@ Prefab:
       objectReference: {fileID: 1749624026}
     - target: {fileID: 1746826670878128, guid: c6878311db2226042a3782ea54e8bb23, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65511563513940420, guid: c6878311db2226042a3782ea54e8bb23,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758353271763342, guid: c6878311db2226042a3782ea54e8bb23, type: 2}
+      propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603319169574838, guid: c6878311db2226042a3782ea54e8bb23, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114722073282338246, guid: c6878311db2226042a3782ea54e8bb23,
+        type: 2}
+      propertyPath: flyTimeLimited
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114722073282338246, guid: c6878311db2226042a3782ea54e8bb23,
+        type: 2}
+      propertyPath: timeOnPlanLimited
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114722073282338246, guid: c6878311db2226042a3782ea54e8bb23,
+        type: 2}
+      propertyPath: maxFlyingHeight
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114722073282338246, guid: c6878311db2226042a3782ea54e8bb23,
+        type: 2}
+      propertyPath: flyingSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114722073282338246, guid: c6878311db2226042a3782ea54e8bb23,
+        type: 2}
+      propertyPath: timeToFlying
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6878311db2226042a3782ea54e8bb23, type: 2}

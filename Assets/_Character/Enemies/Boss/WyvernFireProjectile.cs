@@ -36,10 +36,7 @@ public class WyvernFireProjectile : MonoBehaviour
 
     private IEnumerator AutoDetroyFire(Rigidbody projectile)
     {
-        while (projectile && projectile.gameObject.activeSelf)
-        {
-            yield return new WaitForSeconds(timeForProjectileDestroy);
-            Destroy(projectile.gameObject);
-        }
+        yield return new WaitForSeconds(timeForProjectileDestroy);
+        if (projectile && projectile.gameObject.activeSelf) Destroy(projectile.gameObject);
     }
 }

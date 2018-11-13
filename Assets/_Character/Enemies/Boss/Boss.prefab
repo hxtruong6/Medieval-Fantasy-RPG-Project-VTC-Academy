@@ -1553,7 +1553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1779965955262594
 GameObject:
   m_ObjectHideFlags: 1
@@ -3199,7 +3199,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1746826670878128}
   m_LocalRotation: {x: -0, y: 0.93795633, z: -0, w: 0.34675345}
-  m_LocalPosition: {x: 7.3, y: 13.8, z: 29.9}
+  m_LocalPosition: {x: 7.3, y: 10.56, z: 29.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4977128566007770}
@@ -3625,7 +3625,7 @@ BoxCollider:
   m_GameObject: {fileID: 1638213189135658}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 20.3, y: 2.6, z: 2.08}
   m_Center: {x: -5.5203195, y: 0.13080426, z: 0.09756602}
@@ -4522,13 +4522,10 @@ MonoBehaviour:
   attackingRadius: 10
   fireAttackingRadius: 20
   timeOnPlanLimited: 5
-  flyingSpeed: 10
-  fallingSpeed: 5
   timeForFireShooting: 0.5
-  maxFlyingHeight: 15
-  timeToFlying: 0.3
+  maxFlyingHeight: 20
+  timeToFlying: 0.4
   currentState: 0
-  flyTimeLimited: 10
 --- !u!114 &114722181969988272
 MonoBehaviour:
   m_ObjectHideFlags: 1

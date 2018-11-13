@@ -8,19 +8,20 @@ public class WyvernBehavior : MonoBehaviour
     {
         Idle = 0,
         Attacking,
-        Flying
+        Flying,
+        Falling
     }
 
     [SerializeField] private float attackingRadius = 10f;
     [SerializeField] private float fireAttackingRadius = 20f;
     [SerializeField] private float timeOnPlanLimited = 10f; // if it is out of this time, it will fly on the air
-    [SerializeField] private float flyingSpeed = 10f;
-    [SerializeField] private float fallingSpeed = 10f;
+
+    //[SerializeField] private float fallingSpeed = 10f;
     [SerializeField] private float timeForFireShooting = 0.1f;
     [SerializeField] private float maxFlyingHeight = 10f;
     [SerializeField] private float timeToFlying = 0.5f;
     [SerializeField] private CurrentState currentState;
-    [SerializeField] private float flyTimeLimited = 10f;
+    //[SerializeField] private float flyTimeLimited = 10f;
 
 
     private WyvernSkeletonSpawn wyvernSkeletonSpawn;
@@ -36,9 +37,11 @@ public class WyvernBehavior : MonoBehaviour
 
     private float distanceToPlayer;
     private float timeOnPlan;
- 
+
     private float flyTime;
-    private float currentFallingSpeed;
+    //private float currentFallingSpeed;
+    private float flyingSpeed = 10f;
+
 
 
     [ExecuteInEditMode]
@@ -58,7 +61,6 @@ public class WyvernBehavior : MonoBehaviour
 
         timeOnPlan = 0f;
         currentState = CurrentState.Idle;
-
 
         var partOfBody = GetComponentsInChildren<MainBody>();
         /*
@@ -129,30 +131,34 @@ public class WyvernBehavior : MonoBehaviour
                 timeOnPlan += Time.deltaTime;
                 break;
             case CurrentState.Flying:
-                // TODO: if all of skeleton died
+                //if all of skeleton died
                 if (wyvernSkeletonSpawn.IsCurrentSkeletonGroupDie())
                 {
-                    currentState = CurrentState.Idle;
-                    DisableFlying();
-                    // TODO: falling to plan
-
-                }
-
-                flyingSpeed += Time.deltaTime;
-                currentFallingSpeed -= Time.deltaTime;
-                Debug.Log("Is flying. Waiting player kill all of skeleton");
-                flyTime += Time.deltaTime;
-                if (flyTime >= flyTimeLimited)
-                {
-                    currentState = CurrentState.Idle;
-                    DisableFlying();
                     flyTime = 0f;
+                    currentState = CurrentState.Falling;
+                    StartCoroutine(FallingBehaviour());
                 }
-                //if (skeletonGroup.isAllKilled())
+                flyingSpeed += Time.deltaTime / 2;
+                //currentFallingSpeed -= Time.deltaTime;
+                //Debug.Log("Is flying. Waiting player kill all of skeleton");
+                //flyTime += Time.deltaTime;
+                //if (flyTime >= flyTimeLimited)
                 //{
-                //    currentState = CurrentState.Idle;
-                //    DisableFlying();
+                //    flyTime = 0f;
+                //    currentState = CurrentState.Falling;
+                //    StartCoroutine(FallingBehaviour());
                 //}
+                break;
+            case CurrentState.Falling:
+                flyingSpeed += Time.deltaTime * 0.75f;
+                //if (flyingSpeed > timeToFlying*2) flyingSpeed -= timeToFlying;
+                if (Vector3.Distance(animator.transform.position, transform.position) <= 1f)
+                {
+                    StopAllCoroutines();
+                    currentState = CurrentState.Idle;
+                    DisableFlying();
+                    animator.transform.position = Vector3.Lerp(animator.transform.position, transform.position, 0.2f);
+                }
                 break;
             case CurrentState.Idle:
                 if (distanceToPlayer <= fireAttackingRadius
@@ -167,21 +173,34 @@ public class WyvernBehavior : MonoBehaviour
 
     }
 
+    private IEnumerator FallingBehaviour()
+    {
+        flyingSpeed = 0;
+        while (Vector3.Distance(animator.transform.position, transform.position) > 1f)
+        {
+            yield return new WaitForSeconds(timeToFlying);
+            var newPos = animator.transform.position;
+            newPos.y -= Mathf.Pow(1.1f, flyingSpeed);
+            Debug.Log("Dis: " + Vector3.Distance(animator.transform.position, transform.position));
+            //animator.transform.position = newPos;
+            animator.transform.position = Vector3.Lerp(animator.transform.position, newPos, flyingSpeed);
+        }
+
+    }
 
     IEnumerator FlyingBehaviour()
     {
-        // TODO: before flying spawn skeleton
         flyingSpeed = 0;
-        currentFallingSpeed = fallingSpeed;
         while (Vector3.Distance(animator.transform.position, transform.position) <= maxFlyingHeight)
         {
             yield return new WaitForSeconds(timeToFlying);
             var newPos = animator.transform.position;
-            newPos.y += flyingSpeed ;
-            animator.transform.position = newPos;
-            yield return new WaitForSeconds(timeToFlying);
+            newPos.y += Mathf.Pow(1.1f, flyingSpeed);
+            //animator.transform.position = newPos;
+            animator.transform.position = Vector3.Lerp(animator.transform.position, newPos, flyingSpeed);
+            yield return new WaitForSeconds(timeToFlying / 2);
             newPos = animator.transform.position;
-            newPos.y -= currentFallingSpeed ;
+            newPos.y -= Time.deltaTime;
             animator.transform.position = newPos;
         }
     }
@@ -201,7 +220,7 @@ public class WyvernBehavior : MonoBehaviour
     {
         transform.LookAt(player.transform.position);
         wyvernAttacking.FireAttacking();
-        Debug.Log("Fire is shooting....");
+        //Debug.Log("Fire is shooting....");
         StartCoroutine(FireSpawnLoop());
     }
 
