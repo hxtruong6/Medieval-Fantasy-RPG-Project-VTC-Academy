@@ -19,6 +19,7 @@ public class SkeletonArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("Child: "+ gameObject.GetComponentInChildren<Transform>().gameObject.name );
         if (transform.childCount == 0)
         {
             Destroy(gameObject);

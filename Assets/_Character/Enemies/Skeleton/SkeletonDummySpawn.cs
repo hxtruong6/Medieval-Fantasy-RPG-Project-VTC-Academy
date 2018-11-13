@@ -23,6 +23,7 @@ public class SkeletonDummySpawn : MonoBehaviour
         Skeleton.gameObject.SetActive(true);
         //Skeleton.transform.parent = null;
         Skeleton.gameObject.layer = 9;
+        gameObject.GetComponentInParent<SkeletonController>().GetMainSkeleton();
         Destroy(this.gameObject);
     }
 }
