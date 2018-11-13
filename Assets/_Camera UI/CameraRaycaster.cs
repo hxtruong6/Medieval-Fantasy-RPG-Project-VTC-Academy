@@ -86,8 +86,8 @@ public class CameraRaycaster : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, maxRaycastDepth))
         {
             var gameObjectHit = hitInfo.collider.gameObject;
-            var enemyHit = gameObjectHit.GetComponent<Enemy>();
-            var bossHit = gameObjectHit.transform.root.GetComponent<WyvernBehavior>();
+            var enemyHit = gameObjectHit.GetComponentInParent<Enemy>();
+            var bossHit = gameObjectHit.GetComponentInParent<WyvernBehavior>();
             if (enemyHit)
             {
                 Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);

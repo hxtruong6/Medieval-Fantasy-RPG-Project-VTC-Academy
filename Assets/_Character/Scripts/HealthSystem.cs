@@ -134,7 +134,7 @@ public class HealthSystem : MonoBehaviour
             if (GetComponent<DropLoot>())
                 GetComponent<DropLoot>().DropWeaponAndItem();
             if (GetComponent<Enemy>() != null)
-            GetComponent<Enemy>().StartCoroutine(GetComponent<Enemy>().Kill(deadVanishAfter));
+                GetComponent<Enemy>().StartCoroutine(GetComponent<Enemy>().Kill(deadVanishAfter));
         }
 
         yield return new WaitForSecondsRealtime(deadVanishAfter);

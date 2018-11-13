@@ -147,7 +147,7 @@ public class PlayerControl : MonoBehaviour
         {
             StartCoroutine(MoveAndPowerAttack(enemy)); ;
         }
-        //TODO Impliment move to enemy and use target aoe skills
+        //TODO: Impliment move to enemy and use target aoe skills
     }
 
     private void NormalAttack(GameObject enemy)
@@ -207,10 +207,11 @@ public class PlayerControl : MonoBehaviour
     IEnumerator MoveToTarget(GameObject target)
     {
         character.CurrentState = CharacterState.running;
-        character.SetDestination(target.transform.position);
+        
 
         if (target.GetComponent<Enemy>())
         {
+            character.SetDestination(target.transform.position);
             while (!IsTargetInAttackRange(target.gameObject))
             {
                 yield return null;
@@ -218,13 +219,22 @@ public class PlayerControl : MonoBehaviour
         }
         if (target.GetComponent<WyvernBehavior>())
         {
-            while (!IsTargetInAttackRange(target.gameObject))
+            var leftPos = target.GetComponent<DragonBoss>().leftLeg;
+            var rightPos = target.GetComponent<DragonBoss>().rightLeg;
+            GameObject targetPos = rightPos.gameObject;
+            if (Vector3.Distance(leftPos.position, transform.position) < Vector3.Distance(rightPos.position, transform.position))
+            {
+                targetPos = leftPos.gameObject;
+            }
+            character.SetDestination(targetPos.gameObject.transform.position);
+            while (!IsTargetInAttackRange(targetPos))
             {
                 yield return null;
             }
         }
         if (target.GetComponent<LootItem>())
         {
+            character.SetDestination(target.transform.position);
             while (!IsItemInPickUpRange(target.gameObject))
             {
                 yield return null;

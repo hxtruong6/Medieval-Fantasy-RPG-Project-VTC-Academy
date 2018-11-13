@@ -5,10 +5,15 @@ using UnityEngine;
 public class DragonOnTriggerSpawn : MonoBehaviour {
     public GameObject dragon;
     public GameObject particle;
+
+    float meleeAttackRangeForBoss = 5f;
+ 
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerControl>())
         {
+
+            GetComponentInChildren<DragonBoss>();
             dragon.gameObject.SetActive(true);
             Destroy(this.gameObject.GetComponent<BoxCollider>());
             Destroy(particle);
