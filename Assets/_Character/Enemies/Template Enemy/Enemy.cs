@@ -130,6 +130,7 @@ public class Enemy : MonoBehaviour
                     if (weaponSystem.canAttack == false) break;
                     if (fleeing && distanceToPlayer < fleeingRadius)
                     {
+
                         character.CurrentState = CharacterState.fleeing;
                     }
 
@@ -189,8 +190,10 @@ public class Enemy : MonoBehaviour
                     //else if (fleeingTime > 1f && Vector3.Distance(lastPosition, transform.position) < 0.5f)
                     //{
                     //    fleeingTime = 0;
+                    //    lastPosition = transform.position;
+                    //    character.CurrentState = CharacterState.attacking;
                     //    //transform.LookAt(player.transform);
-                    //    transform.position = Vector3.MoveTowards(transform.position, player.transform.position, fleeingSpeed);
+                    //    //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, fleeingSpeed);
                     //    //steering = Seek(RandomNavSphere(transform.position, patrollRadius, -1));
                     //}
                     //else if (fleeingTime > 1f)
@@ -200,7 +203,6 @@ public class Enemy : MonoBehaviour
                     //else
                     //{
                     //    fleeingTime += Time.deltaTime;
-                        
                     //}
                     steering += Flee(player.transform.position);
 
