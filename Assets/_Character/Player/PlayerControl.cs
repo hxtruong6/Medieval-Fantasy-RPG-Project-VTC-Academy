@@ -93,7 +93,6 @@ public class PlayerControl : MonoBehaviour
 
     private bool CheckAttackConditions(GameObject enemyToCheck)
     {
-        print(gameObject + " vs " + enemyToCheck);
         if (!isAlive)
             return false;
 

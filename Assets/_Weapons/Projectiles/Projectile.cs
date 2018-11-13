@@ -67,6 +67,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+
     private void DealDamage(GameObject objectBeingHit)
     {
         if (!objectBeingHit.GetComponent<HealthSystem>() ||
