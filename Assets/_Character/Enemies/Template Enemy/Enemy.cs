@@ -1,7 +1,7 @@
-﻿#if UNITY_EDITOR
+﻿//#if UNITY_EDITOR
 using System.Collections;
-using UnityEditor;
-#endif
+//using UnityEditor;
+//#endif
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
     Rigidbody rigid;
     NavMeshAgent agent;
     float distanceToPlayer;
+    bool isDead;//NEW
 
     void Start()
     {
@@ -112,8 +113,12 @@ public class Enemy : MonoBehaviour
 
         return false;
     }
+
     void FixedUpdate()
     {
+        if (isDead)//NEW
+            return;
+
         PlayerOrEnemyAliveToContinue();
         var steering = Vector3.zero;
         distanceToPlayer = GetDistanceToPlayer();
@@ -259,10 +264,9 @@ public class Enemy : MonoBehaviour
                                                       UnityEngine.Random.Range(-patrollRadius, patrollRadius),
                                                       0,
                                                       UnityEngine.Random.Range(-patrollRadius, patrollRadius));
-                               // Debug.Log("Next: " + nextWaypointPos);
+                                //Debug.Log("Next: " + nextWaypointPos);
                                 //while (!NavMesh.CalculatePath(transform.position, nextWaypointPos, NavMesh.AllAreas, null))
-                                NavMeshPath tempNavMeshPath = new NavMeshPath();
-                                while (!agent.CalculatePath(nextWaypointPos, tempNavMeshPath))
+                                while (!agent.CalculatePath(nextWaypointPos, new NavMeshPath()))
                                 {
                                     nextWaypointPos = transform.position + new Vector3(
                                                           UnityEngine.Random.Range(-patrollRadius, patrollRadius),
@@ -271,9 +275,6 @@ public class Enemy : MonoBehaviour
                                     //Debug.Log("Next fixing: " + nextWaypointPos);
 
                                 }
-                                
-                                //for (int i = 0; i < tempNavMeshPath.corners.Length - 1; i++)
-                                //    Debug.DrawLine(tempNavMeshPath.corners[i], tempNavMeshPath.corners[i + 1], Color.yellow);
                             }
                         }
 
@@ -289,7 +290,7 @@ public class Enemy : MonoBehaviour
                 }
 
         }
-        agent.SetDestination(transform.position + steering);
+        agent.SetDestination(rigid.position + steering);
     }
 
     public void Attacking()
@@ -328,6 +329,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public IEnumerator Kill(float destroyTime)//NEW
+    {
+        character.SetDestination(transform.position);
+        isDead = true;
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(gameObject);
+    }
+
 
 
 
@@ -351,9 +360,9 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chasingRadius);
 
         // Draw able looking
-        Handles.color = new Color(0, 1f, 0, 0.2f);
-        Handles.DrawSolidArc(transform.position, transform.up, transform.forward, -angleAbleLooking / 2, radiusAbleLooking);
-        Handles.DrawSolidArc(transform.position, transform.up, transform.forward, angleAbleLooking / 2, radiusAbleLooking);
+        UnityEditor.Handles.color = new Color(0, 1f, 0, 0.2f);
+        UnityEditor.Handles.DrawSolidArc(transform.position, transform.up, transform.forward, -angleAbleLooking / 2, radiusAbleLooking);
+        UnityEditor.Handles.DrawSolidArc(transform.position, transform.up, transform.forward, angleAbleLooking / 2, radiusAbleLooking);
 
     }
 #endif

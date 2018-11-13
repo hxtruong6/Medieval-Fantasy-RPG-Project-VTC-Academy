@@ -94,12 +94,12 @@ public class WeaponSystem : MonoBehaviour
         return projectileObject;
     }
 
-    IEnumerator MoveProjectile(GameObject projectile, Vector3 from, Vector3 target, float speed, float vanishAfterSec)
+    IEnumerator MoveProjectile(GameObject projectile, Vector3 from, Vector3 targetToShoot, float speed, float vanishAfterSec)
     {
         float startTime = Time.time;
-        var normalizeDirection = (target - from).normalized;
+        var normalizeDirection = (targetToShoot - from).normalized;
         var vanishTime = Time.time + vanishAfterSec;
-        projectile.transform.LookAt(target);
+        projectile.transform.LookAt(targetToShoot);
 
         while (Time.time < vanishTime && projectile != null)
         {
@@ -118,10 +118,10 @@ public class WeaponSystem : MonoBehaviour
         var targetCenter = targetToShoot.GetComponentInChildren<Renderer>().bounds.center;
 
         StartCoroutine(MoveProjectile(projectileObject,
-                                      projectileObject.transform.position,
-                                      targetCenter,
-                                      currentProjectileConfig.GetProjectileSpeed(),
-                                      currentProjectileConfig.GetVanishTime()));
+                                        projectileObject.transform.position,
+                                        targetCenter,
+                                        currentProjectileConfig.GetProjectileSpeed(),
+                                        currentProjectileConfig.GetVanishTime()));
     }
 
     private void ShootArrow()

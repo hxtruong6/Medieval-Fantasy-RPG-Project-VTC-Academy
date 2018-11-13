@@ -71,12 +71,12 @@ public class HealthSystem : MonoBehaviour
         //play sound
         damageTextSpawner.Create(damage, transform.position);
 
-        if(damageSounds.Length > 0)
+        if (damageSounds.Length > 0)
         {
             var clip = damageSounds[Random.Range(0, damageSounds.Length)];
             audioSource.PlayOneShot(clip);
         }
-        
+
         if (characterDies)
         {
             StartCoroutine(KillCharacter());
@@ -101,14 +101,14 @@ public class HealthSystem : MonoBehaviour
 
         StopAllCoroutines();
         var healthBar = transform.Find(GameManager.instance.ENEMY_UI);
-        StartCoroutine(FlashHealthBar(healthBar.gameObject));        
+        StartCoroutine(FlashHealthBar(healthBar.gameObject));
     }
 
     IEnumerator FlashHealthBar(GameObject healthBar)
     {
         healthBar.SetActive(true);
         yield return new WaitForSeconds(flashTime);
-        if(GetComponent<InteractiveEnemy>().isSelected != true)
+        if (GetComponent<InteractiveEnemy>().isSelected != true)
             healthBar.SetActive(false);
     }
 
@@ -116,21 +116,25 @@ public class HealthSystem : MonoBehaviour
     {
         var playerComponent = GetComponent<PlayerControl>();
 
-        GetComponent<CapsuleCollider>().enabled = false;
-        if(GetComponent<BoxCollider>() && !playerComponent)
-            GetComponent<BoxCollider>().enabled = false;//TODO check with designer
-
         animator.SetTrigger(DEATH_TRIGGER);
-        
+
         audioSource.Play();
-        if(playerComponent)
+
+        if (playerComponent)
         {
             playerComponent.Killed();
         }
-
-        if(GetComponent<DropLoot>())
+        else
         {
-            GetComponent<DropLoot>().DropWeaponAndItem();
+            GetComponent<CapsuleCollider>().enabled = false;
+
+            if (GetComponent<BoxCollider>() && !playerComponent)
+                GetComponent<BoxCollider>().enabled = false;//TODO check with designer
+
+            if (GetComponent<DropLoot>())
+                GetComponent<DropLoot>().DropWeaponAndItem();
+            if (GetComponent<Enemy>() != null)
+            GetComponent<Enemy>().StartCoroutine(GetComponent<Enemy>().Kill(deadVanishAfter));
         }
 
         yield return new WaitForSecondsRealtime(deadVanishAfter);
@@ -140,10 +144,6 @@ public class HealthSystem : MonoBehaviour
             Destroy(playerComponent);
             Destroy(GetComponent<Character>());
             SceneManager.LoadScene(0);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 

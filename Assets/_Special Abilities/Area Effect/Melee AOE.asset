@@ -21,5 +21,5 @@ MonoBehaviour:
   effectOnWeapon: {fileID: 0}
   effectOnEnemy: {fileID: 1428911946222078, guid: 1ccf00130593c254cb2ac3ab9cce9de9,
     type: 2}
-  radius: 5
-  damageToEachTarget: 50
+  radius: 4
+  damageToEachTarget: 5

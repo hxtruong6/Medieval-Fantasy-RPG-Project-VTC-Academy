@@ -705,8 +705,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4426075171690334}
   - component: {fileID: 95810411171963948}
-  - component: {fileID: 136573970038352876}
   - component: {fileID: 195758429315116522}
+  - component: {fileID: 136573970038352876}
   - component: {fileID: 54850440578134908}
   - component: {fileID: 114506009193159646}
   - component: {fileID: 114425731980788942}
@@ -717,6 +717,7 @@ GameObject:
   - component: {fileID: 114183818996263900}
   - component: {fileID: 65098597681911632}
   - component: {fileID: 114323271813988286}
+  - component: {fileID: 114800450498970222}
   m_Layer: 9
   m_Name: Skeleton
   m_TagString: Untagged
@@ -5478,7 +5479,6 @@ MonoBehaviour:
   chasingRadius: Infinity
   idleTimeLimited: Infinity
   chasingTimeLimited: Infinity
-  patrolTimeLimited: Infinity
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   waitAtWaypointTime: 3
@@ -5495,6 +5495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df79457e282ff2e4297855a2d6658017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropWeaponChance: 0.5
   weaponList:
   - {fileID: 11400000, guid: 043642ab5b441a74db04f42297987d64, type: 2}
   - {fileID: 11400000, guid: 7ef6e4910f564af4d81d9ae9143587e6, type: 2}
@@ -5504,8 +5505,6 @@ MonoBehaviour:
   manaPotionList:
   - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
   - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
-  minWeaponDrop: 0
-  maxWeaponDrop: 2
   minHealthDrop: 0
   maxHealthDrop: 1
   minManaDrop: 0
@@ -5702,6 +5701,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114800450498970222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267012955651284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd54cfbca11675498c032052ea9b10c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 114850883348913976}
 --- !u!114 &114800816006402472
 MonoBehaviour:
   m_ObjectHideFlags: 1

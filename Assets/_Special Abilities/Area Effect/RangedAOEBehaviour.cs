@@ -8,8 +8,21 @@ public class RangedAOEBehaviour : AbilityBehaviour
 
     public override void Use(AbilityUseParams useParamsToSet)
     {
+        LookAtMousePosition();
         PlayAbilitySound();
         PlayAbilityAnimation();
+    }
+
+    private void LookAtMousePosition()
+    {
+        Vector3 mouse = Input.mousePosition;
+        Camera camera = Camera.main;
+        Ray castPoint = camera.ScreenPointToRay(mouse);
+        RaycastHit hit;
+        if (Physics.Raycast(castPoint, out hit, camera.GetComponent<CameraRaycaster>().maxRaycastDepth))
+        {
+            gameObject.transform.LookAt(hit.point);
+        }
     }
 
     private GameObject SpawnProjectile(ProjectileConfig configToUse, float rotationY)
@@ -48,7 +61,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
     private void SetProjectileDirection(ProjectileConfig configToUse, float rotationY)
     {
         var projectileObject = SpawnProjectile(configToUse, rotationY);
-            
+
         var firingPos = GetComponentInChildren<ArrowShootingPosition>();
         var target = firingPos.transform.forward * 10000;
         target.y = GetComponentInChildren<MainBody>().GetComponent<Renderer>().bounds.center.y;
@@ -58,7 +71,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
                                       configToUse.GetProjectileSpeed(),
                                       configToUse.GetVanishTime()));
     }
-    
+
     private void ShootAOEAttack()
     {
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());

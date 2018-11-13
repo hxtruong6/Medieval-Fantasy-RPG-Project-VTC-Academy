@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CameraRaycaster : MonoBehaviour {
+public class CameraRaycaster : MonoBehaviour
+{
     [SerializeField] Texture2D walkCursor;
     [SerializeField] Texture2D enemyCursor;
     [SerializeField] Texture2D unknownCursor;
     [SerializeField] Texture2D lootCursor;
     [SerializeField] Vector2 cursorHotspot;
-    [SerializeField] float maxRaycastDepth = 25f;
+    public float maxRaycastDepth = 25f;
 
     const int POTENTIALLY_WALKABLE_LAYER = 8;
     const int DROP_ITEM_LAYER = 10;
@@ -17,7 +18,10 @@ public class CameraRaycaster : MonoBehaviour {
     public delegate void OnMouseOverDropItem(LootItem item);
     public event OnMouseOverDropItem onMouseOverDropItem;
 
-    public delegate void OnMouseOverEnemy(Enemy enemy);
+    //public delegate void OnMouseOverBoss(WyvernBehavior enemy);
+    //public event OnMouseOverBoss onMouseOverBoss;
+
+    public delegate void OnMouseOverEnemy(GameObject enemy);
     public event OnMouseOverEnemy onMouseOverEnemy;
 
     public delegate void OnMouseOverTerrain(Vector3 destination);
@@ -44,6 +48,10 @@ public class CameraRaycaster : MonoBehaviour {
         {
             return;
         }
+        //if(RaycastForBoss(ray))
+        //{
+        //    return;
+        //}
         if (RaycastForEnemy(ray))
         {
             return;
@@ -79,15 +87,39 @@ public class CameraRaycaster : MonoBehaviour {
         {
             var gameObjectHit = hitInfo.collider.gameObject;
             var enemyHit = gameObjectHit.GetComponent<Enemy>();
+            var bossHit = gameObjectHit.transform.root.GetComponent<WyvernBehavior>();
             if (enemyHit)
             {
                 Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
-                onMouseOverEnemy(enemyHit);
+                onMouseOverEnemy(gameObjectHit);
+                return true;
+            }
+            if (bossHit)
+            {
+                Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
+                onMouseOverEnemy(gameObjectHit.transform.root.gameObject);
                 return true;
             }
         }
         return false;
     }
+
+    //private bool RaycastForBoss(Ray ray)
+    //{
+    //    RaycastHit hitInfo;
+    //    if (Physics.Raycast(ray, out hitInfo, maxRaycastDepth))
+    //    {
+    //        var gameObjectHit = hitInfo.collider.gameObject;
+    //        var bossHit = gameObjectHit.transform.root.GetComponent<WyvernBehavior>();
+    //        if (bossHit)
+    //        {
+    //            Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
+    //            onMouseOverBoss(bossHit);
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 
     private bool RaycastForPotentiallyWalkable(Ray ray)
     {
