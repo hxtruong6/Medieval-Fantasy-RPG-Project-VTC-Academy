@@ -14,12 +14,12 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] KeyCode useLargeManaKey = KeyCode.Alpha4;
 
     Character character;
-    Enemy enemy;
+    GameObject enemy;
     WeaponSystem weaponSystem;
-    InventorySystem inventorySystem;   
+    InventorySystem inventorySystem;
     SpecialAbilities abilities;
 
-    
+
 
     bool isAlive = true;
 
@@ -37,6 +37,7 @@ public class PlayerControl : MonoBehaviour
     {
         var cameraRaycaster = FindObjectOfType<CameraRaycaster>();
         cameraRaycaster.onMouseOverDropItem += OnMouseOverDropItem;
+        //cameraRaycaster.onMouseOverBoss += OnMouseOverBoss;
         cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
         cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
     }
@@ -53,9 +54,9 @@ public class PlayerControl : MonoBehaviour
             StopCurrentAction();
             inventorySystem.SwitchWeapon();
         }
-        if(Input.GetKeyDown(meleeAOESkillKey))
+        if (Input.GetKeyDown(meleeAOESkillKey))
         {
-            if(weaponSystem.GetCurrentWeapon().IsMeleeWeapon())
+            if (weaponSystem.GetCurrentWeapon().IsMeleeWeapon())
                 UseAoESkill(2);
         }
         if (Input.GetKeyDown(rangedAOESkillKey))
@@ -63,7 +64,7 @@ public class PlayerControl : MonoBehaviour
             UseRangedAOESkill();
         }
 
-        if(Input.GetKeyDown(useSmallHealthKey))
+        if (Input.GetKeyDown(useSmallHealthKey))
         {
             inventorySystem.UseSmallHealthPotion();
         }
@@ -90,8 +91,9 @@ public class PlayerControl : MonoBehaviour
             UseAoESkill(3);
     }
 
-    private bool CheckAttackConditions(Enemy enemyToCheck)
+    private bool CheckAttackConditions(GameObject enemyToCheck)
     {
+        print(gameObject + " vs " + enemyToCheck);
         if (!isAlive)
             return false;
 
@@ -122,7 +124,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnMouseOverEnemy(Enemy enemyToSet)
+    void OnMouseOverEnemy(GameObject enemyToSet)
     {
         if (!CheckAttackConditions(enemyToSet))
             return;
@@ -148,21 +150,22 @@ public class PlayerControl : MonoBehaviour
         //TODO Impliment move to enemy and use target aoe skills
     }
 
-    private void NormalAttack(Enemy enemy)
-    {   
-        if (weaponSystem.canAttack==false)
+    private void NormalAttack(GameObject enemy)
+    {
+        if (weaponSystem.canAttack == false)
             return;
+
         StopCurrentAction();
         StopMoving();
         transform.LookAt(enemy.transform);
         weaponSystem.AttackTarget(enemy.gameObject);
     }
 
-    private void UsePowerAttack(Enemy target)
+    private void UsePowerAttack(GameObject target)
     {
         StopMoving();
         StopCurrentAction();
-        abilities.SetSkillTarget(target.gameObject);
+        abilities.SetSkillTarget(target);
         int skillIndex = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() ? 0 : 1;
         abilities.AttemptSpecialAbility(skillIndex);
     }
@@ -205,15 +208,22 @@ public class PlayerControl : MonoBehaviour
     {
         character.CurrentState = CharacterState.running;
         character.SetDestination(target.transform.position);
-        
-        if(target.GetComponent<Enemy>())
+
+        if (target.GetComponent<Enemy>())
         {
             while (!IsTargetInAttackRange(target.gameObject))
             {
                 yield return null;
             }
         }
-        if(target.GetComponent<LootItem>())
+        if (target.GetComponent<WyvernBehavior>())
+        {
+            while (!IsTargetInAttackRange(target.gameObject))
+            {
+                yield return null;
+            }
+        }
+        if (target.GetComponent<LootItem>())
         {
             while (!IsItemInPickUpRange(target.gameObject))
             {
@@ -225,15 +235,15 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForEndOfFrame();
     }
 
-    IEnumerator MoveAndAttack(Enemy enemy)
+    IEnumerator MoveAndAttack(GameObject enemy)
     {
-        yield return StartCoroutine(MoveToTarget(enemy.gameObject));
-        weaponSystem.AttackTarget(enemy.gameObject);
+        yield return StartCoroutine(MoveToTarget(enemy));
+        weaponSystem.AttackTarget(enemy);
     }
 
-    IEnumerator MoveAndPowerAttack(Enemy target)
+    IEnumerator MoveAndPowerAttack(GameObject target)
     {
-        yield return StartCoroutine(MoveToTarget(enemy.gameObject));
+        yield return StartCoroutine(MoveToTarget(enemy));
         UsePowerAttack(target);
     }
 

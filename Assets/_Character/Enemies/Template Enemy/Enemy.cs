@@ -1,7 +1,7 @@
-﻿#if UNITY_EDITOR
+﻿//#if UNITY_EDITOR
 using System.Collections;
-using UnityEditor;
-#endif
+//using UnityEditor;
+//#endif
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     Rigidbody rigid;
     NavMeshAgent agent;
     float distanceToPlayer;
-    bool isDead;//NEW
+    bool isDead;
     private Vector3 lastPosition;
     private float fleeingTime = 0f;
 
@@ -64,12 +64,6 @@ public class Enemy : MonoBehaviour
         weaponSystem = GetComponent<WeaponSystem>();//the weapon system dont change but the weapon may, depend on 
         currentWeaponRange = weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
         lastPosition = transform.position;
-        //StartCoroutine(getCurrentWeaponRange());
-
-        //if (fleeing && fleeingRadius < currentWeaponRange)
-        //{
-        //    fleeingRadius = currentWeaponRange;
-        //}
     }
 
     public void UpdateCurrentWeaponRange()
@@ -115,6 +109,7 @@ public class Enemy : MonoBehaviour
 
         return false;
     }
+
     void FixedUpdate()
     {
         if (isDead)//NEW
@@ -296,8 +291,8 @@ public class Enemy : MonoBehaviour
                 }
 
         }
-
         agent.SetDestination(transform.position + steering);
+
     }
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
@@ -373,9 +368,9 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chasingRadius);
 
         // Draw able looking
-        Handles.color = new Color(0, 1f, 0, 0.2f);
-        Handles.DrawSolidArc(transform.position, transform.up, transform.forward, -angleAbleLooking / 2, radiusAbleLooking);
-        Handles.DrawSolidArc(transform.position, transform.up, transform.forward, angleAbleLooking / 2, radiusAbleLooking);
+        UnityEditor.Handles.color = new Color(0, 1f, 0, 0.2f);
+        UnityEditor.Handles.DrawSolidArc(transform.position, transform.up, transform.forward, -angleAbleLooking / 2, radiusAbleLooking);
+        UnityEditor.Handles.DrawSolidArc(transform.position, transform.up, transform.forward, angleAbleLooking / 2, radiusAbleLooking);
 
     }
 #endif

@@ -2312,14 +2312,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df79457e282ff2e4297855a2d6658017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropWeaponChance: 0.7
   weaponList:
   - {fileID: 11400000, guid: 2bde573199c8c374883b0c065b58a031, type: 2}
   healthPotionList:
   - {fileID: 11400000, guid: b86a7e8f01ae23b44a4927f43a9f06d2, type: 2}
   manaPotionList:
   - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
-  minWeaponDrop: 1
-  maxWeaponDrop: 1
   minHealthDrop: 0
   maxHealthDrop: 3
   minManaDrop: 0
@@ -2549,7 +2548,6 @@ MonoBehaviour:
   chasingRadius: 17
   idleTimeLimited: 0
   chasingTimeLimited: 10
-  patrolTimeLimited: 8
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   waitAtWaypointTime: 1

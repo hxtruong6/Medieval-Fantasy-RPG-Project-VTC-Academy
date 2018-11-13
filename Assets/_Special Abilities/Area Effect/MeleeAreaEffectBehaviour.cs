@@ -8,14 +8,14 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
 
     public override void Use(AbilityUseParams useParams)
     {
-        GetReferences(useParams);       
+        GetReferences(useParams);
         PlayAbilityAnimation();
     }
 
     private void GetReferences(AbilityUseParams useParams)
     {
         damageToDeal = useParams.baseDamage * (config as MeleeAreaEffectConfig).GetDamageToEachTarget();
-    }  
+    }
 
     private void DealRadialDamage()
     {

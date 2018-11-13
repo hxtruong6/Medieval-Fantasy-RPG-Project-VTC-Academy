@@ -8,15 +8,10 @@ public class WyvernFireProjectile : MonoBehaviour
     [SerializeField] private Rigidbody fireProjectile;
     [SerializeField] private Transform fireProjectPosition;
     [SerializeField] private float timeForProjectileDestroy;
-    [SerializeField] private Transform tempObject;
 
     // Use this for initialization
     void Start()
     {
-        if (tempObject == null)
-        {
-            //tempObject = FindObjectOfType<GameObject>().CompareTag("TempObjects");
-        }
     }
 
     // Update is called once per frame
@@ -30,7 +25,7 @@ public class WyvernFireProjectile : MonoBehaviour
     {
         Rigidbody instantiatedProjectile = Instantiate(fireProjectile, fireProjectPosition.position, fireProjectPosition.rotation);
         instantiatedProjectile.velocity = fireProjectPosition.TransformDirection(new Vector3(0, 0, fireProjectileSpeed));
-        instantiatedProjectile.gameObject.transform.parent = tempObject;
+        instantiatedProjectile.gameObject.transform.parent = GameManager.instance.tempObjects;
         StartCoroutine(AutoDetroyFire(instantiatedProjectile));
     }
 

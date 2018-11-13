@@ -107,7 +107,7 @@ MonoBehaviour:
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
-        intensity: 3
+        intensity: 4
   colorGrading:
     m_Enabled: 1
     m_Settings:
@@ -121,11 +121,11 @@ MonoBehaviour:
         neutralWhiteClip: 8.46
       basic:
         postExposure: 0
-        temperature: 0
+        temperature: -2
         tint: 5
         hueShift: -5
         saturation: 0.4
-        contrast: 1.2
+        contrast: 1.4
       channelMixer:
         red: {x: 0.89, y: 0.02, z: 0.05}
         green: {x: 0, y: 0.88, z: 0.11}

@@ -12,8 +12,11 @@ public class TimeLineController : MonoBehaviour {
     public float timeCutScene;
     public bool viewTimeLine = false;
     float timer = 0;
-	// Use this for initialization
-	void Start () {
+    public bool ativeEndObject;
+    public GameObject endPanel;
+    public GameObject environment;
+    // Use this for initialization
+    void Start () {
         
 	}
 	
@@ -30,11 +33,18 @@ public class TimeLineController : MonoBehaviour {
             if (timer > timeCutScene)
             {
                 viewTimeLine = false;
-                canvasUI.gameObject.SetActive(true);
-                enemy.gameObject.SetActive(true);
-                follow.gameObject.SetActive(false);
-                this.gameObject.SetActive(false);
-                Destroy(this.gameObject);
+                if (ativeEndObject) {
+                    endPanel.gameObject.SetActive(true);
+                    environment.gameObject.SetActive(false);
+                }
+                else
+                {
+                    canvasUI.gameObject.SetActive(true);
+                    enemy.gameObject.SetActive(true);
+                    follow.gameObject.SetActive(false);
+                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
+                }
             }
         }
 	}

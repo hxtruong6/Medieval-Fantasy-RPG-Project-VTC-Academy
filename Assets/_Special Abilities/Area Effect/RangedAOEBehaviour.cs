@@ -61,7 +61,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
     private void SetProjectileDirection(ProjectileConfig configToUse, float rotationY)
     {
         var projectileObject = SpawnProjectile(configToUse, rotationY);
-            
+
         var firingPos = GetComponentInChildren<ArrowShootingPosition>();
         var target = firingPos.transform.forward * 10000;
         target.y = GetComponentInChildren<MainBody>().GetComponent<Renderer>().bounds.center.y;
@@ -71,7 +71,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
                                       configToUse.GetProjectileSpeed(),
                                       configToUse.GetVanishTime()));
     }
-    
+
     private void ShootAOEAttack()
     {
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
