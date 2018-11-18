@@ -14,9 +14,14 @@ public class DragonBoss : MonoBehaviour {
     public GameObject attackB;
     public GameObject attackICE;
     public GameObject attackAOE;
+    public GameObject bossLockProgress;
     private float timer;
     private Animator anim;
     private PlayerControl player;
+    private bool isDead;
+
+    public Transform rightLeg;
+    public Transform leftLeg;
     //private HealthSystem dragonHealth;
     static DragonBoss dragonBoss;
     // Use this for initialization
@@ -42,7 +47,7 @@ public class DragonBoss : MonoBehaviour {
             lookPos.y = 0;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookPos), Time.deltaTime);
             float distance = Vector3.Distance(transform.position, targetPos);
-            if (healthBar.fillAmount > 0.6)
+            if (healthBar.fillAmount > 0.7)
             {
                 if (distance < attackRange)
                 {
@@ -53,7 +58,7 @@ public class DragonBoss : MonoBehaviour {
                     anim.SetBool("attackrange", false);
                 }
             }
-            else if (healthBar.fillAmount > 0.3 && healthBar.fillAmount <= 0.6)
+            else if (healthBar.fillAmount > 0.3 && healthBar.fillAmount <= 0.7)
             {
                 anim.SetBool("state2", true);
                 if (distance < attackRange)
@@ -71,12 +76,21 @@ public class DragonBoss : MonoBehaviour {
             }
             else
             {
-                anim.SetTrigger("death");
-                attackAOE.gameObject.SetActive(false);
-                canvasUI.gameObject.SetActive(false);
+                if(isDead==false)
+                {
+                    anim.SetTrigger("death");
+                    attackAOE.gameObject.SetActive(false);
+                    canvasUI.gameObject.SetActive(false);
+                    isDead = true;
+                }
             }
         }
 	}
+
+    //public void ChangePlayerMeleeAttackRange(GameObject player)
+    //{
+    //    player.GetComponent<InventorySystem>().GetEquippedMeleeWeapon().SetAttackRange();
+    //}
 
     public static void Attacking(int attackType)
     {
@@ -114,4 +128,9 @@ public class DragonBoss : MonoBehaviour {
     //    }
     //}
 
+    private void DestroyBoss()
+    {
+        Destroy(gameObject);
+        Destroy(bossLockProgress);
+    }
 }

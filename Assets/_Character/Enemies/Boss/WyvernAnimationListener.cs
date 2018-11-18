@@ -1,16 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WyvernAnimationListener : MonoBehaviour {
+public class WyvernAnimationListener : MonoBehaviour
+{
+    private WyvernAttacking wyvernAttacking;
+    // Use this for initialization
+    void Start()
+    {
+        wyvernAttacking = GetComponentInParent<WyvernAttacking>();
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void switchState()
+    {
+        Debug.Log("Switch");
+        wyvernAttacking.switchState();
+    }
 }

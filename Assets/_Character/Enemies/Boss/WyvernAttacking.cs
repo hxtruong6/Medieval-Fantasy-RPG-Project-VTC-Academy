@@ -24,13 +24,6 @@ public class WyvernAttacking : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void BiteAttacking()
     {
         currentAttacking = CurrentAttacking.BiteAttacking;
@@ -57,10 +50,10 @@ public class WyvernAttacking : MonoBehaviour
     }
     // TODO: a half time to show animation
     // TODO: start corotine
-    //public void switchState()
-    //{
-    //    currentAttacking = CurrentAttacking.None;
-    //}
+    public void switchState()
+    {
+        currentAttacking = CurrentAttacking.None;
+    }
 
     void OnCollisionEnter(Collision other)
     {

@@ -24,6 +24,16 @@ public class SkeletonArea : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (gameObject.transform.GetChild(i).transform.childCount == 0)
+                {
+                    Destroy(gameObject.transform.GetChild(i).gameObject);
+                }
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)

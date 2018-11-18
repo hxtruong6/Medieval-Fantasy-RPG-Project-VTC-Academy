@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyManager;
     public Transform tempObjects;
     public GameObject cheatScene;
-
+    public GameObject helpScene;
 
     [HideInInspector]  public string ENEMY_UI = "Enemy Canvas";
     public float PARTICLE_CLEAN_UP_DELAY = 10f;
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     bool isPaused;
     PlayerControl player;
-
+    bool cheatSceneOn;
     void Start ()
     {
         player = FindObjectOfType<PlayerControl>();
@@ -36,12 +36,22 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.BackQuote))
         {
             PauseGame();
+            cheatSceneOn = true;
         }
         if(Input.GetKeyUp(KeyCode.BackQuote))
         {
             UnPauseGame();
+            cheatSceneOn = false;
         }
-        if(isPaused)
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            OpenHelpScene();
+        }
+        if (Input.GetKeyUp(KeyCode.H))
+        {
+            CloseHelpScene();
+        }
+        if (isPaused && cheatSceneOn)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -93,6 +103,22 @@ public class GameManager : MonoBehaviour
     private void UnPauseGame()
     {
         cheatScene.SetActive(false);
+        isPaused = false;
+        Time.timeScale = 1;
+        player.GetComponent<PlayerControl>().enabled = true;
+    }
+
+    private void OpenHelpScene()
+    {
+        helpScene.SetActive(true);
+        isPaused = true;
+        Time.timeScale = 0;
+        player.GetComponent<PlayerControl>().enabled = false;
+    }
+
+    private void CloseHelpScene()
+    {
+        helpScene.SetActive(false);
         isPaused = false;
         Time.timeScale = 1;
         player.GetComponent<PlayerControl>().enabled = true;

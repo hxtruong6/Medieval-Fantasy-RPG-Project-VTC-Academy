@@ -22,7 +22,8 @@ public class WyvernSkeletonSpawn : MonoBehaviour
 
     public bool IsCurrentSkeletonGroupDie()
     {
-        return skeletonSpawnAreas[currentIndex].activeSelf == false;
+        //Debug.Log("Curr " + currentIndex + " is " + skeletonSpawnAreas[currentIndex].activeInHierarchy);
+        return skeletonSpawnAreas[currentIndex] == null;
     }
 
 }

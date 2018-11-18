@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -57,6 +55,11 @@ public class HealthSystem : MonoBehaviour
         {
             healthBar.fillAmount = HealthAsPercentage;
         }
+    }
+
+    public void SetAnimator(Animator animator)
+    {
+        this.animator = animator;
     }
 
     public void TakeDamage(float damage)
@@ -116,6 +119,7 @@ public class HealthSystem : MonoBehaviour
     {
         var playerComponent = GetComponent<PlayerControl>();
 
+        // TODO: animatior of wyvern is not in its, It is in the first child
         animator.SetTrigger(DEATH_TRIGGER);
 
         audioSource.Play();
@@ -127,7 +131,8 @@ public class HealthSystem : MonoBehaviour
         }
         else
         {
-            GetComponent<CapsuleCollider>().enabled = false;
+            if (GetComponent<CapsuleCollider>()) 
+                GetComponent<CapsuleCollider>().enabled = false;
 
             if (GetComponent<BoxCollider>() && !playerComponent)
                 GetComponent<BoxCollider>().enabled = false;//TODO check with designer
@@ -136,7 +141,7 @@ public class HealthSystem : MonoBehaviour
                 GetComponent<DropLoot>().DropWeaponAndItem();
 
             if (GetComponent<Enemy>() != null)
-            GetComponent<Enemy>().StartCoroutine(GetComponent<Enemy>().Kill(deadVanishAfter));
+                GetComponent<Enemy>().StartCoroutine(GetComponent<Enemy>().Kill(deadVanishAfter));
         }
 
         yield return new WaitForSecondsRealtime(deadVanishAfter);

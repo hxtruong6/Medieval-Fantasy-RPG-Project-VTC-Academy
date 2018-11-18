@@ -779,6 +779,21 @@ Prefab:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 135291091592583602, guid: c2932bfefcca53e408dc6eaa1fb61977,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 135291091592583602, guid: c2932bfefcca53e408dc6eaa1fb61977,
+        type: 2}
+      propertyPath: m_Center.x
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 135291091592583602, guid: c2932bfefcca53e408dc6eaa1fb61977,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.56
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2932bfefcca53e408dc6eaa1fb61977, type: 2}
   m_IsPrefabParent: 0
@@ -8492,7 +8507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1004335017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22869,7 +22884,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1746826670878128, guid: c6878311db2226042a3782ea54e8bb23, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6878311db2226042a3782ea54e8bb23, type: 2}

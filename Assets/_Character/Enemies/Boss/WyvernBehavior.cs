@@ -54,6 +54,8 @@ public class WyvernBehavior : MonoBehaviour
     {
         wyvernAttacking = GetComponent<WyvernAttacking>();
         wyvernHealth = GetComponent<HealthSystem>();
+        wyvernHealth.SetAnimator(gameObject.GetComponentInChildren<Animator>());
+
         wyvernFireProjectile = GetComponent<WyvernFireProjectile>();
         animator = GetComponentInChildren<Animator>();
         player = FindObjectOfType<PlayerControl>();
@@ -134,6 +136,7 @@ public class WyvernBehavior : MonoBehaviour
                 //if all of skeleton died
                 if (wyvernSkeletonSpawn.IsCurrentSkeletonGroupDie())
                 {
+                    Debug.Log("Falling :v");
                     flyTime = 0f;
                     currentState = CurrentState.Falling;
                     StartCoroutine(FallingBehaviour());

@@ -68,6 +68,11 @@ public class PierceProjectile : MonoBehaviour
                 PlayParticleEffect(enemy.gameObject, effectOnEnemy);
             }
         }
+        if(other.GetComponent<DragonBoss>())
+        {
+            DealDamage(other.gameObject);
+            PlayParticleEffect(other.gameObject, effectOnEnemy);
+        }
     }
 
     private void DealDamage(GameObject objectBeingHit)
