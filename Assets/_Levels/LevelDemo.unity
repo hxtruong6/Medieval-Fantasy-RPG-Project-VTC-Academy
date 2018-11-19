@@ -14664,9 +14664,9 @@ Prefab:
 
         4. Unlimited mana
 
-        5. Add legend weapon
+        5. Add legend sword
 
-        6. Add Godlike weapon (9999 ATK)
+        6. Add Godlike bow (9999 ATK)
 
         7. Add 10 potions per each type
 
@@ -33093,6 +33093,26 @@ Prefab:
         type: 2}
       propertyPath: maxHealthPoints
       value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656426644582240, guid: be990153cd5c8ea42bd60967bc8b66b7,
+        type: 2}
+      propertyPath: damage
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835773743899722, guid: be990153cd5c8ea42bd60967bc8b66b7,
+        type: 2}
+      propertyPath: damage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114582602323861542, guid: be990153cd5c8ea42bd60967bc8b66b7,
+        type: 2}
+      propertyPath: damage
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114837103117619700, guid: be990153cd5c8ea42bd60967bc8b66b7,
+        type: 2}
+      propertyPath: damage
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be990153cd5c8ea42bd60967bc8b66b7, type: 2}
