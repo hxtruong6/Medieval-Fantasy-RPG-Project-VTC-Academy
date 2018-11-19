@@ -16,6 +16,7 @@ public class WyvernDamge : MonoBehaviour
     private HealthSystem wyvernHealth;
 
     private Animator wyvernAnimator;
+    private float lastHealthPercentage = 0f;
 
     // Use this for initialization
     void Start()
@@ -24,9 +25,19 @@ public class WyvernDamge : MonoBehaviour
         wyvernAnimator = GetComponentInChildren<Animator>();
     }
 
+    void FixedUpdate()
+    {
+        if (Math.Abs(wyvernHealth.HealthAsPercentage - lastHealthPercentage) >= 50)
+        {
+            Debug.Log("HIIIITTT");
+            wyvernAnimator.SetTrigger("GetHit");
+        }
+
+        lastHealthPercentage = wyvernHealth.HealthAsPercentage;
+    }
+
     public void OnBodyPartHit(BodyPartType partType)
     {
-        wyvernAnimator.SetTrigger("GetHit");
         switch (partType)
         {
             case BodyPartType.Head:

@@ -28,6 +28,7 @@ public class BodyPart : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         // TODO: weapon of player
+        return;
         if (collision.gameObject.GetComponent<PlayerControl>())
         {
             var damageController = GetComponentInParent<WyvernDamge>();

@@ -32,7 +32,7 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = animator == null ? GetComponent<Animator>() : animator;
         audioSource = GetComponent<AudioSource>();
         damageTextSpawner = FindObjectOfType<DamageTextSpawner>();
 
@@ -57,9 +57,9 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void SetAnimator(Animator animator)
+    public void SetAnimator(Animator ani)
     {
-        this.animator = animator;
+        animator = ani;
     }
 
     public void TakeDamage(float damage)
@@ -131,7 +131,7 @@ public class HealthSystem : MonoBehaviour
         }
         else
         {
-            if (GetComponent<CapsuleCollider>()) 
+            if (GetComponent<CapsuleCollider>())
                 GetComponent<CapsuleCollider>().enabled = false;
 
             if (GetComponent<BoxCollider>() && !playerComponent)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class WyvernBehavior : MonoBehaviour
@@ -19,9 +20,8 @@ public class WyvernBehavior : MonoBehaviour
     //[SerializeField] private float fallingSpeed = 10f;
     [SerializeField] private float timeForFireShooting = 0.1f;
     [SerializeField] private float maxFlyingHeight = 10f;
-    [SerializeField] private float timeToFlying = 0.5f;
+    
     [SerializeField] private CurrentState currentState;
-    //[SerializeField] private float flyTimeLimited = 10f;
 
 
     private WyvernSkeletonSpawn wyvernSkeletonSpawn;
@@ -38,11 +38,9 @@ public class WyvernBehavior : MonoBehaviour
     private float distanceToPlayer;
     private float timeOnPlan;
 
-    private float flyTime;
-    //private float currentFallingSpeed;
     private float flyingSpeed = 10f;
 
-
+    private float timeToFlying = 0.5f;
 
     [ExecuteInEditMode]
     void OnValidate()
@@ -54,10 +52,11 @@ public class WyvernBehavior : MonoBehaviour
     {
         wyvernAttacking = GetComponent<WyvernAttacking>();
         wyvernHealth = GetComponent<HealthSystem>();
-        wyvernHealth.SetAnimator(gameObject.GetComponentInChildren<Animator>());
+        animator = GetComponentInChildren<Animator>();
+
+        wyvernHealth.SetAnimator(animator);
 
         wyvernFireProjectile = GetComponent<WyvernFireProjectile>();
-        animator = GetComponentInChildren<Animator>();
         player = FindObjectOfType<PlayerControl>();
         wyvernSkeletonSpawn = GetComponent<WyvernSkeletonSpawn>();
 
@@ -136,21 +135,12 @@ public class WyvernBehavior : MonoBehaviour
                 //if all of skeleton died
                 if (wyvernSkeletonSpawn.IsCurrentSkeletonGroupDie())
                 {
-                    Debug.Log("Falling :v");
-                    flyTime = 0f;
+                    //Debug.Log("Falling :v");
                     currentState = CurrentState.Falling;
                     StartCoroutine(FallingBehaviour());
                 }
                 flyingSpeed += Time.deltaTime / 2;
-                //currentFallingSpeed -= Time.deltaTime;
-                //Debug.Log("Is flying. Waiting player kill all of skeleton");
-                //flyTime += Time.deltaTime;
-                //if (flyTime >= flyTimeLimited)
-                //{
-                //    flyTime = 0f;
-                //    currentState = CurrentState.Falling;
-                //    StartCoroutine(FallingBehaviour());
-                //}
+                
                 break;
             case CurrentState.Falling:
                 flyingSpeed += Time.deltaTime * 0.75f;
@@ -159,6 +149,7 @@ public class WyvernBehavior : MonoBehaviour
                 {
                     StopAllCoroutines();
                     currentState = CurrentState.Idle;
+                    // TODO: make sure player can't attack
                     DisableFlying();
                     animator.transform.position = Vector3.Lerp(animator.transform.position, transform.position, 0.2f);
                 }
@@ -221,7 +212,9 @@ public class WyvernBehavior : MonoBehaviour
 
     private void FireAttackingPlayer()
     {
+        var ro = transform.rotation;
         transform.LookAt(player.transform.position);
+        transform.rotation = ro;
         wyvernAttacking.FireAttacking();
         //Debug.Log("Fire is shooting....");
         StartCoroutine(FireSpawnLoop());
@@ -242,22 +235,27 @@ public class WyvernBehavior : MonoBehaviour
         var distanceHead = Vector3.Distance(headPos, player.transform.position);
         var distanceLeftWing = Vector3.Distance(wingLeftPos, player.transform.position);
         var distanceRightWing = Vector3.Distance(wingRighPos, player.transform.position);
+        var distanceSwoop = Vector3.Distance(transform.position, player.transform.position);
 
         transform.LookAt(player.transform.position);
-        if (distanceHead < distanceRightWing && distanceHead < distanceLeftWing)
+        if (distanceHead < distanceRightWing && distanceHead < distanceLeftWing && distanceHead < distanceSwoop)
         {
             // TODO: bite
             wyvernAttacking.BiteAttacking();
         }
-        else if (distanceRightWing < distanceLeftWing)
+        else if (distanceRightWing < distanceLeftWing && distanceHead < distanceSwoop)
         {
             // TODO: right attacking
             wyvernAttacking.RightAttacking();
         }
-        else
+        else if (distanceLeftWing< distanceSwoop)
         {
             // TODO: left attacking
             wyvernAttacking.LeftAttacking();
+        }
+        else
+        {
+            wyvernAttacking.SwoopClaw();
         }
     }
 #if UNITY_EDITOR

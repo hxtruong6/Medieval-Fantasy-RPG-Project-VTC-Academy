@@ -13,7 +13,8 @@ public class WyvernAttacking : MonoBehaviour
         None = 0,
         WingAttacking,
         BiteAttacking,
-        FireAttacking
+        FireAttacking,
+        SwoopClaw,
     }
 
     private CurrentAttacking currentAttacking = CurrentAttacking.None;
@@ -48,8 +49,14 @@ public class WyvernAttacking : MonoBehaviour
         //Debug.Log("Start fire attacking");
         animator.SetTrigger("enableFireAttacking");
     }
-    // TODO: a half time to show animation
-    // TODO: start corotine
+
+    public void SwoopClaw()
+    {
+        currentAttacking = CurrentAttacking.SwoopClaw;
+        //Debug.Log(transform.rotation);
+        animator.SetTrigger("enableSwoopClaw");
+        //Debug.Log("2---> " +transform.rotation);
+    }
     public void switchState()
     {
         currentAttacking = CurrentAttacking.None;
