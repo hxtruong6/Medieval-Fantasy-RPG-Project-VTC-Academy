@@ -21,7 +21,7 @@ public class DragonDummySpawn : MonoBehaviour {
 
         dragon.gameObject.SetActive(true);
         dragon.transform.parent = null;
-        dragon.gameObject.layer = 9;
+        dragon.gameObject.layer = 12;
         Destroy(this.gameObject);
     }
 }

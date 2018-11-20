@@ -28,5 +28,6 @@ public class MeleePowerAttackBehaviour : AbilityBehaviour
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
         PlayEffectOnEnemy(target);
         target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
+        GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().powerAttackGain);
     }
 }

@@ -60,9 +60,9 @@ public class RangedPowerAttackBehaviour : AbilityBehaviour
 
     private void ShootPowerAttack()
     {
-       
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
         SetProjectileDirection((config as RangedPowerAttackConfig).GetProjectileConfig());
+        GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().powerAttackGain);
     }
 
     public float GetAbilityDamage()

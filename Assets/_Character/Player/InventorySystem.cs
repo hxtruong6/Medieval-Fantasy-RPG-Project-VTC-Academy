@@ -130,6 +130,10 @@ public class InventorySystem : MonoBehaviour
             currentWeapon = meleeWeaponConfig;
             abilites.LockMeleeAbilites(false);
         }
+
+        if (GetComponent<PlayerControl>().isInDemonForm)
+            abilites.LockAllAbilities();
+
         return currentWeapon;
     }
 
@@ -194,12 +198,13 @@ public class InventorySystem : MonoBehaviour
                 AmountOfLargeMPotion += 1;
             }                     
         }
+        newItem.GetComponent<InfoItem>().RemoveInfo();
         newItem.isPicked = true;
         Destroy(newItem.gameObject);
     }
     
     public void PickUpNewWeapon(WeaponConfig newWeapon)
-    {        
+    {
         bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();      
 
         if (newWeapon.IsMeleeWeapon())

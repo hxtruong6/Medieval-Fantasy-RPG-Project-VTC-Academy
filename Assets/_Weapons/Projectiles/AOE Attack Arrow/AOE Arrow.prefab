@@ -70,8 +70,8 @@ GameObject:
   - component: {fileID: 33736545474017456}
   - component: {fileID: 23867267585333372}
   - component: {fileID: 65283278378024328}
-  - component: {fileID: 114358289213714454}
   - component: {fileID: 54800155705732698}
+  - component: {fileID: 114929058231552206}
   m_Layer: 11
   m_Name: Hunter_Arrow
   m_TagString: Untagged
@@ -345,7 +345,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114358289213714454
+--- !u!114 &114929058231552206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

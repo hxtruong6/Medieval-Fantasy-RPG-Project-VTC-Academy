@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     WeaponConfig rangedWeaponConfig;
     GameObject effectOnEnemy;
     GameObject shooter;
+    List<GameObject> hitEnemy = new List<GameObject>();
 
     public void SetProjectileConfig(ProjectileConfig configToSet)
     {      
@@ -55,15 +56,15 @@ public class Projectile : MonoBehaviour
         yield return new WaitForEndOfFrame();
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        var layerCollidedWith = collision.gameObject.layer;
+        var layerCollidedWith = other.gameObject.layer;
         if (shooter && layerCollidedWith != shooter.layer)
         {
-            DealDamage(collision.gameObject);
+            DealDamage(other.gameObject);
 
             if(effectOnEnemy)
-                PlayParticleEffect(collision.gameObject, effectOnEnemy);
+                PlayParticleEffect(other.gameObject, effectOnEnemy);
         }
     }
 
@@ -108,8 +109,7 @@ public class Projectile : MonoBehaviour
         audioSource.PlayOneShot(projectileConfig.GetContactSound());
 
         var shooterWeapon = shooter.GetComponent<WeaponSystem>();
-       
-        
+             
         if (projectileConfig.isAbilityProjectile)
         {
             damage += shooterWeapon.GetWeaponDamage();
@@ -119,14 +119,19 @@ public class Projectile : MonoBehaviour
         }
         else
         {
+            if (hitEnemy.Contains(objectBeingHit))
+                return;
+
             shooterWeapon.SetTarget(objectBeingHit);
             shooterWeapon.Hit(rangedWeaponConfig);
+            hitEnemy.Add(objectBeingHit);
         }
         // TODO: if enough damage -> show animation
         //if (enemyBodyPart)
         //{
         //    if (damage >  enoughToGetHit)
         //}
-        Destroy(gameObject);
+        if(!projectileConfig.IsPiereceProjectile())
+            Destroy(gameObject);
     }
 }

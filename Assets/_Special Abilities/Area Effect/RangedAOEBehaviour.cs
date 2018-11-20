@@ -75,6 +75,7 @@ public class RangedAOEBehaviour : AbilityBehaviour
     private void ShootAOEAttack()
     {
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
+        GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().aoeAttackGain);
 
         SetProjectileDirection((config as RangedAOEConfig).GetProjectileConfig(), 0);
         float degree = (config as RangedAOEConfig).GetDegreeBetweenArrows();

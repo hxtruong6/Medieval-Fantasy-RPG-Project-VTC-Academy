@@ -47,4 +47,9 @@ public class InfoItem : MonoBehaviour {
     {
         HighLight(false);
     }
+
+    public void RemoveInfo()
+    {
+        Destroy(infoItem);
+    }
 }

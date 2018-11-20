@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9556821456258fa4ab945148c91e762c, type: 3}
+  m_Name: Demon Arrow
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1546999143280692, guid: 3fb7f44e92a38b345be3d2a654c1e6c4,
+    type: 2}
+  flyingAnimations: []
+  speed: 30
+  vanishAfterSec: 1
+  contactSound: {fileID: 8300000, guid: e92b3ac8e3de15f449d827da9f342687, type: 3}
+  isPierceProjectile: 0
+  isAbilityProjectile: 0

@@ -51,6 +51,7 @@ public class InteractiveEnemy : MonoBehaviour {
 
     private void OnMouseExit()
     {
+        HighLight(false);
         isSelected = false;
         GetComponent<HealthSystem>().FlashEnemyHealthBar();
     }
