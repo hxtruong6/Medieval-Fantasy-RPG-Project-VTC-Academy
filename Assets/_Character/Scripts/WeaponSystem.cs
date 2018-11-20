@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -14,17 +15,23 @@ public class WeaponSystem : MonoBehaviour
     const string ATTACK_TRIGGER = "Attack";
     const string ATTACK_SPEED = "AttackSpeed";
     const string DEFAULT_ATTACK = "DEFAULT ATTACK";
-
+    const string ENEMY_LAYER_MASK = "Enemy";
+    const string BOSS_LAYER_MASK = "Boss";
     GameObject target;
     GameObject weaponObject;
     Animator animator;
     AnimationClip attackClip;
     Character character;
+    PlayerControl player;
     float? lastHitTime;
 
     public WeaponConfig GetCurrentWeapon() { return currentWeaponConfig; }
 
     public GameObject GetCurrentWeaponObject() { return weaponObject; }
+
+    public ProjectileConfig GetCurrentProjectileConfig() { return currentProjectileConfig; }
+
+    public void SetCurrentProjectileConfig(ProjectileConfig configToSet) { currentProjectileConfig = configToSet; }
 
     public void SetCurrentWeapon(WeaponConfig weapon) { currentWeaponConfig = weapon; }
 
@@ -36,6 +43,7 @@ public class WeaponSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
+        player = GetComponent<PlayerControl>();
 
         PutWeaponInHand(currentWeaponConfig);
         SetAttackAnimation();
@@ -77,6 +85,9 @@ public class WeaponSystem : MonoBehaviour
         weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
         weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.localPosition;
         weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.localRotation;
+        weaponObject.layer = 0;
+        if(weaponObject.GetComponent<InfoItem>())
+            weaponObject.GetComponent<InfoItem>().RemoveInfo();
     }
 
     private GameObject SpawnProjectile()
@@ -115,7 +126,7 @@ public class WeaponSystem : MonoBehaviour
         var projectileObject = SpawnProjectile();
 
         var targetToShoot = target.GetComponentInChildren<MainBody>();
-        var targetCenter = targetToShoot.GetComponentInChildren<Renderer>().bounds.center;
+        var targetCenter = targetToShoot.GetComponent<Renderer>().bounds.center;
 
         StartCoroutine(MoveProjectile(projectileObject,
                                         projectileObject.transform.position,
@@ -129,7 +140,7 @@ public class WeaponSystem : MonoBehaviour
         SetProjectileDirection(currentProjectileConfig);
     }
 
-    private void SetAttackAnimation()
+    public void SetAttackAnimation()
     {
         if (!character.GetOverrideController())
         {
@@ -139,10 +150,11 @@ public class WeaponSystem : MonoBehaviour
         else
         {
             var animatorOverrideController = character.GetOverrideController();
+            if (player && player.isInDemonForm)
+                animatorOverrideController = GetComponent<DemonTrigger>().GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
             attackClip = currentWeaponConfig.GetAttackAnimClip();
             animatorOverrideController[DEFAULT_ATTACK] = attackClip;
-
             animator.SetFloat(ATTACK_SPEED, currentWeaponConfig.GetAttackAnimSpeedMultiplier());
         }
     }
@@ -179,12 +191,63 @@ public class WeaponSystem : MonoBehaviour
         {
             damageToDeal = damageToDeal * criticalHitMultiplier;
 
-            target.GetComponent<HealthSystem>().PlayCriticalHitParticle(
+            target.GetComponent<HealthSystem>().PlayHitEffect(
                 criticalPrefab,
                 criticalEffectTime);
         }
 
-        target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
+        if(player && player.isInDemonForm)
+        {
+            DealDamageAroundTarget(target, GetComponent<DemonTrigger>().normalMeleeAOERadius, damageToDeal);          
+        }
+        else
+        {
+            if(player)
+                GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().attackedGain);
+            target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
+        }
+    }
+
+    private void DealDamageAroundTarget(GameObject target, float dealDamageRadius, float damageToDeal)
+    {
+        Collider[] hitColliders;
+        hitColliders = Physics.OverlapSphere(target.transform.position, dealDamageRadius, LayerMask.GetMask(ENEMY_LAYER_MASK));
+        
+        List<Enemy> affectedTarget = new List<Enemy>();
+
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            var enemy = hitColliders[i].GetComponent<Enemy>();
+            
+            if (affectedTarget.Contains(enemy))
+            {
+                continue;
+            }
+            if(enemy)
+            {
+                enemy.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
+                affectedTarget.Add(enemy);
+            }
+        }
+
+        hitColliders = Physics.OverlapSphere(target.transform.position, dealDamageRadius, LayerMask.GetMask(BOSS_LAYER_MASK));
+        List<WyvernBehavior> affectedBoss = new List<WyvernBehavior>();
+
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            var boss = hitColliders[i].GetComponent<WyvernBehavior>();
+            if (affectedBoss.Contains(boss)) continue;
+
+            if(boss)
+            {
+                boss.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
+                affectedBoss.Add(boss);
+            }          
+        }
+
+        var effect = GetComponentInParent<DemonTrigger>().normalMeleeAttackEffect;
+        if(effect)
+            target.GetComponent<HealthSystem>().PlayHitEffect(effect, 10);
     }
 
     IEnumerator ChangeAttackStatus()

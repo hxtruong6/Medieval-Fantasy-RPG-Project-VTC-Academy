@@ -11,12 +11,18 @@ public class ProjectileConfig : ScriptableObject
     [SerializeField] float speed;
     [SerializeField] float vanishAfterSec = 1f;
     [SerializeField] AudioClip contactSound;
+    [SerializeField] bool isPierceProjectile;
 
     public bool isAbilityProjectile;
 
     public GameObject GetProjectilePrefab()
     {
         return projectilePrefab;
+    }
+
+    public bool IsPiereceProjectile()
+    {
+        return isPierceProjectile;
     }
 
     public float GetProjectileSpeed()

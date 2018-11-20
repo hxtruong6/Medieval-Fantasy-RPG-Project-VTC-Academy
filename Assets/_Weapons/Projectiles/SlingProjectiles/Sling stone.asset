@@ -14,6 +14,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1685635232922210, guid: 20c08a94a55461e4789ca611d42e87c4,
     type: 2}
   flyingAnimations: []
-  speed: 10
+  speed: 15
   vanishAfterSec: 1
+  contactSound: {fileID: 0}
   isAbilityProjectile: 0

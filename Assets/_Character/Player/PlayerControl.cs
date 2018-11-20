@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] float pickItemRadius = 2.5f;
+    [SerializeField] float searchItemRadius = 5f;
     [SerializeField] KeyCode switchWeaponKey = KeyCode.Tab;
     [SerializeField] KeyCode meleeAOESkillKey = KeyCode.Q;
     [SerializeField] KeyCode rangedAOESkillKey = KeyCode.W;
@@ -12,16 +14,15 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] KeyCode useLargeHealthKey = KeyCode.Alpha2;
     [SerializeField] KeyCode useSmallManaKey = KeyCode.Alpha3;
     [SerializeField] KeyCode useLargeManaKey = KeyCode.Alpha4;
+    [SerializeField] KeyCode pickUpLootKey = KeyCode.Space;
+    [HideInInspector] public bool isInDemonForm;
+    [HideInInspector] public bool isAlive = true;
 
     Character character;
     GameObject enemy;
     WeaponSystem weaponSystem;
     InventorySystem inventorySystem;
-    SpecialAbilities abilities;
-
-
-
-    bool isAlive = true;
+    SpecialAbilities abilities;    
 
     void Start()
     {
@@ -37,29 +38,36 @@ public class PlayerControl : MonoBehaviour
     {
         var cameraRaycaster = FindObjectOfType<CameraRaycaster>();
         cameraRaycaster.onMouseOverDropItem += OnMouseOverDropItem;
-        //cameraRaycaster.onMouseOverBoss += OnMouseOverBoss;
         cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
         cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
     }
 
-    private void StopMoving()
+    public void StopMoving()
     {
         character.SetDestination(transform.position);
     }
 
+    public void StopCurrentAction()
+    {
+        StopAllCoroutines();
+    }
+
     void Update()
     {
+        if (!isAlive)
+            return;
+
         if (Input.GetKeyDown(switchWeaponKey))
         {
             StopCurrentAction();
             inventorySystem.SwitchWeapon();
         }
-        if (Input.GetKeyDown(meleeAOESkillKey))
+        if (Input.GetKeyDown(meleeAOESkillKey) && !isInDemonForm)
         {
             if (weaponSystem.GetCurrentWeapon().IsMeleeWeapon())
                 UseAoESkill(2);
         }
-        if (Input.GetKeyDown(rangedAOESkillKey))
+        if (Input.GetKeyDown(rangedAOESkillKey) && !isInDemonForm)
         {
             UseRangedAOESkill();
         }
@@ -80,6 +88,24 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(useLargeManaKey))
         {
             inventorySystem.UseLargeManaPotion();
+        }
+        if(Input.GetKeyDown(pickUpLootKey))
+        {
+            Collider[] hitColliders;
+            hitColliders = Physics.OverlapSphere(transform.position, searchItemRadius, LayerMask.GetMask("Loot Item"));
+
+            if (hitColliders.Length == 0)
+                return;
+            var itemToPick = hitColliders[0].gameObject;
+
+            if (IsItemInPickUpRange(itemToPick))
+            {
+                inventorySystem.PickUpNewItem(itemToPick.GetComponent<LootItem>());
+            }
+            else if (!IsItemInPickUpRange(itemToPick))
+            {
+                StartCoroutine(MoveAndPickUpItem(itemToPick.GetComponent<LootItem>()));
+            }
         }
     }
 
@@ -123,6 +149,22 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    void OnMouseOverPotentiallyWalkable(Vector3 destination)
+    {
+        if (!isAlive)
+        {
+            return;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            StopCurrentAction();
+            weaponSystem.CancleAction();
+            character.CurrentState = CharacterState.running;
+            character.SetDestination(destination);
+        }
+    }
+
     void OnMouseOverEnemy(GameObject enemyToSet)
     {
         if (!CheckAttackConditions(enemyToSet))
@@ -138,11 +180,11 @@ public class PlayerControl : MonoBehaviour
         {
             StartCoroutine(MoveAndAttack(enemy));
         }
-        else if (Input.GetMouseButtonDown(1) && IsTargetInAttackRange(enemy.gameObject))
+        else if (Input.GetMouseButtonDown(1) && IsTargetInAttackRange(enemy.gameObject) && !isInDemonForm)
         {
             UsePowerAttack(enemy);
         }
-        else if (Input.GetMouseButtonDown(1) && !IsTargetInAttackRange(enemy.gameObject))
+        else if (Input.GetMouseButtonDown(1) && !IsTargetInAttackRange(enemy.gameObject) && !isInDemonForm)
         {
             StartCoroutine(MoveAndPowerAttack(enemy)); ;
         }
@@ -174,27 +216,6 @@ public class PlayerControl : MonoBehaviour
         StopMoving();
         StopCurrentAction();
         abilities.AttemptSpecialAbility(skillIndex);
-    }
-
-    void OnMouseOverPotentiallyWalkable(Vector3 destination)
-    {
-        if (!isAlive)
-        {
-            return;
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            StopCurrentAction();
-            weaponSystem.CancleAction();
-            character.CurrentState = CharacterState.running;
-            character.SetDestination(destination);
-        }
-    }
-
-    private void StopCurrentAction()
-    {
-        StopAllCoroutines();
     }
 
     private bool IsTargetInAttackRange(GameObject target)
@@ -258,12 +279,11 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void Killed()
-    {
+    {      
         isAlive = false;
         StopCurrentAction();
         StopMoving();
     }
-
 
     void OnDrawGizmos()
     {
@@ -272,6 +292,9 @@ public class PlayerControl : MonoBehaviour
             Gizmos.color = new Color(255f, 0, 0, .5f);
             Gizmos.DrawWireSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange());
         }
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, searchItemRadius);
 
         Gizmos.color = new Color(0, 0, 255f, .5f);
         Gizmos.DrawWireSphere(transform.position, pickItemRadius);

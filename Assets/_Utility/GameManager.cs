@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] KeyCode openCheatPanelKey = KeyCode.BackQuote;
+    [SerializeField] KeyCode openHelpPanel = KeyCode.H;
+    [SerializeField] KeyCode showLootItemsKey = KeyCode.LeftAlt;
+
     public HealthPotionConfig smallHealthPotion;
     public HealthPotionConfig largeHealthPotion;
     public ManaPotionConfig smallManaPotion;
@@ -13,8 +18,16 @@ public class GameManager : MonoBehaviour
     public WeaponConfig masterWeapon;
     public GameObject enemyManager;
     public Transform tempObjects;
+    public int playerChances = 3;
     public GameObject cheatScene;
     public GameObject helpScene;
+    public Color enemyDmgTextColor;
+    public Color playerDmgTextColor;
+    public GameObject continuePanel;
+    public Text continueQuestionText;
+    public Button continueYesButton;
+    public Button continueNoButton;
+    public Transform PlayerSpawnPoint;
 
     [HideInInspector]  public string ENEMY_UI = "Enemy Canvas";
     public float PARTICLE_CLEAN_UP_DELAY = 10f;
@@ -33,21 +46,36 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.BackQuote))
+        if(Input.GetKeyDown(showLootItemsKey))
+        {
+            for (int i = 0; i < tempObjects.GetComponentsInChildren<LootItem>().Length; i++)
+            {
+                tempObjects.GetComponentsInChildren<LootItem>()[i].GetComponent<InfoItem>().HighLight(true);
+            }
+        }
+        if (Input.GetKeyUp(showLootItemsKey))
+        {
+            for (int i = 0; i < tempObjects.GetComponentsInChildren<LootItem>().Length; i++)
+            {
+                tempObjects.GetComponentsInChildren<LootItem>()[i].GetComponent<InfoItem>().HighLight(false);
+            }
+        }
+
+        if (Input.GetKeyDown(openCheatPanelKey))
         {
             PauseGame();
             cheatSceneOn = true;
         }
-        if(Input.GetKeyUp(KeyCode.BackQuote))
+        if(Input.GetKeyUp(openCheatPanelKey))
         {
             UnPauseGame();
             cheatSceneOn = false;
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(openHelpPanel))
         {
             OpenHelpScene();
         }
-        if (Input.GetKeyUp(KeyCode.H))
+        if (Input.GetKeyUp(openHelpPanel))
         {
             CloseHelpScene();
         }
@@ -88,6 +116,14 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha8))
             {
                 CheatDisableAllMobEnemy();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                CheatUnlimitedRage();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                player.GetComponent<HealthSystem>().TakeDamage(999999);
             }
         }
     }
@@ -157,5 +193,45 @@ public class GameManager : MonoBehaviour
     private void CheatDisableAllMobEnemy()
     {
         enemyManager.SetActive(!enemyManager.activeInHierarchy);
+    }
+
+    private void CheatUnlimitedRage()
+    {
+        var maxRagePoints = player.GetComponent<RageSystem>().GetMaxRagePoints();
+        player.GetComponent<RageSystem>().GainRagePoints(maxRagePoints);
+        player.GetComponent<RageSystem>().isUnlimited = !player.GetComponent<RageSystem>().isUnlimited;
+    }
+
+    public void PlayerContinueCheck()
+    {
+        continueQuestionText.text = "YOU DIED\n" + playerChances + " CHANCES LEFT.\nCONTINUE?";
+        if (playerChances == 0)
+            continueYesButton.interactable = false;
+            
+        continuePanel.SetActive(true);
+    }
+
+    public void PlayerChooseContinue()
+    {
+        continuePanel.SetActive(false);
+        playerChances--;
+        player.GetComponent<HealthSystem>().RestorePercentage(100);
+        player.GetComponent<EnergySystem>().RestorePercentage(100);
+        player.GetComponent<RageSystem>().currentRagePoints = 0;
+
+        player.gameObject.transform.position = PlayerSpawnPoint.transform.position;
+        player.gameObject.transform.rotation = PlayerSpawnPoint.transform.rotation;
+        player.GetComponent<Character>().SetDestination(player.transform.position);
+        player.isAlive = true;
+
+        if(player.isInDemonForm)
+            player.GetComponent<DemonTrigger>().TurnBackToHumanForm();
+
+        player.GetComponent<Animator>().Play("Grounded");
+    }
+
+    public void PlayerChooseQuit()
+    {
+        print("TO MENU!");
     }
 }

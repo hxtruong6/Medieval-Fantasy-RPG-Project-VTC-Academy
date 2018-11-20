@@ -49,10 +49,11 @@ public class Character : MonoBehaviour
         agent.updatePosition = true;
     }
 
-    public void setAnimatorOverideController(AnimatorOverrideController ani)
+    public void SetAnimatorOverideController(AnimatorOverrideController ani)
     {
-        this.animatorOverrideController = ani;
+        animatorOverrideController = ani;
     }
+
     void Update()
     {
         if (agent.remainingDistance > agent.stoppingDistance)

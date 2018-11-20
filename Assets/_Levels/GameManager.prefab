@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4077883011427718}
   - component: {fileID: 114761206580686176}
+  - component: {fileID: 114043712679384936}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -69,6 +70,18 @@ Transform:
   m_Father: {fileID: 4077883011427718}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114043712679384936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743759469674968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f1da646927f4748be755d26292b7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  END: {fileID: 0}
 --- !u!114 &114761206580686176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,6 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45973e9b4b2ef644abd144bbd387ab13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openCheatPanelKey: 96
+  openHelpPanel: 104
   smallHealthPotion: {fileID: 11400000, guid: c3b071f5dc7c3b34495a715670f5521d, type: 2}
   largeHealthPotion: {fileID: 11400000, guid: b86a7e8f01ae23b44a4927f43a9f06d2, type: 2}
   smallManaPotion: {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
@@ -89,6 +104,15 @@ MonoBehaviour:
   masterWeapon: {fileID: 11400000, guid: afef9ef3c82c9bd4e9e3ea0b6dd11e2d, type: 2}
   enemyManager: {fileID: 0}
   tempObjects: {fileID: 4863817814288522}
+  playerChances: 3
   cheatScene: {fileID: 0}
+  helpScene: {fileID: 0}
+  enemyDmgTextColor: {r: 1, g: 0, b: 0, a: 0}
+  playerDmgTextColor: {r: 1, g: 0.5586207, b: 0, a: 0}
+  continuePanel: {fileID: 0}
+  continueQuestionText: {fileID: 0}
+  continueYesButton: {fileID: 0}
+  continueNoButton: {fileID: 0}
+  PlayerSpawnPoint: {fileID: 0}
   ENEMY_UI: Enemy Canvas
   PARTICLE_CLEAN_UP_DELAY: 10
