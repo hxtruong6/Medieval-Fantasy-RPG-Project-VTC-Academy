@@ -961,6 +961,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1586444281885360
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4020748422314266}
+  - component: {fileID: 114027118717299816}
+  - component: {fileID: 135544753455313630}
+  m_Layer: 0
+  m_Name: AareAttacking
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1588629742555916
 GameObject:
   m_ObjectHideFlags: 1
@@ -1661,6 +1678,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4696860409927678}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4020748422314266
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586444281885360}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4697549134226524}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4030507124927638
 Transform:
@@ -2521,6 +2551,7 @@ Transform:
   m_Children:
   - {fileID: 4975390424448598}
   - {fileID: 224627705885832094}
+  - {fileID: 4020748422314266}
   m_Father: {fileID: 4053166105656414}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3119,7 +3150,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3185,6 +3216,20 @@ MonoBehaviour:
   forearmDamage: 15
   tailDamage: 20
   bodyDamage: 25
+--- !u!114 &114027118717299816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586444281885360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522a6e6ab16372e498a6100dce829059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeActive: 2
+  onDamage: 0
+  damage: 5
 --- !u!114 &114030635089255842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3340,6 +3385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0045c270779664b4782ec78e104315e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSound: {fileID: 0}
   dieMaterial: {fileID: 2100000, guid: 0bf833c0cac591f4f96705d12b63320a, type: 2}
 --- !u!114 &114190366945103798
 MonoBehaviour:
@@ -3608,9 +3654,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50e05cc1bcb02a489d7a7fa599310b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  biteDamage: 5
-  wingDamage: 6
-  fireDamage: 7
+  biteDamage: 10
+  wingDamage: 8
+  swoopDamage: 8
+  areaDamage: 5
+  wingAttack: {fileID: 8300000, guid: 7c17abc2df16b4c4892db067120a6c77, type: 3}
+  biteAttack: {fileID: 8300000, guid: 9dc2bb723d02c474cb22009e448047f0, type: 3}
+  fireAttack: {fileID: 8300000, guid: 28b46c2f3f9625546aa128133bdb6adf, type: 3}
+  swoopAttack: {fileID: 8300000, guid: afda1fa946a602340b2f553ee4a1b0d0, type: 3}
 --- !u!114 &114372251692618720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3779,7 +3830,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1297190993906942}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4390575c270ad7f419c2f83cd6339230, type: 3}
   m_Name: 
@@ -4126,6 +4177,8 @@ MonoBehaviour:
   wingRighPos: {fileID: 4944049743238586}
   headPos: {fileID: 4843230183955062}
   legPos: {fileID: 4975390424448598}
+  areaAttacking: {fileID: 1586444281885360}
+  flyAudioClip: {fileID: 8300000, guid: 6442a7410e94bb84da4b9a101f78f5b4, type: 3}
 --- !u!114 &114873413866108664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4237,6 +4290,7 @@ MonoBehaviour:
   damageSounds: []
   deathSounds: []
   deadVanishAfter: 2
+  currentHealthPoints: 0
 --- !u!114 &114971814573718286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4318,6 +4372,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135544753455313630
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586444281885360}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 13
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136000804706358678
 CapsuleCollider:
