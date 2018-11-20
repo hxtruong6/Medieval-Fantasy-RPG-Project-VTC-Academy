@@ -3,6 +3,52 @@ guid: e9692195a3d1e0545adc8e17d0997418
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: chest_root
+    100002: chest_top
+    100004: gold_coin
+    100006: gold_coins_pile
+    100008: gold_nugget
+    100010: gold_pieces_stack
+    100012: gold_pieces_stack_x5
+    100014: gold_stack_x10
+    100016: mountain dragon's lair_LOD_MED
+    100018: //RootNode
+    100020: rock_LOD_HIGH
+    100022: rock_LOD_MED
+    400000: chest_root
+    400002: chest_top
+    400004: gold_coin
+    400006: gold_coins_pile
+    400008: gold_nugget
+    400010: gold_pieces_stack
+    400012: gold_pieces_stack_x5
+    400014: gold_stack_x10
+    400016: mountain dragon's lair_LOD_MED
+    400018: //RootNode
+    400020: rock_LOD_HIGH
+    400022: rock_LOD_MED
+    2300000: chest_root
+    2300002: chest_top
+    2300004: gold_coin
+    2300006: gold_coins_pile
+    2300008: gold_nugget
+    2300010: gold_pieces_stack
+    2300012: gold_pieces_stack_x5
+    2300014: gold_stack_x10
+    2300016: mountain dragon's lair_LOD_MED
+    2300018: rock_LOD_HIGH
+    2300020: rock_LOD_MED
+    3300000: chest_root
+    3300002: chest_top
+    3300004: gold_coin
+    3300006: gold_coins_pile
+    3300008: gold_nugget
+    3300010: gold_pieces_stack
+    3300012: gold_pieces_stack_x5
+    3300014: gold_stack_x10
+    3300016: mountain dragon's lair_LOD_MED
+    3300018: rock_LOD_HIGH
+    3300020: rock_LOD_MED
     4300000: gold_pieces_stack
     4300002: chest_root
     4300004: chest_top
@@ -14,7 +60,23 @@ ModelImporter:
     4300016: rock_LOD_HIGH
     4300018: rock_LOD_MED
     4300020: mountain dragon's lair_LOD_MED
-  externalObjects: {}
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gold_pieces_stack
+    second: {fileID: 2100000, guid: 00afe8e6c0447b04284a5a1760f7fcce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: golden stone
+    second: {fileID: 2100000, guid: 5e3c4d66cee894a42a28f7fab5bfbc06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lair
+    second: {fileID: 2100000, guid: 85d6e536632608a4f94c991b84bf7124, type: 2}
   materials:
     importMaterials: 1
     materialName: 3

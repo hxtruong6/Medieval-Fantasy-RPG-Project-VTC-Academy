@@ -51,4 +51,9 @@ public class TumbleBehaviour : AbilityBehaviour
         start = false;
         //gameObject.GetComponent<Animator>().transform.parent.position = gameObject.GetComponent<Animator>().transform.position;
     }
+
+    private void ChangePosition()
+    {
+        GetComponent<Character>().SetDestination(gameObject.transform.position);
+    }
 }

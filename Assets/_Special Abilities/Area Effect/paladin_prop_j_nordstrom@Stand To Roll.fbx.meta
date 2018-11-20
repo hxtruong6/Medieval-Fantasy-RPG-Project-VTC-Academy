@@ -181,9 +181,9 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -193,10 +193,9 @@ ModelImporter:
       curves: []
       events:
       - time: 0.8019845
-        functionName: 
+        functionName: ChangePosition
         data: 
-        objectReferenceParameter: {fileID: 1405034190276762, guid: f407d97de620a1241ae94cb91579e954,
-          type: 2}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
