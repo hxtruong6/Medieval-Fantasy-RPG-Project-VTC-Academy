@@ -92,8 +92,7 @@ public class Enemy : MonoBehaviour
         //player = GameObject.FindObjectOfType<PlayerControl>();
         if (GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
-
-            Destroy(this);//to stop enemies from continue moving even when died
+            this.enabled = false;
             return false;
         }
         else if (player.GetComponent<HealthSystem>().HealthAsPercentage <= 0)
@@ -282,7 +281,7 @@ public class Enemy : MonoBehaviour
                             }
                             else
                             {
-                                nextWaypointPos = RandomNavSphere(transform.position, patrollRadius, -1);
+                                nextWaypointPos = RandomNavSphere(transform.position, patrollRadius);
                             }
                         }
 
@@ -301,12 +300,12 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist)
     {
         Vector3 randDirection = Random.insideUnitSphere * dist;
         randDirection += origin;
         NavMeshHit navHit;
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+        NavMesh.SamplePosition(randDirection, out navHit, dist, NavMesh.AllAreas);
         return navHit.position;
     }
 
@@ -336,15 +335,19 @@ public class Enemy : MonoBehaviour
         desiredVel = desiredVel.normalized * fleeingSpeed;
         return desiredVel - rigid.velocity;
     }
-
-    private void OnCollisionEnter(Collision collision)
+    public void SwicthChasingState()
     {
-        if (collision.gameObject.GetComponent<Projectile>() &&
-            (character.CurrentState == CharacterState.idling || character.CurrentState == CharacterState.patrolling))
-        {
-            character.CurrentState = CharacterState.chasing;
-        }
+        character.CurrentState = CharacterState.chasing;
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if ((collision.gameObject.GetComponent<Projectile>() || collision.gameObject.GetComponent<PierceProjectile>()) &&
+    //        (character.CurrentState == CharacterState.idling || character.CurrentState == CharacterState.patrolling))
+    //    {
+    //        character.CurrentState = CharacterState.chasing;
+    //    }
+    //}
 
     public IEnumerator Kill(float destroyTime)//NEW
     {

@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
@@ -55,17 +52,17 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthBar();
     }
 
+    public void SetAnimator(Animator ani)
+    {
+        animator = ani;
+    }
+
     void UpdateHealthBar()
     {
         if (healthBar)
         {
             healthBar.fillAmount = HealthAsPercentage;
         }
-    }
-
-    internal void SetAnimator(Animator ani)
-    {
-        this.animator = ani;
     }
 
     private void RegenHealth()
@@ -87,6 +84,7 @@ public class HealthSystem : MonoBehaviour
         }
         if (GetComponent<Enemy>())
         {
+            GetComponent<Enemy>().SwicthChasingState();
             FlashEnemyHealthBar();
         }
 

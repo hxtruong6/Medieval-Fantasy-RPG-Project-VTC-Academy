@@ -9,7 +9,6 @@ TagManager:
   - WyvernBody
   - WyvernLeg
   - WyvernHead
-  - WyvernTail
   - Roll
   layers:
   - Default

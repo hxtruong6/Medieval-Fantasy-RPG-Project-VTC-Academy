@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 
 public class WyvernBehavior : MonoBehaviour
@@ -22,6 +21,11 @@ public class WyvernBehavior : MonoBehaviour
     [SerializeField] private float maxFlyingHeight = 10f;
 
     [SerializeField] private CurrentState currentState;
+    [SerializeField] private Transform wingLeftPos, wingRighPos, headPos, legPos;
+    [SerializeField] private GameObject areaAttacking;
+
+    [SerializeField] private AudioClip flyAudioClip;
+  
 
 
     private WyvernSkeletonSpawn wyvernSkeletonSpawn;
@@ -33,15 +37,14 @@ public class WyvernBehavior : MonoBehaviour
 
     private PlayerControl player;
 
-    private Vector3 wingLeftPos, wingRighPos, headPos;
-
     private float distanceToPlayer;
     private float timeOnPlan;
 
     private float flyingSpeed = 10f;
 
     private float timeToFlying = 0.5f;
-
+    private float timeDirectUpdate;
+    
     [ExecuteInEditMode]
     void OnValidate()
     {
@@ -63,31 +66,31 @@ public class WyvernBehavior : MonoBehaviour
         timeOnPlan = 0f;
         currentState = CurrentState.Idle;
 
-        var partOfBody = GetComponentsInChildren<MainBody>();
-        /*
-         * A bit cheating here. if pos.z < 0 is right and opposite
-         */
-        for (int i = 0; i < partOfBody.Length; i++)
-        {
-            var posBody = partOfBody[i].gameObject.transform;
-            if (partOfBody[i].gameObject.tag == "WyvernWing")
-            {
-                //Debug.Log("Wings local pos: " + posBody.localPosition);
-                if (posBody.localPosition.z > 0)
-                {
-                    wingLeftPos = posBody.position;
-                }
-                else wingRighPos = posBody.position;
-                //Debug.Log("Wings pos: " + posBody);
+        //var partOfBody = GetComponentsInChildren<MainBody>();
+        ///*
+        // * A bit cheating here. if pos.z < 0 is right and opposite
+        // */
+        //for (int i = 0; i < partOfBody.Length; i++)
+        //{
+        //    var posBody = partOfBody[i].gameObject.transform;
+        //    if (partOfBody[i].gameObject.tag == "WyvernWing")
+        //    {
+        //        //Debug.Log("Wings local pos: " + posBody.localPosition);
+        //        if (posBody.localPosition.z > 0)
+        //        {
+        //            wingLeftPos = posBody.position;
+        //        }
+        //        else wingRighPos = posBody.position;
+        //        //Debug.Log("Wings pos: " + posBody);
 
-            }
-            else if (partOfBody[i].gameObject.tag == "WyvernHead")
-            {
-                //Debug.Log("Head pos: " + posBody);
-                headPos = posBody.position;
-            }
+        //    }
+        //    else if (partOfBody[i].gameObject.tag == "WyvernHead")
+        //    {
+        //        //Debug.Log("Head pos: " + posBody);
+        //        headPos = posBody.position;
+        //    }
 
-        }
+        //}
     }
 
     public bool PlayerOrEnemyAliveToContinue()
@@ -96,7 +99,7 @@ public class WyvernBehavior : MonoBehaviour
         if (GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
 
-            Destroy(this);//to stop enemies from continue moving even when died
+            this.enabled = false;//to stop enemies from continue moving even when died
             return false;
         }
         else if (player.GetComponent<HealthSystem>().HealthAsPercentage <= 0)
@@ -119,9 +122,12 @@ public class WyvernBehavior : MonoBehaviour
                 {
                     currentState = CurrentState.Flying;
                     timeOnPlan = 0;
+                    timeDirectUpdate = 0f;
                     wyvernSkeletonSpawn.DisplaySkeletonSpawn();
                     EnableFlying();
+                    StopCoroutine(AttackingInArea());
                     StartCoroutine(FlyingBehaviour());
+                    break;
                 }
                 else if (distanceToPlayer >= fireAttackingRadius)
                 {
@@ -133,10 +139,21 @@ public class WyvernBehavior : MonoBehaviour
                 }
                 else
                 {
+                    //StartCoroutine(AttackingInArea());
+                    areaAttacking.SetActive(true);
                     AttackingPlayer();
                 }
 
+
                 timeOnPlan += Time.deltaTime;
+                timeDirectUpdate += Time.deltaTime;
+                if (timeDirectUpdate > 1f)
+                {
+                    timeDirectUpdate = 0;
+                    var ro = transform.rotation;
+                    transform.LookAt(player.transform.position);
+                    transform.rotation = ro;
+                }
                 break;
             case CurrentState.Flying:
                 //if all of skeleton died
@@ -152,13 +169,15 @@ public class WyvernBehavior : MonoBehaviour
             case CurrentState.Falling:
                 flyingSpeed += Time.deltaTime * 0.75f;
                 //if (flyingSpeed > timeToFlying*2) flyingSpeed -= timeToFlying;
-                if (Vector3.Distance(animator.transform.position, transform.position) <= 1f)
+                if (Vector3.Distance(animator.transform.position, transform.position) <= 1.2f)
                 {
                     StopAllCoroutines();
+                    GetComponentInParent<AudioSource>().Stop();
                     currentState = CurrentState.Idle;
                     // TODO: make sure player can't attack
                     DisableFlying();
                     animator.transform.position = Vector3.Lerp(animator.transform.position, transform.position, 0.2f);
+                   
                 }
                 break;
             case CurrentState.Idle:
@@ -172,6 +191,16 @@ public class WyvernBehavior : MonoBehaviour
                 break;
         }
 
+    }
+
+    private IEnumerator AttackingInArea()
+    {
+        var healthPlayer = player.GetComponent<HealthSystem>();
+        while (player && distanceToPlayer < attackingRadius)
+        {
+            yield return new WaitForSeconds(2f);
+            wyvernAttacking.AreaAttacking(healthPlayer);
+        }
     }
 
     private IEnumerator FallingBehaviour()
@@ -191,6 +220,7 @@ public class WyvernBehavior : MonoBehaviour
 
     IEnumerator FlyingBehaviour()
     {
+        GetComponent<AudioSource>().PlayOneShot(flyAudioClip);
         flyingSpeed = 0;
         while (Vector3.Distance(animator.transform.position, transform.position) <= maxFlyingHeight)
         {
@@ -219,9 +249,6 @@ public class WyvernBehavior : MonoBehaviour
 
     private void FireAttackingPlayer()
     {
-        var ro = transform.rotation;
-        transform.LookAt(player.transform.position);
-        transform.rotation = ro;
         wyvernAttacking.FireAttacking();
         //Debug.Log("Fire is shooting....");
         StartCoroutine(FireSpawnLoop());
@@ -239,12 +266,13 @@ public class WyvernBehavior : MonoBehaviour
 
     void AttackingPlayer()
     {
-        var distanceHead = Vector3.Distance(headPos, player.transform.position);
-        var distanceLeftWing = Vector3.Distance(wingLeftPos, player.transform.position);
-        var distanceRightWing = Vector3.Distance(wingRighPos, player.transform.position);
-        var distanceSwoop = Vector3.Distance(transform.position, player.transform.position);
-
-        transform.LookAt(player.transform.position);
+        //Debug.Log("Head: " + headPos + "|Left" + wingLeftPos + "\n|Right: " + wingRighPos + "|Leg: " + transform.position);
+        var distanceHead = Vector3.Distance(headPos.position, player.transform.position);
+        var distanceLeftWing = Vector3.Distance(wingLeftPos.position, player.transform.position);
+        var distanceRightWing = Vector3.Distance(wingRighPos.position, player.transform.position);
+        var distanceSwoop = Vector3.Distance(legPos.position, player.transform.position);
+        //Debug.Log("Head: " + distanceHead + "|Left" + distanceLeftWing + "\n|Right: " + distanceRightWing + "|Leg: " + distanceSwoop);
+        //transform.LookAt(player.transform.position);
         if (distanceHead < distanceRightWing && distanceHead < distanceLeftWing && distanceHead < distanceSwoop)
         {
             // TODO: bite
