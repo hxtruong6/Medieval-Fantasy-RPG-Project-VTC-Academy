@@ -162,13 +162,15 @@ public class WyvernBehavior : MonoBehaviour
             case CurrentState.Falling:
                 flyingSpeed += Time.deltaTime * 0.75f;
                 //if (flyingSpeed > timeToFlying*2) flyingSpeed -= timeToFlying;
-                if (Vector3.Distance(animator.transform.position, transform.position) <= 1f)
+                if (Vector3.Distance(animator.transform.position, transform.position) <= 1.2f)
                 {
                     StopAllCoroutines();
+                    GetComponentInParent<AudioSource>().Stop();
                     currentState = CurrentState.Idle;
                     // TODO: make sure player can't attack
                     DisableFlying();
                     animator.transform.position = Vector3.Lerp(animator.transform.position, transform.position, 0.2f);
+                   
                 }
                 break;
             case CurrentState.Idle:

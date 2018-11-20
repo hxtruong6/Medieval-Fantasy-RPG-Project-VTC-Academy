@@ -4,6 +4,7 @@ using UnityEngine;
 public class WyvernAnimationListener : MonoBehaviour
 {
     private WyvernAttacking wyvernAttacking;
+    public AudioClip deathSound;
 
     public Material dieMaterial;
     // Use this for initialization
@@ -38,10 +39,13 @@ public class WyvernAnimationListener : MonoBehaviour
 
     private IEnumerator DieDestroy(float timeEffect)
     {
+        GetComponentInParent<AudioSource>().Stop();
+        GetComponentInParent<AudioSource>().PlayOneShot(deathSound);
         yield return new WaitForSeconds(timeEffect);
         GameObject gb = GetComponentInParent<WyvernAttacking>().gameObject;
         if (gb)
         {
+           
             Destroy(gb);
         }
 
