@@ -5777,7 +5777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &269354492
 Transform:
   m_ObjectHideFlags: 0
@@ -11244,7 +11244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &352993128
 Transform:
   m_ObjectHideFlags: 0
@@ -18049,6 +18049,11 @@ MonoBehaviour:
   attackB: {fileID: 0}
   attackICE: {fileID: 0}
   attackAOE: {fileID: 0}
+  audioR: {fileID: 0}
+  audioL: {fileID: 0}
+  audioC: {fileID: 0}
+  audioB: {fileID: 0}
+  audioICE: {fileID: 0}
   bossLockProgress: {fileID: 0}
   rightLeg: {fileID: 0}
   leftLeg: {fileID: 0}
@@ -20424,7 +20429,7 @@ RectTransform:
   - {fileID: 240411654}
   - {fileID: 637798959}
   m_Father: {fileID: 1545074659}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -22821,9 +22826,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0.36552417, z: -0, w: 0.93080187}
   m_LocalPosition: {x: 30.68, y: 9.99, z: 13.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 835429524}
   m_Father: {fileID: 1545074659}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -42.88, z: 0}
 --- !u!4 &830205590 stripped
 Transform:
@@ -22973,13 +22979,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1472515691}
-  m_LocalRotation: {x: -0, y: -0.36552417, z: -0, w: 0.93080187}
-  m_LocalPosition: {x: -49.92833, y: 9.99, z: 89.58856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 427874857}
   - {fileID: 559139142}
-  m_Father: {fileID: 1545074659}
+  m_Father: {fileID: 819460454}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &840743256
@@ -27080,7 +27086,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1545074659}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -42.88, z: 0}
 --- !u!1 &1035145044
 GameObject:
@@ -27563,7 +27569,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1545074659}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &1064613634
 Light:
@@ -42503,7 +42509,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 835429524}
   - {fileID: 1894314585}
   - {fileID: 1064613633}
   - {fileID: 819460454}
@@ -58673,7 +58678,7 @@ Transform:
   - {fileID: 1035145045}
   - {fileID: 1772725463}
   m_Father: {fileID: 1545074659}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1894314586
 MonoBehaviour:
@@ -62234,6 +62239,11 @@ Prefab:
         type: 2}
       propertyPath: dropWeaponChance
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885056161801916, guid: 0480cc9e1a694314383a91e28093c0e3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0480cc9e1a694314383a91e28093c0e3, type: 2}

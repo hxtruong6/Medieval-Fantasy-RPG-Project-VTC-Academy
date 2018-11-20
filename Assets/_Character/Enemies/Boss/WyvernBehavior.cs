@@ -54,7 +54,7 @@ public class WyvernBehavior : MonoBehaviour
         wyvernHealth = GetComponent<HealthSystem>();
         animator = GetComponentInChildren<Animator>();
 
-        wyvernHealth.SetAnimator(animator);
+        //wyvernHealth.SetAnimator(animator);
 
         wyvernFireProjectile = GetComponent<WyvernFireProjectile>();
         player = FindObjectOfType<PlayerControl>();
