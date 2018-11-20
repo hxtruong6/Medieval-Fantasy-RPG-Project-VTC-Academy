@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1d624740a75ac554882b9e9f2493ef33
+guid: 35f53698e6eb79e4cb8b5a77b222c0d9
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -405,17 +405,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: demon_body
-    second: {fileID: 2100000, guid: 795a031e440ff26469016fb1f867ff05, type: 2}
+    second: {fileID: 2100000, guid: b003c6074b7e25e48adaa28b8fa64148, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: demon_wings
-    second: {fileID: 2100000, guid: 0b27602667490c2499e9717dea2e4095, type: 2}
+    second: {fileID: 2100000, guid: 177fcb4fdeb9d394bb56fc139132f687, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: hellish_whip
-    second: {fileID: 2100000, guid: 44f22262fbd33f64ca92d36937bc1412, type: 2}
+    second: {fileID: 2100000, guid: c0b51076515396b40b19fcf6daadc175, type: 2}
   materials:
     importMaterials: 1
     materialName: 3

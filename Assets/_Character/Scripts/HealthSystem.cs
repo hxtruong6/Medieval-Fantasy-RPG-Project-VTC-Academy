@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
@@ -47,12 +44,17 @@ public class HealthSystem : MonoBehaviour
     }
 
     void Update()
-    {     
-        if(GetComponent<PlayerControl>() && GetComponent<PlayerControl>().isInDemonForm)
+    {
+        if (GetComponent<PlayerControl>() && GetComponent<PlayerControl>().isInDemonForm)
         {
             RegenHealth();
         }
         UpdateHealthBar();
+    }
+
+    public void SetAnimator(Animator ani)
+    {
+        animator = ani;
     }
 
     void UpdateHealthBar()
@@ -77,8 +79,8 @@ public class HealthSystem : MonoBehaviour
         {
             if (isInvincible)
                 return;
-            if(!GetComponent<PlayerControl>().isInDemonForm)
-                GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().attackedGain);           
+            if (!GetComponent<PlayerControl>().isInDemonForm)
+                GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().attackedGain);
         }
         if (GetComponent<Enemy>())
         {
@@ -161,7 +163,7 @@ public class HealthSystem : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(deadVanishAfter);
 
-        if(playerComponent)
+        if (playerComponent)
         {
             GameManager.instance.PlayerContinueCheck();
         }

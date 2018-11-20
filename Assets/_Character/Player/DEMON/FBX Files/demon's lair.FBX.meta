@@ -1,12 +1,33 @@
 fileFormatVersion: 2
-guid: fea27d9968efc264893ca27d0ab0c3e6
+guid: 7e3bd8018bb0a09438e2abef749fd62b
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: demon's lair_LOD_MED
+    100004: rock_LOD_HIGH
+    100006: rock_LOD_MED
+    400000: //RootNode
+    400002: demon's lair_LOD_MED
+    400004: rock_LOD_HIGH
+    400006: rock_LOD_MED
+    2300000: demon's lair_LOD_MED
+    2300002: rock_LOD_HIGH
+    2300004: rock_LOD_MED
+    3300000: demon's lair_LOD_MED
+    3300002: rock_LOD_HIGH
+    3300004: rock_LOD_MED
     4300000: rock_LOD_HIGH
     4300002: rock_LOD_MED
     4300004: demon's lair_LOD_MED
-  externalObjects: {}
+    7400000: Take 001
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lair
+    second: {fileID: 2100000, guid: 4c8776ff49fd8b84692696e50b8a3e83, type: 2}
   materials:
     importMaterials: 1
     materialName: 3

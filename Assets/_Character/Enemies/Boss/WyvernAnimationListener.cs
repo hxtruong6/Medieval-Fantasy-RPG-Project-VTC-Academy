@@ -15,7 +15,7 @@ public class WyvernAnimationListener : MonoBehaviour
 
     void switchState()
     {
-        Debug.Log("Switch");
+        //Debug.Log("Switch");
         wyvernAttacking.switchState();
     }
 
@@ -45,7 +45,6 @@ public class WyvernAnimationListener : MonoBehaviour
         GameObject gb = GetComponentInParent<WyvernAttacking>().gameObject;
         if (gb)
         {
-           
             Destroy(gb);
         }
 
