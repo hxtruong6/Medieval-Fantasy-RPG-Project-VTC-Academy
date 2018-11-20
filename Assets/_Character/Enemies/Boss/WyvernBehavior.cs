@@ -25,7 +25,7 @@ public class WyvernBehavior : MonoBehaviour
     [SerializeField] private GameObject areaAttacking;
 
     [SerializeField] private AudioClip flyAudioClip;
-  
+
 
 
     private WyvernSkeletonSpawn wyvernSkeletonSpawn;
@@ -44,7 +44,7 @@ public class WyvernBehavior : MonoBehaviour
 
     private float timeToFlying = 0.5f;
     private float timeDirectUpdate;
-    
+
     [ExecuteInEditMode]
     void OnValidate()
     {
@@ -120,12 +120,17 @@ public class WyvernBehavior : MonoBehaviour
             case CurrentState.Attacking:
                 if (timeOnPlan >= timeOnPlanLimited)
                 {
-                    currentState = CurrentState.Flying;
                     timeOnPlan = 0;
                     timeDirectUpdate = 0f;
+                    if (wyvernSkeletonSpawn.IsOverLoad())
+                    {
+                        currentState = CurrentState.Idle;
+                        break;
+                    }
                     wyvernSkeletonSpawn.DisplaySkeletonSpawn();
+                    currentState = CurrentState.Flying;                 
                     EnableFlying();
-                    StopCoroutine(AttackingInArea());
+                    //StopCoroutine(AttackingInArea());
                     StartCoroutine(FlyingBehaviour());
                     break;
                 }
@@ -169,7 +174,7 @@ public class WyvernBehavior : MonoBehaviour
             case CurrentState.Falling:
                 flyingSpeed += Time.deltaTime * 0.75f;
                 //if (flyingSpeed > timeToFlying*2) flyingSpeed -= timeToFlying;
-                if (Vector3.Distance(animator.transform.position, transform.position) <= 1.2f)
+                if (Vector3.Distance(animator.transform.position, transform.position) <= 0.8f)
                 {
                     StopAllCoroutines();
                     GetComponentInParent<AudioSource>().Stop();
@@ -177,7 +182,7 @@ public class WyvernBehavior : MonoBehaviour
                     // TODO: make sure player can't attack
                     DisableFlying();
                     animator.transform.position = Vector3.Lerp(animator.transform.position, transform.position, 0.2f);
-                   
+
                 }
                 break;
             case CurrentState.Idle:
@@ -206,7 +211,7 @@ public class WyvernBehavior : MonoBehaviour
     private IEnumerator FallingBehaviour()
     {
         flyingSpeed = 0;
-        while (Vector3.Distance(animator.transform.position, transform.position) > 1f)
+        while (Vector3.Distance(animator.transform.position, transform.position) > 0.8f)
         {
             yield return new WaitForSeconds(timeToFlying);
             var newPos = animator.transform.position;
@@ -266,6 +271,7 @@ public class WyvernBehavior : MonoBehaviour
 
     void AttackingPlayer()
     {
+        if (wyvernAttacking.AnimatorIsPlaying()) return;
         //Debug.Log("Head: " + headPos + "|Left" + wingLeftPos + "\n|Right: " + wingRighPos + "|Leg: " + transform.position);
         var distanceHead = Vector3.Distance(headPos.position, player.transform.position);
         var distanceLeftWing = Vector3.Distance(wingLeftPos.position, player.transform.position);
@@ -293,6 +299,16 @@ public class WyvernBehavior : MonoBehaviour
             wyvernAttacking.SwoopClaw();
         }
     }
+    [ContextMenu("Disable All Collider")]
+    public void DisableAllCollider() {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        //Debug.Log("Collider "+ colliders.Length);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = false;
+        }
+    }
+
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {

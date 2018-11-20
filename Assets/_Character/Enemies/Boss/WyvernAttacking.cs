@@ -16,7 +16,7 @@ public class WyvernAttacking : MonoBehaviour
     [SerializeField] private AudioClip biteAttack;
     [SerializeField] private AudioClip fireAttack;
     [SerializeField] private AudioClip swoopAttack;
-
+    [SerializeField] private GameObject wyvernEventAttack;
     private AudioSource wyvernAudio;
     private enum CurrentAttacking
     {
@@ -31,6 +31,7 @@ public class WyvernAttacking : MonoBehaviour
 
     // Use this for initialization
     private Animator animator;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -45,6 +46,13 @@ public class WyvernAttacking : MonoBehaviour
             wyvernAudio.pitch = Random.Range(1f, 1.3f);
             wyvernAudio.PlayOneShot(biteAttack);
         }
+        wyvernEventAttack.SetActive(true);
+
+    }
+
+    public bool AnimatorIsPlaying()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1;
     }
 
     public void LeftAttacking()
@@ -57,7 +65,7 @@ public class WyvernAttacking : MonoBehaviour
             wyvernAudio.pitch = Random.Range(1f, 1.3f);
             wyvernAudio.PlayOneShot(wingAttack);
         }
-
+        wyvernEventAttack.SetActive(true);
     }
 
     public void RightAttacking()
@@ -70,11 +78,11 @@ public class WyvernAttacking : MonoBehaviour
             wyvernAudio.pitch = Random.Range(1f, 1.3f);
             wyvernAudio.PlayOneShot(wingAttack);
         }
+        wyvernEventAttack.SetActive(true);
     }
 
     public void FireAttacking()
     {
-
         currentAttacking = CurrentAttacking.FireAttacking;
         //Debug.Log("Start fire attacking");
         animator.SetTrigger("enableFireAttacking");
@@ -97,6 +105,7 @@ public class WyvernAttacking : MonoBehaviour
             wyvernAudio.pitch = Random.Range(1f, 1.3f);
             wyvernAudio.PlayOneShot(swoopAttack);
         }
+        wyvernEventAttack.SetActive(true);
     }
     public void switchState()
     {
@@ -105,12 +114,13 @@ public class WyvernAttacking : MonoBehaviour
 
     public void AreaAttacking(HealthSystem health)
     {
-        Debug.Log(currentAttacking);
+        //Debug.Log(currentAttacking);
         if (currentAttacking != CurrentAttacking.None)
             health.TakeDamage(0);
     }
     void OnCollisionEnter(Collision other)
     {
+        return;
         //Debug.Log("Collider: " + other. gameObject.tag);
         if (other.gameObject.tag == "Player")
         {

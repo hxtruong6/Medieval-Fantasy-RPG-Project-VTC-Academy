@@ -12,6 +12,11 @@ public class WyvernSkeletonSpawn : MonoBehaviour
             skeletonSpawnAreas[i].SetActive(false);
         }
     }
+    public bool IsOverLoad()
+    {
+        return currentIndex >= skeletonSpawnAreas.Length;
+    }
+
     public void DisplaySkeletonSpawn()
     {
         if (currentIndex + 1 < skeletonSpawnAreas.Length)

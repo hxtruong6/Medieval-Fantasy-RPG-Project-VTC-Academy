@@ -172,8 +172,9 @@ public class HealthSystem : MonoBehaviour
 
     private void EnemyKilledAndDropLoot()
     {
-        GetComponent<CapsuleCollider>().enabled = false;
 
+        if (GetComponent<CapsuleCollider>())
+            GetComponent<CapsuleCollider>().enabled = false;
         if (GetComponent<BoxCollider>())
             GetComponent<BoxCollider>().enabled = false;
         if (GetComponent<DropLoot>())

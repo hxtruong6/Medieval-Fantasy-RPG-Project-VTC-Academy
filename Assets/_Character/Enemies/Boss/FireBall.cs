@@ -4,10 +4,14 @@ public class FireBall : MonoBehaviour
 {
 
     [SerializeField] private float fireDamage = 3f;
+    GameObject player;
     // Use this for initialization
     void Start()
     {
-
+        if ((int)Random.Range(1, 11) > 4)
+        {
+            GetComponent<SphereCollider>().enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -16,15 +20,19 @@ public class FireBall : MonoBehaviour
 
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.tag);
-        //var layerCollidedWith = collision.gameObject.layer;
-        //if (shooter && layerCollidedWith != shooter.layer)
-        //{
         if (other.tag == "Player")
-            DealDamage(other.gameObject);
-        //}
+        {
+            if (player == null)
+            {
+                DealDamage(other.gameObject);
+                player = other.gameObject;
+            }
+        }
+        
+
     }
 
 
@@ -35,6 +43,7 @@ public class FireBall : MonoBehaviour
         {
             return;
         }
+        Debug.Log("Fire Hit");
         objectBeingHit.GetComponent<HealthSystem>().TakeDamage(fireDamage);
         Destroy(gameObject);
     }
