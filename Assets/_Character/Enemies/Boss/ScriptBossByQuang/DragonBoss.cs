@@ -14,9 +14,15 @@ public class DragonBoss : MonoBehaviour {
     public GameObject attackB;
     public GameObject attackICE;
     public GameObject attackAOE;
+    public AudioClip audioR;
+    public AudioClip audioL;
+    public AudioClip audioC;
+    public AudioClip audioB;
+    public AudioClip audioICE;
     public GameObject bossLockProgress;
     private float timer;
     private Animator anim;
+    AudioSource audioSource;
     private PlayerControl player;
     private bool isDead;
 
@@ -32,6 +38,7 @@ public class DragonBoss : MonoBehaviour {
     void Start () {
         player = FindObjectOfType<PlayerControl>();
         //dragonHealth = GetComponent<HealthSystem>();
+        audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         timer = 3;
     }
@@ -94,25 +101,31 @@ public class DragonBoss : MonoBehaviour {
 
     public static void Attacking(int attackType)
     {
+        dragonBoss.audioSource.pitch = Random.Range(1f, 1.3f);
         if (attackType == 1)
         {
             dragonBoss.attackR.gameObject.SetActive(true);
+            dragonBoss.audioSource.PlayOneShot(dragonBoss.audioR);
         }
         if (attackType == 2)
         {
             dragonBoss.attackL.gameObject.SetActive(true);
+            dragonBoss.audioSource.PlayOneShot(dragonBoss.audioL);
         }
         if (attackType == 3)
         {
             dragonBoss.attackC.gameObject.SetActive(true);
+            dragonBoss.audioSource.PlayOneShot(dragonBoss.audioC);
         }
         if (attackType == 4)
         {
             dragonBoss.attackB.gameObject.SetActive(true);
+            dragonBoss.audioSource.PlayOneShot(dragonBoss.audioB);
         }
         if (attackType == 5)
         {
             dragonBoss.attackICE.gameObject.SetActive(true);
+            dragonBoss.audioSource.PlayOneShot(dragonBoss.audioICE);
         }
         if (attackType == 6)
         {
