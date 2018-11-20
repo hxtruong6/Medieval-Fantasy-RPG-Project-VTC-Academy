@@ -1,25 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FireBall : MonoBehaviour {
+public class FireBall : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void OnCollisionEnter(Collision collision)
+    [SerializeField] private float fireDamage = 3f;
+    // Use this for initialization
+    void Start()
     {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log(other.tag);
         //var layerCollidedWith = collision.gameObject.layer;
         //if (shooter && layerCollidedWith != shooter.layer)
         //{
-            DealDamage(collision.gameObject);
+        if (other.tag == "Player")
+            DealDamage(other.gameObject);
         //}
     }
 
@@ -31,11 +35,7 @@ public class FireBall : MonoBehaviour {
         {
             return;
         }
-        float damage = 0;
-        //AudioSource audioSource = GetComponentInParent<AudioSource>();
-        //audioSource.PlayOneShot(projectileConfig.GetContactSound());
-
- 
+        objectBeingHit.GetComponent<HealthSystem>().TakeDamage(fireDamage);
         Destroy(gameObject);
     }
 }

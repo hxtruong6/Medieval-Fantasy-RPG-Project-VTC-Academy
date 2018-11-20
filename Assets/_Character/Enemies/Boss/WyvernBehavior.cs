@@ -23,6 +23,8 @@ public class WyvernBehavior : MonoBehaviour
     [SerializeField] private CurrentState currentState;
     [SerializeField] private Transform wingLeftPos, wingRighPos, headPos, legPos;
     [SerializeField] private GameObject areaAttacking;
+
+    [SerializeField] private AudioClip flyAudioClip;
   
 
 
@@ -209,6 +211,7 @@ public class WyvernBehavior : MonoBehaviour
 
     IEnumerator FlyingBehaviour()
     {
+        GetComponent<AudioSource>().PlayOneShot(flyAudioClip);
         flyingSpeed = 0;
         while (Vector3.Distance(animator.transform.position, transform.position) <= maxFlyingHeight)
         {

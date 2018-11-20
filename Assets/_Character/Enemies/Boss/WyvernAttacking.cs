@@ -6,11 +6,18 @@ public class WyvernAttacking : MonoBehaviour
 
     [SerializeField] private float wingDamage = 6f;
 
-    [SerializeField] private float fireDamage = 7f;
+    //[SerializeField] private float fireDamage = 7f;
 
     [SerializeField] private float swoopDamage = 8f;
     [SerializeField] private float areaDamage = 5f;
 
+    [Header("Audio Attacking")]
+    [SerializeField] private AudioClip wingAttack;
+    [SerializeField] private AudioClip biteAttack;
+    [SerializeField] private AudioClip fireAttack;
+    [SerializeField] private AudioClip swoopAttack;
+
+    private AudioSource wyvernAudio;
     private enum CurrentAttacking
     {
         None = 0,
@@ -27,38 +34,69 @@ public class WyvernAttacking : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        wyvernAudio = GetComponent<AudioSource>();
     }
     public void BiteAttacking()
     {
         currentAttacking = CurrentAttacking.BiteAttacking;
         animator.SetTrigger("enableBiting");
+        if (!wyvernAudio.isPlaying)
+        {
+            wyvernAudio.pitch = Random.Range(1f, 1.3f);
+            wyvernAudio.PlayOneShot(biteAttack);
+        }
     }
 
     public void LeftAttacking()
     {
+
         currentAttacking = CurrentAttacking.WingAttacking;
         animator.SetTrigger("enableLeftAttacking");
+        if (!wyvernAudio.isPlaying)
+        {
+            wyvernAudio.pitch = Random.Range(1f, 1.3f);
+            wyvernAudio.PlayOneShot(wingAttack);
+        }
+
     }
 
     public void RightAttacking()
     {
+
         currentAttacking = CurrentAttacking.WingAttacking;
         animator.SetTrigger("enableRightAttacking");
+        if (!wyvernAudio.isPlaying)
+        {
+            wyvernAudio.pitch = Random.Range(1f, 1.3f);
+            wyvernAudio.PlayOneShot(wingAttack);
+        }
     }
 
     public void FireAttacking()
     {
+
         currentAttacking = CurrentAttacking.FireAttacking;
         //Debug.Log("Start fire attacking");
         animator.SetTrigger("enableFireAttacking");
+        if (!wyvernAudio.isPlaying)
+        {
+            wyvernAudio.pitch = Random.Range(1f, 1.3f);
+            wyvernAudio.PlayOneShot(fireAttack);
+        }
     }
 
     public void SwoopClaw()
     {
+
         currentAttacking = CurrentAttacking.SwoopClaw;
         //Debug.Log(transform.rotation);
         animator.SetTrigger("enableSwoopClaw");
         //Debug.Log("2---> " +transform.rotation);
+        if (!wyvernAudio.isPlaying)
+        {
+            wyvernAudio.pitch = Random.Range(1f, 1.3f);
+            wyvernAudio.PlayOneShot(swoopAttack);
+        }
     }
     public void switchState()
     {

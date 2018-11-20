@@ -28420,6 +28420,7 @@ MonoBehaviour:
   headPos: {fileID: 107873396}
   legPos: {fileID: 1201686633}
   areaAttacking: {fileID: 1609992989}
+  flyAudioClip: {fileID: 8300000, guid: 6442a7410e94bb84da4b9a101f78f5b4, type: 3}
 --- !u!114 &2109047778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28434,9 +28435,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biteDamage: 10
   wingDamage: 8
-  fireDamage: 7
   swoopDamage: 8
   areaDamage: 5
+  wingAttack: {fileID: 8300000, guid: 7c17abc2df16b4c4892db067120a6c77, type: 3}
+  biteAttack: {fileID: 8300000, guid: 9dc2bb723d02c474cb22009e448047f0, type: 3}
+  fireAttack: {fileID: 8300000, guid: 28b46c2f3f9625546aa128133bdb6adf, type: 3}
+  swoopAttack: {fileID: 8300000, guid: afda1fa946a602340b2f553ee4a1b0d0, type: 3}
 --- !u!114 &2109047779
 MonoBehaviour:
   m_ObjectHideFlags: 0
