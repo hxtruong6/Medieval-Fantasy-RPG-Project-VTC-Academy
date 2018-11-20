@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     public Text continueQuestionText;
     public Button continueYesButton;
     public Button continueNoButton;
-    public Transform PlayerSpawnPoint;
 
     [HideInInspector]  public string ENEMY_UI = "Enemy Canvas";
     public float PARTICLE_CLEAN_UP_DELAY = 10f;
@@ -204,6 +203,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerContinueCheck()
     {
+        playerChances--;
         continueQuestionText.text = "YOU DIED\n" + playerChances + " CHANCES LEFT.\nCONTINUE?";
         if (playerChances == 0)
             continueYesButton.interactable = false;
@@ -211,16 +211,15 @@ public class GameManager : MonoBehaviour
         continuePanel.SetActive(true);
     }
 
-    public void PlayerChooseContinue()
-    {      
-        playerChances--;
+    private void PlayerChooseContinue()
+    {           
         player.GetComponent<HealthSystem>().RestorePercentage(100);
         player.GetComponent<EnergySystem>().RestorePercentage(100);
         player.GetComponent<RageSystem>().currentRagePoints = 0;
         player.GetComponent<RageSystem>().UpdateRageBar();
-        player.gameObject.transform.position = PlayerSpawnPoint.position;
-        player.gameObject.transform.rotation = PlayerSpawnPoint.rotation;
-        player.GetComponent<Character>().SetDestination(player.transform.position);
+
+        player.GetComponent<DemonTrigger>().humanForm.SetActive(false);
+          
         player.isAlive = true;
 
         if(player.isInDemonForm)
@@ -229,6 +228,8 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Animator>().Play("Grounded");
 
         continuePanel.SetActive(false);
+
+        player.GetComponent<DemonTrigger>().humanForm.SetActive(true);
     }
 
     public void PlayerChooseQuit()

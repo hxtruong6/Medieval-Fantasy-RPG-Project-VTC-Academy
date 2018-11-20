@@ -1,10 +1,20 @@
 fileFormatVersion: 2
-guid: 28427f862cd8a7743aa2552c811263fd
+guid: 68662b3316db06d4894459d64315fe7b
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: simplePlanedecal1m
-  externalObjects: {}
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 05b0f794c789ebf4bb3241d6f0031169, type: 2}
   materials:
     importMaterials: 1
     materialName: 3

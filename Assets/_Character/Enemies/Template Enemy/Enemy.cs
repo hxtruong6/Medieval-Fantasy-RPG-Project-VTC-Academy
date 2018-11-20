@@ -87,14 +87,20 @@ public class Enemy : MonoBehaviour
         return Vector3.Distance(player.transform.position, transform.position);
     }
 
-    public void PlayerOrEnemyAliveToContinue()
+    public bool PlayerOrEnemyAliveToContinue()
     {
         //player = GameObject.FindObjectOfType<PlayerControl>();
-        if (player.GetComponent<HealthSystem>().HealthAsPercentage <= 0 ||
-            GetComponent<HealthSystem>().HealthAsPercentage <= 0)
+        if (GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
+
             Destroy(this);//to stop enemies from continue moving even when died
+            return false;
         }
+        else if (player.GetComponent<HealthSystem>().HealthAsPercentage <= 0)
+        {
+            return false;
+        }
+        return true;
     }
     bool CheckTargetInLooking()
     {
@@ -112,9 +118,9 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDead)//NEW
+        if (isDead && !PlayerOrEnemyAliveToContinue())//NEW
             return;
-        PlayerOrEnemyAliveToContinue();
+        
         var steering = Vector3.zero;
         distanceToPlayer = GetDistanceToPlayer();
         switch (character.CurrentState)

@@ -20,7 +20,7 @@ public class WyvernBehavior : MonoBehaviour
     //[SerializeField] private float fallingSpeed = 10f;
     [SerializeField] private float timeForFireShooting = 0.1f;
     [SerializeField] private float maxFlyingHeight = 10f;
-    
+
     [SerializeField] private CurrentState currentState;
 
 
@@ -90,19 +90,26 @@ public class WyvernBehavior : MonoBehaviour
         }
     }
 
-    public void PlayerOrEnemyAliveToContinue()
+    public bool PlayerOrEnemyAliveToContinue()
     {
-        if (player.gameObject.GetComponent<HealthSystem>().HealthAsPercentage <= 0 ||
-           wyvernHealth.HealthAsPercentage <= 0)
+        //player = GameObject.FindObjectOfType<PlayerControl>();
+        if (GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
+
             Destroy(this);//to stop enemies from continue moving even when died
+            return false;
         }
+        else if (player.GetComponent<HealthSystem>().HealthAsPercentage <= 0)
+        {
+            return false;
+        }
+        return true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerOrEnemyAliveToContinue();
+        if (!PlayerOrEnemyAliveToContinue()) return;
         distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
         //FlyingBehaviour();
         switch (currentState)
@@ -140,7 +147,7 @@ public class WyvernBehavior : MonoBehaviour
                     StartCoroutine(FallingBehaviour());
                 }
                 flyingSpeed += Time.deltaTime / 2;
-                
+
                 break;
             case CurrentState.Falling:
                 flyingSpeed += Time.deltaTime * 0.75f;
@@ -248,7 +255,7 @@ public class WyvernBehavior : MonoBehaviour
             // TODO: right attacking
             wyvernAttacking.RightAttacking();
         }
-        else if (distanceLeftWing< distanceSwoop)
+        else if (distanceLeftWing < distanceSwoop)
         {
             // TODO: left attacking
             wyvernAttacking.LeftAttacking();
