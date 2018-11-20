@@ -787,6 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4659543936816906}
   - component: {fileID: 137447660548713416}
+  - component: {fileID: 114198670265400196}
   m_Layer: 0
   m_Name: wyvern
   m_TagString: Untagged
@@ -3339,6 +3340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0045c270779664b4782ec78e104315e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dieMaterial: {fileID: 2100000, guid: 0bf833c0cac591f4f96705d12b63320a, type: 2}
 --- !u!114 &114190366945103798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3357,6 +3359,38 @@ MonoBehaviour:
   forearmDamage: 15
   tailDamage: 20
   bodyDamage: 25
+--- !u!114 &114198670265400196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490574831393584}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c631e82b79d9b948963184edcbdbf95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnEffectTime: 4
+  pause: 1
+  fadeIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  normalMeterial: {fileID: 0}
 --- !u!114 &114200063330386958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4085,13 +4119,13 @@ MonoBehaviour:
   attackingRadius: 13
   fireAttackingRadius: 20
   timeOnPlanLimited: 10
-  timeForFireShooting: 0.5
+  timeForFireShooting: 0.3
   maxFlyingHeight: 10
   currentState: 0
   wingLeftPos: {fileID: 4848350967466256}
   wingRighPos: {fileID: 4944049743238586}
   headPos: {fileID: 4843230183955062}
-  legPos: {fileID: 4765394935738408}
+  legPos: {fileID: 4975390424448598}
 --- !u!114 &114873413866108664
 MonoBehaviour:
   m_ObjectHideFlags: 1

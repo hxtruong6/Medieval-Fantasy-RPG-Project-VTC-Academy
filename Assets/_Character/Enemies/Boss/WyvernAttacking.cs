@@ -8,6 +8,9 @@ public class WyvernAttacking : MonoBehaviour
 
     [SerializeField] private float fireDamage = 7f;
 
+    [SerializeField] private float swoopDamage = 8f;
+    [SerializeField] private float areaDamage = 5f;
+
     private enum CurrentAttacking
     {
         None = 0,
@@ -62,6 +65,12 @@ public class WyvernAttacking : MonoBehaviour
         currentAttacking = CurrentAttacking.None;
     }
 
+    public void AreaAttacking(HealthSystem health)
+    {
+        Debug.Log(currentAttacking);
+        if (currentAttacking != CurrentAttacking.None)
+            health.TakeDamage(0);
+    }
     void OnCollisionEnter(Collision other)
     {
         //Debug.Log("Collider: " + other. gameObject.tag);
@@ -70,16 +79,19 @@ public class WyvernAttacking : MonoBehaviour
             switch (currentAttacking)
             {
                 case CurrentAttacking.BiteAttacking:
-                    Debug.Log("Bite");
+                    //Debug.Log("Bite");
                     other.gameObject.GetComponent<HealthSystem>().TakeDamage(biteDamage);
                     break;
                 case CurrentAttacking.WingAttacking:
-                    Debug.Log("Wing");
+                    //Debug.Log("Wing");
                     other.gameObject.GetComponent<HealthSystem>().TakeDamage(wingDamage);
                     break;
-                case CurrentAttacking.FireAttacking:
-                    Debug.Log("Fire");
-                    other.gameObject.GetComponent<HealthSystem>().TakeDamage(fireDamage);
+                //case CurrentAttacking.FireAttacking:
+                //    Debug.Log("Fire");
+                //    other.gameObject.GetComponent<HealthSystem>().TakeDamage(fireDamage);
+                //    break;
+                case CurrentAttacking.SwoopClaw:
+                    other.gameObject.GetComponent<HealthSystem>().TakeDamage(swoopDamage);
                     break;
             }
         }

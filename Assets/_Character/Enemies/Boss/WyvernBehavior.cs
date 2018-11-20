@@ -22,6 +22,9 @@ public class WyvernBehavior : MonoBehaviour
 
     [SerializeField] private CurrentState currentState;
     [SerializeField] private Transform wingLeftPos, wingRighPos, headPos, legPos;
+    [SerializeField] private GameObject areaAttacking;
+  
+
 
     private WyvernSkeletonSpawn wyvernSkeletonSpawn;
     private WyvernAttacking wyvernAttacking;
@@ -39,7 +42,7 @@ public class WyvernBehavior : MonoBehaviour
 
     private float timeToFlying = 0.5f;
     private float timeDirectUpdate;
-
+    
     [ExecuteInEditMode]
     void OnValidate()
     {
@@ -113,7 +116,9 @@ public class WyvernBehavior : MonoBehaviour
                     timeDirectUpdate = 0f;
                     wyvernSkeletonSpawn.DisplaySkeletonSpawn();
                     EnableFlying();
+                    StopCoroutine(AttackingInArea());
                     StartCoroutine(FlyingBehaviour());
+                    break;
                 }
                 else if (distanceToPlayer >= fireAttackingRadius)
                 {
@@ -125,8 +130,11 @@ public class WyvernBehavior : MonoBehaviour
                 }
                 else
                 {
+                    //StartCoroutine(AttackingInArea());
+                    areaAttacking.SetActive(true);
                     AttackingPlayer();
                 }
+
 
                 timeOnPlan += Time.deltaTime;
                 timeDirectUpdate += Time.deltaTime;
@@ -172,6 +180,16 @@ public class WyvernBehavior : MonoBehaviour
                 break;
         }
 
+    }
+
+    private IEnumerator AttackingInArea()
+    {
+        var healthPlayer = player.GetComponent<HealthSystem>();
+        while (player && distanceToPlayer < attackingRadius)
+        {
+            yield return new WaitForSeconds(2f);
+            wyvernAttacking.AreaAttacking(healthPlayer);
+        }
     }
 
     private IEnumerator FallingBehaviour()
@@ -236,12 +254,12 @@ public class WyvernBehavior : MonoBehaviour
 
     void AttackingPlayer()
     {
-        Debug.Log("Head: " + headPos + "|Left" + wingLeftPos + "\n|Right: " + wingRighPos + "|Leg: " + transform.position);
+        //Debug.Log("Head: " + headPos + "|Left" + wingLeftPos + "\n|Right: " + wingRighPos + "|Leg: " + transform.position);
         var distanceHead = Vector3.Distance(headPos.position, player.transform.position);
         var distanceLeftWing = Vector3.Distance(wingLeftPos.position, player.transform.position);
         var distanceRightWing = Vector3.Distance(wingRighPos.position, player.transform.position);
-        var distanceSwoop = Vector3.Distance(legPos.position , player.transform.position);
-        Debug.Log("Head: " + distanceHead + "|Left" + distanceLeftWing + "\n|Right: " + distanceRightWing + "|Leg: " + distanceSwoop);
+        var distanceSwoop = Vector3.Distance(legPos.position, player.transform.position);
+        //Debug.Log("Head: " + distanceHead + "|Left" + distanceLeftWing + "\n|Right: " + distanceRightWing + "|Leg: " + distanceSwoop);
         //transform.LookAt(player.transform.position);
         if (distanceHead < distanceRightWing && distanceHead < distanceLeftWing && distanceHead < distanceSwoop)
         {
