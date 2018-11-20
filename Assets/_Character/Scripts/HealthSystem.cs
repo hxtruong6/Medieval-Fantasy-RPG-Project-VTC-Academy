@@ -34,7 +34,7 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = animator == null ? GetComponent<Animator>() : animator;
         audioSource = GetComponent<AudioSource>();
         damageTextSpawner = FindObjectOfType<DamageTextSpawner>();
 
@@ -47,8 +47,8 @@ public class HealthSystem : MonoBehaviour
     }
 
     void Update()
-    {     
-        if(GetComponent<PlayerControl>() && GetComponent<PlayerControl>().isInDemonForm)
+    {
+        if (GetComponent<PlayerControl>() && GetComponent<PlayerControl>().isInDemonForm)
         {
             RegenHealth();
         }
@@ -61,6 +61,11 @@ public class HealthSystem : MonoBehaviour
         {
             healthBar.fillAmount = HealthAsPercentage;
         }
+    }
+
+    internal void SetAnimator(Animator ani)
+    {
+        this.animator = ani;
     }
 
     private void RegenHealth()
@@ -77,8 +82,8 @@ public class HealthSystem : MonoBehaviour
         {
             if (isInvincible)
                 return;
-            if(!GetComponent<PlayerControl>().isInDemonForm)
-                GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().attackedGain);           
+            if (!GetComponent<PlayerControl>().isInDemonForm)
+                GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().attackedGain);
         }
         if (GetComponent<Enemy>())
         {
@@ -161,7 +166,7 @@ public class HealthSystem : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(deadVanishAfter);
 
-        if(playerComponent)
+        if (playerComponent)
         {
             GameManager.instance.PlayerContinueCheck();
         }

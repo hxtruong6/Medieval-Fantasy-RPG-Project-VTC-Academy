@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class DemonTrigger : MonoBehaviour
 {
-    [SerializeField] GameObject humanForm;
+    [HideInInspector] public GameObject humanForm;
     [SerializeField] GameObject demonForm;
     [SerializeField] KeyCode demonTriggerKey = KeyCode.R;
     [SerializeField] AnimatorOverrideController demonAnimatorOC;
@@ -14,6 +15,7 @@ public class DemonTrigger : MonoBehaviour
     [SerializeField] WeaponConfig replaceMeleeWeapon;
     [SerializeField] WeaponConfig replaceRangedWeapon;
     [SerializeField] ProjectileConfig replaceProjectileConfig;
+    [SerializeField] GameObject effectOnSelf;
     public GameObject normalMeleeAttackEffect;
     public float normalMeleeAOERadius = 3f;
     public float regenHealthPerSec = 1;
@@ -115,28 +117,29 @@ public class DemonTrigger : MonoBehaviour
         ProjectileConfig tempProjectile = GetComponent<WeaponSystem>().GetCurrentProjectileConfig();
         GetComponent<WeaponSystem>().SetCurrentProjectileConfig(replaceProjectileConfig);
         replaceProjectileConfig = tempProjectile;
+        PlayTriggerEffect(effectOnSelf, 6f);
     }
 
-    //public void PlayTriggerEffect(GameObject effectPrefab, float effectLiveTime)
-    //{
-    //    var particleObject = Instantiate
-    //    (
-    //        effectPrefab,
-    //        transform.position,
-    //        effectPrefab.transform.rotation
-    //    );
-    //    particleObject.transform.parent = transform;
-    //    particleObject.GetComponent<ParticleSystem>().Play();
-    //    particleObject.transform.parent = GameManager.instance.tempObjects;
-    //    StartCoroutine(DestroyParticleAfterFinishedSec(particleObject, effectLiveTime));
-    //}
+    public void PlayTriggerEffect(GameObject effectPrefab, float effectLiveTime)
+    {
+        var particleObject = Instantiate
+        (
+            effectPrefab,
+            transform.position,
+            effectPrefab.transform.rotation
+        );
+        particleObject.transform.parent = transform;
+        particleObject.GetComponent<ParticleSystem>().Play();
+        particleObject.transform.parent = GameManager.instance.tempObjects;
+        StartCoroutine(DestroyParticleAfterFinishedSec(particleObject, effectLiveTime));
+    }
 
-    //IEnumerator DestroyParticleAfterFinishedSec(GameObject effectPrefab, float effectLiveTime)
-    //{
-    //    while (effectPrefab.GetComponent<ParticleSystem>().isPlaying)
-    //    {
-    //        yield return new WaitForSeconds(effectLiveTime);
-    //    }
-    //    Destroy(effectPrefab);
-    //}
+    IEnumerator DestroyParticleAfterFinishedSec(GameObject effectPrefab, float effectLiveTime)
+    {
+        while (effectPrefab.GetComponent<ParticleSystem>().isPlaying)
+        {
+            yield return new WaitForSeconds(effectLiveTime);
+        }
+        Destroy(effectPrefab);
+    }
 }

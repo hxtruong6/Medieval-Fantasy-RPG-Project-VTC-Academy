@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fea27d9968efc264893ca27d0ab0c3e6
+guid: b5a96da5e6af3d949916c81a7a4fa42d
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -27,7 +27,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lair
-    second: {fileID: 2100000, guid: a6fd88c3bf766654b84b5a08db8f5642, type: 2}
+    second: {fileID: 2100000, guid: c21703864fb14ca49a502acbbe5d4eee, type: 2}
   materials:
     importMaterials: 1
     materialName: 3
