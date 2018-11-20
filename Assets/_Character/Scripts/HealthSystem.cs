@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -7,7 +9,7 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] float maxHealthPoints = 100f;
+    public float maxHealthPoints = 100f;
     [SerializeField] Image healthBar;
     [SerializeField] AudioClip[] damageSounds;
     [SerializeField] AudioClip[] deathSounds;
@@ -20,7 +22,7 @@ public class HealthSystem : MonoBehaviour
     Animator animator;
     AudioSource audioSource;
 
-    float currentHealthPoints;
+    public float currentHealthPoints;
     float flashTime = 2f;
     bool isInvincible;
 
@@ -32,7 +34,7 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        animator = animator == null ? GetComponent<Animator>() : animator;
+        animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         damageTextSpawner = FindObjectOfType<DamageTextSpawner>();
 
@@ -45,7 +47,11 @@ public class HealthSystem : MonoBehaviour
     }
 
     void Update()
-    {
+    {     
+        if(GetComponent<PlayerControl>() && GetComponent<PlayerControl>().isInDemonForm)
+        {
+            RegenHealth();
+        }
         UpdateHealthBar();
     }
 
@@ -57,28 +63,46 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void SetAnimator(Animator ani)
+    private void RegenHealth()
     {
-        animator = ani;
+        if (currentHealthPoints == 0)
+            return;
+        var pointsToAdd = GetComponent<DemonTrigger>().regenHealthPerSec * Time.deltaTime;
+        currentHealthPoints = Mathf.Clamp(currentHealthPoints + pointsToAdd, 0, maxHealthPoints);
     }
 
     public void TakeDamage(float damage)
     {
-        if (isInvincible)
-            return;
+        if (GetComponent<PlayerControl>())
+        {
+            if (isInvincible)
+                return;
+            if(!GetComponent<PlayerControl>().isInDemonForm)
+                GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().attackedGain);           
+        }
+        if (GetComponent<Enemy>())
+        {
+            FlashEnemyHealthBar();
+        }
 
-        FlashEnemyHealthBar();
+        Color textColor = GameManager.instance.enemyDmgTextColor;
+
+        if (GetComponent<PlayerControl>())
+            textColor = GameManager.instance.playerDmgTextColor;
+
+        damageTextSpawner.Create(damage, transform.position, textColor);
 
         bool characterDies = (currentHealthPoints - damage) <= 0;
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
         //play sound
-        damageTextSpawner.Create(damage, transform.position);
 
         if (damageSounds.Length > 0)
         {
             var clip = damageSounds[Random.Range(0, damageSounds.Length)];
             audioSource.PlayOneShot(clip);
         }
+
+        UpdateHealthBar();
 
         if (characterDies)
         {
@@ -119,42 +143,43 @@ public class HealthSystem : MonoBehaviour
     {
         var playerComponent = GetComponent<PlayerControl>();
 
-        // TODO: animatior of wyvern is not in its, It is in the first child
         animator.SetTrigger(DEATH_TRIGGER);
 
         audioSource.Play();
 
-
         if (playerComponent)
         {
+            playerComponent.StopAllCoroutines();
+            playerComponent.StopMoving();
+            playerComponent.gameObject.transform.position = playerComponent.gameObject.transform.position;
             playerComponent.Killed();
         }
         else
         {
-            if (GetComponent<CapsuleCollider>())
-                GetComponent<CapsuleCollider>().enabled = false;
-
-            if (GetComponent<BoxCollider>() && !playerComponent)
-                GetComponent<BoxCollider>().enabled = false;//TODO check with designer
-
-            if (GetComponent<DropLoot>())
-                GetComponent<DropLoot>().DropWeaponAndItem();
-
-            if (GetComponent<Enemy>() != null)
-                GetComponent<Enemy>().StartCoroutine(GetComponent<Enemy>().Kill(deadVanishAfter));
+            EnemyKilledAndDropLoot();
         }
 
         yield return new WaitForSecondsRealtime(deadVanishAfter);
 
-        if (playerComponent && playerComponent.isActiveAndEnabled)
+        if(playerComponent)
         {
-            Destroy(playerComponent);
-            Destroy(GetComponent<Character>());
-            SceneManager.LoadScene(0);
+            GameManager.instance.PlayerContinueCheck();
         }
     }
 
-    public void PlayCriticalHitParticle(GameObject effectPrefab, float effectLiveTime)
+    private void EnemyKilledAndDropLoot()
+    {
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        if (GetComponent<BoxCollider>())
+            GetComponent<BoxCollider>().enabled = false;
+        if (GetComponent<DropLoot>())
+            GetComponent<DropLoot>().DropWeaponAndItem();
+        if (GetComponent<Enemy>() != null)
+            GetComponent<Enemy>().StartCoroutine(GetComponent<Enemy>().Kill(deadVanishAfter));
+    }
+
+    public void PlayHitEffect(GameObject effectPrefab, float effectLiveTime)
     {
         var particleObject = Instantiate
         (
@@ -164,7 +189,7 @@ public class HealthSystem : MonoBehaviour
         );
         particleObject.transform.parent = transform;
         particleObject.GetComponent<ParticleSystem>().Play();
-        particleObject.transform.parent = GameManager.instance.tempObjects;
+        //particleObject.transform.parent = GameManager.instance.tempObjects;
         StartCoroutine(DestroyParticleAfterFinishedSec(particleObject, effectLiveTime));
     }
 

@@ -31,9 +31,9 @@ public class SkeletonWeapon : MonoBehaviour
         skeleton.GetComponent<Enemy>().UpdateCurrentWeaponRange();
 
         if (listOfWeapon[weaponIndex].name == "SkeletonHandedSword" || weaponIndex == 2)
-            skeleton.GetComponent<Character>().setAnimatorOverideController(aniHanded);
+            skeleton.GetComponent<Character>().SetAnimatorOverideController(aniHanded);
         else
-            skeleton.GetComponent<Character>().setAnimatorOverideController(aniNormal);
+            skeleton.GetComponent<Character>().SetAnimatorOverideController(aniNormal);
     }
 
     // Update is called once per frame

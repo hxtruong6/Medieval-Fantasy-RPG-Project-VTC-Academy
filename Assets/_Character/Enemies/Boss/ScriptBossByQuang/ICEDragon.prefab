@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4995471172478288}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ TailNub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4356317576053528}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: jaw_down_04_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4497009728807192}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4209493987694278}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4909501480846880}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4881236425138376}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone006(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4817462466935508}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4565512730250440}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4184034791463126}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L HorseLink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4307733813823794}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4647554071921352}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe3Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4065156021463270}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4348452724201454}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: jaw_up_02_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4159279720559292}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4593165748692802}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4446430806558734}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4953555787582718}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4296641700189200}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4567134392558370}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4520970560602734}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4132739105780798}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4234517935021516}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4981011213917596}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4394055220578766}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4819541841823158}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4376338609723456}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone018(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4558497095412402}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 4252230618537200}
   - component: {fileID: 65374100431398298}
   - component: {fileID: 114003261005437502}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ColliderAttackB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4458535003352242}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 4093908485265086}
   - component: {fileID: 199620747858258356}
   - component: {fileID: 198929836185382732}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MistTrial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4665283300075802}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4553779195723140}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone020(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,7 +503,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4736592545511996}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4053684567699982}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone013(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4674647927680540}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4761918269470752}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4166538197300926}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4262766773340378}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: jaw_down_02_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4481518440696394}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4537657526579342}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4045535135596526}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone009(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4007053304918894}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone016(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4386089851079070}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Neck3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -668,7 +668,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4451469867408414}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4348114840753014}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +698,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4533798195952526}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4404766628748522}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: jaw_down_01_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,7 +728,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4870141373097010}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +743,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4861707766001250}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +758,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4291681525949472}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Neck2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,7 +773,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4062953608532532}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: jaw_up_01_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +788,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4108641691369004}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4500757399856258}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4034821018406840}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +833,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4487743037200624}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe2Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,7 +848,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4706774963109598}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +865,7 @@ GameObject:
   - component: {fileID: 4285612330092038}
   - component: {fileID: 65527019507022404}
   - component: {fileID: 114401612384463704}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ColliderAttackL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4004615552589696}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4074688089237296}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +910,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4673327226625480}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +925,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4724505384411436}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,7 +940,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4231937335418046}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -955,7 +955,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4035150973706520}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -970,7 +970,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4693826382071064}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +985,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4635678134191794}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,7 +1000,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4481060782717410}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Neck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1015,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4903824048940532}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1030,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4541729995227366}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: wingL_arm_(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1045,7 +1045,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4258641391804776}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1060,7 +1060,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4361385852193234}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1075,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4908666483204142}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe2Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +1090,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4404489727846214}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1105,7 +1105,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4161372162297746}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1120,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4070120310968182}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: wingL_arm_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1135,7 +1135,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4114832641497724}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1150,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4573855607861516}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1165,7 +1165,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4994337102906694}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1180,7 +1180,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4084202567567816}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: wingL_foreArm1_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1195,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4652979132820006}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1210,7 +1210,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4720027041681144}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,7 +1225,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4921904895545408}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R HorseLink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1240,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4462399060892516}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1255,7 +1255,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4434062206475958}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1270,7 +1270,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4769475221518594}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4208803956621298}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4122870515395698}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1315,7 +1315,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4564980974627478}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1330,7 +1330,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4847912784655942}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,7 +1345,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4470381044691862}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe3Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4654601068245698}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1375,7 +1375,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4541804802623726}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1390,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4308366355957464}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1405,7 +1405,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4816363795132672}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1420,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4374664275769972}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1435,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4523301823399526}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1452,7 +1452,7 @@ GameObject:
   - component: {fileID: 4552002165387722}
   - component: {fileID: 65262999780334830}
   - component: {fileID: 114194069331772084}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ColliderAttackR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1467,7 +1467,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4645872763066458}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone015(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1482,7 +1482,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4932782537262440}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1497,7 +1497,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4256114204645872}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1512,7 +1512,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4244978865310884}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger0Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1527,7 +1527,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4481344391283668}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1542,7 +1542,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4591374560377044}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1557,7 +1557,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4013854058987350}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1572,7 +1572,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4568866828503084}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1587,7 +1587,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4184616220423432}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1602,7 +1602,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4784221269496910}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone007(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1617,7 +1617,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4289235711442618}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1632,7 +1632,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4714133183051400}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1647,7 +1647,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4958664543615286}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1664,7 +1664,7 @@ GameObject:
   - component: {fileID: 4962048702391486}
   - component: {fileID: 65338619381390008}
   - component: {fileID: 114632599482865064}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: ColliderAttackICE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1679,7 +1679,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4641352202087412}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone011(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1694,7 +1694,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4423115419445840}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1717,7 @@ GameObject:
   - component: {fileID: 114597264940275046}
   - component: {fileID: 65117435120243682}
   - component: {fileID: 114468433632910596}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: ICEDragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1734,7 +1734,7 @@ GameObject:
   - component: {fileID: 4265148405610088}
   - component: {fileID: 198677146276547008}
   - component: {fileID: 199278944728900708}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: icelance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,7 +1749,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4985226538104054}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone021(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1764,7 +1764,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4771442592193804}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1779,7 +1779,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4533119953589530}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1794,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4621236779084028}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: wingL_foreArm1_(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1809,7 +1809,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4700985854492446}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1824,7 +1824,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4071352373962840}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1841,7 +1841,7 @@ GameObject:
   - component: {fileID: 4960801132179484}
   - component: {fileID: 65104601609187364}
   - component: {fileID: 114479087102537076}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ColliderAttackC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1856,7 +1856,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4570377206116034}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1871,7 +1871,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4873437333895554}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1886,7 +1886,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4536209966383570}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger3Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1901,7 +1901,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4617309197670042}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1916,7 +1916,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4453276208476074}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1931,7 +1931,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4598181039796282}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1946,7 +1946,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4783184104990290}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger2Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1961,7 +1961,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4506605754009848}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1976,7 +1976,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4569753174051512}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone017(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1991,7 +1991,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4844593586454386}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2008,7 +2008,7 @@ GameObject:
   - component: {fileID: 4400718963512282}
   - component: {fileID: 199307534596296998}
   - component: {fileID: 198518166414404676}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TinyShards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2023,7 +2023,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4320619290467170}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2038,7 +2038,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4812858982789632}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone019(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2053,7 +2053,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4053700418691328}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2068,7 +2068,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4292685499029324}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2083,7 +2083,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4060153367985674}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Dummy003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2098,7 +2098,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4227553150992092}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone005(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2113,7 +2113,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4500986328918708}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2128,7 +2128,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4183066746513120}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2143,7 +2143,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4204580933556240}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: wingL_hand_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2158,7 +2158,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4256965242994540}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2173,7 +2173,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4641043827541060}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2188,7 +2188,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4866240313843880}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2203,7 +2203,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4820173276804608}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone008(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2218,7 +2218,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4510250307871998}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2233,7 +2233,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4088139898453934}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2248,7 +2248,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4827277683634342}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ HeadNub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2263,7 +2263,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4053627712270208}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2278,7 +2278,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4619332599125514}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2293,7 +2293,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4810125595171170}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2308,7 +2308,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4467581867364846}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Neck4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2323,7 +2323,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4870850694292766}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2338,7 +2338,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4251359473304410}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2353,7 +2353,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4475988299652574}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2368,7 +2368,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4002363362735020}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2383,7 +2383,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4513861810113372}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone014(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2398,7 +2398,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4564679916948670}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2413,7 +2413,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4911561674593870}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2428,7 +2428,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4352163345734738}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone012(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2443,7 +2443,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4217132073935204}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2458,7 +2458,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4777832700020640}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2473,7 +2473,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4145326770815026}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger2Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2488,7 +2488,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4623923376595578}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2503,7 +2503,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4520298590987668}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2518,7 +2518,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4379448674651278}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2533,7 +2533,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4998979508516480}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2548,7 +2548,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4156313747425368}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: wingL_foreArm2_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2565,7 +2565,7 @@ GameObject:
   - component: {fileID: 4192029963868184}
   - component: {fileID: 137900973500084836}
   - component: {fileID: 114304608028086594}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2580,7 +2580,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4882162560094034}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone010(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2595,7 +2595,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4551123571744710}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2610,7 +2610,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4021124342621208}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: wingL_hand_(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2625,7 +2625,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4405008951674726}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger3Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2640,7 +2640,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4959877156602352}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Bone017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2655,7 +2655,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4791282921511588}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ Tail13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2670,7 +2670,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4658395715854288}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2685,7 +2685,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4048403028959336}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2700,7 +2700,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4806863709685324}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2715,7 +2715,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4137381118017262}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2730,7 +2730,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4347288711416248}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2745,7 +2745,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4727727657378510}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2760,7 +2760,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4805397011771276}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: jaw_down_03_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2775,7 +2775,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4873384445666760}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: IK Chain003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2792,7 +2792,7 @@ GameObject:
   - component: {fileID: 4385817913444970}
   - component: {fileID: 199443485952391098}
   - component: {fileID: 198286815113515086}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2807,7 +2807,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4224735534240412}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2822,7 +2822,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4663727398666954}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: wingL_foreArm2_(mirrored)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2837,7 +2837,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4993188388057068}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Finger32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2852,7 +2852,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4144869897127594}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2867,7 +2867,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4344521395869396}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Toe01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2882,7 +2882,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4679922245942848}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ L Finger22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2897,7 +2897,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4766575911268068}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: mountain_dragon_ R Toe1Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5826,11 +5826,16 @@ MonoBehaviour:
   rb: {fileID: 54220738931651202}
   attackRange: 9
   healthBar: {fileID: 0}
+  canvasUI: {fileID: 0}
   attackR: {fileID: 1444731247968254}
   attackL: {fileID: 1242264943526074}
   attackC: {fileID: 1549431326110924}
   attackB: {fileID: 1115968887881806}
   attackICE: {fileID: 1492305259575744}
+  attackAOE: {fileID: 0}
+  bossLockProgress: {fileID: 0}
+  rightLeg: {fileID: 0}
+  leftLeg: {fileID: 0}
 --- !u!114 &114304608028086594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5907,6 +5912,7 @@ MonoBehaviour:
   damageSounds: []
   deathSounds: []
   deadVanishAfter: Infinity
+  currentHealthPoints: 0
 --- !u!114 &114632599482865064
 MonoBehaviour:
   m_ObjectHideFlags: 1

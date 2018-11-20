@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EZCameraShake;
 public class MeleeAreaEffectBehaviour : AbilityBehaviour
 {
     float damageToDeal = 0;
@@ -21,6 +20,7 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
     {
         PlayAbilitySound();
         GetComponent<EnergySystem>().ConsumeEnergy(GetEnergyCost());
+        GetComponent<RageSystem>().GainRagePoints(GetComponent<RageSystem>().aoeAttackGain);
 
         PlayEffectOnSelf(gameObject);
         RaycastHit[] hits = Physics.SphereCastAll

@@ -50,6 +50,14 @@ public class SpecialAbilities : MonoBehaviour
         abilityIcons[3].GetComponent<Button>().interactable = value;
     }
 
+    public void LockAllAbilities()
+    {
+        abilityIcons[0].GetComponent<Button>().interactable = false;
+        abilityIcons[1].GetComponent<Button>().interactable = false;
+        abilityIcons[2].GetComponent<Button>().interactable = false;
+        abilityIcons[3].GetComponent<Button>().interactable = false;
+    }
+
     private void AssignAbilityIndex()
     {
         abilities = new AbilityConfig[4];
@@ -92,6 +100,9 @@ public class SpecialAbilities : MonoBehaviour
 
     public void AttemptSpecialAbility(int abilityIndex)
     {
+        if (GetComponent<PlayerControl>().isInDemonForm)
+            return;
+
         var energyCost = abilities[abilityIndex].GetEnergyCost();
 
         if (energyCost <= energySystem.GetCurrentEnergyPoints())

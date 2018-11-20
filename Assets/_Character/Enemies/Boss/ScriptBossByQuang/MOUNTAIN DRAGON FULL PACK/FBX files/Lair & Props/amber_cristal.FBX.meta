@@ -3,8 +3,18 @@ guid: 771c7d50848c173418c654f1db973b00
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: cristaux_green001
-  externalObjects: {}
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cristal_green
+    second: {fileID: 2100000, guid: 08f6e644525bf254ca6cf5fc0c760b08, type: 2}
   materials:
     importMaterials: 1
     materialName: 3
