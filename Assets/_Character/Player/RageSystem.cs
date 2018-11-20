@@ -67,7 +67,7 @@ public class RageSystem : MonoBehaviour {
         UpdateRageBar();
     }
 
-    private void UpdateRageBar()
+    public void UpdateRageBar()
     {
         rageBar.fillAmount = RagePointAsPercent;
     }

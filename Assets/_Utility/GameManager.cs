@@ -212,15 +212,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayerChooseContinue()
-    {
-        continuePanel.SetActive(false);
+    {      
         playerChances--;
         player.GetComponent<HealthSystem>().RestorePercentage(100);
         player.GetComponent<EnergySystem>().RestorePercentage(100);
         player.GetComponent<RageSystem>().currentRagePoints = 0;
-
-        player.gameObject.transform.position = PlayerSpawnPoint.transform.position;
-        player.gameObject.transform.rotation = PlayerSpawnPoint.transform.rotation;
+        player.GetComponent<RageSystem>().UpdateRageBar();
+        player.gameObject.transform.position = PlayerSpawnPoint.position;
+        player.gameObject.transform.rotation = PlayerSpawnPoint.rotation;
         player.GetComponent<Character>().SetDestination(player.transform.position);
         player.isAlive = true;
 
@@ -228,6 +227,8 @@ public class GameManager : MonoBehaviour
             player.GetComponent<DemonTrigger>().TurnBackToHumanForm();
 
         player.GetComponent<Animator>().Play("Grounded");
+
+        continuePanel.SetActive(false);
     }
 
     public void PlayerChooseQuit()
