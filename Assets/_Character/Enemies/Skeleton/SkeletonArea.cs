@@ -9,7 +9,7 @@ public class SkeletonArea : MonoBehaviour
     public GameObject skeletonPrefab;
     public GameObject[] listOfSpawn;
     public int numberSpawn = 1;
-
+    public bool isDragon;
 
 
     void Start()
@@ -20,17 +20,20 @@ public class SkeletonArea : MonoBehaviour
     void Update()
     {
         //Debug.Log("Child: "+ gameObject.GetComponentInChildren<Transform>().gameObject.name );
-        if (transform.childCount == 0)
+        if (isDragon)
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            for (int i = 0; i < transform.childCount; i++)
+            if (transform.childCount == 0)
             {
-                if (gameObject.transform.GetChild(i).transform.childCount == 0)
+                Destroy(gameObject);
+            }
+            else
+            {
+                for (int i = 0; i < transform.childCount; i++)
                 {
-                    Destroy(gameObject.transform.GetChild(i).gameObject);
+                    if (gameObject.transform.GetChild(i).transform.childCount == 0)
+                    {
+                        Destroy(gameObject.transform.GetChild(i).gameObject);
+                    }
                 }
             }
         }

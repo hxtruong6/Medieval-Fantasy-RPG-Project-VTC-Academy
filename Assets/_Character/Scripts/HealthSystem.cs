@@ -75,6 +75,7 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        damage = (int)damage;
         if (GetComponent<PlayerControl>())
         {
             if (isInvincible)

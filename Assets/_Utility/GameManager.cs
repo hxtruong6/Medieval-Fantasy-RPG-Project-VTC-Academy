@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -8,11 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] KeyCode openCheatPanelKey = KeyCode.BackQuote;
     [SerializeField] KeyCode openHelpPanel = KeyCode.H;
     [SerializeField] KeyCode showLootItemsKey = KeyCode.LeftAlt;
+    [SerializeField] KeyCode pauseKey = KeyCode.Escape;
 
     public HealthPotionConfig smallHealthPotion;
     public HealthPotionConfig largeHealthPotion;
     public ManaPotionConfig smallManaPotion;
-    public ManaPotionConfig largeManaPotion;    
+    public ManaPotionConfig largeManaPotion;
     public int cheatPotionAddAmount = 10;
     public WeaponConfig legendaryWeapon;
     public WeaponConfig masterWeapon;
@@ -27,8 +29,12 @@ public class GameManager : MonoBehaviour
     public Text continueQuestionText;
     public Button continueYesButton;
     public Button continueNoButton;
+    public Text textMessage;
+    public GameObject pauseMenu;
+    public GameObject gameCanvas;
+    public GameObject loadingCanvas;
 
-    [HideInInspector]  public string ENEMY_UI = "Enemy Canvas";
+    [HideInInspector] public string ENEMY_UI = "Enemy Canvas";
     public float PARTICLE_CLEAN_UP_DELAY = 10f;
 
     public static GameManager instance;
@@ -36,16 +42,23 @@ public class GameManager : MonoBehaviour
     bool isPaused;
     PlayerControl player;
     bool cheatSceneOn;
-    void Start ()
+
+    void Start()
     {
         player = FindObjectOfType<PlayerControl>();
         instance = this;
-        DontDestroyOnLoad(this);
-	}
+    }
 
     private void Update()
     {
-        if(Input.GetKeyDown(showLootItemsKey))
+        if (Input.GetKey(pauseKey) && !isPaused)
+        {
+            pauseMenu.SetActive(true);
+            gameCanvas.SetActive(false);
+            PauseGame();
+        }
+
+        if (Input.GetKeyDown(showLootItemsKey))
         {
             for (int i = 0; i < tempObjects.GetComponentsInChildren<LootItem>().Length; i++)
             {
@@ -60,21 +73,23 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(openCheatPanelKey))
+        if (Input.GetKeyDown(openCheatPanelKey) && !isPaused)
         {
+            cheatScene.SetActive(true);
             PauseGame();
             cheatSceneOn = true;
         }
-        if(Input.GetKeyUp(openCheatPanelKey))
+        if (Input.GetKeyUp(openCheatPanelKey) && cheatSceneOn)
         {
+            cheatScene.SetActive(false);
             UnPauseGame();
             cheatSceneOn = false;
         }
-        if (Input.GetKeyDown(openHelpPanel))
+        if (Input.GetKeyDown(openHelpPanel) && !isPaused)
         {
             OpenHelpScene();
         }
-        if (Input.GetKeyUp(openHelpPanel))
+        if (Input.GetKeyUp(openHelpPanel) && helpScene.activeInHierarchy)
         {
             CloseHelpScene();
         }
@@ -84,17 +99,17 @@ public class GameManager : MonoBehaviour
             {
                 RestoreFullHealth();
             }
-            if(Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 CheatRestoreFullMana();
             }
-            if(Input.GetKeyDown(KeyCode.Alpha3))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 RestoreFullHealth();
                 bool isPlayerInvincible = player.GetComponent<HealthSystem>().GetInvincibility();
                 player.GetComponent<HealthSystem>().SetInvincible(!isPlayerInvincible);
             }
-            if(Input.GetKeyDown(KeyCode.Alpha4))
+            if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 CheatRestoreFullMana();
                 bool isPlayerUnlimitedPower = player.GetComponent<EnergySystem>().GetPowerLimit();
@@ -129,7 +144,6 @@ public class GameManager : MonoBehaviour
 
     private void PauseGame()
     {
-        cheatScene.SetActive(true);
         isPaused = true;
         Time.timeScale = 0;
         player.GetComponent<PlayerControl>().enabled = false;
@@ -137,7 +151,6 @@ public class GameManager : MonoBehaviour
 
     private void UnPauseGame()
     {
-        cheatScene.SetActive(false);
         isPaused = false;
         Time.timeScale = 1;
         player.GetComponent<PlayerControl>().enabled = true;
@@ -171,7 +184,7 @@ public class GameManager : MonoBehaviour
 
     private void CheatGetLegendaryWeapon()
     {
-        if(legendaryWeapon!=null)
+        if (legendaryWeapon != null)
             player.GetComponent<InventorySystem>().PickUpNewWeapon(legendaryWeapon);
     }
 
@@ -207,22 +220,22 @@ public class GameManager : MonoBehaviour
         continueQuestionText.text = "YOU DIED\n" + playerChances + " CHANCES LEFT.\nCONTINUE?";
         if (playerChances == 0)
             continueYesButton.interactable = false;
-            
+
         continuePanel.SetActive(true);
     }
 
     private void PlayerChooseContinue()
-    {           
+    {
         player.GetComponent<HealthSystem>().RestorePercentage(100);
         player.GetComponent<EnergySystem>().RestorePercentage(100);
         player.GetComponent<RageSystem>().currentRagePoints = 0;
         player.GetComponent<RageSystem>().UpdateRageBar();
 
         player.GetComponent<DemonTrigger>().humanForm.SetActive(false);
-          
+
         player.isAlive = true;
 
-        if(player.isInDemonForm)
+        if (player.isInDemonForm)
             player.GetComponent<DemonTrigger>().TurnBackToHumanForm();
 
         player.GetComponent<Animator>().Play("Grounded");
@@ -234,6 +247,42 @@ public class GameManager : MonoBehaviour
 
     public void PlayerChooseQuit()
     {
-        print("TO MENU!");
+        continuePanel.SetActive(false);
+        UnPauseGame();
+        loadingCanvas.SetActive(true);
+        SceneManager.LoadScene("MainLobby");
+    }
+
+    public void DisplayMessage(string message)
+    {
+        StopAllCoroutines();
+        textMessage.text = message;
+        StartCoroutine(CloseMessage());
+    }
+
+    IEnumerator CloseMessage()
+    {
+        yield return new WaitForSeconds(3f);
+        textMessage.text = "";
+    }
+
+    public void ButtonContinue()
+    {
+        gameCanvas.SetActive(true);
+        pauseMenu.SetActive(false);
+        UnPauseGame();
+    }
+
+    public void ButtonBackToMenu()
+    {
+        loadingCanvas.SetActive(true);
+        pauseMenu.SetActive(false);
+        UnPauseGame();
+        SceneManager.LoadScene("MainLobby");
+    }
+
+    public void ButtonExit()
+    {
+        Application.Quit();
     }
 }

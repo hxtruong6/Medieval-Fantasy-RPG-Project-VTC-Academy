@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 7400132, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
   - {fileID: 7400138, guid: 26c93cb914d9a9d44bfe7d49071f8dd1, type: 3}
   minTimeBetweenHits: 0
-  maxAttackRange: 3
+  maxAttackRange: 2
   minDamage: 1
   maxDamage: 5
   isRightHandWeapon: 1

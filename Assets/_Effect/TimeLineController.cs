@@ -15,6 +15,8 @@ public class TimeLineController : MonoBehaviour {
     public bool ativeEndObject;
     public GameObject endPanel;
     public GameObject environment;
+    public bool ativeBoss;
+    public GameObject boss;
     // Use this for initialization
     void Start () {
         
@@ -39,6 +41,14 @@ public class TimeLineController : MonoBehaviour {
                 }
                 else
                 {
+                    if (ativeBoss)
+                    {
+                        boss.gameObject.SetActive(true);
+                        //var playerCurrentMeleeWeapon = FindObjectOfType<PlayerControl>().GetComponent<InventorySystem>().GetEquippedMeleeWeapon();
+                        //playerCurrentMeleeWeapon.SetAttackRange(playerCurrentMeleeWeapon.GetMaxAttackRange() * 2);
+                        //WeaponConfig demonCurrentMeleeWeapon = FindObjectOfType<PlayerControl>().GetComponent<DemonTrigger>().replaceMeleeWeapon;
+                        //demonCurrentMeleeWeapon.SetAttackRange(demonCurrentMeleeWeapon.GetMaxAttackRange() * 2);
+                    }
                     canvasUI.gameObject.SetActive(true);
                     enemy.gameObject.SetActive(true);
                     follow.gameObject.SetActive(false);

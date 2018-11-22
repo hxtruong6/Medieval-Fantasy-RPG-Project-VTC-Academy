@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RageSystem : MonoBehaviour {
+public class RageSystem : MonoBehaviour
+{
     [SerializeField] Image rageBar;
     [SerializeField] float maxRagePoints = 100f;
     [SerializeField] float decayPointsPerSecond = 20;
@@ -45,14 +46,14 @@ public class RageSystem : MonoBehaviour {
 
         if (currentRagePoints == 0)
         {
-            if(GetComponent<PlayerControl>().isInDemonForm)
+            if (GetComponent<PlayerControl>().isInDemonForm)
             {
                 if (GetComponent<HealthSystem>().HealthAsPercentage > 0)
                 {
                     GetComponent<PlayerControl>().isInDemonForm = false;
                     isActived = false;
-                    demonTrigger.TurnBackToHumanForm();                   
-                }             
+                    demonTrigger.TurnBackToHumanForm();
+                }
             }
         }
     }
@@ -64,7 +65,13 @@ public class RageSystem : MonoBehaviour {
 
         float newRagePoints = currentRagePoints + pointsToAdd;
         currentRagePoints = Mathf.Clamp(newRagePoints, 0, maxRagePoints);
+
         UpdateRageBar();
+
+        if (currentRagePoints == maxRagePoints)
+        {
+            GetComponent<DemonTrigger>().skillIcon.GetComponent<Button>().interactable = true;
+        }
     }
 
     public void UpdateRageBar()

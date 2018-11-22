@@ -143,7 +143,16 @@ public class DragonBoss : MonoBehaviour {
 
     private void DestroyBoss()
     {
-        Destroy(gameObject);
-        Destroy(bossLockProgress);
+        //var playerCurrentMeleeWeapon = FindObjectOfType<PlayerControl>().GetComponent<InventorySystem>().GetEquippedMeleeWeapon();
+        //playerCurrentMeleeWeapon.SetAttackRange(playerCurrentMeleeWeapon.GetMaxAttackRange() / 2);
+
+        //WeaponConfig demonCurrentMeleeWeapon = FindObjectOfType<PlayerControl>().GetComponent<DemonTrigger>().replaceMeleeWeapon;
+        //demonCurrentMeleeWeapon.SetAttackRange(demonCurrentMeleeWeapon.GetMaxAttackRange() / 2);
+        DragonDeathEffect.DragonRegisterDeath();
+    }
+    public static void ClearBoss()
+    {
+        Destroy(dragonBoss.gameObject);
+        Destroy(dragonBoss.bossLockProgress);
     }
 }

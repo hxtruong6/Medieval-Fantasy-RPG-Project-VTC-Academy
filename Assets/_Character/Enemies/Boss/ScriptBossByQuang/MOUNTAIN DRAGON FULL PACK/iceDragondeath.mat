@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DieEffect
+  m_Name: iceDragondeath
   m_Shader: {fileID: 4800000, guid: 2d7b302a78be8b246ac0560d7d8b80c8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ac5762f2add76014f92019f8db37cb1d, type: 3}
+        m_Texture: {fileID: 2800000, guid: ed6482d997c1c7c4081a457a3150d6a9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -60,10 +60,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Noise:
         m_Texture: {fileID: 2800000, guid: ff0d931f01d1085489117611a63d7f26, type: 3}
-        m_Scale: {x: 1.5, y: 1}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: d6284dd712d030843a7d441aeac8a929, type: 3}
+        m_Texture: {fileID: 2800000, guid: 32e899c6c73ba37428b58238098b3809, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -80,13 +80,13 @@ Material:
     - _DetailNormalMapScale: 1
     - _DisplaceAmount: 1.5
     - _DstBlend: 0
-    - _EdgeSize: 0.1
+    - _EdgeSize: 0.2
     - _GlossMapScale: 1
-    - _Glossiness: 0.4
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.3
+    - _Metallic: 1
     - _Mode: 0
-    - _NoiseStrength: 0.49
+    - _NoiseStrength: 0.137
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
@@ -95,9 +95,9 @@ Material:
     - _UVSec: 0
     - _Use_Gradient: 0
     - _ZWrite: 1
-    - _cutoff: 0
+    - _cutoff: 1
     m_Colors:
-    - _Color: {r: 0.15294118, g: 0.08627451, b: 0.05490196, a: 1}
-    - _EdgeColor1: {r: 3, g: 1.377, b: 3, a: 1}
+    - _Color: {r: 0.11427152, g: 0.134, b: 0.184, a: 1}
+    - _EdgeColor1: {r: 1.194, g: 2, b: 2, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

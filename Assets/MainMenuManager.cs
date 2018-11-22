@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuManager : MonoBehaviour {
+public class MainMenuManager : MonoBehaviour
+{
 
     public GameObject loadingScreen;
 
     public void Play()
     {
         loadingScreen.gameObject.SetActive(true);
-        SceneManager.LoadScene("LevelDemo");
+        SceneManager.LoadScene(1);
     }
 
     public void Exit()

@@ -25,6 +25,8 @@ public class WeaponConfig : ScriptableObject
 
     public float GetMinTimeBetweenHits() { return minTimeBetweenHits; }
 
+    public void SetAttackRange(float range) { maxAttackRange = range; }
+
     public float GetMaxAttackRange() { return maxAttackRange; }
 
     public GameObject GetWeaponPrefab() { return weaponPrefab; }

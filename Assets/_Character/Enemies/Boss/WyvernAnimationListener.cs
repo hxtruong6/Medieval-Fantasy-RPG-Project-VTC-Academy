@@ -5,7 +5,7 @@ public class WyvernAnimationListener : MonoBehaviour
 {
     private WyvernAttacking wyvernAttacking;
     public AudioClip deathSound;
-
+    public GameObject disableBlock;
     public Material dieMaterial;
     // Use this for initialization
     void Start()
@@ -31,10 +31,16 @@ public class WyvernAnimationListener : MonoBehaviour
 
     void dieEffect()
     {
+        disableBlock.gameObject.SetActive(false);
         GetComponentInChildren<SkinnedMeshRenderer>().material = dieMaterial;
         var spawnEffect = GetComponentInChildren<SpawnEffect>();
         spawnEffect.enabled = true;
         StartCoroutine(DieDestroy(spawnEffect.spawnEffectTime));
+
+        //var playerCurrentMeleeWeapon = FindObjectOfType<PlayerControl>().GetComponent<InventorySystem>().GetEquippedMeleeWeapon();
+        //playerCurrentMeleeWeapon.SetAttackRange(playerCurrentMeleeWeapon.GetMaxAttackRange() /2);
+        //WeaponConfig demonCurrentMeleeWeapon = FindObjectOfType<PlayerControl>().GetComponent<DemonTrigger>().replaceMeleeWeapon;
+        //demonCurrentMeleeWeapon.SetAttackRange(demonCurrentMeleeWeapon.GetMaxAttackRange() / 2);
     }
 
     private IEnumerator DieDestroy(float timeEffect)

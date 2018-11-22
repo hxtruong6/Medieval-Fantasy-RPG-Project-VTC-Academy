@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     GameObject enemy;
     WeaponSystem weaponSystem;
     InventorySystem inventorySystem;
-    SpecialAbilities abilities;    
+    SpecialAbilities abilities;
 
     void Start()
     {
@@ -89,13 +89,15 @@ public class PlayerControl : MonoBehaviour
         {
             inventorySystem.UseLargeManaPotion();
         }
-        if(Input.GetKeyDown(pickUpLootKey))
+        if (Input.GetKeyDown(pickUpLootKey))
         {
             Collider[] hitColliders;
             hitColliders = Physics.OverlapSphere(transform.position, searchItemRadius, LayerMask.GetMask("Loot Item"));
-
             if (hitColliders.Length == 0)
+            {
+                GameManager.instance.DisplayMessage("There is no item in sight to pick");
                 return;
+            }
             var itemToPick = hitColliders[0].gameObject;
 
             if (IsItemInPickUpRange(itemToPick))
@@ -119,7 +121,6 @@ public class PlayerControl : MonoBehaviour
 
     private bool CheckAttackConditions(GameObject enemyToCheck)
     {
-        //print(gameObject + " vs " + enemyToCheck);
         if (!isAlive)
             return false;
 
@@ -138,7 +139,16 @@ public class PlayerControl : MonoBehaviour
     void OnMouseOverDropItem(LootItem itemToPick)
     {
         if (!isAlive)
+        {
+            GameManager.instance.DisplayMessage("You died.");
             return;
+        }
+
+        if(itemToPick.GetDropWeaponConfig())
+        {
+            if (isInDemonForm)
+                return;
+        }
 
         if (Input.GetMouseButtonDown(0) && IsItemInPickUpRange(itemToPick.gameObject))
         {
@@ -154,6 +164,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (!isAlive)
         {
+            GameManager.instance.DisplayMessage("You died.");
             return;
         }
 
@@ -280,7 +291,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void Killed()
-    {      
+    {
         isAlive = false;
         StopCurrentAction();
         StopMoving();

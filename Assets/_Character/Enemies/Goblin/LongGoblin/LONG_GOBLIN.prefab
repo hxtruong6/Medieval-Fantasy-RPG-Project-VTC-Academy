@@ -2709,9 +2709,9 @@ MonoBehaviour:
   manaPotionList:
   - {fileID: 11400000, guid: 3d27b6826a4f6764cad16169fc0f91a9, type: 2}
   - {fileID: 11400000, guid: 4f11c7510d17d4b4286761cfebcb17f5, type: 2}
-  minHealthDrop: 0
-  maxHealthDrop: 2
-  minManaDrop: 0
+  minHealthDrop: 1
+  maxHealthDrop: 3
+  minManaDrop: 1
   maxManaDrop: 3
 --- !u!114 &114512538930479304
 MonoBehaviour:
@@ -2929,6 +2929,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e3e8e40af33377488f953aa6e3c8fa2, type: 3}
   - {fileID: 8300000, guid: 6534c2b3c8f8687478e5fad93034b554, type: 3}
   deadVanishAfter: 5
+  currentHealthPoints: 0
 --- !u!114 &114972896895075088
 MonoBehaviour:
   m_ObjectHideFlags: 1

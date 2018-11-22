@@ -43,6 +43,7 @@ public class SpecialAbilities : MonoBehaviour
 
     public void LockMeleeAbilites(bool value)
     {
+        StopAllCoroutines();
         abilityIcons[0].GetComponent<Button>().interactable = !value;
         abilityIcons[2].GetComponent<Button>().interactable = !value;
 
@@ -101,7 +102,10 @@ public class SpecialAbilities : MonoBehaviour
     public void AttemptSpecialAbility(int abilityIndex)
     {
         if (GetComponent<PlayerControl>().isInDemonForm)
+        {
+            GameManager.instance.DisplayMessage("Can't use special ability in Demon form");
             return;
+        }
 
         var energyCost = abilities[abilityIndex].GetEnergyCost();
 
@@ -113,7 +117,7 @@ public class SpecialAbilities : MonoBehaviour
             var abilityParams = new AbilityUseParams(target, characterDamage + weaponDamage);
 
             if (abilities[abilityIndex].Use(abilityParams))
-            {              
+            {
                 var skillCoolDown = abilities[abilityIndex].GetCoolDownTime();
                 var skillIcon = abilityIcons[abilityIndex];
                 StartCoroutine(DisableIconForAPeriod(skillIcon, skillCoolDown));
@@ -121,6 +125,8 @@ public class SpecialAbilities : MonoBehaviour
         }
         else
         {
+            GameManager.instance.DisplayMessage("There's not enough mana.");
+
             if (audioSource.isPlaying && outOfEnergy != null)
             {
                 audioSource.Stop();

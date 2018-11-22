@@ -74,8 +74,10 @@ public class Projectile : MonoBehaviour
         if (!objectBeingHit.GetComponent<HealthSystem>() ||
             objectBeingHit.GetComponent<HealthSystem>().HealthAsPercentage < 0)
         {
-            return;
+            if(!objectBeingHit.GetComponentInParent<HealthSystem>())
+                return;
         }
+
         float damage = 0;
         var enemyBodyPart = objectBeingHit.GetComponent<BodyPart>();
         if (enemyBodyPart){
@@ -115,16 +117,16 @@ public class Projectile : MonoBehaviour
             damage += shooterWeapon.GetWeaponDamage();
             damage += shooter.GetComponent<Character>().GetBaseDamage();
             damage = damage * shooter.GetComponent<RangedPowerAttackBehaviour>().GetAbilityDamage();
-            objectBeingHit.GetComponent<HealthSystem>().TakeDamage(damage);
+            objectBeingHit.GetComponentInParent<HealthSystem>().TakeDamage(damage);
         }
         else
         {
             if (hitEnemy.Contains(objectBeingHit))
                 return;
 
-            shooterWeapon.SetTarget(objectBeingHit);
+            shooterWeapon.SetTarget(objectBeingHit.GetComponentInParent<HealthSystem>().gameObject);
             shooterWeapon.Hit(rangedWeaponConfig);
-            hitEnemy.Add(objectBeingHit);
+            hitEnemy.Add(objectBeingHit.GetComponentInParent<HealthSystem>().gameObject);
         }
         // TODO: if enough damage -> show animation
         //if (enemyBodyPart)

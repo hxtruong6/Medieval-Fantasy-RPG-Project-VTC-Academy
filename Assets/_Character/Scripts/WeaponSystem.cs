@@ -233,9 +233,10 @@ public class WeaponSystem : MonoBehaviour
         hitColliders = Physics.OverlapSphere(target.transform.position, dealDamageRadius, LayerMask.GetMask(BOSS_LAYER_MASK));
         List<WyvernBehavior> affectedBoss = new List<WyvernBehavior>();
 
+
         for (int i = 0; i < hitColliders.Length; i++)
         {
-            var boss = hitColliders[i].GetComponent<WyvernBehavior>();
+            var boss = hitColliders[i].GetComponentInParent<WyvernBehavior>();
             if (affectedBoss.Contains(boss)) continue;
 
             if(boss)
@@ -245,7 +246,7 @@ public class WeaponSystem : MonoBehaviour
             }          
         }
 
-        var effect = GetComponentInParent<DemonTrigger>().normalMeleeAttackEffect;
+        var effect = GetComponent<DemonTrigger>().normalMeleeAttackEffect;
         if(effect)
             target.GetComponent<HealthSystem>().PlayHitEffect(effect, 10);
     }

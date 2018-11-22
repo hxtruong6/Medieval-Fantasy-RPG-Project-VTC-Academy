@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/_Levels/MainLobby.unity
     guid: 12914476b347ca441be98c8e2b2934f6
   - enabled: 1
-    path: Assets/_Levels/LevelDemo.unity
-    guid: e1af4311eefc24a43aca172f961fabce
+    path: Assets/_Levels/LevelDemo 1.unity
+    guid: aa86c90be896be949ba32ac4808c626f

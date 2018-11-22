@@ -27,7 +27,7 @@ MonoBehaviour:
   criticalHitParticlePrefab: {fileID: 1985736286063262, guid: d850462245630e84caadc6d3c63efc5c,
     type: 2}
   destroyParticleAfterSec: 2
-  attackAnimSpeedMultiplier: 2
+  attackAnimSpeedMultiplier: 1.5
   weaponIcon: {fileID: 21300000, guid: 39960f55e14f74d4d9fdd5b5c60f80b5, type: 3}
   dropParticlePrefab: {fileID: 1261871964191378, guid: 47536f9e78dcb214591b6114833d9eb6,
     type: 2}

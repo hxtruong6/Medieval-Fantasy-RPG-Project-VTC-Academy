@@ -22,7 +22,7 @@ MonoBehaviour:
   minTimeBetweenHits: 0.5
   maxAttackRange: 1
   minDamage: 1
-  maxDamage: 20
+  maxDamage: 10
   isRightHandWeapon: 1
   isMeleeWeapon: 1
   criticalHitParticlePrefab: {fileID: 1224878549576900, guid: ddcd1a5e3f1e4ce4a8244a638de0a0ae,

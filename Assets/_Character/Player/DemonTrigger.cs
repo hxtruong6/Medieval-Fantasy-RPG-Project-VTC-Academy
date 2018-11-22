@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class DemonTrigger : MonoBehaviour
 {
@@ -12,10 +13,11 @@ public class DemonTrigger : MonoBehaviour
     [SerializeField] Avatar demonAvatar;
     [SerializeField] float humanRunSpeed = 1f;
     [SerializeField] float demonRunSpeed = 4f;
-    [SerializeField] WeaponConfig replaceMeleeWeapon;
+    public WeaponConfig replaceMeleeWeapon;
     [SerializeField] WeaponConfig replaceRangedWeapon;
     [SerializeField] ProjectileConfig replaceProjectileConfig;
     [SerializeField] GameObject effectOnSelf;
+    public GameObject skillIcon;
     public GameObject normalMeleeAttackEffect;
     public float normalMeleeAOERadius = 3f;
     public float regenHealthPerSec = 1;
@@ -42,23 +44,31 @@ public class DemonTrigger : MonoBehaviour
         rage = GetComponent<RageSystem>();
     }
 
-    void Update ()
+    void Update()
     {
         if (Input.GetKeyDown(demonTriggerKey) && player.GetComponent<HealthSystem>().HealthAsPercentage > 0)
         {
-            if(!player.isInDemonForm && rage.RagePointAsPercent == 1)
-            {
-                PlayAnimationTrigger();
-            }
-            if (player.isInDemonForm)
-            {
-                TurnBackToHumanForm();
-            }
+            ActiveTrigger();
+        }
+    }
+
+    public void ActiveTrigger()
+    {
+        if (!player.isInDemonForm && rage.RagePointAsPercent == 1)
+        {
+            PlayAnimationTrigger();
+        }
+        if (player.isInDemonForm)
+        {
+            TurnBackToHumanForm();
         }
     }
 
     public void TurnBackToHumanForm()
     {
+        if (rage.currentRagePoints != rage.GetMaxRagePoints())
+            skillIcon.GetComponent<Button>().interactable = false;
+
         player.StopCurrentAction();
         player.StopMoving();
         rage.isActived = false;
@@ -103,7 +113,7 @@ public class DemonTrigger : MonoBehaviour
         {
             animator.avatar = humanAvatar;
             agent.speed = humanRunSpeed;
-        }      
+        }
     }
 
     private void ChangeWeapon()
@@ -117,7 +127,8 @@ public class DemonTrigger : MonoBehaviour
         ProjectileConfig tempProjectile = GetComponent<WeaponSystem>().GetCurrentProjectileConfig();
         GetComponent<WeaponSystem>().SetCurrentProjectileConfig(replaceProjectileConfig);
         replaceProjectileConfig = tempProjectile;
-        PlayTriggerEffect(effectOnSelf, 6f);
+        if (effectOnSelf != null)
+            PlayTriggerEffect(effectOnSelf, 6f);
     }
 
     public void PlayTriggerEffect(GameObject effectPrefab, float effectLiveTime)

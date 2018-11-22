@@ -9,12 +9,11 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] WeaponConfig meleeWeaponConfig;
     [SerializeField] WeaponConfig rangedWeaponConfig;
     [SerializeField] float switchWeaponCoolDownTime = 3f;
-    [SerializeField] GameObject switchWeaponPanel;
     [SerializeField] Image currentWeaponImage;
     [SerializeField] Image nextWeaponImage;
-    [SerializeField] int amountOfSmallHealthPotion;   
-    [SerializeField] int amountOfLargeHealthPotion;   
-    [SerializeField] int amountOfSmallManaPotion;  
+    [SerializeField] int amountOfSmallHealthPotion;
+    [SerializeField] int amountOfLargeHealthPotion;
+    [SerializeField] int amountOfSmallManaPotion;
     [SerializeField] int amountOfLargeManaPotion;
     [SerializeField] Image smallHealthImage;
     public Text textSmallHPotion;
@@ -93,10 +92,7 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
-        if (Time.time >= hideSwitchWeaponTextTime)
-        {
-            switchWeaponPanel.SetActive(false);
-        }
+
     }
 
     private void UpdateWeaponIcons()
@@ -108,12 +104,6 @@ public class InventorySystem : MonoBehaviour
             nextWeaponImage.sprite = rangedWeaponConfig.GetWeaponIcon();
         else
             nextWeaponImage.sprite = meleeWeaponConfig.GetWeaponIcon();
-    }
-
-    private void ShowSwitchWeaponText()
-    {
-        switchWeaponPanel.SetActive(true);
-        hideSwitchWeaponTextTime = Time.time + switchWeaponCoolDownTime;
     }
 
     private WeaponConfig ChangeWeaponType(WeaponConfig currentWeapon)
@@ -149,12 +139,12 @@ public class InventorySystem : MonoBehaviour
         if (lastSwitchWeaponTime == null ||
             Time.time - lastSwitchWeaponTime >= switchWeaponCoolDownTime)
         {
-            switchWeaponPanel.SetActive(false);
+            GameManager.instance.DisplayMessage("");
             weaponSystem.CancleAction();
             weaponSystem.DestroyWeaponObject();
 
             var currentWeapon = weaponSystem.GetCurrentWeapon();
-            currentWeapon = ChangeWeaponType(currentWeapon);           
+            currentWeapon = ChangeWeaponType(currentWeapon);
             weaponSystem.PutWeaponInHand(currentWeapon);
 
             UpdateWeaponIcons();
@@ -164,10 +154,10 @@ public class InventorySystem : MonoBehaviour
         }
         else
         {
-            ShowSwitchWeaponText();
+            GameManager.instance.DisplayMessage("You can't switch weapon again yet");
         }
     }
-    
+
     public void PickUpNewItem(LootItem newItem)
     {
         if (newItem.isPicked)
@@ -180,32 +170,32 @@ public class InventorySystem : MonoBehaviour
             PickUpNewWeapon(newItem.GetDropWeaponConfig());
         }
         else
-        {         
+        {
             if (newItem.GetDropPotionConfig() == gameManager.smallHealthPotion)
             {
                 AmountOfSmallHPotion += 1;
             }
-            if(newItem.GetDropPotionConfig() == gameManager.largeHealthPotion)
+            if (newItem.GetDropPotionConfig() == gameManager.largeHealthPotion)
             {
                 AmountOfLargeHPotion += 1;
             }
-            if(newItem.GetDropPotionConfig() == gameManager.smallManaPotion)
+            if (newItem.GetDropPotionConfig() == gameManager.smallManaPotion)
             {
                 AmountOfSmallMPotion += 1;
             }
-            if(newItem.GetDropPotionConfig() == gameManager.largeManaPotion)
+            if (newItem.GetDropPotionConfig() == gameManager.largeManaPotion)
             {
                 AmountOfLargeMPotion += 1;
-            }                     
+            }
         }
         newItem.GetComponent<InfoItem>().RemoveInfo();
         newItem.isPicked = true;
         Destroy(newItem.gameObject);
     }
-    
+
     public void PickUpNewWeapon(WeaponConfig newWeapon)
     {
-        bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();      
+        bool matchCurrentWeaponType = weaponSystem.GetCurrentWeapon().IsMeleeWeapon() == newWeapon.IsMeleeWeapon();
 
         if (newWeapon.IsMeleeWeapon())
         {
@@ -216,7 +206,7 @@ public class InventorySystem : MonoBehaviour
             rangedWeaponConfig = newWeapon;
         }
 
-        if(matchCurrentWeaponType)
+        if (matchCurrentWeaponType)
         {
             weaponSystem.PutWeaponInHand(newWeapon);
         }
@@ -226,7 +216,10 @@ public class InventorySystem : MonoBehaviour
     public void UseSmallHealthPotion()
     {
         if (amountOfSmallHealthPotion <= 0 || !smallHealthImage.GetComponent<Button>().interactable)
+        {
+            GameManager.instance.DisplayMessage("You cannot use this potion yet");
             return;
+        }
 
         var amount = gameManager.smallHealthPotion.GetRestoreAmount();
         GetComponent<HealthSystem>().RestoreAmount(amount);
@@ -237,7 +230,10 @@ public class InventorySystem : MonoBehaviour
     public void UseLargeHealthPotion()
     {
         if (amountOfLargeHealthPotion <= 0 || !largeHealthImage.GetComponent<Button>().interactable)
+        {
+            GameManager.instance.DisplayMessage("You cannot use this potion yet");
             return;
+        }
 
         var percentage = gameManager.largeHealthPotion.GetRestorePercentage();
         GetComponent<HealthSystem>().RestorePercentage(percentage);
@@ -248,7 +244,10 @@ public class InventorySystem : MonoBehaviour
     public void UseSmallManaPotion()
     {
         if (amountOfSmallManaPotion <= 0 || !smallManaImage.GetComponent<Button>().interactable)
+        {
+            GameManager.instance.DisplayMessage("You cannot use this potion yet");
             return;
+        }
 
         var amount = gameManager.smallManaPotion.GetRestoreAmount();
         GetComponent<EnergySystem>().RestoreAmount(amount);
@@ -259,7 +258,10 @@ public class InventorySystem : MonoBehaviour
     public void UseLargeManaPotion()
     {
         if (amountOfLargeManaPotion <= 0 || !largeManaImage.GetComponent<Button>().interactable)
+        {
+            GameManager.instance.DisplayMessage("You cannot use this potion yet");
             return;
+        }
 
         var percentage = gameManager.largeManaPotion.GetRestorePercentage();
         GetComponent<EnergySystem>().RestorePercentage(percentage);
