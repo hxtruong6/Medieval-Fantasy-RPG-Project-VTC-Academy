@@ -16,7 +16,8 @@ public class WyvernBehavior : MonoBehaviour
     [SerializeField] private float fireAttackingRadius = 20f;
     [SerializeField] private float timeOnPlanLimited = 10f; // if it is out of this time, it will fly on the air
 
-    //[SerializeField] private float fallingSpeed = 10f;
+    //[SerializeField] private float lookAtSpeed = 5f;
+
     [SerializeField] private float timeForFireShooting = 0.1f;
     [SerializeField] private float maxFlyingHeight = 10f;
 
@@ -44,12 +45,13 @@ public class WyvernBehavior : MonoBehaviour
 
     private float timeToFlying = 0.5f;
     private float timeDirectUpdate;
-
+  
     [ExecuteInEditMode]
     void OnValidate()
     {
         fireAttackingRadius = Mathf.Clamp(fireAttackingRadius, attackingRadius + 5f, attackingRadius + 40f);
     }
+
     // Use this for initialization
     void Start()
     {
@@ -99,21 +101,32 @@ public class WyvernBehavior : MonoBehaviour
         if (GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
 
-            this.enabled = false;//to stop enemies from continue moving even when died
+            this.enabled = false; //to stop enemies from continue moving even when died
             return false;
         }
         else if (player.GetComponent<HealthSystem>().HealthAsPercentage <= 0)
         {
             return false;
         }
+
         return true;
     }
 
-    // Update is called once per frame
+    //void UpdateDirectionToPlayer(Vector3 destinationPoint)
+    //{
+    //    Vector3 direction = destinationPoint -transform.position;
+    //    Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
+    //    transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, lookAtSpeed * Time.time);
+    //}
+
+// Update is called once per frame
     void Update()
     {
         if (!PlayerOrEnemyAliveToContinue()) return;
         distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
+        Vector3 lookPos = player.transform.position - transform.position;
+        lookPos.y = 0;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookPos), Time.deltaTime);
         //FlyingBehaviour();
         switch (currentState)
         {
@@ -151,14 +164,15 @@ public class WyvernBehavior : MonoBehaviour
 
 
                 timeOnPlan += Time.deltaTime;
-                timeDirectUpdate += Time.deltaTime;
-                if (timeDirectUpdate > 1f)
-                {
-                    timeDirectUpdate = 0;
-                    var ro = transform.rotation;
-                    transform.LookAt(player.transform.position);
-                    transform.rotation = ro;
-                }
+               // timeDirectUpdate += Time.deltaTime;
+               //// if (timeDirectUpdate > 0.5f)
+               // {
+               //     timeDirectUpdate = 0;
+               //     var ro = transform.rotation;
+               //     transform.LookAt(player.transform.position);
+               //     transform.rotation = new Quaternion(0, transform.rotation.y, transform.rotation.z,  transform.rotation.w);
+               // }
+                    // UpdateDirectionToPlayer(player.transform.position);
                 break;
             case CurrentState.Flying:
                 //if all of skeleton died
