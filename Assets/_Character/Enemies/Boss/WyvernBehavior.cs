@@ -174,7 +174,7 @@ public class WyvernBehavior : MonoBehaviour
             case CurrentState.Falling:
                 flyingSpeed += Time.deltaTime * 0.75f;
                 //if (flyingSpeed > timeToFlying*2) flyingSpeed -= timeToFlying;
-                if (Vector3.Distance(animator.transform.position, transform.position) <= 0.8f)
+                if (Vector3.Distance(animator.transform.position, transform.position) <= 1.2f)
                 {
                     StopAllCoroutines();
                     GetComponentInParent<AudioSource>().Stop();
@@ -189,10 +189,27 @@ public class WyvernBehavior : MonoBehaviour
                 if (distanceToPlayer <= fireAttackingRadius
                     || distanceToPlayer <= attackingRadius)
                 {
+                    timeOnPlan = 0;
                     currentState = CurrentState.Attacking;
                 }
-                //else if (timeOnPlan >= timeOnPlanLimited && )
+                else if (timeOnPlan >= timeOnPlanLimited)
+                {
+                    timeOnPlan = 0;
+                    timeDirectUpdate = 0f;
+                    if (wyvernSkeletonSpawn.IsOverLoad())
+                    {
+                        currentState = CurrentState.Idle;
+                        break;
+                    }
+                    wyvernSkeletonSpawn.DisplaySkeletonSpawn();
+                    currentState = CurrentState.Flying;                 
+                    EnableFlying();
+                    //StopCoroutine(AttackingInArea());
+                    StartCoroutine(FlyingBehaviour());
+                    break;
+                }
 
+                timeOnPlan += Time.deltaTime;
                 break;
         }
 
@@ -211,7 +228,7 @@ public class WyvernBehavior : MonoBehaviour
     private IEnumerator FallingBehaviour()
     {
         flyingSpeed = 0;
-        while (Vector3.Distance(animator.transform.position, transform.position) > 0.8f)
+        while (Vector3.Distance(animator.transform.position, transform.position) > 1.2f)
         {
             yield return new WaitForSeconds(timeToFlying);
             var newPos = animator.transform.position;
@@ -308,6 +325,8 @@ public class WyvernBehavior : MonoBehaviour
             colliders[i].enabled = false;
         }
     }
+
+
 
 #if UNITY_EDITOR
     void OnDrawGizmos()

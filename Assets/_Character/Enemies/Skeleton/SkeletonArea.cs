@@ -9,19 +9,10 @@ public class SkeletonArea : MonoBehaviour
     public GameObject skeletonPrefab;
     public GameObject[] listOfSpawn;
     public int numberSpawn = 1;
-    public bool isDragon;
+   
 
-
-    void Start()
+    public void AutoFindDestrouy()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log("Child: "+ gameObject.GetComponentInChildren<Transform>().gameObject.name );
-        if (isDragon)
-        {
             if (transform.childCount == 0)
             {
                 Destroy(gameObject);
@@ -36,7 +27,6 @@ public class SkeletonArea : MonoBehaviour
                     }
                 }
             }
-        }
     }
 
     void OnTriggerEnter(Collider other)

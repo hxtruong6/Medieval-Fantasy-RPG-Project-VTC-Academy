@@ -17733,6 +17733,36 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 164115073}
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+--- !u!1 &1598324470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1824147932846738, guid: 376f9d0875e9d62478ba8209edc05d91,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1598324471}
+  m_Layer: 9
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1598324471
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4120307019268464, guid: 376f9d0875e9d62478ba8209edc05d91,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598324470}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1870140026}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1609992989 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1208451469301088, guid: 7136209ca30d5dc47b55fa889c35ed1d,
@@ -23130,6 +23160,69 @@ Transform:
   m_Father: {fileID: 1009421224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1870140023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1572216077872692, guid: 376f9d0875e9d62478ba8209edc05d91,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1870140026}
+  - component: {fileID: 1870140025}
+  - component: {fileID: 1870140024}
+  m_Layer: 9
+  m_Name: SkeletonSpawnArea (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1870140024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114216466188395226, guid: 376f9d0875e9d62478ba8209edc05d91,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870140023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d087119edc49444addc2a9e2e1e90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonPrefab: {fileID: 1886034783218542, guid: d789a399cc3b4ba44a7303b8641fabfd,
+    type: 2}
+  listOfSpawn:
+  - {fileID: 1598324470}
+  numberSpawn: 1
+--- !u!135 &1870140025
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 135213258573129366, guid: 376f9d0875e9d62478ba8209edc05d91,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870140023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1870140026
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4796680541907916, guid: 376f9d0875e9d62478ba8209edc05d91,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870140023}
+  m_LocalRotation: {x: -0, y: 0.93795633, z: -0, w: 0.34675342}
+  m_LocalPosition: {x: 3.4, y: 0.14000034, z: 7}
+  m_LocalScale: {x: 1.0000007, y: 1, z: 1.0000007}
+  m_Children:
+  - {fileID: 1598324471}
+  m_Father: {fileID: 2109047782}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1874310513
 GameObject:
   m_ObjectHideFlags: 0
@@ -27653,6 +27746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0045c270779664b4782ec78e104315e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSound: {fileID: 0}
   dieMaterial: {fileID: 2100000, guid: 0bf833c0cac591f4f96705d12b63320a, type: 2}
 --- !u!95 &1998397928
 Animator:
@@ -28362,6 +28456,7 @@ MonoBehaviour:
   skeletonSpawnAreas:
   - {fileID: 1450119703}
   - {fileID: 243223650}
+  - {fileID: 1870140023}
 --- !u!114 &2109047775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28441,6 +28536,7 @@ MonoBehaviour:
   biteAttack: {fileID: 8300000, guid: 9dc2bb723d02c474cb22009e448047f0, type: 3}
   fireAttack: {fileID: 8300000, guid: 28b46c2f3f9625546aa128133bdb6adf, type: 3}
   swoopAttack: {fileID: 8300000, guid: afda1fa946a602340b2f553ee4a1b0d0, type: 3}
+  wyvernEventAttack: {fileID: 0}
 --- !u!114 &2109047779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28458,6 +28554,7 @@ MonoBehaviour:
   damageSounds: []
   deathSounds: []
   deadVanishAfter: 2
+  currentHealthPoints: 0
 --- !u!82 &2109047780
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28569,6 +28666,7 @@ Transform:
   - {fileID: 1998397926}
   - {fileID: 1450119706}
   - {fileID: 243223653}
+  - {fileID: 1870140026}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 103.68, z: 0}
