@@ -33,7 +33,8 @@ public class MeleeAreaEffectBehaviour : AbilityBehaviour
 
         foreach (RaycastHit hit in hits)
         {
-            var damageable = hit.collider.gameObject.GetComponent<HealthSystem>();
+            var damageable = hit.collider.gameObject.GetComponentInParent<HealthSystem>();
+            //var damageable = hit.collider.gameObject.GetComponent<HealthSystem>();
             bool hitPlayer = hit.collider.gameObject.GetComponent<PlayerControl>();
 
             if (damageable != null && !hitPlayer)

@@ -9,31 +9,49 @@ public class SkeletonArea : MonoBehaviour
     public GameObject skeletonPrefab;
     public GameObject[] listOfSpawn;
     public int numberSpawn = 1;
-    public bool isDragon;
+    //public bool isDragon;
 
 
-    void Start()
+    //void Start()
+    //{
+    //}
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    //Debug.Log("Child: "+ gameObject.GetComponentInChildren<Transform>().gameObject.name );
+    //    if (isDragon)
+    //    {
+    //        if (transform.childCount == 0)
+    //        {
+    //            Destroy(gameObject);
+    //        }
+    //        else
+    //        {
+    //            for (int i = 0; i < transform.childCount; i++)
+    //            {
+    //                if (gameObject.transform.GetChild(i).transform.childCount == 0)
+    //                {
+    //                    Destroy(gameObject.transform.GetChild(i).gameObject);
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
+    public void AutoFindDestrouy()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log("Child: "+ gameObject.GetComponentInChildren<Transform>().gameObject.name );
-        if (isDragon)
+        if (transform.childCount == 0)
         {
-            if (transform.childCount == 0)
+            Destroy(gameObject);
+        }
+        else
+        {
+            for (int i = 0; i < transform.childCount; i++)
             {
-                Destroy(gameObject);
-            }
-            else
-            {
-                for (int i = 0; i < transform.childCount; i++)
+                if (gameObject.transform.GetChild(i).transform.childCount == 0)
                 {
-                    if (gameObject.transform.GetChild(i).transform.childCount == 0)
-                    {
-                        Destroy(gameObject.transform.GetChild(i).gameObject);
-                    }
+                    Destroy(gameObject.transform.GetChild(i).gameObject);
                 }
             }
         }

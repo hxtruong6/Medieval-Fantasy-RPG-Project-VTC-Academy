@@ -49,7 +49,7 @@ public class DragonBoss : MonoBehaviour {
         if (player != null)
         {
             Vector3 targetPos = player.transform.position;
-            Vector3 lookPlayer = new Vector3(targetPos.x, this.transform.position.y, targetPos.y);
+            //Vector3 lookPlayer = new Vector3(targetPos.x, this.transform.position.y, targetPos.y);
             Vector3 lookPos = targetPos - transform.position;
             lookPos.y = 0;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookPos), Time.deltaTime);
@@ -154,5 +154,15 @@ public class DragonBoss : MonoBehaviour {
     {
         Destroy(dragonBoss.gameObject);
         Destroy(dragonBoss.bossLockProgress);
+    }
+
+    public static void PlayerDeath()
+    {
+        dragonBoss.attackAOE.gameObject.SetActive(false);
+        dragonBoss.anim.SetBool("playerdeath", true);
+    }
+    public static void PlayerAlive()
+    {
+        dragonBoss.anim.SetBool("playerdeath", false);
     }
 }

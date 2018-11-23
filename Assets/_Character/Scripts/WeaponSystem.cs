@@ -231,24 +231,36 @@ public class WeaponSystem : MonoBehaviour
         }
 
         hitColliders = Physics.OverlapSphere(target.transform.position, dealDamageRadius, LayerMask.GetMask(BOSS_LAYER_MASK));
+        
         List<WyvernBehavior> affectedBoss = new List<WyvernBehavior>();
 
-
-        for (int i = 0; i < hitColliders.Length; i++)
+        if (hitColliders.Length > 0)
         {
-            var boss = hitColliders[i].GetComponentInParent<WyvernBehavior>();
-            if (affectedBoss.Contains(boss)) continue;
-
-            if(boss)
-            {
-                boss.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
-                affectedBoss.Add(boss);
-            }          
+            var boss = hitColliders[0].GetComponentInParent<WyvernBehavior>();
+            boss.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
+            affectedBoss.Add(boss);
         }
 
         var effect = GetComponent<DemonTrigger>().normalMeleeAttackEffect;
-        if(effect)
+        if (effect)
             target.GetComponent<HealthSystem>().PlayHitEffect(effect, 10);
+
+        //List<WyvernBehavior> affectedBoss = new List<WyvernBehavior>();
+        //for (int i = 0; i < hitColliders.Length; i++)
+        //{
+        //    var boss = hitColliders[i].GetComponentInParent<WyvernBehavior>();
+        //    if (affectedBoss.Contains(boss)) continue;
+
+        //    if(boss)
+        //    {
+        //        boss.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
+        //        affectedBoss.Add(boss);
+        //    }          
+        //}
+
+        //var effect = GetComponent<DemonTrigger>().normalMeleeAttackEffect;
+        //if(effect)
+        //    target.GetComponent<HealthSystem>().PlayHitEffect(effect, 10);
     }
 
     IEnumerator ChangeAttackStatus()

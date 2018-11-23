@@ -45,7 +45,6 @@ public class DragonTriggerEnter : MonoBehaviour
             {
                 damageDelay--;
                 other.GetComponent<HealthSystem>().TakeDamage(damage);
-
             }
         }
     }

@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9556821456258fa4ab945148c91e762c, type: 3}
   m_Name: Demon Arrow
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1546999143280692, guid: 3fb7f44e92a38b345be3d2a654c1e6c4,
+  projectilePrefab: {fileID: 1574605839452082, guid: 8030950d483f37c4d90bb635ee656917,
     type: 2}
   flyingAnimations: []
-  speed: 30
+  speed: 10
   vanishAfterSec: 1
-  contactSound: {fileID: 8300000, guid: e92b3ac8e3de15f449d827da9f342687, type: 3}
+  contactSound: {fileID: 8300000, guid: e2ac83d371eacbd4d9eb7edf7ae779cb, type: 3}
   isPierceProjectile: 0
   isAbilityProjectile: 0

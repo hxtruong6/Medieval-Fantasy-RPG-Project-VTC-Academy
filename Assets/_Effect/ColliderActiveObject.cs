@@ -5,6 +5,7 @@ using UnityEngine;
 public class ColliderActiveObject : MonoBehaviour {
     public GameObject[] objectsPrefab;
     public bool[] objectAtive;
+    public bool destroyObject;
 	// Use this for initialization
 	void Start () {
 		
@@ -22,6 +23,8 @@ public class ColliderActiveObject : MonoBehaviour {
             for (int i = 0; i < objectsPrefab.Length; i++)
             {
                 objectsPrefab[i].gameObject.SetActive(objectAtive[i]);
+                if (destroyObject)
+                Destroy(this.gameObject);
             }
         }
     }

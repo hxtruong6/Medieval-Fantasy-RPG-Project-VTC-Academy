@@ -6,6 +6,7 @@ public class WyvernAnimationListener : MonoBehaviour
     private WyvernAttacking wyvernAttacking;
     public AudioClip deathSound;
     public GameObject disableBlock;
+    public GameObject disableBlock2;
     public Material dieMaterial;
     // Use this for initialization
     void Start()
@@ -32,6 +33,7 @@ public class WyvernAnimationListener : MonoBehaviour
     void dieEffect()
     {
         disableBlock.gameObject.SetActive(false);
+        disableBlock2.gameObject.SetActive(false);
         GetComponentInChildren<SkinnedMeshRenderer>().material = dieMaterial;
         var spawnEffect = GetComponentInChildren<SpawnEffect>();
         spawnEffect.enabled = true;

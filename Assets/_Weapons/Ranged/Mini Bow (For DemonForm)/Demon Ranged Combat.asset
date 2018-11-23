@@ -19,8 +19,8 @@ MonoBehaviour:
   - {fileID: 7400112, guid: 2bfff19399948fc4b89a547891401451, type: 3}
   minTimeBetweenHits: 0.3
   maxAttackRange: 11
-  minDamage: 100
-  maxDamage: 100
+  minDamage: 50
+  maxDamage: 90
   isRightHandWeapon: 1
   isMeleeWeapon: 0
   criticalHitParticlePrefab: {fileID: 1686532574603256, guid: 0a37beb3466755b4e8f96ff49e4b1123,

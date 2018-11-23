@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public WeaponConfig masterWeapon;
     public GameObject enemyManager;
     public Transform tempObjects;
-    public int playerChances = 3;
+    public int playerChances = 2;
     public GameObject cheatScene;
     public GameObject helpScene;
     public Color enemyDmgTextColor;
@@ -60,9 +60,12 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(showLootItemsKey))
         {
-            for (int i = 0; i < tempObjects.GetComponentsInChildren<LootItem>().Length; i++)
+            if(tempObjects.GetComponentsInChildren<LootItem>().Length > 0)
             {
-                tempObjects.GetComponentsInChildren<LootItem>()[i].GetComponent<InfoItem>().HighLight(true);
+                for (int i = 0; i < tempObjects.GetComponentsInChildren<LootItem>().Length; i++)
+                {
+                    tempObjects.GetComponentsInChildren<LootItem>()[i].GetComponent<InfoItem>().HighLight(true);
+                }
             }
         }
         if (Input.GetKeyUp(showLootItemsKey))
@@ -184,12 +187,16 @@ public class GameManager : MonoBehaviour
 
     private void CheatGetLegendaryWeapon()
     {
+        if (player.isInDemonForm)
+            return;
         if (legendaryWeapon != null)
             player.GetComponent<InventorySystem>().PickUpNewWeapon(legendaryWeapon);
     }
 
     private void CheatGetMasterWeapon()
     {
+        if (player.isInDemonForm)
+            return;
         if (masterWeapon != null)
             player.GetComponent<InventorySystem>().PickUpNewWeapon(masterWeapon);
     }
@@ -216,7 +223,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerContinueCheck()
     {
-        playerChances--;
+        if (GameObject.FindObjectOfType<DragonBoss>() != null) { DragonBoss.PlayerDeath(); }
         continueQuestionText.text = "YOU DIED\n" + playerChances + " CHANCES LEFT.\nCONTINUE?";
         if (playerChances == 0)
             continueYesButton.interactable = false;
@@ -226,6 +233,7 @@ public class GameManager : MonoBehaviour
 
     private void PlayerChooseContinue()
     {
+        playerChances--;
         player.GetComponent<HealthSystem>().RestorePercentage(100);
         player.GetComponent<EnergySystem>().RestorePercentage(100);
         player.GetComponent<RageSystem>().currentRagePoints = 0;
@@ -243,6 +251,7 @@ public class GameManager : MonoBehaviour
         continuePanel.SetActive(false);
 
         player.GetComponent<DemonTrigger>().humanForm.SetActive(true);
+        if (GameObject.FindObjectOfType<DragonBoss>() != null) { DragonBoss.PlayerAlive(); }
     }
 
     public void PlayerChooseQuit()

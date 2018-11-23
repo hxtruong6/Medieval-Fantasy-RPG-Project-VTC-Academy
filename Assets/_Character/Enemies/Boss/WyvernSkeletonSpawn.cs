@@ -14,21 +14,26 @@ public class WyvernSkeletonSpawn : MonoBehaviour
     }
     public bool IsOverLoad()
     {
-        return currentIndex >= skeletonSpawnAreas.Length;
+        return currentIndex + 1 >= skeletonSpawnAreas.Length;
     }
 
     public void DisplaySkeletonSpawn()
     {
-        if (currentIndex + 1 < skeletonSpawnAreas.Length)
+        currentIndex++;
+        if (currentIndex < skeletonSpawnAreas.Length)
         {
-            skeletonSpawnAreas[++currentIndex].SetActive(true);
+            skeletonSpawnAreas[currentIndex].SetActive(true);
         }
     }
 
     public bool IsCurrentSkeletonGroupDie()
     {
+        if (currentIndex >= 0 && skeletonSpawnAreas[currentIndex])
+        {
+            skeletonSpawnAreas[currentIndex].GetComponent<SkeletonArea>().AutoFindDestrouy();
+        }
         //Debug.Log("Curr " + currentIndex + " is " + skeletonSpawnAreas[currentIndex].activeInHierarchy);
-        return skeletonSpawnAreas[currentIndex] == null;
+        return currentIndex == -1 || skeletonSpawnAreas[currentIndex] == null;
     }
 
 }

@@ -21,5 +21,5 @@ MonoBehaviour:
   effectOnWeapon: {fileID: 0}
   effectOnEnemy: {fileID: 1686532574603256, guid: 0a37beb3466755b4e8f96ff49e4b1123,
     type: 2}
-  extraDamage: 4
+  extraDamage: 3.5
   projectileConfig: {fileID: 11400000, guid: f399dd570e9426d4fb3d1219a4e9817e, type: 2}
